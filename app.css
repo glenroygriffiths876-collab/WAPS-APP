@@ -238,3 +238,71 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .launch-art .concept-hi{width:112px!important;height:112px!important}
   .choice .concept-fallback{height:125px!important;max-width:160px!important}
 }
+
+
+/* =========================================================
+   WAPS HOME VISUAL ACCEPTANCE REBUILD — v18
+   Matches the approved Practice reference quality.
+   ========================================================= */
+.premium-home{max-width:1500px;margin:0 auto;position:relative}
+.home-stage{
+  position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:34px;align-items:center;min-height:420px;padding:46px 50px 44px;
+  background:
+    radial-gradient(circle at 92% 12%,rgba(255,219,93,.30) 0 100px,transparent 102px),
+    linear-gradient(112deg,#fff6c8 0%,#fffdf1 42%,#e9f5ff 100%);
+  border:2px solid #f2df9b;border-radius:42px;box-shadow:0 18px 45px rgba(31,85,125,.11)
+}
+.home-stage::before{content:"";position:absolute;left:-45px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,212,52,.16)}
+.home-copy{position:relative;z-index:2}
+.home-copy h1{font-size:clamp(44px,5vw,72px);line-height:.96;letter-spacing:-.05em;margin:7px 0 17px;font-weight:1000;max-width:900px;color:#0b2455}
+.home-copy p{font-size:20px;line-height:1.55;color:#3d617b;max-width:830px;margin:0}
+.home-primary-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.home-action-card{
+  border:2px solid rgba(255,255,255,.88);border-radius:25px;padding:16px 16px;
+  min-height:104px;display:grid;grid-template-columns:54px 1fr 18px;gap:12px;align-items:center;
+  text-align:left;color:#0b2455;box-shadow:0 10px 22px rgba(41,84,114,.08);transition:.18s ease
+}
+.home-action-card:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(41,84,114,.13)}
+.home-action-card.practice-card{background:linear-gradient(145deg,#e9e1ff,#d9ceff)}
+.home-action-card.talk-card{background:linear-gradient(145deg,#fff0e6,#ffe3dc)}
+.home-action-card.coach-card-home{background:linear-gradient(145deg,#e2f6ff,#d5eeff)}
+.home-action-card .home-action-icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;color:#fff;font-weight:1000;font-size:26px}
+.practice-card .home-action-icon{background:#6c46e7}.talk-card .home-action-icon{background:#ef5239}.coach-card-home .home-action-icon{background:#148ee4}
+.home-action-card b{display:block;font-size:17px;line-height:1.15}.home-action-card small{display:block;color:#567082;margin-top:5px;font-size:12px;line-height:1.35}.home-action-card i{font-style:normal;font-size:27px;color:#5e72a1}
+.home-character{position:relative;min-height:310px;display:grid;place-items:center}
+.character-face{
+  width:205px;height:205px;border-radius:50%;display:grid;place-items:center;position:relative;z-index:2;
+  background:linear-gradient(145deg,#ffcc76,#f28ab2 55%,#7b67e9);border:10px solid #fff;box-shadow:0 18px 42px rgba(58,87,140,.20)
+}
+.character-face::before{content:"";position:absolute;inset:16px;border-radius:50%;background:linear-gradient(145deg,#6e4f3d,#3f2c25 34%,#c98354 35%,#f0b17b 78%,#d47b45 79%);opacity:.92}
+.character-face span{position:relative;z-index:2;color:#fff;font-size:76px;font-weight:1000;text-shadow:0 3px 10px rgba(0,0,0,.18)}
+.character-bubble{position:absolute;right:8px;bottom:5px;z-index:3;background:#fff;border:3px solid #b7dff6;border-radius:24px 24px 6px 24px;padding:13px 16px;font-weight:1000;color:#173a70;box-shadow:0 10px 22px rgba(32,86,122,.12);max-width:190px;text-align:center}
+.character-orbit{position:absolute;border-radius:50%;border:3px dashed rgba(108,70,231,.16)}
+.orbit-one{width:260px;height:260px}.orbit-two{width:310px;height:310px;border-color:rgba(20,142,228,.13)}
+.home-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px}
+.home-feature-card{
+  background:rgba(255,255,255,.98);border:2px solid #d8eaf2;border-radius:30px;padding:24px;
+  display:grid;grid-template-columns:66px 1fr auto;gap:17px;align-items:center;box-shadow:0 11px 28px rgba(36,82,112,.07)
+}
+.home-feature-card.goal-card{border-color:#dcd4ff}.home-feature-card.session-card{border-color:#cce9dc}
+.feature-badge{width:64px;height:64px;border-radius:21px;background:linear-gradient(145deg,#fff3bf,#e9f5ff);display:grid;place-items:center;font-size:31px}
+.home-feature-card h2{font-size:27px;line-height:1.12;margin:5px 0 7px}.home-feature-card p{margin:0;color:#59717f;line-height:1.45}
+.feature-cta{border:0;border-radius:999px;padding:13px 18px;font-weight:1000;white-space:nowrap}.feature-cta.purple{background:#e8e0ff;color:#4d32cc}.feature-cta.green{background:#daf6e8;color:#087e4c}
+.home-progress-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.home-progress-strip>div{background:rgba(255,255,255,.97);border:2px solid #dcecf1;border-radius:25px;padding:18px 20px;display:grid;grid-template-columns:46px auto 1fr;align-items:center;gap:10px;box-shadow:0 8px 22px rgba(40,80,110,.05)}
+.progress-icon{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:#eee8ff;color:#5e3ed9;font-size:21px;font-weight:1000}.home-progress-strip strong{font-size:34px;line-height:1}.home-progress-strip small{color:#617986;font-weight:900;line-height:1.25}
+.home-tip{margin-top:18px;display:flex;gap:15px;align-items:center;background:linear-gradient(90deg,#fff7cf,#fffdf3);border:2px solid #f1de9b;border-radius:25px;padding:18px 22px;box-shadow:0 8px 20px rgba(99,79,19,.05)}
+.home-tip>span{font-size:34px}.home-tip b{font-size:18px}.home-tip p{margin:4px 0 0;color:#5b6f77;line-height:1.45}
+body[data-route="home"]::after{height:225px;filter:saturate(1.16) contrast(1.02)}
+body[data-route="home"] main{padding-bottom:235px}
+
+@media(max-width:1080px){
+  .home-stage{grid-template-columns:1fr;padding:35px}.home-character{min-height:230px}.character-face{width:155px;height:155px}.character-face span{font-size:58px}.orbit-one{width:200px;height:200px}.orbit-two{width:238px;height:238px}
+  .home-primary-actions{grid-template-columns:1fr}.home-feature-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .home-stage{padding:24px 20px;border-radius:30px}.home-copy h1{font-size:40px}.home-copy p{font-size:16px}.home-character{display:none}
+  .home-primary-actions{margin-top:22px}.home-action-card{min-height:86px}.home-feature-card{grid-template-columns:54px 1fr}.feature-badge{width:52px;height:52px}.feature-cta{grid-column:1/-1;width:100%}
+  .home-progress-strip{grid-template-columns:1fr}.home-tip{align-items:flex-start}
+}

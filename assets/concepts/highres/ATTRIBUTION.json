@@ -78,5 +78,29 @@
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+  },
+  "water": {
+    "source_file": "File:Glass of water.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Glass_of_water.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Deavmi\" title=\"User:Deavmi\">deavmi</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+  },
+  "breadfruit": {
+    "source_file": "File:White Bread fruit.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:White_Bread_fruit.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Angelbaby4ever&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Angelbaby4ever (page does not exist)\">Angelbaby4ever</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+  },
+  "patty": {
+    "source_file": "File:Homemade Jamaican patties.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Lilpisomojado&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Lilpisomojado (page does not exist)\">Lilpisomojado</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
   }
 }

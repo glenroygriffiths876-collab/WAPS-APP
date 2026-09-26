@@ -12,3 +12,6 @@ These teaching images are derived from openly licensed Wikimedia Commons files. 
 - **Book** — File:Open book (Unsplash).jpg — CC0 — https://commons.wikimedia.org/wiki/File:Open_book_(Unsplash).jpg
 - **Car** — File:Blue car toy.jpg — CC0 — https://commons.wikimedia.org/wiki/File:Blue_car_toy.jpg
 - **Ball** — File:Ball white black.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Ball_white_black.jpg
+- **Water** — File:Glass of water.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Glass_of_water.jpg
+- **Breadfruit** — File:White Bread fruit.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:White_Bread_fruit.jpg
+- **Patty** — File:Homemade Jamaican patties.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg

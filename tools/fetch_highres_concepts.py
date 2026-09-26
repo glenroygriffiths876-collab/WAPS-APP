@@ -27,12 +27,12 @@ session_bg=new_session("u2netp")
 credits={}
 
 def commons_info(filename):
-    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata",
+    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":1800,
             "titles":"File:"+filename}
     j=requests.get(API,params=params,headers=UA,timeout=60).json()
     page=next(iter(j["query"]["pages"].values()))
     ii=page["imageinfo"][0]
-    return ii["url"], ii.get("extmetadata",{}), page.get("title","File:"+filename)
+    return ii.get("thumburl") or ii["url"], ii.get("extmetadata",{}), page.get("title","File:"+filename)
 
 def val(meta,key):
     return meta.get(key,{}).get("value","")
@@ -64,21 +64,30 @@ def isolate(img):
         canvas.paste(cut,(x,y))
     return canvas.convert("RGB")
 
+failed={}
 for concept,filename in FILES.items():
-    url,meta,title=commons_info(filename)
-    data=requests.get(url,headers=UA,timeout=120).content
-    img=Image.open(io.BytesIO(data))
-    final=isolate(img)
-    final.save(OUT/f"{concept}.webp","WEBP",quality=95,method=6)
-    credits[concept]={
-      "source_file":title,
-      "source_url":"https://commons.wikimedia.org/wiki/"+title.replace(" ","_"),
-      "artist":val(meta,"Artist"),
-      "license":val(meta,"LicenseShortName"),
-      "license_url":val(meta,"LicenseUrl"),
-      "credit":val(meta,"Credit")
-    }
-    print(concept, filename, img.size)
+    try:
+        url,meta,title=commons_info(filename)
+        resp=requests.get(url,headers=UA,timeout=120)
+        resp.raise_for_status()
+        ctype=resp.headers.get("content-type","")
+        if "image" not in ctype:
+            raise RuntimeError(f"Expected image response, got {ctype} from {url}")
+        img=Image.open(io.BytesIO(resp.content))
+        final=isolate(img)
+        final.save(OUT/f"{concept}.webp","WEBP",quality=95,method=6)
+        credits[concept]={
+          "source_file":title,
+          "source_url":"https://commons.wikimedia.org/wiki/"+title.replace(" ","_"),
+          "artist":val(meta,"Artist"),
+          "license":val(meta,"LicenseShortName"),
+          "license_url":val(meta,"LicenseUrl"),
+          "credit":val(meta,"Credit")
+        }
+        print("OK",concept,filename,img.size)
+    except Exception as e:
+        failed[concept]=str(e)
+        print("FAILED",concept,filename,repr(e))
 
 (OUT/"ATTRIBUTION.json").write_text(json.dumps(credits,indent=2,ensure_ascii=False),encoding="utf-8")
 md=["# WAPS high-resolution concept image credits","",
@@ -87,4 +96,8 @@ md=["# WAPS high-resolution concept image credits","",
 for k,v in credits.items():
     md.append(f"- **{k.title()}** — {v['source_file']} — {v['license']} — {v['source_url']}")
 (OUT/"ATTRIBUTIONS.md").write_text("\n".join(md)+"\n",encoding="utf-8")
-print("Generated",len(FILES),"high-resolution isolated concept images.")
+print("Generated",len(credits),"of",len(FILES),"high-resolution isolated concept images.")
+if failed:
+    print("Failures:",json.dumps(failed,indent=2))
+if len(credits)<8:
+    raise SystemExit("Too few high-resolution concepts were generated.")

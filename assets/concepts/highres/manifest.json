@@ -1,0 +1,80 @@
+{
+  "apple": {
+    "path": "./assets/concepts/highres/apple.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Apple-001.jpg",
+    "license": "Public domain",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "banana": {
+    "path": "./assets/concepts/highres/banana.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg",
+    "license": "CC BY 2.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "mango": {
+    "path": "./assets/concepts/highres/mango.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Mango_(1).jpg",
+    "license": "Public domain",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "plantain": {
+    "path": "./assets/concepts/highres/plantain.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "yam": {
+    "path": "./assets/concepts/highres/yam.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "cup": {
+    "path": "./assets/concepts/highres/cup.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg",
+    "license": "CC BY-SA 2.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "shoe": {
+    "path": "./assets/concepts/highres/shoe.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Airforce1.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "book": {
+    "path": "./assets/concepts/highres/book.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Open_book_color.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "car": {
+    "path": "./assets/concepts/highres/car.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "ball": {
+    "path": "./assets/concepts/highres/ball.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Ball_white_black.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "water": {
+    "path": "./assets/concepts/highres/water.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg",
+    "license": "Public domain",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "breadfruit": {
+    "path": "./assets/concepts/highres/breadfruit.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Artocarpus_altilis_(fruit).jpg",
+    "license": "CC BY-SA 3.0",
+    "review_status": "existing production asset; human visual review required"
+  },
+  "patty": {
+    "path": "./assets/concepts/highres/patty.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "existing production asset; human visual review required"
+  }
+}

@@ -20,18 +20,116 @@ export const COACH_ROUTINES=[
 {id:'book',title:'Share a book or pictures',steps:[['Follow','Let the child choose or notice a picture.'],['Comment','Make a short comment instead of testing with many questions.'],['Wait','Pause for any response or shared attention.'],['Expand','Add one small piece to what the child communicates.'],['Real life','Connect one picture to something real in the child’s day.']]}
 ,{id:'snack',title:'Snack-time communication',steps:[['Prepare','Put two acceptable snack or drink choices where they can be seen.'],['Model','Name or model one useful word without asking the child to repeat it.'],['Wait','Pause and watch for any communication mode.'],['Respond','Honour the message when practical and expand it by one small idea.'],['Generalize','Try the same purpose with a different snack, person or place later.']]},{id:'dressing',title:'Getting dressed together',steps:[['Connect','Start with the clothing routine already happening.'],['Offer choice','Offer two acceptable clothing choices and show them clearly.'],['Wait','Give time for looking, reaching, pointing, speech or AAC.'],['Respond','Honour the choice and model a useful word such as ON, OFF, SHIRT or HELP.'],['Use again','Look for another natural communication opportunity before the routine ends.']]},{id:'outside',title:'Going out / community trip',steps:[['Preview','Use one picture or word for where you are going.'],['Offer communication','Keep GO, STOP, HELP, TOILET and BREAK available.'],['Notice','Watch for spontaneous communication during the trip.'],['Respond','Acknowledge the message before adding language.'],['Reflect','Record one communication that happened outside the app.']]},{id:'bath',title:'Bath or wash routine',steps:[['Join','Use the routine already happening; do not turn it into a test.'],['Model','Model WASH, WATER, BODY words or HELP as they become relevant.'],['Wait','Pause for communication before adding another prompt.'],['Respond','Act on NO, STOP, HELP or BREAK immediately.'],['Generalize','Use the same word in another self-care routine later.']]}];
 export const LESSONS=[
-['Communication is bigger than speech','A child can communicate through speech, AAC, pointing, gesture, pictures, writing, signs and other meaningful signals. Respond to the message first.','Notice three different ways your child communicates today.'],
-['Follow the child’s lead','Start from what already interests the child. Joining first often creates better communication opportunities than immediately directing or testing.','Spend five minutes joining an activity your child chose.'],
-['Wait without pressure','Some children need more processing time. Pause before adding another question or prompt.','Try one quiet pause during a familiar routine.'],
-['Model, don’t demand','Say or select a useful word while it matters. The child does not have to copy you for the model to be useful.','Model one AAC word during a real routine.'],
-['Expand the message','Respond to what the child communicates, then add a small amount. If they say “car,” you might say “car go.”','Expand one message by one idea today.'],
-['AAC does not need to wait','AAC can support communication alongside speech. Keep useful communication available and model it naturally.','Make sure HELP, NO, STOP and BREAK are easy to reach.'],
-['Prompt less over time','Support can help learning, but success with heavy prompting is different from independence. Give time and reduce help gradually when appropriate.','Record how much help was needed instead of only correct/incorrect.'],
-['Practice in real life','A skill in an app is not automatically a real-life skill. Use the same purpose with people, routines and places that matter.','Take one WAPS word into a routine today.'],
-['Communication repair','When a message is misunderstood, teach ways to repair it: HELP, SHOW ME, SAY IT AGAIN, NOT THAT, I CHANGED MY MIND.','Model one repair message naturally.'],
-['Respect NO and STOP','Self-advocacy is communication. Do not train a child to ignore their own NO or STOP simply to appear compliant.','Check that NO and STOP work immediately in the child’s system.'],
-['Use pictures thoughtfully','A clear picture should teach the intended concept, not visual guessing. Use different examples over time to support generalization.','Show a familiar object in a second context.'],
-['When to seek more help','WAPS is not a diagnostic tool. Hearing concerns, feeding/swallowing problems, or loss of previously acquired communication skills deserve appropriate professional attention.','Write down any concern you want to discuss with a qualified professional.']
+  [
+    "Communication is bigger than speech",
+    "A child can communicate through speech, AAC, pointing, gesture, pictures, writing, signs, vocalizations and other meaningful signals. Respond to the message first.",
+    "Notice three different ways your child communicates today."
+  ],
+  [
+    "Follow the child’s lead",
+    "Start from what already interests the child. Joining first often creates better communication opportunities than immediately directing or testing.",
+    "Spend five minutes joining an activity your child chose."
+  ],
+  [
+    "Wait without pressure",
+    "Some children need more processing time. Pause before adding another question or prompt.",
+    "Try one quiet pause during a familiar routine."
+  ],
+  [
+    "Model, don’t demand",
+    "Say or select a useful word while it matters. The child does not have to copy you for the model to be useful.",
+    "Model one useful word during a real routine without asking for imitation."
+  ],
+  [
+    "Expand the message",
+    "Respond to what the child communicates, then add a small amount. If they say “car,” you might say “car go.”",
+    "Expand one message by one idea today."
+  ],
+  [
+    "AAC can start now",
+    "AAC can support communication alongside speech. Keep useful communication available and model it naturally.",
+    "Make sure HELP, NO, STOP and BREAK are easy to reach."
+  ],
+  [
+    "How to model AAC",
+    "When you speak, occasionally touch the matching AAC word yourself. Keep the model brief and meaningful; do not turn every interaction into a test.",
+    "Model one AAC word while you say the same idea during play or a routine."
+  ],
+  [
+    "Prompt less over time",
+    "Support can help learning, but success with heavy prompting is different from independence. Give time and reduce help gradually when appropriate.",
+    "Record how much help was needed instead of only correct/incorrect."
+  ],
+  [
+    "Create communication opportunities",
+    "Arrange natural moments where communication is useful, such as choosing a snack, asking for help or requesting more. Do not create distress or withhold important needs.",
+    "Create one easy, respectful reason to communicate today."
+  ],
+  [
+    "Support initiation",
+    "Not all communication begins with an adult question. Leave space for the child to start a message, then respond warmly when they do.",
+    "Count one communication your child starts without being asked."
+  ],
+  [
+    "Practice in real life",
+    "A skill in an app is not automatically a real-life skill. Use the same purpose with people, routines and places that matter.",
+    "Take one WAPS word into a routine today."
+  ],
+  [
+    "Generalize across people and places",
+    "A message is stronger when it works with different people, objects and settings. Change only one thing at a time when practising.",
+    "Try the same communication purpose with a second person or place."
+  ],
+  [
+    "Communication repair",
+    "When a message is misunderstood, teach ways to repair it: HELP, SHOW ME, SAY IT AGAIN, NOT THAT, I CHANGED MY MIND.",
+    "Model one repair message naturally."
+  ],
+  [
+    "Respect NO and STOP",
+    "Self-advocacy is communication. Do not train a child to ignore their own NO or STOP simply to appear compliant.",
+    "Check that NO and STOP work immediately in the child’s system."
+  ],
+  [
+    "Sensory communication matters",
+    "A child may communicate TOO LOUD, TOO BRIGHT, BREAK, I NEED SPACE or discomfort through words, AAC, behaviour or body movement. Respond to the message before demanding participation.",
+    "Notice one sensory message and respond to it respectfully."
+  ],
+  [
+    "Support minimally speaking children",
+    "A child who uses few spoken words may still understand, communicate and learn in many ways. Keep multiple communication modes available and avoid judging ability from speech alone.",
+    "Offer at least two communication modes during one routine."
+  ],
+  [
+    "Speech and language are different",
+    "Speech is how sounds are produced. Language is how meaning is understood and expressed. A child can have strengths or difficulties in either area, and WAPS does not diagnose the cause.",
+    "When you notice a difficulty, describe exactly what happened rather than naming a disorder."
+  ],
+  [
+    "Use pictures thoughtfully",
+    "A clear picture should teach the intended concept, not visual guessing. Use different examples over time to support generalization.",
+    "Show a familiar object in a second context."
+  ],
+  [
+    "Play builds communication",
+    "Play can create turns, shared attention, choices, comments, requests and repair. Follow the child’s interests instead of turning play into repeated testing.",
+    "Join one preferred play activity and comment more than you question."
+  ],
+  [
+    "Support Jamaican Creole and multilingual communication",
+    "A language difference is not automatically a disorder. Jamaican Creole/Patwa and Standard English can both be meaningful communication systems. Do not mark valid Jamaican Creole forms as mistakes simply because they differ from Standard English.",
+    "Notice which language or mix of languages makes communication easiest in one routine."
+  ],
+  [
+    "Build caregiver confidence",
+    "You do not need perfect technique. Use short, repeatable strategies: connect, model, wait, respond, and try again in real life. Small successful moments matter.",
+    "Choose one strategy to repeat today instead of trying everything at once."
+  ],
+  [
+    "When to seek more help",
+    "WAPS is not a diagnostic tool. Hearing concerns, feeding/swallowing problems, loss of previously acquired communication skills, or persistent difficulties that worry you deserve appropriate professional attention.",
+    "Write down any concern you want to discuss with a qualified professional."
+  ]
 ];
 export const HELP=[
 ['My child isn’t talking much','Support every meaningful communication mode now rather than waiting for speech alone. Model simple words/AAC during enjoyable routines. If you have concerns about communication development or hearing, seek an appropriate professional assessment.'],

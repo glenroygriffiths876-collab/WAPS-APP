@@ -132,17 +132,55 @@ export const LESSONS=[
   ]
 ];
 export const HELP=[
-['My child isn’t talking much','Support every meaningful communication mode now rather than waiting for speech alone. Model simple words/AAC during enjoyable routines. If you have concerns about communication development or hearing, seek an appropriate professional assessment.'],
-['My child points instead of speaking','Pointing can be effective communication. Respond to the message, then model a simple spoken word, sign, picture or AAC symbol without withholding the item to force speech.'],
-['My child gets frustrated communicating','Reduce demands, make NO/STOP/HELP/BREAK available, acknowledge the message and offer an easier communication option. If distress is frequent or severe, discuss it with an appropriate professional.'],
-['My child repeats what I say','Repetition can serve different purposes. Focus on meaning and context. Model short useful language and observe what the repetition seems to accomplish rather than treating every repetition as an error.'],
-['My child only responds when I help','Record the type of support. Next time, pause before prompting and try slightly less help if appropriate. Success with prompting is still useful information, but it is different from independence.'],
-['My child refuses activities','Stop and consider whether the task is meaningful, understandable, comfortable or too difficult. Refusal communicates something. Shift to connection, choice or a preferred routine rather than forcing completion.'],
-['My child lost skills they used to have','Loss of previously acquired communication or other developmental skills deserves professional attention. Contact an appropriate health/development professional rather than relying on WAPS alone.'],
-['I am worried about hearing','Hearing can affect communication. WAPS cannot test hearing. Arrange an appropriate hearing assessment or discuss the concern with a qualified health professional.'],
-['Eating or swallowing is difficult','Feeding or swallowing concerns can require professional assessment. Choking or breathing difficulty can be urgent; seek appropriate medical help rather than using WAPS as a substitute.']
+  [
+    "My child isn’t talking much",
+    "Support every meaningful communication mode now rather than waiting for speech alone. Model simple words/AAC during enjoyable routines. If you have concerns about communication development or hearing, seek an appropriate professional assessment."
+  ],
+  [
+    "My child points instead of speaking",
+    "Pointing can be effective communication. Respond to the message, then model a simple spoken word, sign, picture or AAC symbol without withholding the item to force speech."
+  ],
+  [
+    "My child uses AAC",
+    "Keep AAC available throughout the day rather than only during practice. Model on the system yourself, honour messages such as NO, STOP, HELP and BREAK, and do not remove AAC to force speech."
+  ],
+  [
+    "My child does not answer questions",
+    "Reduce repeated questioning. Comment, model the answer type, offer visual choices when appropriate, and give extra processing time. A lack of response can have many causes and WAPS does not diagnose them."
+  ],
+  [
+    "My child gets frustrated communicating",
+    "Reduce demands, make NO/STOP/HELP/BREAK available, acknowledge the message and offer an easier communication option. If distress is frequent or severe, discuss it with an appropriate professional."
+  ],
+  [
+    "My child becomes overwhelmed",
+    "Lower language and task demands, reduce sensory load where possible, make BREAK/STOP/I NEED SPACE available, and give time to recover. Do not treat overwhelm as deliberate noncompliance."
+  ],
+  [
+    "My child repeats what I say",
+    "Repetition can serve different purposes. Focus on meaning and context. Model short useful language and observe what the repetition seems to accomplish rather than treating every repetition as an error."
+  ],
+  [
+    "My child only responds when I help",
+    "Record the type of support. Next time, pause before prompting and try slightly less help if appropriate. Success with prompting is still useful information, but it is different from independence."
+  ],
+  [
+    "My child refuses activities",
+    "Stop and consider whether the task is meaningful, understandable, comfortable or too difficult. Refusal communicates something. Shift to connection, choice or a preferred routine rather than forcing completion."
+  ],
+  [
+    "My child lost skills they used to have",
+    "Loss of previously acquired communication or other developmental skills deserves professional attention. Contact an appropriate health/development professional rather than relying on WAPS alone."
+  ],
+  [
+    "I am worried about hearing",
+    "Hearing can affect communication. WAPS cannot test hearing. Arrange an appropriate hearing assessment or discuss the concern with a qualified health professional."
+  ],
+  [
+    "Eating or swallowing is difficult",
+    "Feeding or swallowing concerns can require professional assessment. Choking or breathing difficulty can be urgent; seek appropriate medical help rather than using WAPS as a substitute."
+  ]
 ];
-
 export const ROUTINES=[
 ['Breakfast','Offer two real choices; model EAT/DRINK/MORE/FINISHED; wait; honour NO and FINISHED.'],['Snack','Put two acceptable options in view; wait for any clear choice; model one word/AAC selection.'],['Dressing','Offer clothing choices; model ON/OFF/HELP; pause before helping with an easy step.'],['Bath time','Model WASH/WATER/BODY/HELP; respect STOP and BREAK immediately.'],['Bedtime','Use a short visual sequence; model BOOK/SLEEP/FINISHED; allow a final choice.'],['School preparation','Use NOW/NEXT; offer one packing choice; model HELP/GO/WAIT.'],['Homework','Start with HELP/BREAK/FINISHED available; work in short turns; acknowledge requests.'],['Play','Follow the child’s lead; comment more than question; model MORE/GO/STOP/MY TURN/YOUR TURN.'],['Book sharing','Comment on pictures; pause at predictable moments; accept pointing/AAC/words as participation.'],['Music','Pause a familiar song for a natural MORE/GO/STOP opportunity without demanding speech.'],['Shopping','Preview where you are going; keep HELP/TOILET/BREAK available; offer one meaningful choice.'],['Travel','Use GO/STOP/WAIT/WHERE/HELP and a simple visual of destination.'],['Clinic visit','Preview the routine; keep HURTS/NO/STOP/HELP/BREAK accessible; never treat refusal as misbehaviour.'],['Church/community','Preview people/place; provide BREAK/TOO LOUD/TOILET; notice spontaneous greetings/comments.'],['Family meal','Model food, drink, MORE, FINISHED and comments; do not quiz labels throughout the meal.'],['Chores','Use simple action words and choices; model HELP and FINISHED; celebrate participation, not compliance.'],['Outside play','Model GO/STOP/FAST/SLOW/AGAIN/HELP; follow interests and create turn-taking naturally.'],['Screen transition','Preview ending; use timer/Now-Next; keep MORE/FINISHED/BREAK available and acknowledge protest.']
 ];

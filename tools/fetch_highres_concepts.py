@@ -12,7 +12,7 @@ FILES={
  "apple":"Apple-001.jpg",
  "banana":"Banana on white background.jpg",
  "mango":"Mango (1).jpg",
- "plantain":"Fresh Green Plantain.jpg",
+ "plantain":"Plantains on white background.png",
  "yam":"Yam tuber.jpg",
  "cup":"Plastic Cup no Ice.jpg",
  "shoe":"Airforce1.jpg",

@@ -14,7 +14,7 @@ for route in ['home','talk','practice','coach','progress','more']:
 app=(r/'app.js').read_text(encoding='utf-8')
 assert 'integrityAudit()' in app
 assert 'wireTalkControls' not in app and 'wirePracticeLaunch' not in app and 'wireCoachLaunch' not in app
-assert "$('.bottomnav button,.desktopnav button').forEach" not in app
+assert not re.search(r"(?<!\\$)\\$\\('\.bottomnav button,\.desktopnav button'\\)\.forEach",app), 'single-query selector forEach crash regression'
 actions=set(re.findall(r'data-action=["\']([^"\'$]+)["\']',app))
 handled=set(re.findall(r"if\(a===['\"]([^'\"]+)['\"]\)",app))
 missing=sorted(actions-handled)

@@ -38,7 +38,7 @@ self.addEventListener('fetch',event=>{
     return;
   }
   const path=url.pathname;
-  const liveShell=/\/(app\.js|app\.css|data\.js|storage\.js|manifest\.webmanifest)$/.test(path);
+  const liveShell=/\/(app\.js|app\.css|data\.js|storage\.js|manifest\.webmanifest)$/.test(path)||path.endsWith('/assets/concepts/highres/manifest.json');
   if(liveShell){
     event.respondWith(networkFirst(event.request));
     return;

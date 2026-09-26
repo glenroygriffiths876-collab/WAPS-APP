@@ -1,4 +1,4 @@
-const CACHE='waps-reference-shell-v20';
+const CACHE='waps-reference-shell-v21';
 const CORE=["./","./index.html","./app.css","./app.js","./data.js","./storage.js","./manifest.webmanifest","./icon.svg","./icon-192.png","./icon-512.png","./assets/ui/waps-landscape.svg","./assets/ui/waps-sunburst.svg"];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));

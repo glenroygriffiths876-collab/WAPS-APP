@@ -29,5 +29,6 @@ jobs:
             echo "No high-resolution image changes."
           else
             git commit -m "Add high-resolution isolated WAPS teaching images"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi

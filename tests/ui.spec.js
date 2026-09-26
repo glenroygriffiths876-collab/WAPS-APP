@@ -101,10 +101,40 @@ test('WAPS header and Home launch controls respond', async ({ page }) => {
   await expect(page.locator('dialog[open]')).toBeVisible();
   await page.locator('dialog[open] .dialog-close button').click();
 
-  await page.locator('.big-action[data-route="talk"]').click();
+  await page.locator('.home-action-card[data-route="talk"]').click();
   await expect(page.locator('.talk-stage')).toBeVisible();
   await page.locator('.brand[data-route="home"]').click();
   await expect(page.locator('.waps-home')).toBeVisible();
 
+  expect(errors).toEqual([]);
+});
+
+
+test('WAPS current Home actions all navigate by real clicks', async ({ page }) => {
+  test.setTimeout(60000);
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+  for (const route of ['practice','talk','coach']) {
+    await page.locator('.home-action-card[data-route="'+route+'"]').click();
+    await expect(page).toHaveURL(new RegExp('#'+route+'$'));
+    await page.locator('.brand[data-route="home"]').click();
+    await expect(page.locator('.waps-home')).toBeVisible();
+  }
+  expect(errors).toEqual([]);
+});
+
+test('WAPS visible production buttons are not inert', async ({ page }) => {
+  test.setTimeout(90000);
+  const errors=collectErrors(page);
+  for (const route of ['home','talk','practice','coach','progress','more']) {
+    await page.goto('http://127.0.0.1:4173/#'+route);
+    const visible=page.locator('button:visible');
+    const n=await visible.count();
+    expect(n).toBeGreaterThan(0);
+    for(let i=0;i<n;i++){
+      const b=visible.nth(i);
+      await expect(b).toBeEnabled();
+    }
+  }
   expect(errors).toEqual([]);
 });

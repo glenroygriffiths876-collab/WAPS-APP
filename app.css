@@ -46,7 +46,7 @@ button{cursor:pointer}
 .desktopnav button{border:0;background:transparent;border-radius:22px;color:var(--waps-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-weight:900;transition:.18s ease;min-width:0}
 .desktopnav button:hover{background:rgba(255,255,255,.72);transform:translateY(-1px)}
 .desktopnav button.active{background:linear-gradient(180deg,#cbbcff,#ab96f7);box-shadow:0 9px 22px rgba(91,66,204,.18)}
-.desktopnav button b{font-size:15px}.navico{width:34px;height:34px;display:grid;place-items:center;font-size:28px;line-height:1;font-weight:1000}
+.desktopnav button b{font-size:15px}.navico{width:34px;height:34px;display:grid;place-items:center;font-size:28px;line-height:1;font-weight:1000}.navico svg{width:32px;height:32px;display:block}.header-circle svg{width:28px;height:28px;display:block;margin:auto}
 .homeico{color:#ff6a2f}.talkico{color:#ef5138}.practiceico{color:#5f3bd9}.coachico{color:#117dd0}.progressico{color:#069b78}.moreico{color:#ee5036}
 .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px}
 .child-chip{min-width:190px;min-height:78px;border:2px solid #bfe0f4;background:#fff;border-radius:27px;padding:9px 16px;color:var(--waps-navy);display:flex;align-items:center;gap:11px;box-shadow:0 7px 20px rgba(31,89,126,.09);font-weight:900}

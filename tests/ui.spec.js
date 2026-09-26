@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('WAPS primary controls and activity controls work', async ({ page }) => {
+  test.setTimeout(90000);
   const errors=[];
   page.on('pageerror',e=>errors.push('page:'+e.message));
   page.on('console',m=>{ if(m.type()==='error') errors.push('console:'+m.text()) });

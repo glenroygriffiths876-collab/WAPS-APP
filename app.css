@@ -189,23 +189,6 @@ dialog::backdrop{background:rgba(14,43,65,.36);backdrop-filter:blur(5px)}
 /* Child mode */
 .child-lock{position:fixed;inset:0;z-index:100;background:linear-gradient(180deg,#f4f9ff,#fff,#f7fff4);display:flex;flex-direction:column}.child-lock::after{content:"";position:absolute;left:0;right:0;bottom:0;height:170px;background:url("./assets/ui/waps-landscape.svg") center bottom/cover no-repeat;pointer-events:none}.child-lock .child-top{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative;z-index:1}.child-lock .child-content{flex:1;overflow:auto;padding:16px 16px 190px;position:relative;z-index:1}.hold-exit{min-width:120px}.big-timer{font-size:clamp(4rem,18vw,8rem);font-weight:1000;text-align:center;letter-spacing:-.06em}
 
-/* AI teaching visual atlas */
-.concept-photo{display:block;flex:0 0 auto;background-image:url("./assets/concepts/waps-concepts-sprite-v2.webp");background-repeat:no-repeat;background-size:1000% 700%;background-position:calc(var(--sx) * 100% / 9) calc(var(--sy) * 100% / 6);background-color:#fff;border-radius:20px}
-.choice .concept-photo{width:min(100%,340px);height:235px;margin:0 auto 12px;border-radius:24px}
-.aac .concept-photo{width:88px;height:88px;margin:0 auto 8px;border-radius:20px}
-.launch-art .concept-photo{width:138px;height:138px;margin:auto;border-radius:24px}
-.support-panel .concept-photo,.support-board .concept-photo{width:96px;height:96px;margin:auto}
-
-.concept-photo>img{width:100%;height:100%;display:block;object-fit:contain;border-radius:inherit;background:#fff}
-
-.concept-hi{display:block;flex:0 0 auto;border-radius:20px;background:#fff;overflow:hidden}
-.concept-hi>img{width:100%;height:100%;display:block;object-fit:contain;border-radius:inherit;background:#fff}
-.choice .concept-hi,.choice>img.activity-photo{width:min(100%,340px);height:235px;max-width:340px;margin:0 auto 12px;object-fit:contain}
-.aac .concept-hi,.aac>img.aac-photo{width:88px;height:88px;margin:0 auto 8px;object-fit:contain}
-.launch-art .concept-hi,.launch-art>img.launch-photo{width:138px;height:138px;margin:auto;object-fit:contain}
-.support-panel .concept-hi,.support-board .concept-hi,.support-panel>img.support-photo,.support-board>img.support-photo{width:96px;height:96px;margin:auto;object-fit:contain}
-@media(max-width:760px){.choice .concept-hi,.choice>img.activity-photo{height:145px;max-width:210px}.aac .concept-hi,.aac>img.aac-photo{width:64px;height:64px}.launch-art .concept-hi,.launch-art>img.launch-photo{width:105px;height:105px}}
-
 /* Accessible focus */
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:4px solid rgba(36,141,220,.25);outline-offset:2px}
 

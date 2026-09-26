@@ -1,0 +1,30 @@
+name: WAPS UI interaction smoke test
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'app.js'
+      - 'app.css'
+      - 'data.js'
+      - 'storage.js'
+      - 'tests/ui.spec.js'
+      - '.github/workflows/ui-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install --no-save @playwright/test
+      - run: npx playwright install --with-deps chromium
+      - name: Start local WAPS
+        run: |
+          python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
+          sleep 2
+      - run: npx playwright test tests/ui.spec.js --reporter=line

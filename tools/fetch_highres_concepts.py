@@ -1,5 +1,7 @@
 from pathlib import Path
-import io, json, requests
+import io, json, time, requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from PIL import Image, ImageOps
 from rembg import remove, new_session
 
@@ -22,14 +24,22 @@ FILES={
  "patty":"Homemade Jamaican patties.jpg"
 }
 API="https://commons.wikimedia.org/w/api.php"
-UA={"User-Agent":"WAPS-Communication/1.0 educational accessibility project"}
+UA={"User-Agent":"WAPS-Communication/1.0 educational accessibility project (contact: repository maintainer)"}
+http=requests.Session()
+retry=Retry(total=5,connect=5,read=5,status=5,backoff_factor=1.4,status_forcelist=[429,500,502,503,504],allowed_methods=["GET"])
+http.mount("https://",HTTPAdapter(max_retries=retry))
 session_bg=new_session("u2netp")
 credits={}
 
 def commons_info(filename):
     params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":1800,
             "titles":"File:"+filename}
-    j=requests.get(API,params=params,headers=UA,timeout=60).json()
+    resp=http.get(API,params=params,headers=UA,timeout=60)
+    resp.raise_for_status()
+    ctype=resp.headers.get("content-type","")
+    if "json" not in ctype:
+        raise RuntimeError(f"Commons API returned {ctype or 'unknown content type'}")
+    j=resp.json()
     page=next(iter(j["query"]["pages"].values()))
     ii=page["imageinfo"][0]
     return ii.get("thumburl") or ii["url"], ii.get("extmetadata",{}), page.get("title","File:"+filename)
@@ -68,7 +78,8 @@ failed={}
 for concept,filename in FILES.items():
     try:
         url,meta,title=commons_info(filename)
-        resp=requests.get(url,headers=UA,timeout=120)
+        time.sleep(.7)
+        resp=http.get(url,headers=UA,timeout=120)
         resp.raise_for_status()
         ctype=resp.headers.get("content-type","")
         if "image" not in ctype:

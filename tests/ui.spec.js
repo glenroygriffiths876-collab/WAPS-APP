@@ -14,6 +14,8 @@ test('WAPS primary controls and activity controls work', async ({ page }) => {
   await firstAAC.click();
   await expect(page.locator('.sentence-word')).toHaveCount(1);
   await page.locator('[data-action="clearSentence"]').click();
+  console.log('AFTER_CLEAR_HTML', await page.locator('#sentence').innerHTML());
+  console.log('AFTER_CLEAR_ERRORS', JSON.stringify(errors));
   await expect(page.locator('.sentence-word')).toHaveCount(0);
   await page.locator('.aac-cat[data-cat="food"]').click();
   await expect(page.locator('.aac')).toHaveCount(await page.locator('.aac').count());

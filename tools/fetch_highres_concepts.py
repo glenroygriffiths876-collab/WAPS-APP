@@ -12,15 +12,15 @@ FILES={
  "apple":"Apple-001.jpg",
  "banana":"Banana on white background.jpg",
  "mango":"Mango (1).jpg",
- "plantain":"Green unripe Plantain.jpg",
+ "plantain":"Fresh Green Plantain.jpg",
  "yam":"Yam tuber.jpg",
  "cup":"Plastic Cup no Ice.jpg",
  "shoe":"Airforce1.jpg",
  "book":"Open book color.jpg",
  "car":"2021 Nissan Rogue.jpg",
  "ball":"Ball white black.jpg",
- "water":"Glass of water.jpg",
- "breadfruit":"White Bread fruit.jpg",
+ "water":"Glass-of-water.jpg",
+ "breadfruit":"Artocarpus altilis (fruit).jpg",
  "patty":"Homemade Jamaican patties.jpg"
 }
 API="https://commons.wikimedia.org/w/api.php"

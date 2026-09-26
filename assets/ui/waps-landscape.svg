@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 220" role="img" aria-label="Decorative Caribbean landscape">
+<defs>
+  <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7fd8f4"/><stop offset="1" stop-color="#40b8df"/></linearGradient>
+  <linearGradient id="hill1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9ef83"/><stop offset="1" stop-color="#69c96e"/></linearGradient>
+  <linearGradient id="hill2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7fdc79"/><stop offset="1" stop-color="#39ad65"/></linearGradient>
+  <linearGradient id="sand" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff5c8"/><stop offset=".5" stop-color="#fffbea"/><stop offset="1" stop-color="#fff1b8"/></linearGradient>
+</defs>
+<path d="M0 34C170 3 342 55 516 31c190-27 344-41 553 4 189 41 364-8 531-12v197H0Z" fill="url(#sand)" opacity=".98"/>
+<path d="M0 104c185-31 321 8 489 0 162-8 271-44 446-27 160 16 240 33 365 21 111-11 199-24 300-14v136H0Z" fill="url(#sea)"/>
+<path d="M0 139c142-37 251-18 366 14 151 43 251 35 390 1 165-40 286-44 444 1 155 44 267 27 400-9v74H0Z" fill="url(#hill1)"/>
+<path d="M0 168c125-42 251-27 378 9 151 42 258 30 393-6 157-41 288-29 430 13 137 41 275 30 399 0v36H0Z" fill="url(#hill2)"/>
+<g opacity=".98">
+  <g transform="translate(1360 91)">
+    <path d="M0 86V24" stroke="#8a5b35" stroke-width="10" stroke-linecap="round"/>
+    <path d="M4 28c-34-15-53-6-69 2 20-26 44-33 74-18M6 27c25-29 50-32 76-24-18 4-39 14-63 35M5 28c31 1 49 16 63 35-22-12-43-17-66-18M1 27c-29 7-47 22-57 40 19-12 38-18 62-18" fill="#229857"/>
+    <circle cx="4" cy="28" r="8" fill="#7c4c26"/>
+  </g>
+  <g transform="translate(1420 128)">
+    <path d="M0 48h118v-52L60-38 0-4Z" fill="#ffd66a"/>
+    <path d="M-8-4 60-49l68 45-10 10L60-31 2 7Z" fill="#f57a36"/>
+    <path d="M13 14h26v34H13Z" fill="#fff7df"/>
+    <path d="M77 6h27v24H77Z" fill="#72c8e8"/>
+    <path d="M80 9h9v18h-9Zm12 0h9v18h-9Z" fill="#dff7ff"/>
+  </g>
+  <g fill="#3fba63">
+    <circle cx="40" cy="184" r="35"/><circle cx="76" cy="191" r="30"/><circle cx="119" cy="187" r="37"/>
+    <circle cx="1250" cy="190" r="30"/><circle cx="1290" cy="184" r="36"/><circle cx="1330" cy="195" r="28"/>
+  </g>
+  <g fill="#79da71"><circle cx="26" cy="200" r="26"/><circle cx="98" cy="205" r="24"/><circle cx="1215" cy="204" r="22"/><circle cx="1365" cy="203" r="25"/></g>
+</g>
+</svg>

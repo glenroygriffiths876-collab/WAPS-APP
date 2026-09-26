@@ -10,7 +10,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 FILES={
  "apple":"Apple-001.jpg",
- "banana":"Banana on white background.jpg",
+ "banana":"Banana isolated on white.jpg",
  "mango":"Mango (1).jpg",
  "plantain":"Plantains on white background.png",
  "yam":"Yam tuber.jpg",

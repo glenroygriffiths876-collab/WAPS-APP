@@ -1,0 +1,35 @@
+name: WAPS production quality gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'app.js'
+      - 'app.css'
+      - 'data.js'
+      - 'storage.js'
+      - 'sw.js'
+      - 'manifest.webmanifest'
+      - 'smoke.py'
+      - 'ceiling_test.mjs'
+      - '.github/workflows/quality-gate.yml'
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: JavaScript syntax
+        run: node --check app.js
+      - name: Structural smoke gate
+        run: python3 smoke.py
+      - name: Product ceiling gate
+        run: node ceiling_test.mjs

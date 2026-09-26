@@ -3,7 +3,7 @@
 These teaching images are derived from openly licensed Wikimedia Commons files. Backgrounds were removed/cropped and images were resized for clear in-app teaching use.
 
 - **Apple** — File:Apple-001.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Apple-001.jpg
-- **Banana** — File:Banana on white background.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Banana_on_white_background.jpg
+- **Banana** — File:Banana isolated on white.jpg — CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg
 - **Mango** — File:Mango (1).jpg — Public domain — https://commons.wikimedia.org/wiki/File:Mango_(1).jpg
 - **Plantain** — File:Plantains on white background.png — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png
 - **Yam** — File:Yam tuber.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg

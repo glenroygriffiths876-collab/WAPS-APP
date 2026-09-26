@@ -1,0 +1,2 @@
+# Privacy
+The core build includes no advertising, trackers, behavioural analytics or account requirement. WAPS does not intentionally transmit child profiles, observations or personal AAC photos. Personal photos are resized client-side and stored with local application data. Browser/device storage can be cleared or evicted; export backups regularly. GitHub Pages itself serves the static site and may have its own hosting logs outside WAPS application code.

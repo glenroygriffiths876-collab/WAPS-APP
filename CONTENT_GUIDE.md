@@ -1,0 +1,2 @@
+# Content Guide
+Communication before speech. Connection before compliance. Do not force eye contact, suppress harmless stimming, withhold communication access, or require speech before honouring a message. Keep NO/STOP/HELP/BREAK available. Distinguish caregiver report, WAPS activity performance and real-world observation. Jamaican Creole is not to be scored as incorrect Standard English merely because its grammar differs.

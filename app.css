@@ -306,3 +306,22 @@ body[data-route="home"] main{padding-bottom:235px}
   .home-primary-actions{margin-top:22px}.home-action-card{min-height:86px}.home-feature-card{grid-template-columns:54px 1fr}.feature-badge{width:52px;height:52px}.feature-cta{grid-column:1/-1;width:100%}
   .home-progress-strip{grid-template-columns:1fr}.home-tip{align-items:flex-start}
 }
+
+
+/* Talk density + child profile polish — v19 */
+.child-avatar{overflow:hidden}.child-avatar-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.profile-photo-preview{width:96px;height:96px;object-fit:cover;border-radius:50%;border:4px solid #fff;box-shadow:0 0 0 2px #bfe0f4,0 8px 20px rgba(40,86,118,.12);display:block;margin:0 auto 16px}
+.aac-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+.aac{min-height:166px!important;border-radius:25px!important;padding:13px!important}
+.aac .concept-hi{width:104px!important;height:104px!important}
+.aac .concept-fallback{width:82px!important;height:82px!important;max-width:82px!important}
+.aac>span:last-child{font-size:16px!important;line-height:1.15}
+@media(max-width:980px){
+  .aac-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:600px){
+  .aac-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .aac{min-height:148px!important}
+  .aac .concept-hi{width:88px!important;height:88px!important}
+  .aac .concept-fallback{width:72px!important;height:72px!important;max-width:72px!important}
+}

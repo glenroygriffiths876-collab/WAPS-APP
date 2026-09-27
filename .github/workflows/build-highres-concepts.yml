@@ -7,6 +7,9 @@ on:
       - '.github/workflows/build-highres-concepts.yml'
 permissions:
   contents: write
+concurrency:
+  group: waps-highres-assets
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +27,7 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install --disable-pip-version-check pillow requests "rembg[cpu]"
       - run: python tools/fetch_highres_concepts.py
+      - run: python tools/build_controlled_visuals.py
       - name: Commit high-resolution teaching assets
         run: |
           git config user.name "github-actions[bot]"

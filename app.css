@@ -325,3 +325,18 @@ body[data-route="home"] main{padding-bottom:235px}
   .aac .concept-hi{width:88px!important;height:88px!important}
   .aac .concept-fallback{width:72px!important;height:72px!important;max-width:72px!important}
 }
+
+
+/* WAPS original AAC symbol family — v22 */
+.waps-aac-symbol{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;margin:0 auto 8px;background:#f5fafc;box-shadow:inset 0 0 0 1px rgba(17,55,83,.05)}
+.waps-aac-symbol svg{width:70px;height:70px;overflow:visible}
+.waps-aac-symbol svg>*{fill:currentColor}
+.waps-aac-symbol .stroke{fill:none!important;stroke:#fff!important;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.waps-aac-symbol .white{fill:#fff!important}.waps-aac-symbol .dot{fill:#fff!important}
+.waps-aac-symbol .badge{fill:#fff!important;stroke:currentColor;stroke-width:2}
+.waps-aac-symbol .num{fill:currentColor!important;font:bold 18px system-ui,sans-serif}
+.waps-aac-symbol.green{color:#24a66f;background:#eaf9f1}.waps-aac-symbol.red{color:#df5656;background:#fff0ef}
+.waps-aac-symbol.teal{color:#299782;background:#e9faf7}.waps-aac-symbol.amber{color:#eeaa31;background:#fff7e4}
+.waps-aac-symbol.blue{color:#278bce;background:#eaf6ff}.waps-aac-symbol.purple{color:#7150d7;background:#f0ecff}
+.waps-aac-symbol.pink{color:#e64f87;background:#fff0f6}.waps-aac-symbol.orange{color:#ef7b3f;background:#fff1e9}
+@media(max-width:600px){.waps-aac-symbol{width:72px;height:72px;border-radius:19px}.waps-aac-symbol svg{width:58px;height:58px}}

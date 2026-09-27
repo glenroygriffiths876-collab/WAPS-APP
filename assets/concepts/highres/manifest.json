@@ -1,15 +1,23 @@
 {
   "angry": {
     "path": "./assets/concepts/highres/angry.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "apple": {
     "path": "./assets/concepts/highres/apple.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Apple-001.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "baby": {
     "path": "./assets/concepts/highres/baby.webp",
@@ -19,45 +27,73 @@
   },
   "bag": {
     "path": "./assets/concepts/highres/bag.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:A_SYSTEMS_ENGINEERING_APPROACH_TO_SCHOOL_SYSTEM_ENHANCEMENTS_FOR_COUNTERING_ACTIVE_SHOOTERS_IN_U.S._K-12_SCHOOLS_(IA_asystemsengineer1094561311).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "ball": {
     "path": "./assets/concepts/highres/ball.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Ball_white_black.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "banana": {
     "path": "./assets/concepts/highres/banana.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg",
-    "license": "CC BY 2.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bathroom": {
     "path": "./assets/concepts/highres/bathroom.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Fin_bathroom_in_Fin_garden,_Kashan,_Iran.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "beach": {
     "path": "./assets/concepts/highres/beach.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Negril_-_047.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bed": {
     "path": "./assets/concepts/highres/bed.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bedroom": {
     "path": "./assets/concepts/highres/bedroom.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Interior,_children's_bedroom._State_Library_Victoria.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bike": {
     "path": "./assets/concepts/highres/bike.webp",
@@ -67,21 +103,33 @@
   },
   "bird": {
     "path": "./assets/concepts/highres/bird.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:013_White-throated_kingfisher_in_Keoladeo_National_Park_Photo_by_Giles_Laurent.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "blocks": {
     "path": "./assets/concepts/highres/blocks.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Turrets,_towers,_and_temples;_the_great_buildings_of_the_world_(IA_turretstowerstem00sing).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "book": {
     "path": "./assets/concepts/highres/book.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Open_book_color.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bread": {
     "path": "./assets/concepts/highres/bread.webp",
@@ -91,45 +139,73 @@
   },
   "breadfruit": {
     "path": "./assets/concepts/highres/breadfruit.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Artocarpus_altilis_(fruit).jpg",
-    "license": "CC BY-SA 3.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "brother": {
     "path": "./assets/concepts/highres/brother.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Portrait,_interior,_glasses,_boy,_reading,_book_Fortepan_19637.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "bus": {
     "path": "./assets/concepts/highres/bus.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Bus_in_Jamaica.jpg",
-    "license": "CC0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "calm": {
     "path": "./assets/concepts/highres/calm.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "car": {
     "path": "./assets/concepts/highres/car.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "cat": {
     "path": "./assets/concepts/highres/cat.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg",
-    "license": "CC BY-SA 3.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "chair": {
     "path": "./assets/concepts/highres/chair.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "chicken": {
     "path": "./assets/concepts/highres/chicken.webp",
@@ -139,15 +215,23 @@
   },
   "church": {
     "path": "./assets/concepts/highres/church.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Podlaskie_-_Mońki_-_Mońki_-_ul._Ks._Małynicza_1-_Kościół_pw._Matki_Boskiej_Częstochowskiej_-_lbok.JPG",
-    "license": "CC BY-SA 3.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "clinic": {
     "path": "./assets/concepts/highres/clinic.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Academic_City_University_health_clinic_exterior_building.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "comb": {
     "path": "./assets/concepts/highres/comb.webp",
@@ -175,15 +259,23 @@
   },
   "cup": {
     "path": "./assets/concepts/highres/cup.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg",
-    "license": "CC BY-SA 2.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "dad": {
     "path": "./assets/concepts/highres/dad.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_National_portrait_gallery_(IA_nationalportrait02nati).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "desk": {
     "path": "./assets/concepts/highres/desk.webp",
@@ -193,45 +285,73 @@
   },
   "doctor": {
     "path": "./assets/concepts/highres/doctor.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Doctor_Fortepan_4629.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "dog": {
     "path": "./assets/concepts/highres/dog.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Little_white_dog_on_transparent_background_PNG.png",
-    "license": "CC0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "doll": {
     "path": "./assets/concepts/highres/doll.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:A_short_world_history_(IA_shortworldhistor00wilm).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "door": {
     "path": "./assets/concepts/highres/door.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:1917_The_Closed_Door_Google_Books.pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "drink": {
     "path": "./assets/concepts/highres/drink.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "ear": {
     "path": "./assets/concepts/highres/ear.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:BOU_CORE_2607_-_Managing_Human_Resources_(new)_-_Module_07_-_Employee_Discipline_and_Grievances.pdf",
-    "license": "CC BY 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "eat": {
     "path": "./assets/concepts/highres/eat.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "egg": {
     "path": "./assets/concepts/highres/egg.webp",
@@ -241,9 +361,13 @@
   },
   "excited": {
     "path": "./assets/concepts/highres/excited.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "fish": {
     "path": "./assets/concepts/highres/fish.webp",
@@ -259,15 +383,23 @@
   },
   "foot": {
     "path": "./assets/concepts/highres/foot.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_infrared_spectra_of_matrix_isolated_uranium_oxide_species_(IA_jresv78An3p421).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "friend": {
     "path": "./assets/concepts/highres/friend.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_book_of_dogs;_an_intimate_study_of_mankind's_best_friend_(IA_cu31924001178130).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "glue": {
     "path": "./assets/concepts/highres/glue.webp",
@@ -277,105 +409,173 @@
   },
   "grandma": {
     "path": "./assets/concepts/highres/grandma.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Group_portrait_of_women_and_children_(AM_81663-1).jpg",
-    "license": "CC BY 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "grandpa": {
     "path": "./assets/concepts/highres/grandpa.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Raymond_Moriyama's_maternal_grandmother_(age_58)_and_grandfather_Sejima_(age_65)_with_two_of_their_sons_(uncles_of_R.M.)_and_the_daughter_of_the_actress_aunt_(I0020981).tif",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "hand": {
     "path": "./assets/concepts/highres/hand.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:CHINA_IN_1989_AND_2015-_TIANANMEN,_HUMAN_RIGHTS,_AND_DEMOCRACY_(IA_gov.gpo.fdsys.CHRG-114hhrg95041).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "happy": {
     "path": "./assets/concepts/highres/happy.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "head": {
     "path": "./assets/concepts/highres/head.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:STS-135_Sandy_Magnus_undergoes_a_fit_check_of_her_Sokol_suit.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "hospital": {
     "path": "./assets/concepts/highres/hospital.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Craiglockhart_Hydropathic_main_view.JPG",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "house": {
     "path": "./assets/concepts/highres/house.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:White-pine_blister_rust_in_western_Europe_(IA_whitepineblister1186moir).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "hungry": {
     "path": "./assets/concepts/highres/hungry.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Child_management_(IA_childmanagement27thom).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "juice": {
     "path": "./assets/concepts/highres/juice.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Citrus_Research_Conference,_January_24,_1956,_Fruit_and_Vegetable_Chemistry_Laboratory,_Pasadena_5,_California_(IA_CAT31340219).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "jump": {
     "path": "./assets/concepts/highres/jump.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "kitchen": {
     "path": "./assets/concepts/highres/kitchen.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Dirck_de_Vries_-_Kitchen_Interior_-_Walters_372651.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "mango": {
     "path": "./assets/concepts/highres/mango.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Mango_(1).jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "market": {
     "path": "./assets/concepts/highres/market.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:THE_STRATEGIC_IMPORTANCE_OF_BUILDING_A_STRONGER_U.S.-CARIBBEAN_PARTNERSHIP_(IA_gov.gpo.fdsys.CHRG-114hhrg20749).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "milk": {
     "path": "./assets/concepts/highres/milk.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Commission_Regulation_(EEC)_No_690-92_of_19_March_1992_establishing_a_reference_method_for_the_detection_of_cows'_milk_casein_in_cheeses_made_from_ewes'_milk_(EUR_1992-690).pdf",
-    "license": "OGL 3",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "mouth": {
     "path": "./assets/concepts/highres/mouth.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Henrietta_Szold_close-up_(cropped).jpg",
-    "license": "CC BY 3.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "mum": {
     "path": "./assets/concepts/highres/mum.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Little_known_early_American_portrait_painters.djvu",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "nurse": {
     "path": "./assets/concepts/highres/nurse.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_group_of_nurses_(AM_87959-1).jpg",
-    "license": "CC BY 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "orange": {
     "path": "./assets/concepts/highres/orange.webp",
@@ -385,27 +585,43 @@
   },
   "pants": {
     "path": "./assets/concepts/highres/pants.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Benevrek_-_traditional_woolen_trousers_isolated_on_white_background.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "park": {
     "path": "./assets/concepts/highres/park.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Children's_playground_in_the_sanatorium_park_in_Shklo.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "patty": {
     "path": "./assets/concepts/highres/patty.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "pencil": {
     "path": "./assets/concepts/highres/pencil.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Italian_pictures,_drawn_with_pen_and_pencil_(IA_pencilitalian00mannrich).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "pharmacy": {
     "path": "./assets/concepts/highres/pharmacy.webp",
@@ -421,33 +637,53 @@
   },
   "plantain": {
     "path": "./assets/concepts/highres/plantain.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "plate": {
     "path": "./assets/concepts/highres/plate.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "play": {
     "path": "./assets/concepts/highres/play.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Bibi,_a_comedy_of_toys.._(IA_bibicomedyoftoys00bern).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "puzzle": {
     "path": "./assets/concepts/highres/puzzle.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Fossils_for_the_future_-_Northern_Plains_Governors'_Conference,_August_24-26,_1992_(IA_CAT10631233).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "read": {
     "path": "./assets/concepts/highres/read.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Our_Sunday_book_of_reading_and_pictures_(IA_oursundaybookofr00arch).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "rice": {
     "path": "./assets/concepts/highres/rice.webp",
@@ -457,27 +693,43 @@
   },
   "run": {
     "path": "./assets/concepts/highres/run.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Polish_victim_of_German_Luftwaffe_action_1939.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "sad": {
     "path": "./assets/concepts/highres/sad.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "scared": {
     "path": "./assets/concepts/highres/scared.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "school": {
     "path": "./assets/concepts/highres/school.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:High_school_building_exterior_is_pictured_in_a_town_or_city_landscape.jpg",
-    "license": "CC0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "scissors": {
     "path": "./assets/concepts/highres/scissors.webp",
@@ -487,39 +739,63 @@
   },
   "shirt": {
     "path": "./assets/concepts/highres/shirt.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:LifeMagazine12Oct1911.pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "shoe": {
     "path": "./assets/concepts/highres/shoe.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Airforce1.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "shop": {
     "path": "./assets/concepts/highres/shop.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Naaimachines_written_on_a_former_storefront,_Winschoten_(2022)_01.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "sick": {
     "path": "./assets/concepts/highres/sick.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Osteopathic_first_aids_to_the_sick_-_written_for_the_sick_people_(IA_osteopathicfirst00feid).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "sister": {
     "path": "./assets/concepts/highres/sister.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:PortraitGirl2005-1a.jpg",
-    "license": "CC BY 2.5",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "sleep": {
     "path": "./assets/concepts/highres/sleep.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "soap": {
     "path": "./assets/concepts/highres/soap.webp",
@@ -529,9 +805,13 @@
   },
   "spoon": {
     "path": "./assets/concepts/highres/spoon.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Composite_sampling_of_sediments_contaminated_with_white_phosphorus_-_USACE-p266001coll1-6161.pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "tablet": {
     "path": "./assets/concepts/highres/tablet.webp",
@@ -541,33 +821,53 @@
   },
   "taxi": {
     "path": "./assets/concepts/highres/taxi.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Toyota_Hiace.jpg",
-    "license": "CC BY 2.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "teacher": {
     "path": "./assets/concepts/highres/teacher.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Class_photo,_teacher_Fortepan_4665.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "thirsty": {
     "path": "./assets/concepts/highres/thirsty.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_fountain_opened_-_and_the_water_of_life_flowing_forth,_for_the_refreshing_of_thirsty_sinners_..._in_several_sermons_preached_at_Covent-garden_on_Isa._55._1,_2,_3_(IA_fouedwa00sedg).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "tired": {
     "path": "./assets/concepts/highres/tired.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Black_Man's_Verse.pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "toothbrush": {
     "path": "./assets/concepts/highres/toothbrush.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:United_States_Navy_Medical_News_Letter_Vol._42_No._7,_4_October_1963_(IA_NavyMedicalNewsletter19631004).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "towel": {
     "path": "./assets/concepts/highres/towel.webp",
@@ -577,9 +877,13 @@
   },
   "toy": {
     "path": "./assets/concepts/highres/toy.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Two_children_of_the_foothills_(IA_twochildrenoffoo00harr).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "tree": {
     "path": "./assets/concepts/highres/tree.webp",
@@ -601,32 +905,202 @@
   },
   "walk": {
     "path": "./assets/concepts/highres/walk.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "wash": {
     "path": "./assets/concepts/highres/wash.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Jim_Hands_(IA_jimhands00chiliala).pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "water": {
     "path": "./assets/concepts/highres/water.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "write": {
     "path": "./assets/concepts/highres/write.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:The_writing_of_fiction.pdf",
-    "license": "Public domain",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   },
   "yam": {
     "path": "./assets/concepts/highres/yam.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "automated technical QA complete; human concept-recognition review required"
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "behind": {
+    "path": "./assets/concepts/highres/behind.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "beside": {
+    "path": "./assets/concepts/highres/beside.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "big": {
+    "path": "./assets/concepts/highres/big.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "closed": {
+    "path": "./assets/concepts/highres/closed.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "empty": {
+    "path": "./assets/concepts/highres/empty.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "fast": {
+    "path": "./assets/concepts/highres/fast.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "full": {
+    "path": "./assets/concepts/highres/full.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "inside": {
+    "path": "./assets/concepts/highres/inside.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "light": {
+    "path": "./assets/concepts/highres/light.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "open": {
+    "path": "./assets/concepts/highres/open.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "outside": {
+    "path": "./assets/concepts/highres/outside.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "rain": {
+    "path": "./assets/concepts/highres/rain.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "slow": {
+    "path": "./assets/concepts/highres/slow.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "small": {
+    "path": "./assets/concepts/highres/small.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
+  },
+  "sun": {
+    "path": "./assets/concepts/highres/sun.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved after numbered WAPS visual QA; integrated 2026-09-27",
+    "visual_type": "controlled teaching visual",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-27"
   }
 }

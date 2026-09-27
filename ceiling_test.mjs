@@ -30,7 +30,7 @@ for(const a of d.AAC)if(a.img){referenced.add(a.img);assert(ids.has(a.img),'miss
 for(const w of ['NO','STOP','HELP','BREAK','HURTS','TOILET']) assert(d.AAC.some(a=>a.label===w),'missing critical AAC '+w);
 const app=fs.readFileSync(new URL('./app.js',import.meta.url),'utf8');
 assert(!/function wire(?:TalkControls|PracticeLaunch|CoachLaunch|ActivityControls|CoachStepControls)/.test(app),'obsolete duplicate wiring remains');
-assert(!app.includes("$('.bottomnav button,.desktopnav button').forEach"),'querySelector forEach crash regression');
+assert(!/(?<!\$)\$\('\.bottomnav button,\.desktopnav button'\)\.forEach/.test(app),'querySelector forEach crash regression');
 assert(!app.includes("location.hash=r;if(route()===r)render()"),'double route render regression');
 const sw=fs.readFileSync(new URL('./sw.js',import.meta.url),'utf8');
 assert(/networkFirst/.test(sw),'network-first shell missing');

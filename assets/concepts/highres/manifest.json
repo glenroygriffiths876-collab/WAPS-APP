@@ -1,80 +1,632 @@
 {
+  "angry": {
+    "path": "./assets/concepts/highres/angry.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
   "apple": {
     "path": "./assets/concepts/highres/apple.webp",
     "source": "https://commons.wikimedia.org/wiki/File:Apple-001.jpg",
     "license": "Public domain",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
-  "banana": {
-    "path": "./assets/concepts/highres/banana.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg",
-    "license": "CC BY 2.0",
-    "review_status": "existing production asset; human visual review required"
+  "baby": {
+    "path": "./assets/concepts/highres/baby.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:(Portrait_of_a_baby_in_a_bassinet_(AM_84765-1).jpg",
+    "license": "CC BY 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
-  "mango": {
-    "path": "./assets/concepts/highres/mango.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Mango_(1).jpg",
+  "bag": {
+    "path": "./assets/concepts/highres/bag.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_SYSTEMS_ENGINEERING_APPROACH_TO_SCHOOL_SYSTEM_ENHANCEMENTS_FOR_COUNTERING_ACTIVE_SHOOTERS_IN_U.S._K-12_SCHOOLS_(IA_asystemsengineer1094561311).pdf",
     "license": "Public domain",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "plantain": {
-    "path": "./assets/concepts/highres/plantain.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png",
-    "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "yam": {
-    "path": "./assets/concepts/highres/yam.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "cup": {
-    "path": "./assets/concepts/highres/cup.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg",
-    "license": "CC BY-SA 2.0",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "shoe": {
-    "path": "./assets/concepts/highres/shoe.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Airforce1.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "book": {
-    "path": "./assets/concepts/highres/book.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Open_book_color.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
-  },
-  "car": {
-    "path": "./assets/concepts/highres/car.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg",
-    "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "ball": {
     "path": "./assets/concepts/highres/ball.webp",
     "source": "https://commons.wikimedia.org/wiki/File:Ball_white_black.jpg",
     "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
-  "water": {
-    "path": "./assets/concepts/highres/water.webp",
-    "source": "https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg",
+  "banana": {
+    "path": "./assets/concepts/highres/banana.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg",
+    "license": "CC BY 2.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bathroom": {
+    "path": "./assets/concepts/highres/bathroom.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Fin_bathroom_in_Fin_garden,_Kashan,_Iran.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "beach": {
+    "path": "./assets/concepts/highres/beach.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Negril_-_047.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bed": {
+    "path": "./assets/concepts/highres/bed.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
     "license": "Public domain",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bedroom": {
+    "path": "./assets/concepts/highres/bedroom.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Interior,_children's_bedroom._State_Library_Victoria.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bike": {
+    "path": "./assets/concepts/highres/bike.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bird": {
+    "path": "./assets/concepts/highres/bird.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:013_White-throated_kingfisher_in_Keoladeo_National_Park_Photo_by_Giles_Laurent.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "blocks": {
+    "path": "./assets/concepts/highres/blocks.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Turrets,_towers,_and_temples;_the_great_buildings_of_the_world_(IA_turretstowerstem00sing).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "book": {
+    "path": "./assets/concepts/highres/book.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Open_book_color.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bread": {
+    "path": "./assets/concepts/highres/bread.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "breadfruit": {
     "path": "./assets/concepts/highres/breadfruit.webp",
     "source": "https://commons.wikimedia.org/wiki/File:Artocarpus_altilis_(fruit).jpg",
     "license": "CC BY-SA 3.0",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "brother": {
+    "path": "./assets/concepts/highres/brother.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait,_interior,_glasses,_boy,_reading,_book_Fortepan_19637.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bus": {
+    "path": "./assets/concepts/highres/bus.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Bus_in_Jamaica.jpg",
+    "license": "CC0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "calm": {
+    "path": "./assets/concepts/highres/calm.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "car": {
+    "path": "./assets/concepts/highres/car.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "cat": {
+    "path": "./assets/concepts/highres/cat.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg",
+    "license": "CC BY-SA 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "chair": {
+    "path": "./assets/concepts/highres/chair.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "chicken": {
+    "path": "./assets/concepts/highres/chicken.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_and_nutrition_(IA_CAT71342262031).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "church": {
+    "path": "./assets/concepts/highres/church.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Podlaskie_-_Mońki_-_Mońki_-_ul._Ks._Małynicza_1-_Kościół_pw._Matki_Boskiej_Częstochowskiej_-_lbok.JPG",
+    "license": "CC BY-SA 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "clinic": {
+    "path": "./assets/concepts/highres/clinic.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Academic_City_University_health_clinic_exterior_building.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "comb": {
+    "path": "./assets/concepts/highres/comb.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "computer": {
+    "path": "./assets/concepts/highres/computer.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:BOU_DCSA_1201_-_Computer_Basics_-_Unit_04_-_Input_and_Output_Devices.pdf",
+    "license": "CC BY 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "cookie": {
+    "path": "./assets/concepts/highres/cookie.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Mary_Cameron-_a_romance_of_Fisherman's_Island_(IA_marycameronromanc00sawyiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "crayon": {
+    "path": "./assets/concepts/highres/crayon.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Sketchings_(IA_jstor-25527370).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "cup": {
+    "path": "./assets/concepts/highres/cup.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg",
+    "license": "CC BY-SA 2.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "dad": {
+    "path": "./assets/concepts/highres/dad.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_National_portrait_gallery_(IA_nationalportrait02nati).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "desk": {
+    "path": "./assets/concepts/highres/desk.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Rabun_industrial_school_and_mountain_school_extension_work_among_the_mountain_whites_(by_one_of_them)_(IA_rabunindustrials01ritc).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "doctor": {
+    "path": "./assets/concepts/highres/doctor.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Doctor_Fortepan_4629.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "dog": {
+    "path": "./assets/concepts/highres/dog.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Little_white_dog_on_transparent_background_PNG.png",
+    "license": "CC0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "doll": {
+    "path": "./assets/concepts/highres/doll.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_short_world_history_(IA_shortworldhistor00wilm).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "door": {
+    "path": "./assets/concepts/highres/door.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:1917_The_Closed_Door_Google_Books.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "drink": {
+    "path": "./assets/concepts/highres/drink.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "ear": {
+    "path": "./assets/concepts/highres/ear.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:BOU_CORE_2607_-_Managing_Human_Resources_(new)_-_Module_07_-_Employee_Discipline_and_Grievances.pdf",
+    "license": "CC BY 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "eat": {
+    "path": "./assets/concepts/highres/eat.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "egg": {
+    "path": "./assets/concepts/highres/egg.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Chicken_egg.png",
+    "license": "CC BY-SA 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "excited": {
+    "path": "./assets/concepts/highres/excited.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "fish": {
+    "path": "./assets/concepts/highres/fish.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "flower": {
+    "path": "./assets/concepts/highres/flower.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Paeonia_(2005-0608-B)_isolated_on_white.jpg",
+    "license": "CC BY-SA 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "foot": {
+    "path": "./assets/concepts/highres/foot.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_infrared_spectra_of_matrix_isolated_uranium_oxide_species_(IA_jresv78An3p421).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "friend": {
+    "path": "./assets/concepts/highres/friend.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_book_of_dogs;_an_intimate_study_of_mankind's_best_friend_(IA_cu31924001178130).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "glue": {
+    "path": "./assets/concepts/highres/glue.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Oriental_ceramic_art_-_illustrated_by_examples_from_the_collection_of_W.T._Walters_-_with_one_hundred_and_sixteen_plates_in_colors_and_over_four_hundred_reproductions_in_black_and_white_(IA_gri_33125015239417).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "grandma": {
+    "path": "./assets/concepts/highres/grandma.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Group_portrait_of_women_and_children_(AM_81663-1).jpg",
+    "license": "CC BY 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "grandpa": {
+    "path": "./assets/concepts/highres/grandpa.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Raymond_Moriyama's_maternal_grandmother_(age_58)_and_grandfather_Sejima_(age_65)_with_two_of_their_sons_(uncles_of_R.M.)_and_the_daughter_of_the_actress_aunt_(I0020981).tif",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hand": {
+    "path": "./assets/concepts/highres/hand.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:CHINA_IN_1989_AND_2015-_TIANANMEN,_HUMAN_RIGHTS,_AND_DEMOCRACY_(IA_gov.gpo.fdsys.CHRG-114hhrg95041).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "happy": {
+    "path": "./assets/concepts/highres/happy.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "head": {
+    "path": "./assets/concepts/highres/head.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:STS-135_Sandy_Magnus_undergoes_a_fit_check_of_her_Sokol_suit.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hospital": {
+    "path": "./assets/concepts/highres/hospital.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Craiglockhart_Hydropathic_main_view.JPG",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "house": {
+    "path": "./assets/concepts/highres/house.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:White-pine_blister_rust_in_western_Europe_(IA_whitepineblister1186moir).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hungry": {
+    "path": "./assets/concepts/highres/hungry.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Child_management_(IA_childmanagement27thom).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "juice": {
+    "path": "./assets/concepts/highres/juice.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Citrus_Research_Conference,_January_24,_1956,_Fruit_and_Vegetable_Chemistry_Laboratory,_Pasadena_5,_California_(IA_CAT31340219).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "jump": {
+    "path": "./assets/concepts/highres/jump.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "kitchen": {
+    "path": "./assets/concepts/highres/kitchen.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Dirck_de_Vries_-_Kitchen_Interior_-_Walters_372651.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "mango": {
+    "path": "./assets/concepts/highres/mango.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Mango_(1).jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "market": {
+    "path": "./assets/concepts/highres/market.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:THE_STRATEGIC_IMPORTANCE_OF_BUILDING_A_STRONGER_U.S.-CARIBBEAN_PARTNERSHIP_(IA_gov.gpo.fdsys.CHRG-114hhrg20749).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "milk": {
+    "path": "./assets/concepts/highres/milk.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Commission_Regulation_(EEC)_No_690-92_of_19_March_1992_establishing_a_reference_method_for_the_detection_of_cows'_milk_casein_in_cheeses_made_from_ewes'_milk_(EUR_1992-690).pdf",
+    "license": "OGL 3",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "mouth": {
+    "path": "./assets/concepts/highres/mouth.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Henrietta_Szold_close-up_(cropped).jpg",
+    "license": "CC BY 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "mum": {
+    "path": "./assets/concepts/highres/mum.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Little_known_early_American_portrait_painters.djvu",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "nurse": {
+    "path": "./assets/concepts/highres/nurse.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_group_of_nurses_(AM_87959-1).jpg",
+    "license": "CC BY 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "orange": {
+    "path": "./assets/concepts/highres/orange.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Orange_Fruit_Close-up.jpg",
+    "license": "CC BY-SA 3.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pants": {
+    "path": "./assets/concepts/highres/pants.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Benevrek_-_traditional_woolen_trousers_isolated_on_white_background.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "park": {
+    "path": "./assets/concepts/highres/park.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Children's_playground_in_the_sanatorium_park_in_Shklo.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "patty": {
     "path": "./assets/concepts/highres/patty.webp",
     "source": "https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg",
     "license": "CC BY-SA 4.0",
-    "review_status": "existing production asset; human visual review required"
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pencil": {
+    "path": "./assets/concepts/highres/pencil.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Italian_pictures,_drawn_with_pen_and_pencil_(IA_pencilitalian00mannrich).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pharmacy": {
+    "path": "./assets/concepts/highres/pharmacy.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:CVS_Pharmacy_-_Storefront_(50836368758).jpg",
+    "license": "CC BY 2.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "phone": {
+    "path": "./assets/concepts/highres/phone.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:App_Keyvisual_cmyk.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "plantain": {
+    "path": "./assets/concepts/highres/plantain.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "plate": {
+    "path": "./assets/concepts/highres/plate.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "play": {
+    "path": "./assets/concepts/highres/play.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Bibi,_a_comedy_of_toys.._(IA_bibicomedyoftoys00bern).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "puzzle": {
+    "path": "./assets/concepts/highres/puzzle.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Fossils_for_the_future_-_Northern_Plains_Governors'_Conference,_August_24-26,_1992_(IA_CAT10631233).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "read": {
+    "path": "./assets/concepts/highres/read.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Our_Sunday_book_of_reading_and_pictures_(IA_oursundaybookofr00arch).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "rice": {
+    "path": "./assets/concepts/highres/rice.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:NAVY_MEDICINE_Vol._91,_No._4_July-August_2000_(IA_NavyMedicineVol.91No.4July-august2000).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "run": {
+    "path": "./assets/concepts/highres/run.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Polish_victim_of_German_Luftwaffe_action_1939.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sad": {
+    "path": "./assets/concepts/highres/sad.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "scared": {
+    "path": "./assets/concepts/highres/scared.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "school": {
+    "path": "./assets/concepts/highres/school.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:High_school_building_exterior_is_pictured_in_a_town_or_city_landscape.jpg",
+    "license": "CC0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "scissors": {
+    "path": "./assets/concepts/highres/scissors.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Nature_-_a_Weekly_Illustrated_Journal_of_Science._Volume_6,_1872_June_13,_(No._137)_(IA_dbc.wroc_pl.15637).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "shirt": {
+    "path": "./assets/concepts/highres/shirt.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:LifeMagazine12Oct1911.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "shoe": {
+    "path": "./assets/concepts/highres/shoe.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Airforce1.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "shop": {
+    "path": "./assets/concepts/highres/shop.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Naaimachines_written_on_a_former_storefront,_Winschoten_(2022)_01.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sick": {
+    "path": "./assets/concepts/highres/sick.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Osteopathic_first_aids_to_the_sick_-_written_for_the_sick_people_(IA_osteopathicfirst00feid).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sister": {
+    "path": "./assets/concepts/highres/sister.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:PortraitGirl2005-1a.jpg",
+    "license": "CC BY 2.5",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sleep": {
+    "path": "./assets/concepts/highres/sleep.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "soap": {
+    "path": "./assets/concepts/highres/soap.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Register_papers_-_a_collection_of_chemical_essays_in_reference_to_dental_surgery_(IA_50420320R.nlm.nih.gov).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "spoon": {
+    "path": "./assets/concepts/highres/spoon.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Composite_sampling_of_sediments_contaminated_with_white_phosphorus_-_USACE-p266001coll1-6161.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tablet": {
+    "path": "./assets/concepts/highres/tablet.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Mobile_situational_awareness_tool-_unattended_ground_sensor-based_remote_surveillance_system_(IA_mobilesituationa1094543971).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "taxi": {
+    "path": "./assets/concepts/highres/taxi.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Toyota_Hiace.jpg",
+    "license": "CC BY 2.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "teacher": {
+    "path": "./assets/concepts/highres/teacher.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Class_photo,_teacher_Fortepan_4665.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "thirsty": {
+    "path": "./assets/concepts/highres/thirsty.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_fountain_opened_-_and_the_water_of_life_flowing_forth,_for_the_refreshing_of_thirsty_sinners_..._in_several_sermons_preached_at_Covent-garden_on_Isa._55._1,_2,_3_(IA_fouedwa00sedg).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tired": {
+    "path": "./assets/concepts/highres/tired.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Black_Man's_Verse.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "toothbrush": {
+    "path": "./assets/concepts/highres/toothbrush.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:United_States_Navy_Medical_News_Letter_Vol._42_No._7,_4_October_1963_(IA_NavyMedicalNewsletter19631004).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "towel": {
+    "path": "./assets/concepts/highres/towel.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:When_Jesus_wrote_on_the_ground;_studies,_expositions_and_meditations_in_the_life_of_the_spirit_(IA_whenjesuswroteon00jone).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "toy": {
+    "path": "./assets/concepts/highres/toy.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Two_children_of_the_foothills_(IA_twochildrenoffoo00harr).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tree": {
+    "path": "./assets/concepts/highres/tree.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tv": {
+    "path": "./assets/concepts/highres/tv.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:A_television_studio_montage_amplifier._(IA_televisionstudio00coop).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "uniform": {
+    "path": "./assets/concepts/highres/uniform.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Manual_on_Uniform_Traffic_Control_Devices_for_Streets_and_Highways,_1935_Edition.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "walk": {
+    "path": "./assets/concepts/highres/walk.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "wash": {
+    "path": "./assets/concepts/highres/wash.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Jim_Hands_(IA_jimhands00chiliala).pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "water": {
+    "path": "./assets/concepts/highres/water.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "write": {
+    "path": "./assets/concepts/highres/write.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:The_writing_of_fiction.pdf",
+    "license": "Public domain",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "yam": {
+    "path": "./assets/concepts/highres/yam.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg",
+    "license": "CC BY-SA 4.0",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   }
 }

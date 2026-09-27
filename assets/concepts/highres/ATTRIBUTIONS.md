@@ -1,17 +1,111 @@
 # WAPS high-resolution concept image credits
 
-These teaching images are derived from openly licensed Wikimedia Commons files. Backgrounds were removed/cropped and images were resized for clear in-app teaching use.
+These teaching images are derived from openly licensed Wikimedia Commons files. Backgrounds are removed/cropped and images are normalized to 1024×1024 for clear in-app teaching use.
 
+Every image must still pass human concept-recognition review before it is treated as clinically validated content.
+
+- **Angry** — File:The ivory child (IA ivorychild00haggiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf
 - **Apple** — File:Apple-001.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Apple-001.jpg
-- **Banana** — File:Banana isolated on white.jpg — CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg
-- **Mango** — File:Mango (1).jpg — Public domain — https://commons.wikimedia.org/wiki/File:Mango_(1).jpg
-- **Plantain** — File:Plantains on white background.png — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png
-- **Yam** — File:Yam tuber.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg
-- **Cup** — File:Plastic Cup no Ice.jpg — CC BY-SA 2.0 — https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg
-- **Shoe** — File:Airforce1.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Airforce1.jpg
-- **Book** — File:Open book color.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Open_book_color.jpg
-- **Car** — File:2021 Nissan Rogue.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg
+- **Baby** — File:(Portrait of a baby in a bassinet (AM 84765-1).jpg — CC BY 4.0 — https://commons.wikimedia.org/wiki/File:(Portrait_of_a_baby_in_a_bassinet_(AM_84765-1).jpg
+- **Bag** — File:A SYSTEMS ENGINEERING APPROACH TO SCHOOL SYSTEM ENHANCEMENTS FOR COUNTERING ACTIVE SHOOTERS IN U.S. K-12 SCHOOLS (IA asystemsengineer1094561311).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_SYSTEMS_ENGINEERING_APPROACH_TO_SCHOOL_SYSTEM_ENHANCEMENTS_FOR_COUNTERING_ACTIVE_SHOOTERS_IN_U.S._K-12_SCHOOLS_(IA_asystemsengineer1094561311).pdf
 - **Ball** — File:Ball white black.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Ball_white_black.jpg
-- **Water** — File:Glass-of-water.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg
+- **Banana** — File:Banana isolated on white.jpg — CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Banana_isolated_on_white.jpg
+- **Bathroom** — File:Fin bathroom in Fin garden, Kashan, Iran.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Fin_bathroom_in_Fin_garden,_Kashan,_Iran.jpg
+- **Beach** — File:Jamaica - Negril - 047.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Jamaica_-_Negril_-_047.jpg
+- **Bed** — File:Six Months at the White House.djvu — Public domain — https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu
+- **Bedroom** — File:Interior, children's bedroom. State Library Victoria.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Interior,_children's_bedroom._State_Library_Victoria.jpg
+- **Bike** — File:Paris of to-day (IA gri 33125010273494).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf
+- **Bird** — File:013 White-throated kingfisher in Keoladeo National Park Photo by Giles Laurent.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:013_White-throated_kingfisher_in_Keoladeo_National_Park_Photo_by_Giles_Laurent.jpg
+- **Blocks** — File:Turrets, towers, and temples; the great buildings of the world (IA turretstowerstem00sing).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Turrets,_towers,_and_temples;_the_great_buildings_of_the_world_(IA_turretstowerstem00sing).pdf
+- **Book** — File:Open book color.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Open_book_color.jpg
+- **Bread** — File:White--The gray dawn.djvu — Public domain — https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu
 - **Breadfruit** — File:Artocarpus altilis (fruit).jpg — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Artocarpus_altilis_(fruit).jpg
+- **Brother** — File:Portrait, interior, glasses, boy, reading, book Fortepan 19637.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Portrait,_interior,_glasses,_boy,_reading,_book_Fortepan_19637.jpg
+- **Bus** — File:Bus in Jamaica.jpg — CC0 — https://commons.wikimedia.org/wiki/File:Bus_in_Jamaica.jpg
+- **Calm** — File:A child-world (IA childworld00rilerich).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf
+- **Car** — File:2021 Nissan Rogue.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2021_Nissan_Rogue.jpg
+- **Cat** — File:Felis catus-cat on snow.jpg — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg
+- **Chair** — File:Six Months at the White House.djvu — Public domain — https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu
+- **Chicken** — File:Food and nutrition (IA CAT71342262031).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Food_and_nutrition_(IA_CAT71342262031).pdf
+- **Church** — File:Podlaskie - Mońki - Mońki - ul. Ks. Małynicza 1- Kościół pw. Matki Boskiej Częstochowskiej - lbok.JPG — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Podlaskie_-_Mońki_-_Mońki_-_ul._Ks._Małynicza_1-_Kościół_pw._Matki_Boskiej_Częstochowskiej_-_lbok.JPG
+- **Clinic** — File:Academic City University health clinic exterior building.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Academic_City_University_health_clinic_exterior_building.jpg
+- **Comb** — File:Paris of to-day (IA gri 33125010273494).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf
+- **Computer** — File:BOU DCSA 1201 - Computer Basics - Unit 04 - Input and Output Devices.pdf — CC BY 4.0 — https://commons.wikimedia.org/wiki/File:BOU_DCSA_1201_-_Computer_Basics_-_Unit_04_-_Input_and_Output_Devices.pdf
+- **Cookie** — File:Mary Cameron- a romance of Fisherman's Island (IA marycameronromanc00sawyiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Mary_Cameron-_a_romance_of_Fisherman's_Island_(IA_marycameronromanc00sawyiala).pdf
+- **Crayon** — File:Sketchings (IA jstor-25527370).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Sketchings_(IA_jstor-25527370).pdf
+- **Cup** — File:Plastic Cup no Ice.jpg — CC BY-SA 2.0 — https://commons.wikimedia.org/wiki/File:Plastic_Cup_no_Ice.jpg
+- **Dad** — File:The National portrait gallery (IA nationalportrait02nati).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_National_portrait_gallery_(IA_nationalportrait02nati).pdf
+- **Desk** — File:The Rabun industrial school and mountain school extension work among the mountain whites (by one of them) (IA rabunindustrials01ritc).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_Rabun_industrial_school_and_mountain_school_extension_work_among_the_mountain_whites_(by_one_of_them)_(IA_rabunindustrials01ritc).pdf
+- **Doctor** — File:Doctor Fortepan 4629.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Doctor_Fortepan_4629.jpg
+- **Dog** — File:Little white dog on transparent background PNG.png — CC0 — https://commons.wikimedia.org/wiki/File:Little_white_dog_on_transparent_background_PNG.png
+- **Doll** — File:A short world history (IA shortworldhistor00wilm).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_short_world_history_(IA_shortworldhistor00wilm).pdf
+- **Door** — File:1917 The Closed Door Google Books.pdf — Public domain — https://commons.wikimedia.org/wiki/File:1917_The_Closed_Door_Google_Books.pdf
+- **Drink** — File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf
+- **Ear** — File:BOU CORE 2607 - Managing Human Resources (new) - Module 07 - Employee Discipline and Grievances.pdf — CC BY 4.0 — https://commons.wikimedia.org/wiki/File:BOU_CORE_2607_-_Managing_Human_Resources_(new)_-_Module_07_-_Employee_Discipline_and_Grievances.pdf
+- **Eat** — File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf
+- **Egg** — File:Chicken egg.png — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Chicken_egg.png
+- **Excited** — File:The ivory child (IA ivorychild00haggiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf
+- **Fish** — File:Michael Welsh - Dunes and Dreams, A History of White Sands National Monument (1995).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf
+- **Flower** — File:Paeonia (2005-0608-B) isolated on white.jpg — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Paeonia_(2005-0608-B)_isolated_on_white.jpg
+- **Foot** — File:The infrared spectra of matrix isolated uranium oxide species (IA jresv78An3p421).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_infrared_spectra_of_matrix_isolated_uranium_oxide_species_(IA_jresv78An3p421).pdf
+- **Friend** — File:The book of dogs; an intimate study of mankind's best friend (IA cu31924001178130).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_book_of_dogs;_an_intimate_study_of_mankind's_best_friend_(IA_cu31924001178130).pdf
+- **Glue** — File:Oriental ceramic art - illustrated by examples from the collection of W.T. Walters - with one hundred and sixteen plates in colors and over four hundred reproductions in black and white (IA gri 33125015239417).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Oriental_ceramic_art_-_illustrated_by_examples_from_the_collection_of_W.T._Walters_-_with_one_hundred_and_sixteen_plates_in_colors_and_over_four_hundred_reproductions_in_black_and_white_(IA_gri_33125015239417).pdf
+- **Grandma** — File:Group portrait of women and children (AM 81663-1).jpg — CC BY 4.0 — https://commons.wikimedia.org/wiki/File:Group_portrait_of_women_and_children_(AM_81663-1).jpg
+- **Grandpa** — File:Raymond Moriyama's maternal grandmother (age 58) and grandfather Sejima (age 65) with two of their sons (uncles of R.M.) and the daughter of the actress aunt (I0020981).tif — Public domain — https://commons.wikimedia.org/wiki/File:Raymond_Moriyama's_maternal_grandmother_(age_58)_and_grandfather_Sejima_(age_65)_with_two_of_their_sons_(uncles_of_R.M.)_and_the_daughter_of_the_actress_aunt_(I0020981).tif
+- **Hand** — File:CHINA IN 1989 AND 2015- TIANANMEN, HUMAN RIGHTS, AND DEMOCRACY (IA gov.gpo.fdsys.CHRG-114hhrg95041).pdf — Public domain — https://commons.wikimedia.org/wiki/File:CHINA_IN_1989_AND_2015-_TIANANMEN,_HUMAN_RIGHTS,_AND_DEMOCRACY_(IA_gov.gpo.fdsys.CHRG-114hhrg95041).pdf
+- **Happy** — File:A child-world (IA childworld00rilerich).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf
+- **Head** — File:STS-135 Sandy Magnus undergoes a fit check of her Sokol suit.jpg — Public domain — https://commons.wikimedia.org/wiki/File:STS-135_Sandy_Magnus_undergoes_a_fit_check_of_her_Sokol_suit.jpg
+- **Hospital** — File:Craiglockhart Hydropathic main view.JPG — Public domain — https://commons.wikimedia.org/wiki/File:Craiglockhart_Hydropathic_main_view.JPG
+- **House** — File:White-pine blister rust in western Europe (IA whitepineblister1186moir).pdf — Public domain — https://commons.wikimedia.org/wiki/File:White-pine_blister_rust_in_western_Europe_(IA_whitepineblister1186moir).pdf
+- **Hungry** — File:Child management (IA childmanagement27thom).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Child_management_(IA_childmanagement27thom).pdf
+- **Juice** — File:Citrus Research Conference, January 24, 1956, Fruit and Vegetable Chemistry Laboratory, Pasadena 5, California (IA CAT31340219).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Citrus_Research_Conference,_January_24,_1956,_Fruit_and_Vegetable_Chemistry_Laboratory,_Pasadena_5,_California_(IA_CAT31340219).pdf
+- **Jump** — File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf
+- **Kitchen** — File:Dirck de Vries - Kitchen Interior - Walters 372651.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Dirck_de_Vries_-_Kitchen_Interior_-_Walters_372651.jpg
+- **Mango** — File:Mango (1).jpg — Public domain — https://commons.wikimedia.org/wiki/File:Mango_(1).jpg
+- **Market** — File:THE STRATEGIC IMPORTANCE OF BUILDING A STRONGER U.S.-CARIBBEAN PARTNERSHIP (IA gov.gpo.fdsys.CHRG-114hhrg20749).pdf — Public domain — https://commons.wikimedia.org/wiki/File:THE_STRATEGIC_IMPORTANCE_OF_BUILDING_A_STRONGER_U.S.-CARIBBEAN_PARTNERSHIP_(IA_gov.gpo.fdsys.CHRG-114hhrg20749).pdf
+- **Milk** — File:Commission Regulation (EEC) No 690-92 of 19 March 1992 establishing a reference method for the detection of cows' milk casein in cheeses made from ewes' milk (EUR 1992-690).pdf — OGL 3 — https://commons.wikimedia.org/wiki/File:Commission_Regulation_(EEC)_No_690-92_of_19_March_1992_establishing_a_reference_method_for_the_detection_of_cows'_milk_casein_in_cheeses_made_from_ewes'_milk_(EUR_1992-690).pdf
+- **Mouth** — File:Henrietta Szold close-up (cropped).jpg — CC BY 3.0 — https://commons.wikimedia.org/wiki/File:Henrietta_Szold_close-up_(cropped).jpg
+- **Mum** — File:Little known early American portrait painters.djvu — Public domain — https://commons.wikimedia.org/wiki/File:Little_known_early_American_portrait_painters.djvu
+- **Nurse** — File:Portrait of group of nurses (AM 87959-1).jpg — CC BY 4.0 — https://commons.wikimedia.org/wiki/File:Portrait_of_group_of_nurses_(AM_87959-1).jpg
+- **Orange** — File:Orange Fruit Close-up.jpg — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Orange_Fruit_Close-up.jpg
+- **Pants** — File:Benevrek - traditional woolen trousers isolated on white background.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Benevrek_-_traditional_woolen_trousers_isolated_on_white_background.jpg
+- **Park** — File:Children's playground in the sanatorium park in Shklo.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Children's_playground_in_the_sanatorium_park_in_Shklo.jpg
 - **Patty** — File:Homemade Jamaican patties.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Homemade_Jamaican_patties.jpg
+- **Pencil** — File:Italian pictures, drawn with pen and pencil (IA pencilitalian00mannrich).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Italian_pictures,_drawn_with_pen_and_pencil_(IA_pencilitalian00mannrich).pdf
+- **Pharmacy** — File:CVS Pharmacy - Storefront (50836368758).jpg — CC BY 2.0 — https://commons.wikimedia.org/wiki/File:CVS_Pharmacy_-_Storefront_(50836368758).jpg
+- **Phone** — File:App Keyvisual cmyk.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:App_Keyvisual_cmyk.jpg
+- **Plantain** — File:Plantains on white background.png — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Plantains_on_white_background.png
+- **Plate** — File:Michael Welsh - Dunes and Dreams, A History of White Sands National Monument (1995).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf
+- **Play** — File:Bibi, a comedy of toys.. (IA bibicomedyoftoys00bern).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Bibi,_a_comedy_of_toys.._(IA_bibicomedyoftoys00bern).pdf
+- **Puzzle** — File:Fossils for the future - Northern Plains Governors' Conference, August 24-26, 1992 (IA CAT10631233).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Fossils_for_the_future_-_Northern_Plains_Governors'_Conference,_August_24-26,_1992_(IA_CAT10631233).pdf
+- **Read** — File:Our Sunday book of reading and pictures (IA oursundaybookofr00arch).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Our_Sunday_book_of_reading_and_pictures_(IA_oursundaybookofr00arch).pdf
+- **Rice** — File:NAVY MEDICINE Vol. 91, No. 4 July-August 2000 (IA NavyMedicineVol.91No.4July-august2000).pdf — Public domain — https://commons.wikimedia.org/wiki/File:NAVY_MEDICINE_Vol._91,_No._4_July-August_2000_(IA_NavyMedicineVol.91No.4July-august2000).pdf
+- **Run** — File:Polish victim of German Luftwaffe action 1939.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Polish_victim_of_German_Luftwaffe_action_1939.jpg
+- **Sad** — File:A child-world (IA childworld00rilerich).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf
+- **Scared** — File:The ivory child (IA ivorychild00haggiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf
+- **School** — File:High school building exterior is pictured in a town or city landscape.jpg — CC0 — https://commons.wikimedia.org/wiki/File:High_school_building_exterior_is_pictured_in_a_town_or_city_landscape.jpg
+- **Scissors** — File:Nature - a Weekly Illustrated Journal of Science. Volume 6, 1872 June 13, (No. 137) (IA dbc.wroc pl.15637).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Nature_-_a_Weekly_Illustrated_Journal_of_Science._Volume_6,_1872_June_13,_(No._137)_(IA_dbc.wroc_pl.15637).pdf
+- **Shirt** — File:LifeMagazine12Oct1911.pdf — Public domain — https://commons.wikimedia.org/wiki/File:LifeMagazine12Oct1911.pdf
+- **Shoe** — File:Airforce1.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Airforce1.jpg
+- **Shop** — File:Naaimachines written on a former storefront, Winschoten (2022) 01.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Naaimachines_written_on_a_former_storefront,_Winschoten_(2022)_01.jpg
+- **Sick** — File:Osteopathic first aids to the sick - written for the sick people (IA osteopathicfirst00feid).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Osteopathic_first_aids_to_the_sick_-_written_for_the_sick_people_(IA_osteopathicfirst00feid).pdf
+- **Sister** — File:PortraitGirl2005-1a.jpg — CC BY 2.5 — https://commons.wikimedia.org/wiki/File:PortraitGirl2005-1a.jpg
+- **Sleep** — File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf
+- **Soap** — File:Register papers - a collection of chemical essays in reference to dental surgery (IA 50420320R.nlm.nih.gov).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Register_papers_-_a_collection_of_chemical_essays_in_reference_to_dental_surgery_(IA_50420320R.nlm.nih.gov).pdf
+- **Spoon** — File:Composite sampling of sediments contaminated with white phosphorus - USACE-p266001coll1-6161.pdf — Public domain — https://commons.wikimedia.org/wiki/File:Composite_sampling_of_sediments_contaminated_with_white_phosphorus_-_USACE-p266001coll1-6161.pdf
+- **Tablet** — File:Mobile situational awareness tool- unattended ground sensor-based remote surveillance system (IA mobilesituationa1094543971).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Mobile_situational_awareness_tool-_unattended_ground_sensor-based_remote_surveillance_system_(IA_mobilesituationa1094543971).pdf
+- **Taxi** — File:Jamaica - Toyota Hiace.jpg — CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Jamaica_-_Toyota_Hiace.jpg
+- **Teacher** — File:Class photo, teacher Fortepan 4665.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Class_photo,_teacher_Fortepan_4665.jpg
+- **Thirsty** — File:The fountain opened - and the water of life flowing forth, for the refreshing of thirsty sinners ... in several sermons preached at Covent-garden on Isa. 55. 1, 2, 3 (IA fouedwa00sedg).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_fountain_opened_-_and_the_water_of_life_flowing_forth,_for_the_refreshing_of_thirsty_sinners_..._in_several_sermons_preached_at_Covent-garden_on_Isa._55._1,_2,_3_(IA_fouedwa00sedg).pdf
+- **Tired** — File:Black Man's Verse.pdf — Public domain — https://commons.wikimedia.org/wiki/File:Black_Man's_Verse.pdf
+- **Toothbrush** — File:United States Navy Medical News Letter Vol. 42 No. 7, 4 October 1963 (IA NavyMedicalNewsletter19631004).pdf — Public domain — https://commons.wikimedia.org/wiki/File:United_States_Navy_Medical_News_Letter_Vol._42_No._7,_4_October_1963_(IA_NavyMedicalNewsletter19631004).pdf
+- **Towel** — File:When Jesus wrote on the ground; studies, expositions and meditations in the life of the spirit (IA whenjesuswroteon00jone).pdf — Public domain — https://commons.wikimedia.org/wiki/File:When_Jesus_wrote_on_the_ground;_studies,_expositions_and_meditations_in_the_life_of_the_spirit_(IA_whenjesuswroteon00jone).pdf
+- **Toy** — File:Two children of the foothills (IA twochildrenoffoo00harr).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Two_children_of_the_foothills_(IA_twochildrenoffoo00harr).pdf
+- **Tree** — File:White--The gray dawn.djvu — Public domain — https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu
+- **Tv** — File:A television studio montage amplifier. (IA televisionstudio00coop).pdf — Public domain — https://commons.wikimedia.org/wiki/File:A_television_studio_montage_amplifier._(IA_televisionstudio00coop).pdf
+- **Uniform** — File:Manual on Uniform Traffic Control Devices for Streets and Highways, 1935 Edition.pdf — Public domain — https://commons.wikimedia.org/wiki/File:Manual_on_Uniform_Traffic_Control_Devices_for_Streets_and_Highways,_1935_Edition.pdf
+- **Walk** — File:The ivory child (IA ivorychild00haggiala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf
+- **Wash** — File:Jim Hands (IA jimhands00chiliala).pdf — Public domain — https://commons.wikimedia.org/wiki/File:Jim_Hands_(IA_jimhands00chiliala).pdf
+- **Water** — File:Glass-of-water.jpg — Public domain — https://commons.wikimedia.org/wiki/File:Glass-of-water.jpg
+- **Write** — File:The writing of fiction.pdf — Public domain — https://commons.wikimedia.org/wiki/File:The_writing_of_fiction.pdf
+- **Yam** — File:Yam tuber.jpg — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yam_tuber.jpg

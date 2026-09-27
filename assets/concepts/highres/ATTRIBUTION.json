@@ -5,7 +5,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Amada44\" title=\"User:Amada44\">Amada44</a>",
     "license": "Public domain",
     "license_url": "",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "banana": {
     "source_file": "File:Banana isolated on white.jpg",
@@ -13,7 +15,9 @@
     "artist": "robin_24",
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0",
-    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/robin24/5129712590/in/pool-14106982@N00/\">https://www.flickr.com/photos/robin24/5129712590/in/pool-14106982@N00/</a>"
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/robin24/5129712590/in/pool-14106982@N00/\">https://www.flickr.com/photos/robin24/5129712590/in/pool-14106982@N00/</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "mango": {
     "source_file": "File:Mango (1).jpg",
@@ -21,7 +25,9 @@
     "artist": "Renee Comet (Photographer)",
     "license": "Public domain",
     "license_url": "",
-    "credit": "This image was released by the <a href=\"https://en.wikipedia.org/wiki/National_Cancer_Institute\" class=\"extiw\" title=\"en:National Cancer Institute\">National Cancer Institute</a>, an agency part of the <a href=\"https://en.wikipedia.org/wiki/National_Institutes_of_Health\" class=\"extiw\" title=\"en:National Institutes of Health\">National Institutes of Health</a>, with the ID <a rel=\"nofollow\" class=\"external text\" href=\"https://visualsonline.cancer.gov/details.cfm?imageid=2633\">2633</a> (<a rel=\"nofollow\" class=\"external text\" href=\"https://visualsonline.cancer.gov/retrieve.cfm?imageid=2633&amp;dpi=300&amp;fileformat=jpg\">image</a>) <a class=\"external text\" data-mw-original-href=\"//commons.wikimedia.org/w/index.php?title=Category:Media_from_National_Cancer_Institute_Visuals_Online_with_known_IDs&amp;filefrom=2633#mw-category-media\" href=\"https://commons.wikimedia.org/w/index.php?title=Category:Media_from_National_Cancer_Institute_Visuals_Online_with_known_IDs&amp;filefrom=2633#mw-category-media\"><small>(next)</small></a>."
+    "credit": "This image was released by the <a href=\"https://en.wikipedia.org/wiki/National_Cancer_Institute\" class=\"extiw\" title=\"en:National Cancer Institute\">National Cancer Institute</a>, an agency part of the <a href=\"https://en.wikipedia.org/wiki/National_Institutes_of_Health\" class=\"extiw\" title=\"en:National Institutes of Health\">National Institutes of Health</a>, with the ID <a rel=\"nofollow\" class=\"external text\" href=\"https://visualsonline.cancer.gov/details.cfm?imageid=2633\">2633</a> (<a rel=\"nofollow\" class=\"external text\" href=\"https://visualsonline.cancer.gov/retrieve.cfm?imageid=2633&amp;dpi=300&amp;fileformat=jpg\">image</a>) <a class=\"external text\" data-mw-original-href=\"//commons.wikimedia.org/w/index.php?title=Category:Media_from_National_Cancer_Institute_Visuals_Online_with_known_IDs&amp;filefrom=2633#mw-category-media\" href=\"https://commons.wikimedia.org/w/index.php?title=Category:Media_from_National_Cancer_Institute_Visuals_Online_with_known_IDs&amp;filefrom=2633#mw-category-media\"><small>(next)</small></a>.",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "plantain": {
     "source_file": "File:Plantains on white background.png",
@@ -29,7 +35,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Filo_g%C3%A8n%27\" title=\"User:Filo gèn'\">Filo gèn'</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "yam": {
     "source_file": "File:Yam tuber.jpg",
@@ -37,7 +45,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kambai_Akau\" title=\"User:Kambai Akau\">Kambai Akau</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "cup": {
     "source_file": "File:Plastic Cup no Ice.jpg",
@@ -45,7 +55,9 @@
     "artist": "Bill Brooks, edycja: niedzielny leń",
     "license": "CC BY-SA 2.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/8011986@N02/2755364921/\">https://www.flickr.com/photos/8011986@N02/2755364921/</a>"
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/8011986@N02/2755364921/\">https://www.flickr.com/photos/8011986@N02/2755364921/</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "shoe": {
     "source_file": "File:Airforce1.jpg",
@@ -53,7 +65,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Merci0230&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Merci0230 (page does not exist)\">Merci0230</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "book": {
     "source_file": "File:Open book color.jpg",
@@ -61,7 +75,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Bwpae_commons\" title=\"User:Bwpae commons\">Bibliothek Wissenschaftspark Albert Einstein</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "car": {
     "source_file": "File:2021 Nissan Rogue.jpg",
@@ -69,7 +85,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Wagon_Master_Johnson\" class=\"mw-redirect\" title=\"User:Wagon Master Johnson\">Wagon Master Johnson</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "ball": {
     "source_file": "File:Ball white black.jpg",
@@ -77,7 +95,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Pati.latek&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Pati.latek (page does not exist)\">Pati.latek</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "water": {
     "source_file": "File:Glass-of-water.jpg",
@@ -85,7 +105,9 @@
     "artist": "Derek Jensen (<a href=\"//commons.wikimedia.org/wiki/User:Tysto\" title=\"User:Tysto\">Tysto</a>)",
     "license": "Public domain",
     "license_url": "",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "breadfruit": {
     "source_file": "File:Artocarpus altilis (fruit).jpg",
@@ -93,7 +115,9 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Biopics\" title=\"User:Biopics\">Hans Hillewaert</a>",
     "license": "CC BY-SA 3.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   },
   "patty": {
     "source_file": "File:Homemade Jamaican patties.jpg",
@@ -101,6 +125,928 @@
     "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Lilpisomojado&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Lilpisomojado (page does not exist)\">Lilpisomojado</a>",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>"
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "orange": {
+    "source_file": "File:Orange Fruit Close-up.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Orange_Fruit_Close-up.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"http://www.freestock.ca\">freestock.ca</a>",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span> : <a rel=\"nofollow\" class=\"external text\" href=\"http://freestock.ca/food_drink_g37-vibrant_orange_p1667.html\">Vibrant Orange</a> <i>(please note for the images that I submit here, I openly consent to let the Wikimedia license take precedence over my personal Terms of Use on freestock.ca)</i>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "spoon": {
+    "source_file": "File:Composite sampling of sediments contaminated with white phosphorus - USACE-p266001coll1-6161.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Composite_sampling_of_sediments_contaminated_with_white_phosphorus_-_USACE-p266001coll1-6161.pdf",
+    "artist": "United States. Army. Corps of Engineers; Cold Regions Research and Engineering Laboratory (U.S.)",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://usace.contentdm.oclc.org/digital/collection/p266001coll1/id/6161\">https://usace.contentdm.oclc.org/digital/collection/p266001coll1/id/6161</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "plate": {
+    "source_file": "File:Michael Welsh - Dunes and Dreams, A History of White Sands National Monument (1995).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf",
+    "artist": "<p>Michael Welch\n</p>\nNational Park Service",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.npshistory.com/publications/whsa/adhi.pdf\">http://www.npshistory.com/publications/whsa/adhi.pdf</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "toothbrush": {
+    "source_file": "File:United States Navy Medical News Letter Vol. 42 No. 7, 4 October 1963 (IA NavyMedicalNewsletter19631004).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:United_States_Navy_Medical_News_Letter_Vol._42_No._7,_4_October_1963_(IA_NavyMedicalNewsletter19631004).pdf",
+    "artist": "<div class=\"fn value\">\nU.S. Navy. Bureau of Medicine and Surgery</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/NavyMedicalNewsletter19631004\" class=\"extiw\" title=\"iarchive:NavyMedicalNewsletter19631004\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: NavyMedicalNewsletter19631004</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/NavyMedicalNewsletter19631004/Navy%20Medical%20Newsletter%201963-10-04.pdf\">https://archive.org/download/NavyMedicalNewsletter19631004/Navy%20Medical%20Newsletter%201963-10-04.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "shirt": {
+    "source_file": "File:LifeMagazine12Oct1911.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:LifeMagazine12Oct1911.pdf",
+    "artist": "Life Magazine",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "Life Magazine via archive.org",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pants": {
+    "source_file": "File:Benevrek - traditional woolen trousers isolated on white background.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Benevrek_-_traditional_woolen_trousers_isolated_on_white_background.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Aljabakphoto\" title=\"User:Aljabakphoto\">Aljabakphoto</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bed": {
+    "source_file": "File:Six Months at the White House.djvu",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
+    "artist": "Francis Bicknell Carpenter",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/details/innerlifeabraha00carpgoog/page/n18/mode/2up\">https://archive.org/details/innerlifeabraha00carpgoog/page/n18/mode/2up</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "chair": {
+    "source_file": "File:Six Months at the White House.djvu",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Six_Months_at_the_White_House.djvu",
+    "artist": "Francis Bicknell Carpenter",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/details/innerlifeabraha00carpgoog/page/n18/mode/2up\">https://archive.org/details/innerlifeabraha00carpgoog/page/n18/mode/2up</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "door": {
+    "source_file": "File:1917 The Closed Door Google Books.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:1917_The_Closed_Door_Google_Books.pdf",
+    "artist": "Jean de Bosschère",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "Google Books <a rel=\"nofollow\" class=\"external free\" href=\"https://www.google.com/books/edition/Portes_Ferm%C3%A9es/sXBBAAAAIAAJ?hl=en&amp;gbpv=0\">https://www.google.com/books/edition/Portes_Ferm%C3%A9es/sXBBAAAAIAAJ?hl=en&amp;gbpv=0</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bag": {
+    "source_file": "File:A SYSTEMS ENGINEERING APPROACH TO SCHOOL SYSTEM ENHANCEMENTS FOR COUNTERING ACTIVE SHOOTERS IN U.S. K-12 SCHOOLS (IA asystemsengineer1094561311).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_SYSTEMS_ENGINEERING_APPROACH_TO_SCHOOL_SYSTEM_ENHANCEMENTS_FOR_COUNTERING_ACTIVE_SHOOTERS_IN_U.S._K-12_SCHOOLS_(IA_asystemsengineer1094561311).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Beaudwin, Jason</dd>\n<dd>Domondon, Rowell R.</dd>\n<dd>Scott, Bradley M.</dd>\n<dd>Shah, Bhavin J.</dd>\n<dd>Shah, Kayur P.</dd>\n<dd>Sikes, Christopher S.</dd>\n<dd>Tchatchou, Cyprien N.</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/asystemsengineer1094561311\" class=\"extiw\" title=\"iarchive:asystemsengineer1094561311\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: asystemsengineer1094561311</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/asystemsengineer1094561311/asystemsengineer1094561311.pdf\">https://archive.org/download/asystemsengineer1094561311/asystemsengineer1094561311.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pencil": {
+    "source_file": "File:Italian pictures, drawn with pen and pencil (IA pencilitalian00mannrich).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Italian_pictures,_drawn_with_pen_and_pencil_(IA_pencilitalian00mannrich).pdf",
+    "artist": "<div class=\"fn value\">\nManning, Samuel, 1822-1881</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/pencilitalian00mannrich\" class=\"extiw\" title=\"iarchive:pencilitalian00mannrich\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: pencilitalian00mannrich</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/pencilitalian00mannrich/pencilitalian00mannrich.pdf\">https://archive.org/download/pencilitalian00mannrich/pencilitalian00mannrich.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "juice": {
+    "source_file": "File:Citrus Research Conference, January 24, 1956, Fruit and Vegetable Chemistry Laboratory, Pasadena 5, California (IA CAT31340219).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Citrus_Research_Conference,_January_24,_1956,_Fruit_and_Vegetable_Chemistry_Laboratory,_Pasadena_5,_California_(IA_CAT31340219).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Citrus Research Conference (1956 : Pasadena, Calif.)</dd>\n<dd>United States. Agricultural Research Service</dd>\n<dd>Fruit and Vegetable Chemistry Laboratory (Pasadena, Calif.)</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/CAT31340219\" class=\"extiw\" title=\"iarchive:CAT31340219\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: CAT31340219</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/CAT31340219/CAT31340219.pdf\">https://archive.org/download/CAT31340219/CAT31340219.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "milk": {
+    "source_file": "File:Commission Regulation (EEC) No 690-92 of 19 March 1992 establishing a reference method for the detection of cows' milk casein in cheeses made from ewes' milk (EUR 1992-690).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Commission_Regulation_(EEC)_No_690-92_of_19_March_1992_establishing_a_reference_method_for_the_detection_of_cows'_milk_casein_in_cheeses_made_from_ewes'_milk_(EUR_1992-690).pdf",
+    "artist": "",
+    "license": "OGL 3",
+    "license_url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3",
+    "credit": "<p><a rel=\"nofollow\" class=\"external free\" href=\"http://www.legislation.gov.uk/id/eur/1992/690\">http://www.legislation.gov.uk/id/eur/1992/690</a>\n</p>\n<dl><dd>PDF: <a rel=\"nofollow\" class=\"external free\" href=\"http://www.legislation.gov.uk/eur/1992/690/pdfs/eur_19920690_adopted_en.pdf\">http://www.legislation.gov.uk/eur/1992/690/pdfs/eur_19920690_adopted_en.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "rice": {
+    "source_file": "File:NAVY MEDICINE Vol. 91, No. 4 July-August 2000 (IA NavyMedicineVol.91No.4July-august2000).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:NAVY_MEDICINE_Vol._91,_No._4_July-August_2000_(IA_NavyMedicineVol.91No.4July-august2000).pdf",
+    "artist": "<div class=\"fn value\">\nU.S. Navy. Bureau of Medicine and Surgery</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/details/NavyMedicineVol.91No.4July-august2000\">https://archive.org/details/NavyMedicineVol.91No.4July-august2000</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/NavyMedicineVol.91No.4July-august2000/NavyMedicine2000-07.pdf\">https://archive.org/download/NavyMedicineVol.91No.4July-august2000/NavyMedicine2000-07.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "chicken": {
+    "source_file": "File:Food and nutrition (IA CAT71342262031).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Food_and_nutrition_(IA_CAT71342262031).pdf",
+    "artist": "<div class=\"fn value\">\nUnited States. Food and Nutrition Service</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/CAT71342262031\" class=\"extiw\" title=\"iarchive:CAT71342262031\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: CAT71342262031</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/CAT71342262031/CAT71342262031.pdf\">https://archive.org/download/CAT71342262031/CAT71342262031.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "fish": {
+    "source_file": "File:Michael Welsh - Dunes and Dreams, A History of White Sands National Monument (1995).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Michael_Welsh_-_Dunes_and_Dreams,_A_History_of_White_Sands_National_Monument_(1995).pdf",
+    "artist": "<p>Michael Welch\n</p>\nNational Park Service",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.npshistory.com/publications/whsa/adhi.pdf\">http://www.npshistory.com/publications/whsa/adhi.pdf</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "egg": {
+    "source_file": "File:Chicken egg.png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Chicken_egg.png",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:MrX\" title=\"User:MrX\">User: MrX</a>",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bread": {
+    "source_file": "File:White--The gray dawn.djvu",
+    "source_url": "https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu",
+    "artist": "<div class=\"fn value\">\nStewart Edward White</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a href=\"//archive.org/details/graydawn00whituoft\" class=\"extiw\" title=\"iarchive:graydawn00whituoft\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: graydawn00whituoft</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "cookie": {
+    "source_file": "File:Mary Cameron- a romance of Fisherman's Island (IA marycameronromanc00sawyiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mary_Cameron-_a_romance_of_Fisherman's_Island_(IA_marycameronromanc00sawyiala).pdf",
+    "artist": "<div class=\"fn value\">\nSawyer, Edith Augusta, 1869-</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/marycameronromanc00sawyiala\" class=\"extiw\" title=\"iarchive:marycameronromanc00sawyiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: marycameronromanc00sawyiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/marycameronromanc00sawyiala/marycameronromanc00sawyiala.pdf\">https://archive.org/download/marycameronromanc00sawyiala/marycameronromanc00sawyiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "soap": {
+    "source_file": "File:Register papers - a collection of chemical essays in reference to dental surgery (IA 50420320R.nlm.nih.gov).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Register_papers_-_a_collection_of_chemical_essays_in_reference_to_dental_surgery_(IA_50420320R.nlm.nih.gov).pdf",
+    "artist": "<div class=\"fn value\">\nWatt, Geo. (George), 1820-1893, author</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/50420320R.nlm.nih.gov\" class=\"extiw\" title=\"iarchive:50420320R.nlm.nih.gov\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: 50420320R.nlm.nih.gov</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/50420320R.nlm.nih.gov/50420320R.pdf\">https://archive.org/download/50420320R.nlm.nih.gov/50420320R.pdf</a></dd></dl>\n<ul><li>IA contributor: U.S. National Library of Medicine</li>\n<li>IA digitizing sponsor: Open Knowledge Commons, U.S. National Library of Medicine</li></ul>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "towel": {
+    "source_file": "File:When Jesus wrote on the ground; studies, expositions and meditations in the life of the spirit (IA whenjesuswroteon00jone).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:When_Jesus_wrote_on_the_ground;_studies,_expositions_and_meditations_in_the_life_of_the_spirit_(IA_whenjesuswroteon00jone).pdf",
+    "artist": "<div class=\"fn value\">\nJones, Edgar De Witt, 1876-1956</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/whenjesuswroteon00jone\" class=\"extiw\" title=\"iarchive:whenjesuswroteon00jone\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: whenjesuswroteon00jone</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/whenjesuswroteon00jone/whenjesuswroteon00jone.pdf\">https://archive.org/download/whenjesuswroteon00jone/whenjesuswroteon00jone.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "comb": {
+    "source_file": "File:Paris of to-day (IA gri 33125010273494).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf",
+    "artist": "<div class=\"fn value\">\nWhiteing, Richard, 1840-1928</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/gri_33125010273494\" class=\"extiw\" title=\"iarchive:gri 33125010273494\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: gri_33125010273494</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/gri_33125010273494/gri_33125010273494.pdf\">https://archive.org/download/gri_33125010273494/gri_33125010273494.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "phone": {
+    "source_file": "File:App Keyvisual cmyk.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:App_Keyvisual_cmyk.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Vhs-Lernportal&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Vhs-Lernportal (page does not exist)\">Deutscher Volkshochschul-Verband</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tablet": {
+    "source_file": "File:Mobile situational awareness tool- unattended ground sensor-based remote surveillance system (IA mobilesituationa1094543971).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mobile_situational_awareness_tool-_unattended_ground_sensor-based_remote_surveillance_system_(IA_mobilesituationa1094543971).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Palm, Bradley C.</dd>\n<dd>Richter, Ryan P.</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/mobilesituationa1094543971\" class=\"extiw\" title=\"iarchive:mobilesituationa1094543971\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: mobilesituationa1094543971</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/mobilesituationa1094543971/mobilesituationa1094543971.pdf\">https://archive.org/download/mobilesituationa1094543971/mobilesituationa1094543971.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tv": {
+    "source_file": "File:A television studio montage amplifier. (IA televisionstudio00coop).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_television_studio_montage_amplifier._(IA_televisionstudio00coop).pdf",
+    "artist": "<div class=\"fn value\">\nCooper, James Arthur</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/televisionstudio00coop\" class=\"extiw\" title=\"iarchive:televisionstudio00coop\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: televisionstudio00coop</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/televisionstudio00coop/televisionstudio00coop.pdf\">https://archive.org/download/televisionstudio00coop/televisionstudio00coop.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bike": {
+    "source_file": "File:Paris of to-day (IA gri 33125010273494).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Paris_of_to-day_(IA_gri_33125010273494).pdf",
+    "artist": "<div class=\"fn value\">\nWhiteing, Richard, 1840-1928</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/gri_33125010273494\" class=\"extiw\" title=\"iarchive:gri 33125010273494\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: gri_33125010273494</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/gri_33125010273494/gri_33125010273494.pdf\">https://archive.org/download/gri_33125010273494/gri_33125010273494.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tree": {
+    "source_file": "File:White--The gray dawn.djvu",
+    "source_url": "https://commons.wikimedia.org/wiki/File:White--The_gray_dawn.djvu",
+    "artist": "<div class=\"fn value\">\nStewart Edward White</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a href=\"//archive.org/details/graydawn00whituoft\" class=\"extiw\" title=\"iarchive:graydawn00whituoft\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: graydawn00whituoft</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "flower": {
+    "source_file": "File:Paeonia (2005-0608-B) isolated on white.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Paeonia_(2005-0608-B)_isolated_on_white.jpg",
+    "artist": "Photo by and (c)2008 Derek Ramsey (<a href=\"https://en.wikipedia.org/wiki/User:Ram-Man\" class=\"extiw\" title=\"en:User:Ram-Man\">Ram-Man</a>).  Co-attribution must be given to the Chanticleer Garden.",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "credit": "<span class=\"int-own-work\">Self-photographed</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "cat": {
+    "source_file": "File:Felis catus-cat on snow.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Von.grzanka\" title=\"User:Von.grzanka\">Von.grzanka</a>",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "dog": {
+    "source_file": "File:Little white dog on transparent background PNG.png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Little_white_dog_on_transparent_background_PNG.png",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Kissmykumbaya&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Kissmykumbaya (page does not exist)\">Kissmykumbaya</a>",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bird": {
+    "source_file": "File:013 White-throated kingfisher in Keoladeo National Park Photo by Giles Laurent.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:013_White-throated_kingfisher_in_Keoladeo_National_Park_Photo_by_Giles_Laurent.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giles_Laurent\" title=\"User:Giles Laurent\">Giles Laurent</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>, from <a rel=\"nofollow\" class=\"external text\" href=\"https://gileslaurent.com\">gileslaurent.com</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "toy": {
+    "source_file": "File:Two children of the foothills (IA twochildrenoffoo00harr).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Two_children_of_the_foothills_(IA_twochildrenoffoo00harr).pdf",
+    "artist": "<div class=\"fn value\">\nHarrison, Elizabeth, 1849-1927</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/twochildrenoffoo00harr\" class=\"extiw\" title=\"iarchive:twochildrenoffoo00harr\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: twochildrenoffoo00harr</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/twochildrenoffoo00harr/twochildrenoffoo00harr.pdf\">https://archive.org/download/twochildrenoffoo00harr/twochildrenoffoo00harr.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "doll": {
+    "source_file": "File:A short world history (IA shortworldhistor00wilm).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_short_world_history_(IA_shortworldhistor00wilm).pdf",
+    "artist": "<div class=\"fn value\">\nWilmot-Buxton, E. M. (Ethel Mary)</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/shortworldhistor00wilm\" class=\"extiw\" title=\"iarchive:shortworldhistor00wilm\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: shortworldhistor00wilm</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/shortworldhistor00wilm/shortworldhistor00wilm.pdf\">https://archive.org/download/shortworldhistor00wilm/shortworldhistor00wilm.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "blocks": {
+    "source_file": "File:Turrets, towers, and temples; the great buildings of the world (IA turretstowerstem00sing).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Turrets,_towers,_and_temples;_the_great_buildings_of_the_world_(IA_turretstowerstem00sing).pdf",
+    "artist": "<div class=\"fn value\">\nSingleton, Esther, [from old catalog] ed. and tr</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/turretstowerstem00sing\" class=\"extiw\" title=\"iarchive:turretstowerstem00sing\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: turretstowerstem00sing</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/turretstowerstem00sing/turretstowerstem00sing.pdf\">https://archive.org/download/turretstowerstem00sing/turretstowerstem00sing.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "puzzle": {
+    "source_file": "File:Fossils for the future - Northern Plains Governors' Conference, August 24-26, 1992 (IA CAT10631233).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Fossils_for_the_future_-_Northern_Plains_Governors'_Conference,_August_24-26,_1992_(IA_CAT10631233).pdf",
+    "artist": "<div class=\"fn value\">\nNorthern Plains Governors' Conference (1992 : Rapid City, S.D.)</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/CAT10631233\" class=\"extiw\" title=\"iarchive:CAT10631233\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: CAT10631233</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/CAT10631233/CAT10631233.pdf\">https://archive.org/download/CAT10631233/CAT10631233.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "crayon": {
+    "source_file": "File:Sketchings (IA jstor-25527370).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sketchings_(IA_jstor-25527370).pdf",
+    "artist": "<div class=\"fn value\">\nWhite, Flake</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/jstor-25527370\" class=\"extiw\" title=\"iarchive:jstor-25527370\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: jstor-25527370</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/jstor-25527370/25527370.pdf\">https://archive.org/download/jstor-25527370/25527370.pdf</a></dd></dl>\n<ul><li>IA contributor: JSTOR</li></ul>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "scissors": {
+    "source_file": "File:Nature - a Weekly Illustrated Journal of Science. Volume 6, 1872 June 13, (No. 137) (IA dbc.wroc pl.15637).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nature_-_a_Weekly_Illustrated_Journal_of_Science._Volume_6,_1872_June_13,_(No._137)_(IA_dbc.wroc_pl.15637).pdf",
+    "artist": "",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/dbc.wroc.pl.15637\" class=\"extiw\" title=\"iarchive:dbc.wroc.pl.15637\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: dbc.wroc.pl.15637</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/dbc%2Ewroc%2Epl%2E15637/15637.pdf\">https://archive.org/download/dbc%2Ewroc%2Epl%2E15637/15637.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "glue": {
+    "source_file": "File:Oriental ceramic art - illustrated by examples from the collection of W.T. Walters - with one hundred and sixteen plates in colors and over four hundred reproductions in black and white (IA gri 33125015239417).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Oriental_ceramic_art_-_illustrated_by_examples_from_the_collection_of_W.T._Walters_-_with_one_hundred_and_sixteen_plates_in_colors_and_over_four_hundred_reproductions_in_black_and_white_(IA_gri_33125015239417).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Bushell, Stephen W. (Stephen Wootton), 1844-1908, author</dd>\n<dd>Laffan, William M., writer of preface</dd>\n<dd>L. Prang &amp; Co., lithographer</dd>\n<dd>D. Appleton and Company, publisher</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/gri_33125015239417\" class=\"extiw\" title=\"iarchive:gri 33125015239417\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: gri_33125015239417</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/gri_33125015239417/gri_33125015239417.pdf\">https://archive.org/download/gri_33125015239417/gri_33125015239417.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "desk": {
+    "source_file": "File:The Rabun industrial school and mountain school extension work among the mountain whites (by one of them) (IA rabunindustrials01ritc).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Rabun_industrial_school_and_mountain_school_extension_work_among_the_mountain_whites_(by_one_of_them)_(IA_rabunindustrials01ritc).pdf",
+    "artist": "<div class=\"fn value\">\nRitchie, Andrew Jackson</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/rabunindustrials01ritc\" class=\"extiw\" title=\"iarchive:rabunindustrials01ritc\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: rabunindustrials01ritc</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/rabunindustrials01ritc/rabunindustrials01ritc.pdf\">https://archive.org/download/rabunindustrials01ritc/rabunindustrials01ritc.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "computer": {
+    "source_file": "File:BOU DCSA 1201 - Computer Basics - Unit 04 - Input and Output Devices.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:BOU_DCSA_1201_-_Computer_Basics_-_Unit_04_-_Input_and_Output_Devices.pdf",
+    "artist": "Prof M Lutfar Rahman<br>Dr. M Alamgir Hossain<br>Sheikh Iqbal Ahmed<br>Anwar Sadat",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "credit": "<a rel=\"nofollow\" class=\"external text\" href=\"http://103.103.100.12:8080/jspui/\">Bangladesh Open University OER Repository</a>, item <a rel=\"nofollow\" class=\"external text\" href=\"http://hdl.handle.net/7777/268\">hdl:7777/268</a>, original file <a rel=\"nofollow\" class=\"external text\" href=\"http://103.103.100.12:8080/jspui/bitstream/7777/268/5/Unit-04.pdf\">Unit-04.pdf</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "uniform": {
+    "source_file": "File:Manual on Uniform Traffic Control Devices for Streets and Highways, 1935 Edition.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Manual_on_Uniform_Traffic_Control_Devices_for_Streets_and_Highways,_1935_Edition.pdf",
+    "artist": "<a href=\"https://en.wikipedia.org/wiki/American_Association_of_State_Highway_Officials\" class=\"extiw\" title=\"w:American Association of State Highway Officials\">American Association of State Highway Officials</a>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "Scanned copy fromhttps://s3.documentcloud.org/documents/23567020/1935mutcd.pdf",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "house": {
+    "source_file": "File:White-pine blister rust in western Europe (IA whitepineblister1186moir).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:White-pine_blister_rust_in_western_Europe_(IA_whitepineblister1186moir).pdf",
+    "artist": "<div class=\"fn value\">\nMoir, William Stuart, 1893-</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/whitepineblister1186moir\" class=\"extiw\" title=\"iarchive:whitepineblister1186moir\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: whitepineblister1186moir</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/whitepineblister1186moir/whitepineblister1186moir.pdf\">https://archive.org/download/whitepineblister1186moir/whitepineblister1186moir.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "school": {
+    "source_file": "File:High school building exterior is pictured in a town or city landscape.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:High_school_building_exterior_is_pictured_in_a_town_or_city_landscape.jpg",
+    "artist": "Johny Rebel, the Explorer Panda",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.pexels.com/photo/white-and-brown-building-357271/\">https://www.pexels.com/photo/white-and-brown-building-357271/</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "church": {
+    "source_file": "File:Podlaskie - Mońki - Mońki - ul. Ks. Małynicza 1- Kościół pw. Matki Boskiej Częstochowskiej - lbok.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Podlaskie_-_Mońki_-_Mońki_-_ul._Ks._Małynicza_1-_Kościół_pw._Matki_Boskiej_Częstochowskiej_-_lbok.JPG",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Athantor\" title=\"User:Athantor\">Krzysztof Kundzicz</a>",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "clinic": {
+    "source_file": "File:Academic City University health clinic exterior building.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Academic_City_University_health_clinic_exterior_building.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Afrank4436&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Afrank4436 (page does not exist)\">Afrank4436</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "market": {
+    "source_file": "File:THE STRATEGIC IMPORTANCE OF BUILDING A STRONGER U.S.-CARIBBEAN PARTNERSHIP (IA gov.gpo.fdsys.CHRG-114hhrg20749).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:THE_STRATEGIC_IMPORTANCE_OF_BUILDING_A_STRONGER_U.S.-CARIBBEAN_PARTNERSHIP_(IA_gov.gpo.fdsys.CHRG-114hhrg20749).pdf",
+    "artist": "<div class=\"fn value\">\nCommittee on Foreign Affairs</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/gov.gpo.fdsys.CHRG-114hhrg20749\" class=\"extiw\" title=\"iarchive:gov.gpo.fdsys.CHRG-114hhrg20749\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: gov.gpo.fdsys.CHRG-114hhrg20749</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/gov.gpo.fdsys.CHRG-114hhrg20749/CHRG-114hhrg20749.pdf\">https://archive.org/download/gov.gpo.fdsys.CHRG-114hhrg20749/CHRG-114hhrg20749.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "shop": {
+    "source_file": "File:Naaimachines written on a former storefront, Winschoten (2022) 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Naaimachines_written_on_a_former_storefront,_Winschoten_(2022)_01.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Donald_Trung\" title=\"User:Donald Trung\">Donald Trung Quoc Don (Chữ Hán: 徵國單)</a> - <a class=\"external text\" href=\"https://commons.m.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia\">Wikimedia Commons</a> - <a rel=\"nofollow\" class=\"external text\" href=\"https://creativecommons.org/licenses/by-sa/4.0/deed.en\">© CC BY-SA 4.0 International</a>.<br>(<a href=\"//commons.wikimedia.org/wiki/User:Donald_Trung/Attribution\" title=\"User:Donald Trung/Attribution\">Want to use this image?</a>)<br>Original publication 📤: --<small><a href=\"//commons.wikimedia.org/wiki/User:Donald_Trung\" title=\"User:Donald Trung\">Donald Trung 『徵國單』</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Donald_Trung\" title=\"User talk:Donald Trung\">No Fake News 💬</a>) (<a href=\"//commons.wikimedia.org/wiki/Commons:WikiProject_Numismatics\" title=\"Commons:WikiProject Numismatics\">WikiProject Numismatics</a> 💴) (<a href=\"https://en.wikipedia.org/wiki/nl:Gebruiker:Donald_Trung/Mijn_werk_%F0%9F%8F%A2\" class=\"extiw\" title=\"w:nl:Gebruiker:Donald Trung/Mijn werk 🏢\">Articles 📚</a>)</small> 17:55, 4 September 2022 (UTC)",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "beach": {
+    "source_file": "File:Jamaica - Negril - 047.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Negril_-_047.jpg",
+    "artist": "<table>\n\n<tbody><tr>\n<td>This picture has been taken by <a href=\"//commons.wikimedia.org/w/index.php?title=User:Oleg_Yunakov&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Oleg Yunakov (page does not exist)\">Oleg Yunakov</a>. Contact e-mail: <a rel=\"nofollow\" class=\"external text\" href=\"mailto:yunakov@gmail.com\">yunakov<span class=\"nowrap\"><span class=\"skin-invert\" typeof=\"mw:File\"><span title=\"@\"><img alt=\"@\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/At_sign.svg/20px-At_sign.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"15\" height=\"15\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/At_sign.svg/40px-At_sign.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"145\" data-file-height=\"145\"></span></span></span>gmail.com</a>. Image can be used in accordance with the terms of the СС-BY-SA license. Other photos can be <a href=\"//commons.wikimedia.org/wiki/Category:Photographs_by_Oleg_Yunakov\" title=\"Category:Photographs by Oleg Yunakov\">seen here</a>.\n</td></tr></tbody></table>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "taxi": {
+    "source_file": "File:Jamaica - Toyota Hiace.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Toyota_Hiace.jpg",
+    "artist": "Jason Lawrence",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/27665395@N05/5293158016/\">https://www.flickr.com/photos/27665395@N05/5293158016/</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bus": {
+    "source_file": "File:Bus in Jamaica.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bus_in_Jamaica.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Rathfelder\" title=\"User:Rathfelder\">Rathfelder</a>",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hospital": {
+    "source_file": "File:Craiglockhart Hydropathic main view.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Craiglockhart_Hydropathic_main_view.JPG",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Brideshead&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Brideshead (page does not exist)\">Brideshead</a>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "pharmacy": {
+    "source_file": "File:CVS Pharmacy - Storefront (50836368758).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:CVS_Pharmacy_-_Storefront_(50836368758).jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83136374@N05\">ajay_suresh</a>",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "credit": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/ajay_suresh/50836368758/\">CVS Pharmacy - Storefront</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "park": {
+    "source_file": "File:Children's playground in the sanatorium park in Shklo.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Children's_playground_in_the_sanatorium_park_in_Shklo.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Rbrechko\" title=\"User:Rbrechko\">Rbrechko</a>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bathroom": {
+    "source_file": "File:Fin bathroom in Fin garden, Kashan, Iran.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Fin_bathroom_in_Fin_garden,_Kashan,_Iran.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q96050296\" class=\"extiw\" title=\"d:Q96050296\"><span title=\"Iranian architectural photographer\">Amir Pashaei</span></a></bdi>",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "kitchen": {
+    "source_file": "File:Dirck de Vries - Kitchen Interior - Walters 372651.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dirck_de_Vries_-_Kitchen_Interior_-_Walters_372651.jpg",
+    "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q19904381\" class=\"extiw\" title=\"d:Q19904381\"><span title=\"Netherlandish painter &amp; draftsman, active 1590-1609 (1554–1612)\">Dirck de Vries</span></a></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a href=\"https://en.wikipedia.org/wiki/en:Walters_Art_Museum\" class=\"extiw\" title=\"w:en:Walters Art Museum\"><span title=\"art museum in Baltimore, Maryland, US\">Walters Art Museum</span></a>: <span typeof=\"mw:File\"><a href=\"https://thewalters.org/\" rel=\"nofollow\"><img src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/20px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"20\" height=\"20\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/40px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\"></a></span> <a rel=\"nofollow\" class=\"external text\" href=\"https://thewalters.org/\">Home page</a> <span typeof=\"mw:File\"><a href=\"https://art.thewalters.org/detail/9960\" rel=\"nofollow\"><img src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/20px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"20\" height=\"20\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/40px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"620\" data-file-height=\"620\"></a></span> <a rel=\"nofollow\" class=\"external text\" href=\"https://art.thewalters.org/detail/9960\">Info about artwork</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "bedroom": {
+    "source_file": "File:Interior, children's bedroom. State Library Victoria.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Interior,_children's_bedroom._State_Library_Victoria.jpg",
+    "artist": "F. Oswald Barnett (Frederick Oswald) 1883-1972 photographer.",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://search.slv.vic.gov.au/permalink/f/1cl35st/SLV_VOYAGER1777398\">http://search.slv.vic.gov.au/permalink/f/1cl35st/SLV_VOYAGER1777398</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "mum": {
+    "source_file": "File:Little known early American portrait painters.djvu",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Little_known_early_American_portrait_painters.djvu",
+    "artist": "<div class=\"fn value\">\nFrank W Bayley</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a href=\"//archive.org/details/littleknownearly00bayl\" class=\"extiw\" title=\"iarchive:littleknownearly00bayl\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: littleknownearly00bayl</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "dad": {
+    "source_file": "File:The National portrait gallery (IA nationalportrait02nati).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_National_portrait_gallery_(IA_nationalportrait02nati).pdf",
+    "artist": "<div class=\"fn value\">\nNational Portrait Gallery (Great Britain)</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/nationalportrait02nati\" class=\"extiw\" title=\"iarchive:nationalportrait02nati\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: nationalportrait02nati</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/nationalportrait02nati/nationalportrait02nati.pdf\">https://archive.org/download/nationalportrait02nati/nationalportrait02nati.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "teacher": {
+    "source_file": "File:Class photo, teacher Fortepan 4665.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Class_photo,_teacher_Fortepan_4665.jpg",
+    "artist": "FOTO:Fortepan — <b>ID 4665</b>: <span typeof=\"mw:File\"><a href=\"https://fortepan.hu/\" rel=\"nofollow\"><img alt=\"Home page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/40px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/60px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/_photo/download/fortepan_9428.jpg\" rel=\"nofollow\"><img alt=\"Picture\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/40px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/60px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"60\" data-file-height=\"60\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/?lang=en&amp;img=4665\" rel=\"nofollow\"><img alt=\"Information page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/40px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/60px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"620\" data-file-height=\"620\"></a></span><br>Adományozó/Donor: Unknown. <br><bdi lang=\"en\" dir=\"ltr\" title=\"archived on 22 January 2019 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20190122235326/http%3A//www.fortepan.hu/%3Fimg%3D4665\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.fortepan.hu/_photo/download/fortepan_9428.jpg\">http://www.fortepan.hu/_photo/download/fortepan_9428.jpg</a> <bdi lang=\"en\" dir=\"ltr\" title=\"archived on 2 June 2016 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20160602232046/http%3A//www.fortepan.hu/_photo/download/fortepan_9428.jpg\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "friend": {
+    "source_file": "File:The book of dogs; an intimate study of mankind's best friend (IA cu31924001178130).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_book_of_dogs;_an_intimate_study_of_mankind's_best_friend_(IA_cu31924001178130).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>National Geographic Society (U.S.)</dd>\n<dd>Fuertes, Louis Agassiz, 1874-1927</dd>\n<dd>Baynes, Ernest Harold, 1868-1925</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/cu31924001178130\" class=\"extiw\" title=\"iarchive:cu31924001178130\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: cu31924001178130</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/cu31924001178130/cu31924001178130.pdf\">https://archive.org/download/cu31924001178130/cu31924001178130.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "grandma": {
+    "source_file": "File:Group portrait of women and children (AM 81663-1).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Group_portrait_of_women_and_children_(AM_81663-1).jpg",
+    "artist": "<div class=\"fn value\">\nCollins, Tudor Washington, 1898-1970, photographer</div>",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "credit": "<p><a rel=\"nofollow\" class=\"external text\" href=\"http://api.aucklandmuseum.com/id/library/photography/81663\">API data</a><br>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://www.aucklandmuseum.com/collection/object/am_library-photography-81663\">Catalogue record</a>\n</p>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://api.aucklandmuseum.com/id/media/p/2d5b98863541340ce808c6b2156114564b10e4fe\">Photo</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "grandpa": {
+    "source_file": "File:Raymond Moriyama's maternal grandmother (age 58) and grandfather Sejima (age 65) with two of their sons (uncles of R.M.) and the daughter of the actress aunt (I0020981).tif",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Raymond_Moriyama's_maternal_grandmother_(age_58)_and_grandfather_Sejima_(age_65)_with_two_of_their_sons_(uncles_of_R.M.)_and_the_daughter_of_the_actress_aunt_(I0020981).tif",
+    "artist": "",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "All images from the <a rel=\"nofollow\" class=\"external text\" href=\"https://aims.archives.gov.on.ca/scripts/mwimain.dll/144/DESCRIPTION_WEB/WEB_DESC_DET?SESSIONSEARCH&amp;exp=sisn%2013049\">F 4449 Raymond Moriyama fonds</a> were uploaded as part of the <a class=\"external text\" href=\"https://en.wikipedia.org/wiki/Wikipedia:GLAM/ArchivesofOntario\">Archives of Ontario’s GLAM Wiki</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sister": {
+    "source_file": "File:PortraitGirl2005-1a.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:PortraitGirl2005-1a.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Alvesgaspar\" title=\"User:Alvesgaspar\">Alvesgaspar</a>",
+    "license": "CC BY 2.5",
+    "license_url": "https://creativecommons.org/licenses/by/2.5",
+    "credit": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "brother": {
+    "source_file": "File:Portrait, interior, glasses, boy, reading, book Fortepan 19637.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Portrait,_interior,_glasses,_boy,_reading,_book_Fortepan_19637.jpg",
+    "artist": "FOTO:Fortepan — <b>ID 19637</b>: <span typeof=\"mw:File\"><a href=\"https://fortepan.hu/\" rel=\"nofollow\"><img alt=\"Home page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/40px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/60px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/_photo/download/fortepan_28528.jpg\" rel=\"nofollow\"><img alt=\"Picture\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/40px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/60px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"60\" data-file-height=\"60\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/?lang=en&amp;img=19637\" rel=\"nofollow\"><img alt=\"Information page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/40px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/60px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"620\" data-file-height=\"620\"></a></span><br>Adományozó/Donor: Unknown. <br><bdi lang=\"en\" dir=\"ltr\" title=\"archived on 23 January 2019 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20190123172244/http%3A//www.fortepan.hu/%3Fimg%3D19637\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.fortepan.hu/_photo/download/fortepan_28528.jpg\">http://www.fortepan.hu/_photo/download/fortepan_28528.jpg</a> <bdi lang=\"en\" dir=\"ltr\" title=\"archived on 21 January 2019 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20190121234806/http%3A//www.fortepan.hu/_photo/download/fortepan_28528.jpg\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "baby": {
+    "source_file": "File:(Portrait of a baby in a bassinet (AM 84765-1).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:(Portrait_of_a_baby_in_a_bassinet_(AM_84765-1).jpg",
+    "artist": "<div class=\"fn value\">\nCollins, Tudor Washington, 1898-1970, photographer</div>",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "credit": "<p><a rel=\"nofollow\" class=\"external text\" href=\"http://api.aucklandmuseum.com/id/library/photography/84765\">API data</a><br>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://www.aucklandmuseum.com/collection/object/am_library-photography-84765\">Catalogue record</a>\n</p>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://api.aucklandmuseum.com/id/media/p/223731acffc763bd32b7ddc46453ed8fbb0ac80f\">Photo</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "doctor": {
+    "source_file": "File:Doctor Fortepan 4629.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Doctor_Fortepan_4629.jpg",
+    "artist": "FOTO:Fortepan — <b>ID 4629</b>: <span typeof=\"mw:File\"><a href=\"https://fortepan.hu/\" rel=\"nofollow\"><img alt=\"Home page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/40px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Nuvola_filesystems_folder_home.svg/60px-Nuvola_filesystems_folder_home.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/_photo/download/fortepan_9388.jpg\" rel=\"nofollow\"><img alt=\"Picture\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/40px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inkscape.svg/60px-Inkscape.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"60\" data-file-height=\"60\"></a></span><span typeof=\"mw:File\"><a href=\"http://www.fortepan.hu/?lang=en&amp;img=4629\" rel=\"nofollow\"><img alt=\"Information page\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/40px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"24\" height=\"24\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/60px-Information_icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"620\" data-file-height=\"620\"></a></span><br>Adományozó/Donor: Unknown. <br><bdi lang=\"en\" dir=\"ltr\" title=\"archived on 22 January 2019 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20190122235051/http%3A//www.fortepan.hu/%3Fimg%3D4629\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.fortepan.hu/_photo/download/fortepan_9388.jpg\">http://www.fortepan.hu/_photo/download/fortepan_9388.jpg</a> <bdi lang=\"en\" dir=\"ltr\" title=\"archived on 22 January 2019 at the Wayback Machine\"><a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20190122170454/http%3A//www.fortepan.hu/_photo/download/fortepan_9388.jpg\">archive copy</a> at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Wayback_Machine\" class=\"extiw\" title=\"en:Wayback Machine\"><span lang=\"en\" dir=\"ltr\">Wayback Machine</span></a></span></bdi>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "nurse": {
+    "source_file": "File:Portrait of group of nurses (AM 87959-1).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Portrait_of_group_of_nurses_(AM_87959-1).jpg",
+    "artist": "<div class=\"fn value\">\nCollins, Tudor Washington, 1898-1970, photographer</div>",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "credit": "<p><a rel=\"nofollow\" class=\"external text\" href=\"http://api.aucklandmuseum.com/id/library/photography/87959\">API data</a><br>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://www.aucklandmuseum.com/collection/object/am_library-photography-87959\">Catalogue record</a>\n</p>\n<a rel=\"nofollow\" class=\"external text\" href=\"https://api.aucklandmuseum.com/id/media/p/42410618b09772f089fceb065fe81a491549688e\">Photo</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "eat": {
+    "source_file": "File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "artist": "<div class=\"fn value\">\nCassells, Joe</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/blackwatchrecord00cassiala\" class=\"extiw\" title=\"iarchive:blackwatchrecord00cassiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: blackwatchrecord00cassiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf\">https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "drink": {
+    "source_file": "File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "artist": "<div class=\"fn value\">\nCassells, Joe</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/blackwatchrecord00cassiala\" class=\"extiw\" title=\"iarchive:blackwatchrecord00cassiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: blackwatchrecord00cassiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf\">https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "run": {
+    "source_file": "File:Polish victim of German Luftwaffe action 1939.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Polish_victim_of_German_Luftwaffe_action_1939.jpg",
+    "artist": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Julien_Bryan\" class=\"extiw\" title=\"w:en:Julien Bryan\"><span title=\"American photojournalist (1899–1974)\">Julien Bryan</span></a></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<ul><li><cite class=\"book\" style=\"font-style:normal\">Jerzy Piorkowski (1957)      <i> Miasto Nieujarzmione</i>, <a href=\"https://en.wikipedia.org/wiki/en:Warsaw\" class=\"extiw\" title=\"w:en:Warsaw\"><span title=\"capital and largest city of Poland\">Warsaw</span></a>:  Iskry, pp. 14  <small>no ISBN</small></cite></li>\n<li><cite class=\"book\" style=\"font-style:normal\"><a href=\"https://en.wikipedia.org/wiki/Julien_Bryan\" class=\"extiw\" title=\"en:Julien Bryan\">Julien Bryan</a> (1959)      <i> Warsaw: 1939 Siege; 1959 Warsaw Revisited.</i>, <a href=\"https://en.wikipedia.org/wiki/en:Warsaw\" class=\"extiw\" title=\"w:en:Warsaw\"><span title=\"capital and largest city of Poland\">Warsaw</span></a>:  Polonia Publishing House, p. 120  <small><span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/OCLC\" class=\"extiw\" title=\"en:OCLC\"><span lang=\"en\" dir=\"ltr\">OCLC</span></a></span>:   <a rel=\"nofollow\" class=\"external text\" href=\"https://www.worldcat.org/oclc/8990324\">8990324</a>. <a href=\"https://en.wikipedia.org/wiki/ASIN\" class=\"extiw\" title=\"en:ASIN\">ASIN</a>: <a rel=\"nofollow\" class=\"external text\" data-mw-original-href=\"http://amzn.com/B000O2AEBY\" href=\"https://amzn.com/B000O2AEBY\">B000O2AEBY</a></small></cite></li>\n<li><a rel=\"nofollow\" class=\"external text\" href=\"https://www.ushmm.org\">United States Holocaust Memorial Museum</a>, Photograph <a rel=\"nofollow\" class=\"external text\" href=\"https://collections.ushmm.org/search/?q=50897&amp;search_field=Identifiers\">50897</a></li>\n<li><a rel=\"nofollow\" class=\"external text\" href=\"http://www.ipn.gov.pl/portal/pl/203/1571/Napasc_na_Polske__wrzesien_1939_roku.html\">Instytut Pamięci Narodowej</a></li>\n<li>Julien Bryan (September 1959). <a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/20051028204448/http://www.polishnews.com/artykuly/war.shtml\">Poland in 1939 and in 1959</a>. <a href=\"https://en.wikipedia.org/wiki/Look_(American_magazine)\" class=\"extiw\" title=\"en:Look (American magazine)\"><i>Look</i> magazine</a>. Archived from <a rel=\"nofollow\" class=\"external text\" href=\"http://www.polishnews.com/artykuly/war.shtml\">the original</a> on <span class=\"mw-formatted-date\" title=\"2005-10-28\">2005-10-28</span>.</li></ul>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sleep": {
+    "source_file": "File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "artist": "<div class=\"fn value\">\nCassells, Joe</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/blackwatchrecord00cassiala\" class=\"extiw\" title=\"iarchive:blackwatchrecord00cassiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: blackwatchrecord00cassiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf\">https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "play": {
+    "source_file": "File:Bibi, a comedy of toys.. (IA bibicomedyoftoys00bern).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bibi,_a_comedy_of_toys.._(IA_bibicomedyoftoys00bern).pdf",
+    "artist": "<div class=\"fn value\">\nBernard, Charles. [from old catalog]</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/bibicomedyoftoys00bern\" class=\"extiw\" title=\"iarchive:bibicomedyoftoys00bern\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: bibicomedyoftoys00bern</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/bibicomedyoftoys00bern/bibicomedyoftoys00bern.pdf\">https://archive.org/download/bibicomedyoftoys00bern/bibicomedyoftoys00bern.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "walk": {
+    "source_file": "File:The ivory child (IA ivorychild00haggiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "artist": "<div class=\"fn value\">\nHaggard, H. Rider (Henry Rider), 1856-1925</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/ivorychild00haggiala\" class=\"extiw\" title=\"iarchive:ivorychild00haggiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: ivorychild00haggiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf\">https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "jump": {
+    "source_file": "File:The Black Watch; a record in action (IA blackwatchrecord00cassiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Black_Watch;_a_record_in_action_(IA_blackwatchrecord00cassiala).pdf",
+    "artist": "<div class=\"fn value\">\nCassells, Joe</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/blackwatchrecord00cassiala\" class=\"extiw\" title=\"iarchive:blackwatchrecord00cassiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: blackwatchrecord00cassiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf\">https://archive.org/download/blackwatchrecord00cassiala/blackwatchrecord00cassiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "wash": {
+    "source_file": "File:Jim Hands (IA jimhands00chiliala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jim_Hands_(IA_jimhands00chiliala).pdf",
+    "artist": "<div class=\"fn value\">\nChild, Richard Washburn, 1881-1935</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/jimhands00chiliala\" class=\"extiw\" title=\"iarchive:jimhands00chiliala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: jimhands00chiliala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/jimhands00chiliala/jimhands00chiliala.pdf\">https://archive.org/download/jimhands00chiliala/jimhands00chiliala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "read": {
+    "source_file": "File:Our Sunday book of reading and pictures (IA oursundaybookofr00arch).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Our_Sunday_book_of_reading_and_pictures_(IA_oursundaybookofr00arch).pdf",
+    "artist": "<div class=\"fn value\">\nArcher, Thomas, 1830-1893</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/oursundaybookofr00arch\" class=\"extiw\" title=\"iarchive:oursundaybookofr00arch\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: oursundaybookofr00arch</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/oursundaybookofr00arch/oursundaybookofr00arch.pdf\">https://archive.org/download/oursundaybookofr00arch/oursundaybookofr00arch.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "write": {
+    "source_file": "File:The writing of fiction.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_writing_of_fiction.pdf",
+    "artist": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Edith_Wharton\" class=\"extiw\" title=\"w:en:Edith Wharton\"><span title=\"American writer and designer (1862–1937)\">Edith Wharton</span></a></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a href=\"//archive.org/details/writingoffiction0000whar\" class=\"extiw\" title=\"iarchive:writingoffiction0000whar\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: writingoffiction0000whar</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "head": {
+    "source_file": "File:STS-135 Sandy Magnus undergoes a fit check of her Sokol suit.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:STS-135_Sandy_Magnus_undergoes_a_fit_check_of_her_Sokol_suit.jpg",
+    "artist": "NASA Photo/Houston Chronicle, Smiley N. Pool",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" data-mw-original-href=\"http://spaceflight.nasa.gov/gallery/images/shuttle/sts-135/html/jsc2011e040322.html\" href=\"https://spaceflight.nasa.gov/gallery/images/shuttle/sts-135/html/jsc2011e040322.html\">http://spaceflight.nasa.gov/gallery/images/shuttle/sts-135/html/jsc2011e040322.html</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hand": {
+    "source_file": "File:CHINA IN 1989 AND 2015- TIANANMEN, HUMAN RIGHTS, AND DEMOCRACY (IA gov.gpo.fdsys.CHRG-114hhrg95041).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:CHINA_IN_1989_AND_2015-_TIANANMEN,_HUMAN_RIGHTS,_AND_DEMOCRACY_(IA_gov.gpo.fdsys.CHRG-114hhrg95041).pdf",
+    "artist": "<div class=\"fn value\">\nCongressional-Executive Commission on China</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/gov.gpo.fdsys.CHRG-114hhrg95041\" class=\"extiw\" title=\"iarchive:gov.gpo.fdsys.CHRG-114hhrg95041\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: gov.gpo.fdsys.CHRG-114hhrg95041</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/gov.gpo.fdsys.CHRG-114hhrg95041/CHRG-114hhrg95041.pdf\">https://archive.org/download/gov.gpo.fdsys.CHRG-114hhrg95041/CHRG-114hhrg95041.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "foot": {
+    "source_file": "File:The infrared spectra of matrix isolated uranium oxide species (IA jresv78An3p421).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_infrared_spectra_of_matrix_isolated_uranium_oxide_species_(IA_jresv78An3p421).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Abramowitz, S.</dd>\n<dd>Acquista, N.</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/jresv78An3p421\" class=\"extiw\" title=\"iarchive:jresv78An3p421\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: jresv78An3p421</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/jresv78An3p421/jresv78An3p421.pdf\">https://archive.org/download/jresv78An3p421/jresv78An3p421.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "ear": {
+    "source_file": "File:BOU CORE 2607 - Managing Human Resources (new) - Module 07 - Employee Discipline and Grievances.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:BOU_CORE_2607_-_Managing_Human_Resources_(new)_-_Module_07_-_Employee_Discipline_and_Grievances.pdf",
+    "artist": "Dr. Lalith Weeratunga",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "credit": "<a rel=\"nofollow\" class=\"external text\" href=\"http://103.103.100.12:8080/jspui/\">Bangladesh Open University OER Repository</a>, item <a rel=\"nofollow\" class=\"external text\" href=\"http://hdl.handle.net/7777/648\">hdl:7777/648</a>, original file <a rel=\"nofollow\" class=\"external text\" href=\"http://103.103.100.12:8080/jspui/bitstream/7777/648/8/Module-7.pdf\">Module-7.pdf</a>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "mouth": {
+    "source_file": "File:Henrietta Szold close-up (cropped).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Henrietta_Szold_close-up_(cropped).jpg",
+    "artist": "Alexander Ganan",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "credit": "National Library of Israel, Schwadron collection",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "happy": {
+    "source_file": "File:A child-world (IA childworld00rilerich).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "artist": "<div class=\"fn value\">\nRiley, James Whitcomb, 1849-1916</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/childworld00rilerich\" class=\"extiw\" title=\"iarchive:childworld00rilerich\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: childworld00rilerich</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf\">https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sad": {
+    "source_file": "File:A child-world (IA childworld00rilerich).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "artist": "<div class=\"fn value\">\nRiley, James Whitcomb, 1849-1916</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/childworld00rilerich\" class=\"extiw\" title=\"iarchive:childworld00rilerich\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: childworld00rilerich</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf\">https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "tired": {
+    "source_file": "File:Black Man's Verse.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Black_Man's_Verse.pdf",
+    "artist": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Frank_Marshall_Davis\" class=\"extiw\" title=\"w:en:Frank Marshall Davis\"><span title=\"United States writer, political and labor movement activist (1905–1987)\">Frank Marshall Davis</span></a></bdi>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<a rel=\"nofollow\" class=\"external free\" href=\"https://brown.libanswers.com/loaderTicket?fid=5712865&amp;type=0&amp;key=40c1f7295d17812031a91caa825937af\">https://brown.libanswers.com/loaderTicket?fid=5712865&amp;type=0&amp;key=40c1f7295d17812031a91caa825937af</a> (<a rel=\"nofollow\" class=\"external text\" href=\"http://web.archive.org/web/20260309170436/https://brown.libanswers.com/loaderTicket?fid=5712865&amp;type=0&amp;key=40c1f7295d17812031a91caa825937af\">archived</a>). Harris Collection of American Poetry and Plays, John Hay Library, Brown University. The first page was removed by PDFtk with <code>cat 2-end</code>.",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "angry": {
+    "source_file": "File:The ivory child (IA ivorychild00haggiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "artist": "<div class=\"fn value\">\nHaggard, H. Rider (Henry Rider), 1856-1925</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/ivorychild00haggiala\" class=\"extiw\" title=\"iarchive:ivorychild00haggiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: ivorychild00haggiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf\">https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "scared": {
+    "source_file": "File:The ivory child (IA ivorychild00haggiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "artist": "<div class=\"fn value\">\nHaggard, H. Rider (Henry Rider), 1856-1925</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/ivorychild00haggiala\" class=\"extiw\" title=\"iarchive:ivorychild00haggiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: ivorychild00haggiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf\">https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "calm": {
+    "source_file": "File:A child-world (IA childworld00rilerich).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_child-world_(IA_childworld00rilerich).pdf",
+    "artist": "<div class=\"fn value\">\nRiley, James Whitcomb, 1849-1916</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/childworld00rilerich\" class=\"extiw\" title=\"iarchive:childworld00rilerich\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: childworld00rilerich</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf\">https://archive.org/download/childworld00rilerich/childworld00rilerich.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "excited": {
+    "source_file": "File:The ivory child (IA ivorychild00haggiala).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_ivory_child_(IA_ivorychild00haggiala).pdf",
+    "artist": "<div class=\"fn value\">\nHaggard, H. Rider (Henry Rider), 1856-1925</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/ivorychild00haggiala\" class=\"extiw\" title=\"iarchive:ivorychild00haggiala\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: ivorychild00haggiala</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf\">https://archive.org/download/ivorychild00haggiala/ivorychild00haggiala.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "hungry": {
+    "source_file": "File:Child management (IA childmanagement27thom).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Child_management_(IA_childmanagement27thom).pdf",
+    "artist": "<div class=\"fn value\">\n<dl><dd>Thom, Douglas Armour, 1887-1951</dd>\n<dd>United States. Children's Bureau</dd></dl></div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/childmanagement27thom\" class=\"extiw\" title=\"iarchive:childmanagement27thom\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: childmanagement27thom</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/childmanagement27thom/childmanagement27thom.pdf\">https://archive.org/download/childmanagement27thom/childmanagement27thom.pdf</a></dd></dl>\n<ul><li>IA contributor: Boston Public Library</li></ul>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "thirsty": {
+    "source_file": "File:The fountain opened - and the water of life flowing forth, for the refreshing of thirsty sinners ... in several sermons preached at Covent-garden on Isa. 55. 1, 2, 3 (IA fouedwa00sedg).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_fountain_opened_-_and_the_water_of_life_flowing_forth,_for_the_refreshing_of_thirsty_sinners_..._in_several_sermons_preached_at_Covent-garden_on_Isa._55._1,_2,_3_(IA_fouedwa00sedg).pdf",
+    "artist": "<div class=\"fn value\">\nSedgwick, Obadiah, 1600?-1658</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/fouedwa00sedg\" class=\"extiw\" title=\"iarchive:fouedwa00sedg\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: fouedwa00sedg</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/fouedwa00sedg/fouedwa00sedg.pdf\">https://archive.org/download/fouedwa00sedg/fouedwa00sedg.pdf</a></dd></dl>\n<ul><li>IA contributor: Princeton Theological Seminary Library</li></ul>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
+  },
+  "sick": {
+    "source_file": "File:Osteopathic first aids to the sick - written for the sick people (IA osteopathicfirst00feid).pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Osteopathic_first_aids_to_the_sick_-_written_for_the_sick_people_(IA_osteopathicfirst00feid).pdf",
+    "artist": "<div class=\"fn value\">\nFeidler, Francis John</div>",
+    "license": "Public domain",
+    "license_url": "",
+    "credit": "<dl><dd><a href=\"//archive.org/details/osteopathicfirst00feid\" class=\"extiw\" title=\"iarchive:osteopathicfirst00feid\"><bdi class=\"description en\" lang=\"en\" dir=\"ltr\">Internet Archive identifier</bdi>: osteopathicfirst00feid</a></dd>\n<dd><a rel=\"nofollow\" class=\"external free\" href=\"https://archive.org/download/osteopathicfirst00feid/osteopathicfirst00feid.pdf\">https://archive.org/download/osteopathicfirst00feid/osteopathicfirst00feid.pdf</a></dd></dl>",
+    "visual_type": "isolated real-world teaching photograph",
+    "review_status": "automated technical QA complete; human concept-recognition review required"
   }
 }

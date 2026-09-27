@@ -2,8 +2,8 @@ const { test, expect } = require('@playwright/test');
 
 function collectErrors(page){
   const errors=[];
-  page.on('pageerror',e=>errors.push('page:'+e.message));
-  page.on('console',m=>{ if(m.type()==='error') errors.push('console:'+m.text()) });
+  page.on('pageerror',e=>{const v='page:'+e.message;errors.push(v);console.log('WAPS_PAGE_ERROR',v)});
+  page.on('console',m=>{ if(m.type()==='error'){const v='console:'+m.text();errors.push(v);console.log('WAPS_CONSOLE_ERROR',v)} });
   return errors;
 }
 

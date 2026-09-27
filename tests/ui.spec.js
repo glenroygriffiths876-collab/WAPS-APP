@@ -18,7 +18,6 @@ test('WAPS core communication journey works by real clicks', async ({ page }) =>
   const allCount=await page.locator('.aac').count();
   expect(allCount).toBeGreaterThan(10);
   await page.locator('.aac').first().click();
-  console.log('WAPS_EVENT_AUDIT',JSON.stringify(await page.evaluate(()=>window.__wapsEvents)));
   await expect(page.locator('.sentence-word')).toHaveCount(1);
   await page.locator('[data-action="backspace"]').click();
   await expect(page.locator('.sentence-word')).toHaveCount(0);

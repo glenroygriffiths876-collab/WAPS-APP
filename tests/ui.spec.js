@@ -219,3 +219,38 @@ test('WAPS Coach can complete and record an outcome', async ({ page }) => {
   await page.locator('[data-action="closeModal"]').click();
   expect(errors).toEqual([]);
 });
+
+
+test('WAPS mobile and tablet layouts remain usable without horizontal overflow', async ({ page }) => {
+  test.setTimeout(90000);
+  for (const viewport of [{width:390,height:844},{width:820,height:1180}]) {
+    await page.setViewportSize(viewport);
+    for (const route of ['home','talk','practice','coach','progress','more']) {
+      await page.goto('http://127.0.0.1:4173/#'+route);
+      await page.waitForLoadState('domcontentloaded');
+      const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+      expect(overflow).toBeLessThanOrEqual(2);
+      await expect(page.locator('#main')).toBeVisible();
+    }
+    await page.goto('http://127.0.0.1:4173/#practice');
+    await page.locator('[data-start]').first().click();
+    await expect(page.locator('.premium-activity')).toBeVisible();
+    const activityOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+    expect(activityOverflow).toBeLessThanOrEqual(2);
+  }
+});
+
+test('WAPS installed core remains navigable offline after an online load', async ({ page, context }) => {
+  test.setTimeout(90000);
+  await page.goto('http://127.0.0.1:4173/#home');
+  await page.waitForFunction(()=>navigator.serviceWorker?.controller || navigator.serviceWorker?.ready,{timeout:15000}).catch(()=>{});
+  await page.waitForTimeout(1500);
+  await context.setOffline(true);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await expect(page.locator('.waps-home')).toBeVisible();
+  await page.locator('.bottomnav [data-route="talk"]').click();
+  await expect(page.locator('.talk-stage')).toBeVisible();
+  await page.locator('.bottomnav [data-route="practice"]').click();
+  await expect(page.locator('.practice-library')).toBeVisible();
+  await context.setOffline(false);
+});

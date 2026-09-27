@@ -74,7 +74,7 @@ let sentence=[],aacCat='all',partner=false;function aacSymbolHTML(x){
   hello:['green','<path d="M17 48c-5-9-4-18 0-25l5 10V15c0-3 5-3 5 0v14-17c0-3 5-3 5 0v17-14c0-3 5-3 5 0v15-10c0-3 5-3 5 0v17c0 12-7 19-17 19z"/>'],
   goodbye:['orange','<path d="M17 48c-5-9-4-18 0-25l5 10V15c0-3 5-3 5 0v14-17c0-3 5-3 5 0v17-14c0-3 5-3 5 0v15-10c0-3 5-3 5 0v17c0 12-7 19-17 19z"/><path d="M44 13h13M52 7l6 6-6 6" class="stroke"/>']
  };
- const v=icons[id];return v?wrap(v[0],v[1]):`<span class="symbol" aria-hidden="true">${esc(x.symbol||'•')}</span>`;
+ const v=icons[id];if(v)return wrap(v[0],v[1]);if(x.img)return visualHTML(x.img,'aac-photo');return `<span class="symbol" aria-hidden="true">${esc(x.symbol||'•')}</span>`;
 }
 function drawAAC(){let g=$('#aacGrid');if(!g)return;let items=[...AAC,...S.customAAC.filter(x=>!S.active||x.profile===S.active).map(x=>({...x,cat:'personal'}))];if(aacCat!=='all')items=items.filter(x=>x.cat===aacCat);g.innerHTML=items.map(x=>`<button class="aac ${x.cat==='safety'?'safety':''}" data-word="${esc(x.label)}" aria-label="${esc(x.label)}">${x.photo?`<img src="${x.photo}" alt="">`:aacSymbolHTML(x)}<span>${esc(x.label)}</span></button>`).join('')}
 function drawSentence(){let el=$('#sentence');if(el)el.innerHTML=sentence.length?sentence.map(x=>`<span class="sentence-word">${esc(x)}</span>`).join(''):'<span class="mini">Tap words to build a message…</span>'}

@@ -395,3 +395,102 @@ html[data-simple="1"] .home-character,html[data-simple="1"] .character-orbit,htm
 .unified-question-meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px auto 18px}.unified-question-meta span{padding:6px 10px;border-radius:999px;background:#eef7f4;color:#47635c;font-size:.76rem;font-weight:800}
 .choice.answer-key{outline:4px solid rgba(11,107,98,.3);outline-offset:2px}.choice.selected-correct{box-shadow:0 0 0 4px rgba(11,107,98,.22)}.choice.selected-retry{opacity:.66}.choice:disabled{cursor:default}
 @media(max-width:720px){.practice-one-card{grid-template-columns:1fr;padding:20px}.practice-one-visual{width:82px;height:82px;border-radius:22px;font-size:38px}.practice-explain{grid-template-columns:1fr}.practice-progress-text{flex-direction:column;gap:3px}.practice-one-actions>.btn{width:100%}}
+
+
+/* ===== WAPS Talk quick-needs containment fix · v30 ===== */
+.quick-needs{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:10px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:8px 2px 12px!important;
+  margin:6px 0 12px!important;
+  min-height:0!important;
+  max-height:96px!important;
+  scrollbar-width:thin;
+}
+.quick-needs>span{
+  flex:0 0 auto!important;
+  align-self:center!important;
+  white-space:nowrap!important;
+  font-size:.72rem!important;
+  font-weight:900!important;
+  letter-spacing:.08em!important;
+  color:#66726f!important;
+  padding-right:4px!important;
+}
+.quick-needs button{
+  flex:0 0 82px!important;
+  width:82px!important;
+  min-width:82px!important;
+  max-width:82px!important;
+  height:78px!important;
+  min-height:78px!important;
+  max-height:78px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  overflow:hidden!important;
+  border:1px solid #dce9e6!important;
+  background:#fff!important;
+  border-radius:16px!important;
+  padding:6px!important;
+  box-sizing:border-box!important;
+}
+.quick-needs .waps-aac-symbol{
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+  margin:0 auto!important;
+  border-radius:12px!important;
+}
+.quick-needs .waps-aac-symbol svg{width:30px!important;height:30px!important}
+.quick-needs .concept-hi,
+.quick-needs .aac-photo{
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+  max-width:38px!important;
+  max-height:38px!important;
+  border-radius:10px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+.quick-needs .concept-hi>img,
+.quick-needs .aac-photo>img,
+.quick-needs img{
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+  max-width:38px!important;
+  max-height:38px!important;
+  object-fit:cover!important;
+  border-radius:10px!important;
+  margin:0!important;
+}
+.quick-needs b{
+  display:block!important;
+  width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  font-size:.68rem!important;
+  line-height:1.1!important;
+  margin:0!important;
+}
+.talk-stage{overflow-x:hidden}
+.talk-stage>.quick-needs{width:100%}
+@media(max-width:700px){
+  .quick-needs{max-height:90px!important;gap:8px!important}
+  .quick-needs button{flex-basis:74px!important;width:74px!important;min-width:74px!important;max-width:74px!important;height:74px!important;min-height:74px!important;max-height:74px!important}
+  .quick-needs>span{font-size:.66rem!important}
+}

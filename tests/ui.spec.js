@@ -601,6 +601,7 @@ test('v49 Talk is compact on a 390x844 phone', async ({page})=>{
 test('v49 phone landscape uses a denser Talk grid without horizontal page overflow', async ({page})=>{
   await page.setViewportSize({width:844,height:390});
   await page.goto('http://127.0.0.1:4173/#talk');
+  await expect(page.locator('#aacGrid')).toBeVisible();
   const dims=await page.evaluate(()=>({
     cols:getComputedStyle(document.querySelector('#aacGrid')).gridTemplateColumns.split(' ').length,
     overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
@@ -628,6 +629,7 @@ test('v49 Fredoka is self-hosted and loads on phone viewport', async ({page})=>{
 
 test('v49 Child Mode persists across Talk Practice and internal activity navigation', async ({page})=>{
   const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#more');
   await page.locator('[data-more-group="settings"]').click();
   await page.locator('[data-action="childMode"]').click();

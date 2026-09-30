@@ -29,6 +29,8 @@ jobs:
           font.save(out)
           print(out, out.stat().st_size)
           PY
+      - name: Install audio encoder
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Generate original WAPS Gentle Steps music
         run: |
           mkdir -p assets/audio

@@ -26,4 +26,29 @@ missing=sorted(actions-handled-delegated)
 assert not missing, f'unhandled actions: {missing}'
 sw=(r/'sw.js').read_text(encoding='utf-8')
 assert 'networkFirst' in sw and 'OPTIONAL=' in sw and 'skipWaiting' in sw and 'clients.claim' in sw
+
+# v47 comprehension visual gate
+special=["supermarket","playground","clock","fork","glass","bottle","pen","marker","dress","hat","red-apple","red-car","blue-car","brown-dog","brown-horse","green-dotted-ball","hot-soup","ice-cream","calendar","snack","kite"]
+comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
+css=(r/'app.css').read_text(encoding='utf-8')
+visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
+assert 'app.css?v=47' in html and 'app.js?v=47' in html, 'v47 public asset references missing'
+assert 'waps-reference-shell-v47' in sw, 'v47 cache name missing'
+for legacy in ['board-001-020.webp','board-041-060.webp','assets/comprehension/kite.webp','mu-sprite','BOARD_SRC']:
+    assert legacy not in comp, f'legacy comprehension reference remains: {legacy}'
+for legacy in ['.mu-sprite','.mu-snack-visual']:
+    assert legacy not in css, f'legacy comprehension CSS remains: {legacy}'
+for asset in ['board-001-020.webp','board-041-060.webp','assets/comprehension/kite.webp']:
+    assert asset not in sw, f'legacy cached asset remains: {asset}'
+for concept in special:
+    rel=f'./assets/concepts/highres/{concept}.webp'
+    p=r/'assets/concepts/highres'/f'{concept}.webp'
+    assert p.exists(), f'missing v47 visual: {concept}'
+    assert p.stat().st_size>4000, f'suspiciously small v47 visual: {concept}'
+    assert rel in comp, f'v47 visual not wired: {concept}'
+    assert rel in sw, f'v47 visual not cached: {concept}'
+    meta=visual_manifest.get(concept)
+    assert meta, f'v47 visual not registered in manifest: {concept}'
+    assert meta.get('path')==rel, f'wrong manifest path: {concept}'
+    assert meta.get('width')==1024 and meta.get('height')==1024, f'wrong manifest dimensions: {concept}'
 print('WAPS smoke gate PASS:',{'actions':len(actions),'primary_routes':5,'progress_route':'app','cache_optional':sw.count('./')})

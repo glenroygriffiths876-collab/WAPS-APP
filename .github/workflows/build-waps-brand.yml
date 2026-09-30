@@ -31,5 +31,6 @@ jobs:
             echo "No generated brand changes"
           else
             git commit -m "Generate official WAPS icon set"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi

@@ -6,7 +6,85 @@ function appShareUrl(){let u=new URL('.',window.location.href);u.hash='';u.searc
 async function copyAppLink(){let url=appShareUrl();try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(url)}else{let t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}toast('WAPS link copied ✓')}catch{toast('Could not copy automatically. Press and hold the link to copy it.')}}
 async function shareAppLink(){let url=appShareUrl(),data={title:'WAPS Communication',text:'WAPS Communication — caregiver-guided communication support.',url};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e?.name==='AbortError')return}}await copyAppLink()}
 function shareAppModal(){let url=appShareUrl();show(`<div class="app-share-sheet"><div class="share-sheet-mark">W<span>♥</span></div><span class="eyebrow">SHARE WAPS</span><h2>Share WAPS Communication</h2><p>Send the app link directly, copy it, or let someone scan a QR code.</p><div class="share-option-grid"><button class="share-option" data-action="shareAppLink"><span class="share-option-icon">↗</span><b>Share link</b><small>WhatsApp, Messages, email and more</small></button><button class="share-option" data-action="copyAppLink"><span class="share-option-icon">⧉</span><b>Copy link</b><small>Copy the WAPS web address</small></button><button class="share-option" data-action="showAppQr"><span class="share-option-icon">▦</span><b>QR code</b><small>Show a code another phone can scan</small></button></div><div class="share-url-preview"><span>${esc(url)}</span><button data-action="copyAppLink" aria-label="Copy WAPS link">Copy</button></div></div>`,true)}
-function appQrModal(){let url=appShareUrl(),qr='https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=12&data='+encodeURIComponent(url);show(`<div class="app-qr-sheet"><button class="btn ghost qr-back" data-action="shareApp">← Share options</button><div class="qr-brand"><div class="share-sheet-mark">W<span>♥</span></div><div><span class="eyebrow">WAPS COMMUNICATION</span><h2>Scan to open WAPS</h2></div></div><div class="qr-frame"><img src="${qr}" alt="QR code for the WAPS app link" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><div class="qr-error" hidden>QR code needs an internet connection to load. You can still copy or share the link below.</div></div><p class="qr-help">Open the camera on another phone and point it at this code.</p><div class="share-url-preview"><span>${esc(url)}</span><button data-action="copyAppLink">Copy link</button></div><div class="actions"><button class="btn" data-action="shareAppLink">↗ Share link</button></div></div>`,true)}function route(){return location.hash.slice(1)||'home'}function go(r){if(route()===r){render()}else{location.hash=r}}function nav(){
+function appQrModal(){let url=appShareUrl(),qr='https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=12&data='+encodeURIComponent(url);show(`<div class="app-qr-sheet"><button class="btn ghost qr-back" data-action="shareApp">← Share options</button><div class="qr-brand"><div class="share-sheet-mark">W<span>♥</span></div><div><span class="eyebrow">WAPS COMMUNICATION</span><h2>Scan to open WAPS</h2></div></div><div class="qr-frame"><img src="${qr}" alt="QR code for the WAPS app link" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><div class="qr-error" hidden>QR code needs an internet connection to load. You can still copy or share the link below.</div></div><p class="qr-help">Open the camera on another phone and point it at this code.</p><div class="share-url-preview"><span>${esc(url)}</span><button data-action="copyAppLink">Copy link</button></div><div class="actions"><button class="btn" data-action="shareAppLink">↗ Share link</button></div></div>`,true)}
+let deferredInstallPrompt=null,installConfirmedThisSession=false;
+const isStandalone=()=>window.matchMedia?.('(display-mode: standalone)').matches===true||window.navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isAndroid=()=>/android/i.test(navigator.userAgent);
+const isSamsungBrowser=()=>/samsungbrowser/i.test(navigator.userAgent);
+const isFirefox=()=>/firefox|fxios/i.test(navigator.userAgent);
+function markWapsInstalled(){
+ installConfirmedThisSession=true;
+ try{localStorage.setItem('wapsInstalled','1')}catch{}
+}
+async function detectInstalledWaps(){
+ if(isStandalone()||installConfirmedThisSession)return true;
+ try{
+  if(navigator.getInstalledRelatedApps){
+   const apps=await navigator.getInstalledRelatedApps();
+   if(Array.isArray(apps)&&apps.some(x=>x?.platform==='webapp'||String(x?.url||'').includes(location.pathname)))return true;
+  }
+ }catch{}
+ try{return localStorage.getItem('wapsInstalled')==='1'}catch{return false}
+}
+async function syncInstallFab(){
+ const b=$('#installFab');if(!b)return;
+ const installed=await detectInstalledWaps();
+ b.classList.toggle('hidden',installed);
+ b.setAttribute('aria-hidden',installed?'true':'false');
+}
+function installHelpModal(){
+ let title='Install WAPS',steps=[];
+ if(isIOS()){
+  title='Install WAPS on iPhone or iPad';
+  steps=[['1','Tap Share','Use the Share button in Safari.'],['2','Add to Home Screen','Scroll if needed and choose “Add to Home Screen”.'],['3','Tap Add','WAPS will appear with its own icon.']];
+ }else if(isSamsungBrowser()){
+  title='Install WAPS in Samsung Internet';
+  steps=[['1','Open the menu','Tap the ☰ menu.'],['2','Add page to','Choose “Add page to” then “Home screen”.'],['3','Confirm','WAPS will appear with its own icon.']];
+ }else if(isAndroid()){
+  steps=[['1','Open the browser menu','Tap ⋮ if the Install prompt is not available.'],['2','Install app','Choose “Install app” or “Add to Home screen”.'],['3','Confirm','WAPS will open like an app from your device.']];
+ }else if(isFirefox()){
+  steps=[['1','Open the browser menu','Look for Install or Add to Home Screen.'],['2','Choose Install','Follow the browser confirmation.']];
+ }else{
+  steps=[['1','Look for Install','Use the Install icon in the address bar or browser menu.'],['2','Confirm Install','WAPS will then open in its own app window.']];
+ }
+ show(`<div class="install-help-sheet"><div class="install-brand"><img src="./icon.svg" alt=""><div><span class="eyebrow">WAPS COMMUNICATION</span><h2>${esc(title)}</h2></div></div><p class="install-lead">WAPS can live on your home screen like an app. Your browser requires you to approve the final install.</p><div class="install-steps">${steps.map(x=>`<div class="install-step"><span>${x[0]}</span><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small></div></div>`).join('')}</div><div class="notice"><b>Your WAPS data stays in this browser/device.</b> Installing does not reset child profiles or progress.</div></div>`,true);
+}
+async function installWaps(){
+ if(await detectInstalledWaps()){markWapsInstalled();await syncInstallFab();toast('✓ WAPS is already installed');return}
+ if(deferredInstallPrompt){
+  const prompt=deferredInstallPrompt;
+  deferredInstallPrompt=null;
+  try{
+   await prompt.prompt();
+   const choice=await prompt.userChoice;
+   if(choice?.outcome==='accepted'){
+    $('#installFab')?.classList.add('hidden');
+    toast('WAPS is being installed ✓');
+   }else{
+    await syncInstallFab();
+   }
+  }catch{
+   deferredInstallPrompt=prompt;
+   installHelpModal();
+  }
+  return;
+ }
+ installHelpModal();
+}
+window.addEventListener('beforeinstallprompt',e=>{
+ e.preventDefault();deferredInstallPrompt=e;syncInstallFab();
+});
+window.addEventListener('appinstalled',()=>{
+ deferredInstallPrompt=null;markWapsInstalled();syncInstallFab();
+ toast('✓ WAPS installed — open it from your home screen.');
+});
+try{
+ const mq=window.matchMedia('(display-mode: standalone)');
+ mq.addEventListener?.('change',()=>{if(mq.matches)markWapsInstalled();syncInstallFab()});
+}catch{}
+if(isStandalone())markWapsInstalled();
+function route(){return location.hash.slice(1)||'home'}function go(r){if(route()===r){render()}else{location.hash=r}}function nav(){
   $$('.bottomnav button,.desktopnav button').forEach(b=>b.classList.toggle('active',b.dataset.route===route()));
   let p=active(),c=$('#childSwitcher');
   if(c)c.innerHTML=p?`<span class="child-avatar">${p.photo?`<img class="child-avatar-img" src="${p.photo}" alt="">`:(p.name||'?').slice(0,1).toUpperCase()}</span><span><b>${esc(p.name)}</b><small>My profile</small></span><span>⌄</span>`:'<b>Set up child</b>';
@@ -453,6 +531,7 @@ document.addEventListener('click',async e=>{
   if(a==='shareAppLink'){await shareAppLink();return}
   if(a==='copyAppLink'){await copyAppLink();return}
   if(a==='showAppQr'){appQrModal();return}
+  if(a==='installWaps'){await installWaps();return}
   if(a==='childMode'){if(modal.open)modal.close();enterChildMode();return}
   if(a==='discovery'){discoveryModal();return}
   if(a==='observeToday'){if(modal.open)modal.close();recordObservation('Today’s communication goal');return}
@@ -494,4 +573,4 @@ document.addEventListener('input',e=>{if(e.target.id==='aacSearch'){aacSearch=e.
 document.addEventListener('change',async e=>{if(e.target.id==='jamaicaCategory'){renderJamaicaDirectory();return}if(e.target.id==='restoreFile'){let file=e.target.files[0];if(!file)return;try{let j=JSON.parse(await file.text());if(j.format!=='WAPS-BACKUP'||j.schema!==2||!j.data||!Array.isArray(j.data.profiles))throw Error('format');if(confirm(`Restore backup from ${new Date(j.exported).toLocaleString()}? This will replace current local WAPS data.`)){S=j.data;await persist();modal.close();render();toast('Backup restored')}}catch(err){alert('This is not a valid compatible WAPS backup. Current data were not changed.')}e.target.value=''}});
 
 let holdTimer;document.addEventListener('pointerdown',e=>{if(e.target.closest('#holdExit'))holdTimer=setTimeout(()=>document.querySelector('#childLock')?.remove(),1600)});document.addEventListener('pointerup',()=>clearTimeout(holdTimer));
-document.documentElement.dataset.lowStim=S.settings.lowStim?'1':'0';document.documentElement.dataset.simple=S.settings.simpleMode?'1':'0';document.documentElement.dataset.largeText=S.settings.largeText?'1':'0';document.documentElement.dataset.highContrast=S.settings.highContrast?'1':'0';window.addEventListener('afterprint',()=>document.body.classList.remove('printing-sheet'));window.addEventListener('hashchange',render);window.addEventListener('online',()=>$('#offlineBanner').classList.add('hidden'));window.addEventListener('offline',()=>$('#offlineBanner').classList.remove('hidden'));if(!navigator.onLine)$('#offlineBanner').classList.remove('hidden');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(console.warn);render();
+document.documentElement.dataset.lowStim=S.settings.lowStim?'1':'0';document.documentElement.dataset.simple=S.settings.simpleMode?'1':'0';document.documentElement.dataset.largeText=S.settings.largeText?'1':'0';document.documentElement.dataset.highContrast=S.settings.highContrast?'1':'0';window.addEventListener('afterprint',()=>document.body.classList.remove('printing-sheet'));window.addEventListener('hashchange',render);window.addEventListener('online',()=>$('#offlineBanner').classList.add('hidden'));window.addEventListener('offline',()=>$('#offlineBanner').classList.remove('hidden'));if(!navigator.onLine)$('#offlineBanner').classList.remove('hidden');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(console.warn);syncInstallFab();render();

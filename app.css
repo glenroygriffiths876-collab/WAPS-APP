@@ -1226,3 +1226,19 @@ body.mu-active{overflow:hidden}.mu-active .waps-header,.mu-active .bottomnav,.mu
 @media(max-height:700px){.mu-prompt{padding-top:6px;padding-bottom:6px}.mu-prompt h1{font-size:1rem}.mu-work{padding-top:6px;padding-bottom:6px}.mu-picture-choice{min-height:92px}.mu-picture-choice .concept-hi,.mu-picture-choice .concept-fallback{height:82px}.mu-match-stimulus .concept-hi,.mu-match-stimulus .concept-fallback,.mu-sort-item .concept-hi,.mu-sort-item .concept-fallback{height:120px}}
 @media(prefers-reduced-motion:reduce){.mu-picture-choice,.mu-mode-grid button,.mu-shape-grid button{transition:none!important;animation:none!important}}
 .low-stim .mu-picture-choice,.low-stim .mu-shape-grid button,.low-stim .mu-sort-bins button{box-shadow:none}
+
+
+/* WAPS v46 narrow-screen overflow hardening */
+.aac-grid,.aac-wrap,.aac,.practice-tool-row.four-tools,.practice-tool-card,.practice-tool-card>span{min-width:0;max-width:100%}
+.aac{overflow:hidden}
+.aac>span:last-child{max-width:100%;overflow-wrap:anywhere;word-break:normal;hyphens:none}
+.practice-tool-card{overflow:hidden}
+.practice-tool-card b,.practice-tool-card small{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:390px){
+  .aac>span:last-child{font-size:14px!important}
+  .practice-tool-row.four-tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .practice-tool-row.four-tools .practice-tool-card{grid-template-columns:40px minmax(0,1fr) 14px;padding:8px}
+  .practice-tool-row.four-tools .practice-tool-icon{width:38px;height:38px;font-size:13px}
+  .practice-tool-row.four-tools .practice-tool-card b{font-size:.82rem;line-height:1.08}
+  .practice-tool-row.four-tools .practice-tool-card small{font-size:.64rem;line-height:1.1}
+}

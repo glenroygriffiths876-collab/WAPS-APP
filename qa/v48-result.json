@@ -1,0 +1,9 @@
+{
+  "release": "v48",
+  "tested_commit": "ad900d1b32be73cfb57c88607cbf0238e0d17bad",
+  "quality_gate": "success",
+  "browser_suite": "success",
+  "browser_test_count": 21,
+  "offline_test_in_suite": true,
+  "pages_live_check": "success"
+}

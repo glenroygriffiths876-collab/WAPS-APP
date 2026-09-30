@@ -17,6 +17,7 @@ on:
       - 'comprehension-data.js'
       - 'assets/concepts/highres/**'
       - 'assets/audio/**'
+      - 'assets/fonts/**'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'

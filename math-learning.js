@@ -275,7 +275,8 @@ export function createMathLearningFeature(ctx){
     const chunk=currentChunk(q),ids=q.type==='subtract'?chunk.indices.filter(i=>!q.removed.includes(i)):chunk.indices;
     $$('.math-object-btn').forEach(b=>b.classList.remove('math-cue'));
     ids.forEach((id,i)=>{
-      const t=setTimeout(()=>{const b=$('[data-math-object="'+id+'"]');if(b){b.classList.add('math-cue');setTimeout(()=>b.classList.remove('math-cue'),420)}if(prefs().hearNumbers)speakNumber((q.type==='subtract'?q.removed.length:q.counted.length)+i+1)},i*480);cueTimers.push(t);
+      const spoken=q.type==='subtract'?i+1:id+1;
+      const t=setTimeout(()=>{const b=$('[data-math-object="'+id+'"]');if(b){b.classList.add('math-cue');setTimeout(()=>b.classList.remove('math-cue'),420)}if(prefs().hearNumbers)speakNumber(spoken)},i*480);cueTimers.push(t);
     });
   }
   async function answer(value,btn){

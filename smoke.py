@@ -1,7 +1,7 @@
 from pathlib import Path
 import json,re
 r=Path(__file__).parent
-required=['index.html','manifest.webmanifest','sw.js','app.css','app.js','data.js','storage.js','visual-manifest.json']
+required=['index.html','manifest.webmanifest','sw.js','app.css','app.js','data.js','storage.js','math-learning.js','visual-manifest.json']
 for f in required:
     assert (r/f).exists(), f"missing {f}"
 m=json.loads((r/'manifest.webmanifest').read_text(encoding='utf-8'))
@@ -21,7 +21,7 @@ assert 'wireTalkControls' not in app and 'wirePracticeLaunch' not in app and 'wi
 assert not re.search(r"(?<!\\$)\\$\\('\.bottomnav button,\.desktopnav button'\\)\.forEach",app), 'single-query selector forEach crash regression'
 actions=set(re.findall(r'data-action=["\']([^"\'$]+)["\']',app))
 handled=set(re.findall(r"if\(a===['\"]([^'\"]+)['\"]",app))
-delegated={'traceLaunch','csLaunch'}
+delegated={'traceLaunch','csLaunch','mathLaunch'}
 missing=sorted(actions-handled-delegated)
 assert not missing, f'unhandled actions: {missing}'
 sw=(r/'sw.js').read_text(encoding='utf-8')

@@ -15,6 +15,7 @@ on:
       - 'comprehension-learning.js'
       - 'comprehension-data.js'
       - 'assets/concepts/highres/**'
+      - 'assets/audio/**'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

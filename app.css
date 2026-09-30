@@ -1142,3 +1142,20 @@ body.math-active main{position:fixed!important;inset:0!important;height:100dvh!i
 }
 html[data-low-stim="1"] .math-object-btn,html[data-low-stim="1"] .math-answer{transition:none!important;animation:none!important}
 @media(prefers-reduced-motion:reduce){.math-object-btn,.math-answer{transition:none!important;animation:none!important}.math-object-btn.removed{transform:none}}
+
+
+/* WAPS Numbers & Maths flexible ceiling — v45 */
+.math-setting-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.math-setting-title>b{color:#173551}.math-setting-title span{font-size:.82rem;color:#5f7278;font-weight:850}
+.math-number-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.math-number-option{position:relative}.math-number-option input{position:absolute;opacity:0;pointer-events:none}.math-number-option span{display:grid;place-items:center;min-height:46px;border:2px solid #d5e2e7;border-radius:13px;background:#fff;color:#173551;font-weight:1000;font-size:1rem;cursor:pointer;touch-action:manipulation}.math-number-option input:checked+span{border-color:#164ebd;background:#eef5ff;color:#164ebd;box-shadow:0 0 0 3px rgba(22,78,189,.13)}
+.math-more-numbers{margin-top:10px;border-top:1px solid #e3ece8;padding-top:9px}.math-more-numbers summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 4px;cursor:pointer;color:#244b67;font-weight:950}.math-more-numbers summary span{font-size:.78rem;color:#6e7f85}.math-more-numbers .math-number-grid{margin-top:7px;padding-top:4px;max-height:320px;overflow:auto;overscroll-behavior:contain}
+.math-chunk{min-height:0;width:min(100%,720px);margin:auto;display:grid;grid-template-rows:auto minmax(0,1fr);gap:5px}.math-chunk-label{text-align:center;color:#5c716e;font-size:.75rem;font-weight:950;letter-spacing:.03em}.math-chunk .math-object-grid{width:100%;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);align-content:center}
+.math-answer-grid.choices-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.math-away-more{display:grid;place-items:center;min-width:30px;height:30px;padding:0 5px;border-radius:10px;background:#fff0df;color:#8b542a;font-weight:1000;font-size:.76rem}
+@media(max-width:420px){
+  .math-number-grid{gap:6px}.math-number-option span{min-height:43px;border-radius:11px;font-size:.92rem}
+  .math-setting-title{align-items:flex-start;flex-direction:column;gap:3px}
+}
+@media(max-height:680px){
+  .math-chunk-label{font-size:.68rem}.math-chunk{gap:3px}
+  .math-chunk .math-object-grid{gap:3px}
+}

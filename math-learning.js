@@ -145,7 +145,7 @@ export function createMathLearningFeature(ctx){
       return max<=10?shuffled(deck):mixDifficulty(deck.filter(x=>x.quantity<=10),deck.filter(x=>x.quantity>10));
     }
     if(type==='add'){
-      for(let a=0;a<=max;a++)for(let b=0;b<=max;b++)if(a+b>=1&&a+b<=max)deck.push({a,b,answer:a+b});
+      for(let a=1;a<=max;a++)for(let b=0;b<=max;b++)if(a+b<=max)deck.push({a,b,answer:a+b});
       return max<=10?shuffled(deck):mixDifficulty(deck.filter(x=>x.answer<=10),deck.filter(x=>x.answer>10));
     }
     for(let start=1;start<=max;start++)for(let remove=1;remove<=start;remove++)deck.push({start,remove,answer:start-remove});

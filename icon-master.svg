@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WAPS app icon">
+  <rect width="512" height="512" rx="112" fill="#4B2A8A"/>
+  <path d="M82 102h348a72 72 0 0 1 72 72v206a72 72 0 0 1-72 72H191l-65 58 19-58H82a72 72 0 0 1-72-72V174a72 72 0 0 1 72-72Z" fill="#3D2375"/>
+  <path d="M128 174 190 358 256 246 322 358 384 174" fill="none" stroke="#FFFDF5" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M359 111c-16-23-53-16-53 16 0 30 53 62 53 62s53-32 53-62c0-32-37-39-53-16Z" fill="#FFC21C"/>
+  <circle cx="378" cy="113" r="7" fill="#FF6F51"/>
+</svg>

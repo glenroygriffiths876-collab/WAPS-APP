@@ -192,7 +192,8 @@ export function createMathLearningFeature(ctx){
       if(!q.wrong.includes(value))q.wrong.push(value);
       btn.classList.add('try-again');setTimeout(()=>btn.classList.remove('try-again'),340);
       const out=$('#mathStatus');if(out)out.textContent=q.attempts>=2?(q.type==='subtract'?'Let’s count what is left.':'Let’s count together.'):'Try again.';
-      if(q.attempts>=2&&!q.cued){cueCount(q);await persist()}
+      if(q.attempts>=2&&!q.cued)cueCount(q);
+      await persist();
       return;
     }
     runtime.locked=true;$$('.math-answer').forEach(x=>x.disabled=true);btn.classList.add('correct');
@@ -201,7 +202,7 @@ export function createMathLearningFeature(ctx){
     state().history.push(record);if(state().history.length>800)state().history=state().history.slice(-800);
     s.completed++;s.lastProblem=problemSig(type,q);s.lastCorrectPosition=q.correctPosition;s.positionCounts[q.correctPosition]=(s.positionCounts[q.correctPosition]||0)+1;s.current=null;
     const g=goal(p);if(Number.isFinite(g)&&s.completed>=g)s.finished=true;
-    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers)speak('Great job',true);celebrate?.(btn);
+    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers)speak('Great job');celebrate?.(btn);
     advanceTimer=setTimeout(()=>{advanceTimer=null;s.finished?finish(type):renderQuestion(type)},850);
   }
   function finish(type){

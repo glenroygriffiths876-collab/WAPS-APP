@@ -298,8 +298,9 @@ test('Talk includes reviewer-requested functional words and places', async ({pag
     await expect(page.locator('.aac').filter({hasText:word}).first()).toBeVisible();
   }
   await expect(page.locator('.aac').filter({hasText:'CLINIC'})).toHaveCount(0);
-  await expect(page.locator('.aac').filter({hasText:'SUPERMARKET'}).locator('.mu-sprite')).toBeVisible();
-  await expect(page.locator('.aac').filter({hasText:'PLAYGROUND'}).locator('.mu-sprite')).toBeVisible();
+  await expect(page.locator('.aac').filter({hasText:'SUPERMARKET'}).locator('.mu-direct-visual img')).toHaveAttribute('src','./assets/concepts/highres/supermarket.webp');
+  await expect(page.locator('.aac').filter({hasText:'PLAYGROUND'}).locator('.mu-direct-visual img')).toHaveAttribute('src','./assets/concepts/highres/playground.webp');
+  await expect(page.locator('.aac').filter({hasText:'SNACK'}).locator('.mu-direct-visual img')).toHaveAttribute('src','./assets/concepts/highres/snack.webp');
   await page.locator('.aac').filter({hasText:'I SEE'}).first().click();
   await page.locator('.aac').filter({hasText:'APPLE'}).first().click();
   await expect(page.locator('#sentence')).toContainText('I SEE');
@@ -390,6 +391,67 @@ test('Match & Understand picture setting is profile specific and survives reload
   await page.locator('[data-action="muLaunch"]').click();
   await page.locator('[data-action="muSettings"]').click();
   await expect(page.locator('input[name="muField"][value="4"]')).toBeChecked();
+  expect(errors).toEqual([]);
+});
+
+test('Match & Understand individual production images load', async ({page})=>{
+  const errors=collectErrors(page);
+  const ids=["supermarket","playground","clock","fork","glass","bottle","pen","marker","dress","hat","red-apple","red-car","blue-car","brown-dog","brown-horse","green-dotted-ball","hot-soup","ice-cream","calendar","snack","kite"];
+  await page.goto('http://127.0.0.1:4173/#practice');
+  const qa=await page.evaluate(async ids=>{
+    const mod=await import('./comprehension-data.js');
+    const host=document.createElement('div');
+    host.id='mu-asset-qa';
+    document.body.append(host);
+    for(const id of ids){
+      const cell=document.createElement('div');
+      cell.dataset.qa=id;
+      cell.innerHTML=mod.muSpecialVisualHTML(id,'qa-photo');
+      host.append(cell);
+    }
+    const requests=await Promise.all(ids.map(async id=>{
+      const src='./assets/concepts/highres/'+id+'.webp';
+      const response=await fetch(src,{cache:'no-store'});
+      return {id,src,status:response.status,ok:response.ok};
+    }));
+    const imgs=[...host.querySelectorAll('img')];
+    await Promise.all(imgs.map(img=>img.complete
+      ? (img.naturalWidth>0?Promise.resolve():Promise.reject(new Error('broken '+img.src)))
+      : new Promise((resolve,reject)=>{
+          img.addEventListener('load',resolve,{once:true});
+          img.addEventListener('error',()=>reject(new Error('broken '+img.src)),{once:true});
+        })
+    ));
+    return {
+      requests,
+      images:imgs.map(img=>({
+        id:img.closest('[data-qa]')?.dataset.qa,
+        src:img.getAttribute('src'),
+        complete:img.complete,
+        naturalWidth:img.naturalWidth,
+        naturalHeight:img.naturalHeight
+      })),
+      spriteCount:host.querySelectorAll('.mu-sprite').length
+    };
+  },ids);
+  expect(qa.requests).toHaveLength(ids.length);
+  for(const row of qa.requests){
+    expect(row.ok,row.id+' request failed').toBeTruthy();
+    expect(row.status,row.id+' HTTP status').toBe(200);
+  }
+  expect(qa.images).toHaveLength(ids.length);
+  for(const row of qa.images){
+    expect(row.complete,row.id+' image incomplete').toBeTruthy();
+    expect(row.naturalWidth,row.id+' naturalWidth').toBeGreaterThan(0);
+    expect(row.naturalHeight,row.id+' naturalHeight').toBeGreaterThan(0);
+    expect(row.src).toBe('./assets/concepts/highres/'+row.id+'.webp');
+  }
+  expect(qa.spriteCount).toBe(0);
+  const source=await page.evaluate(()=>fetch('./comprehension-data.js',{cache:'no-store'}).then(r=>r.text()));
+  expect(source).not.toContain('board-001-020.webp');
+  expect(source).not.toContain('board-041-060.webp');
+  expect(source).not.toContain('assets/comprehension/kite.webp');
+  expect(source).not.toContain('mu-sprite');
   expect(errors).toEqual([]);
 });
 

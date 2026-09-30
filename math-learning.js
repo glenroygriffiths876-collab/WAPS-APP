@@ -333,7 +333,7 @@ export function createMathLearningFeature(ctx){
   async function handleClick(el){
     const obj=el.closest('[data-math-object]');if(obj){await touchObject(obj.dataset.mathObject);return true}
     const ans=el.closest('[data-math-answer]');if(ans){await answer(ans.dataset.mathAnswer,ans);return true}
-    const typeBtn=el.closest('[data-math-type]');
+    const typeBtn=el.closest('button[data-math-type]');
     const action=el.closest('[data-action]')?.dataset.action;
     if(typeBtn&&action!=='mathAgain'){await start(typeBtn.dataset.mathType);return true}
     if(!action||!action.startsWith('math'))return false;

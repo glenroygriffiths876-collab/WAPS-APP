@@ -240,7 +240,9 @@ function drawAAC(){let g=$('#aacGrid');if(!g)return;let items=allAACItems(),fav=
 function drawSentence(){let el=$('#sentence');if(el)el.innerHTML=sentence.length?sentence.map(x=>`<span class="sentence-word">${esc(x)}</span>`).join(''):'<span class="mini">Tap words to build a message…</span>'}
 
 function practiceProfileKey(){return S.active||'global'}
-function resolvedPracticeQuestion(a,target){return a.prompt.replace('{target}',concept[target]?.label.toLowerCase()||target).replace('{TARGET}',(concept[target]?.label||target).toUpperCase())}
+const ACTION_FORMS={run:'running',sleep:'sleeping',eat:'eating',drink:'drinking',walk:'walking',jump:'jumping',wash:'washing',read:'reading',write:'writing'};
+const PERSON_FORMS={mum:'a mummy',dad:'a daddy',teacher:'a teacher',friend:'a friend',grandma:'a grandmother',grandpa:'a grandfather',sister:'a sister',brother:'a brother'};
+function resolvedPracticeQuestion(a,target){const label=concept[target]?.label||target;return a.prompt.replaceAll('{target}',label.toLowerCase()).replaceAll('{TARGET}',label.toUpperCase()).replaceAll('{doing}',ACTION_FORMS[target]||label.toLowerCase()).replaceAll('{person}',PERSON_FORMS[target]||label.toLowerCase())}
 function practicePool(){
  const seen=new Set(),pool=[];
  for(const a of ACTIVITY_SETS){

@@ -176,7 +176,7 @@ export function createTraceFeature(ctx){
       <div class="trace-canvas-wrap ${p.guidance}" id="traceCanvasWrap">
         <svg id="traceSvg" class="trace-svg" viewBox="0 0 1000 1000" role="img" aria-label="Trace ${esc(activeChar())}" touch-action="none">
           ${showLines?'<path class="trace-writing-line" d="M120 120 H880"/><path class="trace-writing-line mid" d="M120 410 H880"/><path class="trace-writing-line base" d="M120 820 H880"/><path class="trace-writing-line desc" d="M120 960 H880"/>':''}
-          ${g.strokes.map((st,i)=>`<path id="traceGuide${i}" class="trace-guide ${i<runtime.strokeIndex?'complete':''} ${i===runtime.strokeIndex?'active':''}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${guideOpacity()}"/><path id="traceBright${i}" class="trace-bright ${i<runtime.strokeIndex?'complete':''}" d="${st.d}" style="--trace-w:${w}px"/>`).join('')}
+          ${g.strokes.map((st,i)=>`<path id="traceGuide${i}" class="trace-guide ${i<runtime.strokeIndex?'complete':''} ${i===runtime.strokeIndex?'active':''}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${guideOpacity()}"/><path id="traceBright${i}" class="trace-bright ${i<runtime.strokeIndex?'complete':i===runtime.strokeIndex?'active':''}" d="${st.d}" style="--trace-w:${w}px"/>`).join('')}
           <polyline id="traceLive" class="trace-live" points="" style="--trace-w:${Math.max(22,w*.42)}px"/>
           <circle id="traceStartDot" class="trace-start-dot" r="${Math.max(28,w*.42)}"/>
           <circle id="traceDemoDot" class="trace-demo-dot" r="${Math.max(22,w*.34)}"/>

@@ -1237,3 +1237,70 @@ body.mu-active{overflow:hidden}.mu-active .waps-header,.mu-active .bottomnav,.mu
   .practice-tool-row.four-tools .practice-tool-card b{font-size:.82rem;line-height:1.08}
   .practice-tool-row.four-tools .practice-tool-card small{font-size:.64rem;line-height:1.1}
 }
+
+
+/* WAPS v48 — calmer home, balanced practice, playful typography, shadow support */
+:root{--waps-play-font:"Comic Sans MS","Comic Sans","Trebuchet MS",system-ui,sans-serif}
+html,body,button,input,select,textarea{font-family:var(--waps-play-font)}
+body{letter-spacing:.005em}
+.desktopnav{grid-template-columns:repeat(4,minmax(0,1fr))}
+.bottomnav.simplified-primary{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+.calm-home{min-height:calc(100dvh - 150px);display:grid;place-items:center;padding:14px}
+.calm-home-hero{width:min(100%,880px);display:grid;gap:18px}
+.calm-home-welcome{text-align:center;padding:6px 10px}
+.calm-home-welcome h1{margin:.25rem 0 .2rem;font-size:clamp(2rem,7vw,3.6rem);color:#173551}
+.calm-home-welcome p{margin:0;color:#667b82;font-size:clamp(1rem,2.8vw,1.25rem)}
+.home-two-actions{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.home-big-action{border:0;border-radius:30px;min-height:240px;padding:24px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;text-align:left;box-shadow:0 16px 42px rgba(26,60,88,.12);cursor:pointer}
+.home-talk-action{background:linear-gradient(145deg,#dff4ff,#cce8ff);color:#123f68}
+.home-practice-action{background:linear-gradient(145deg,#f1e7ff,#e4d2ff);color:#542c78}
+.home-big-icon{width:88px;height:88px;border-radius:28px;display:grid;place-items:center;background:rgba(255,255,255,.75);font-size:2rem}
+.home-big-action b{display:block;font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.05}
+.home-big-action small{display:block;margin-top:8px;font-size:clamp(.92rem,2vw,1.12rem);font-weight:800;opacity:.82}
+.home-big-action i{font-style:normal;font-size:2rem;font-weight:1000}
+.calm-home .home-small-actions{justify-content:center;margin-top:2px}
+
+.balanced-practice-home{max-width:960px;margin:auto}
+.practice-six-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.practice-six-tools .practice-tool-card{min-height:128px;text-decoration:none}
+.practice-tool-card.mixed{background:#fff;border-color:#d8e4e7;box-shadow:0 7px 22px rgba(37,66,83,.07)}
+.practice-tool-icon.mixed{background:#fff1d4;color:#8f6510}
+.practice-tool-icon.explore{background:#e9f8f0;color:#176c63}
+.practice-tool-card.explore{color:inherit}
+.external-resource-note{font-size:.82rem;line-height:1.45;color:#6b7b80;background:#f7faf9;border:1px solid #e0ebe7;padding:10px 12px;border-radius:14px;margin-top:10px}
+
+.audio-setting-card{margin:14px 0;padding:16px;border:1px solid #dce7e4;border-radius:20px;background:linear-gradient(145deg,#f8fbff,#f7fff9)}
+.audio-setting-card h2{margin:.2rem 0 .35rem;color:#173551}
+.audio-setting-card p{color:#607579;line-height:1.45}
+.audio-toggle{margin:12px 0}
+
+.shadow-help-sheet{max-width:820px;margin:auto}
+.shadow-help-sheet h1{margin:.35rem 0 .5rem;color:#173551}
+.shadow-intro{font-size:1.02rem;line-height:1.55;color:#526d73}
+.shadow-grid{display:grid;gap:10px;margin:16px 0}
+.shadow-grid details{border:1px solid #dce7e5;border-radius:17px;background:#fff;overflow:hidden}
+.shadow-grid summary{cursor:pointer;padding:15px 16px;font-weight:950;color:#244b67}
+.shadow-grid details>p,.shadow-grid details>ul,.shadow-grid details>.shadow-checklist{margin:0;padding:0 18px 17px 34px;line-height:1.5}
+.shadow-grid li{margin:6px 0}
+.shadow-checklist{display:grid;gap:8px!important;padding-left:18px!important}
+.shadow-checklist label{display:flex;align-items:flex-start;gap:9px}
+.shadow-checklist input{width:20px;height:20px;margin-top:2px}
+.shadow-downloads{border:1px solid #d9e6e2;border-radius:18px;padding:16px;background:#f8fcfa;margin:14px 0}
+.shadow-downloads h2{margin:.15rem 0 .4rem}
+.shadow-downloads p{color:#62777b;line-height:1.45}
+
+@media(max-width:700px){
+ .home-two-actions{grid-template-columns:1fr;gap:12px}
+ .home-big-action{min-height:170px;padding:19px;border-radius:24px}
+ .home-big-icon{width:68px;height:68px;border-radius:22px}
+ .practice-six-tools{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+ .calm-home{padding:8px}
+ .calm-home-hero{gap:12px}
+ .home-big-action{min-height:150px;grid-template-columns:62px 1fr 20px;gap:10px;padding:15px}
+ .home-big-icon{width:58px;height:58px;border-radius:18px}
+ .home-big-action b{font-size:1.45rem}
+ .home-big-action small{font-size:.86rem}
+}

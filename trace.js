@@ -88,7 +88,7 @@ export function createTraceFeature(ctx){
         ${isLetters?`<label>Letter audio<select id="traceLetterAudio"><option value="name" ${draft.letterAudio==='name'?'selected':''}>Letter name</option><option value="sound" ${draft.letterAudio==='sound'?'selected':''}>Letter sound + example</option><option value="both" ${draft.letterAudio==='both'?'selected':''}>Name + sound/example</option></select></label>`:''}
       </div>
       <div class="trace-config-summary"><b id="traceSelectedCount">${draft.selected.length} selected</b><span>WAPS will remember this set for ${esc(active()?.name||'this device')}.</span></div>
-      <div class="actions"><button class="btn" data-action="traceStart">${resumePossible()?'Continue / start selected set':'Start tracing'} →</button><button class="btn secondary" data-action="tracePreview">Preview formation</button></div>
+      <div class="actions"><button class="btn" data-action="traceStart">${resumePossible()?'Continue / start selected set':'Start tracing'} →</button><button class="btn secondary" data-action="tracePreview">Preview formation</button>${session(draft.type)?'<button class="btn ghost" data-action="traceRestartSet">Restart saved set</button>':''}</div>
     </div>`,true);
   }
   function resumePossible(){
@@ -182,7 +182,7 @@ export function createTraceFeature(ctx){
         </svg>
         <div id="traceStatus" class="trace-status">Start at the glowing dot.</div>
       </div>
-      <div class="trace-child-controls"><button data-action="traceHear">🔊 Hear it again</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try this stroke again</button></div>
+      <div class="trace-child-controls"><button data-action="traceHear">🔊 Hear it again</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
     </div>`;
     requestAnimationFrame(initStroke);
   }
@@ -336,6 +336,11 @@ export function createTraceFeature(ctx){
   async function again(type){
     const s=currentSession(type);if(!s)return launch();s.cursor=0;s.round=(s.round||1)+1;s.started=new Date().toISOString();await persist();renderCurrent(type);
   }
+  async function restartSavedSet(type){
+    const s=currentSession(type);if(!s){toast('There is no saved set to restart.');return}
+    if(!confirm('Restart this Trace & Say set from the beginning? Completed history will stay in Progress.'))return;
+    s.cursor=0;s.round=(s.round||1)+1;s.started=new Date().toISOString();await persist();if(modal.open)modal.close();renderCurrent(type);
+  }
   function exit(){
     cleanup();if(modal.open)modal.close();go('practice');
   }
@@ -363,6 +368,7 @@ export function createTraceFeature(ctx){
     if(a==='traceLaunch'){launch();return true}
     if(a==='traceStart'){await start();return true}
     if(a==='tracePreview'){preview();return true}
+    if(a==='traceRestartSet'){await restartSavedSet(draft?.type||'letters');return true}
     if(a==='traceHear'){speakToken(runtime.token,true);return true}
     if(a==='traceShowMe'){showDemo();return true}
     if(a==='traceRetryStroke'){retryStroke();return true}

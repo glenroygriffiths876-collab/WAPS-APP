@@ -8,6 +8,9 @@ on:
       - 'app.css'
       - 'data.js'
       - 'storage.js'
+      - 'trace.js'
+      - 'trace-words.js'
+      - 'trace-data.js'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'
@@ -28,7 +31,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: JavaScript syntax
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check trace.js
+          node --check trace-words.js
+          node --check trace-data.js
       - name: Structural smoke gate
         run: python3 smoke.py
       - name: Product ceiling gate

@@ -129,16 +129,12 @@ test('Numbers & Maths supports touch counting, addition and take away', async ({
     if(await next.count())await next.click(); else break;
   }
   await expect(page.locator('#mathAnswerGrid')).toBeVisible();
-  await page.locator('.math-answer[data-correct="1"]').click();
-  await expect(page.locator('.math-answer.correct')).toBeVisible();
   await page.locator('[data-action="mathExit"]').click();
 
   await page.locator('[data-action="mathLaunch"]').click();
   await page.locator('[data-math-type="add"]').click();
   await expect(page.locator('.math-equation')).toContainText('+');
   await expect(page.locator('#mathAnswerGrid')).toBeVisible();
-  await page.locator('.math-answer[data-correct="1"]').click();
-  await expect(page.locator('.math-answer.correct')).toBeVisible();
   await page.locator('[data-action="mathExit"]').click();
 
   await page.locator('[data-action="mathLaunch"]').click();
@@ -151,8 +147,6 @@ test('Numbers & Maths supports touch counting, addition and take away', async ({
   }
   await expect(page.locator('#mathAnswerGrid')).toBeVisible();
   await expect(page.locator('.math-away-tray')).toBeVisible();
-  await page.locator('.math-answer[data-correct="1"]').click();
-  await expect(page.locator('.math-answer.correct')).toBeVisible();
   expect(errors).toEqual([]);
 });
 

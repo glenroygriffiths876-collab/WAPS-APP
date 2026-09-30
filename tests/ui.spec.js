@@ -254,3 +254,48 @@ test('WAPS installed core remains navigable offline after an online load', async
   await expect(page.locator('.practice-library')).toBeVisible();
   await context.setOffline(false);
 });
+
+
+test('WAPS Words & Names saves an optional personal picture and reopens it', async ({ page }) => {
+  test.setTimeout(90000);
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await expect(page.locator('.practice-library')).toBeVisible();
+
+  await page.locator('[data-action="traceLaunch"]').click();
+  await expect(page.locator('dialog[open]')).toBeVisible();
+  await page.locator('dialog[open] [data-action="traceWordsLaunch"]').click();
+  await expect(page.locator('.trace-words-config')).toBeVisible();
+
+  await page.locator('[data-action="traceWordsAdd"]').click();
+  await expect(page.locator('.trace-word-editor')).toBeVisible();
+  await page.locator('#traceWordText').fill('DOG');
+
+  const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAFElEQVR42mP8z8DAwMDAxMDAwMAAAAwBAQDJ/pLvAAAAAElFTkSuQmCC','base64');
+  await page.locator('#traceWordFile').setInputFiles({name:'dog.png',mimeType:'image/png',buffer:png});
+  await expect(page.locator('#traceWordPicturePreview img')).toBeVisible();
+  await page.locator('[data-action="traceWordsSave"]').click();
+
+  await expect(page.locator('.trace-word-card')).toContainText('DOG');
+  await expect(page.locator('.trace-word-card .trace-word-thumb-img')).toBeVisible();
+  await expect(page.locator('[data-action="traceWordsStart"]')).toBeEnabled();
+
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('[data-action="traceLaunch"]').click();
+  await page.locator('dialog[open] [data-action="traceWordsLaunch"]').click();
+  await expect(page.locator('.trace-word-card')).toContainText('DOG');
+  await expect(page.locator('.trace-word-card .trace-word-thumb-img')).toBeVisible();
+
+  await page.locator('[data-action="traceWordsStart"]').click();
+  await expect(page.locator('.trace-word-intro')).toBeVisible();
+  await expect(page.locator('.trace-word-intro h1')).toHaveText('DOG');
+  await expect(page.locator('.trace-word-intro-picture')).toBeVisible();
+
+  await page.locator('[data-action="traceWordBegin"]').click();
+  await expect(page.locator('.trace-word-child #traceSvg')).toBeVisible();
+  await expect(page.locator('.trace-word-progress')).toContainText('DOG');
+  await page.locator('[data-action="traceExit"]').click();
+  await expect(page.locator('.practice-library')).toBeVisible();
+
+  expect(errors).toEqual([]);
+});

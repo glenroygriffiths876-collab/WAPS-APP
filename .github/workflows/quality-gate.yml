@@ -15,7 +15,7 @@ on:
       - 'math-learning.js'
       - 'comprehension-learning.js'
       - 'comprehension-data.js'
-      - 'assets/comprehension/**'
+      - 'assets/concepts/highres/**'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'

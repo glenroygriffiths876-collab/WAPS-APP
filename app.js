@@ -492,7 +492,7 @@ document.addEventListener('click',async e=>{
   let ad=el.closest('.academy-done');if(ad){e.preventDefault();let i=Number(ad.dataset.lesson);S.settings.academyDone=S.settings.academyDone||[];if(!S.settings.academyDone.includes(i))S.settings.academyDone.push(i);await persist();academyModal();return}
   let sb=el.closest('[data-support-board]');if(sb){e.preventDefault();let ids=sb.dataset.supportBoard==='feelings'?['happy','sad','tired','angry']:sb.dataset.supportBoard==='body'?['head','hand','foot','ear','mouth','hurts']:['help','break','stop','no'];let out=$('#supportVisuals');if(out)out.innerHTML=ids.map(id=>`<div class="visual-tile"><div>${visualHTML(id,'support-photo')}<div>${esc(concept[id].label)}</div></div></div>`).join('');return}
   let ts=el.closest('.timer-start');if(ts){e.preventDefault();clearInterval(timerId);let n=Number(ts.dataset.seconds),out=$('#visualTimer');let draw=()=>{let m=Math.floor(n/60),sec=n%60;if(out)out.textContent=`${m}:${String(sec).padStart(2,'0')}`};draw();timerId=setInterval(()=>{n--;draw();if(n<=0){clearInterval(timerId);if(out)out.textContent='Finished'}},1000);return}
-  let cg=el.closest('.child-go');if(cg){e.preventDefault();document.querySelector('#childLock')?.remove();go(cg.dataset.childRoute);return}
+  let cg=el.closest('.child-go');if(cg){e.preventDefault();document.querySelector('#childLock')?.remove();document.body.classList.remove('child-mode-active');go(cg.dataset.childRoute);return}
   let a=el.closest('[data-action]')?.dataset.action;if(!a)return;e.preventDefault();
   if(a==='closeModal'){if(modal.open)modal.close();return}
   if(a==='courseHome'){courseHomeModal();return}

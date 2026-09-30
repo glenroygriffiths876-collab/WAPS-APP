@@ -1166,15 +1166,10 @@ html[data-low-stim="1"] .math-object-btn,html[data-low-stim="1"] .math-answer{tr
 .practice-tool-card.understand .practice-tool-icon.understand{font-size:1rem;letter-spacing:-.08em}
 @media(min-width:900px){.practice-tool-row.four-tools{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
-.mu-sprite,.mu-direct-visual,.mu-snack-visual{display:block;position:relative;width:100%;overflow:hidden;border-radius:14px;background:#f4f4f1}
-.mu-sprite{aspect-ratio:1.46/1}
-.mu-sprite>i{position:absolute;inset:0;background-image:var(--mu-board);background-repeat:no-repeat;background-size:500% 400%;background-position:var(--mu-x) var(--mu-y)}
-.mu-sprite::after{content:"";position:absolute;left:0;top:0;width:19%;height:18%;background:#f4f4f1;border-bottom-right-radius:5px}
+.mu-direct-visual{display:block;position:relative;width:100%;overflow:hidden;border-radius:14px;background:#f4f4f1}
 .mu-direct-visual{aspect-ratio:1.18/1;display:grid;place-items:center}
 .mu-direct-visual>img{display:block;width:100%;height:100%;object-fit:contain}
-.mu-snack-visual{aspect-ratio:1.46/1;display:flex;align-items:center;justify-content:center;gap:2px;padding:7px}
-.mu-snack-visual img{width:31%;height:82%;object-fit:contain}
-.aac .mu-sprite.aac-photo,.aac .mu-direct-visual.aac-photo,.aac .mu-snack-visual.aac-photo{width:min(100%,76px);margin:auto auto 5px;border-radius:12px}
+.aac .mu-direct-visual.aac-photo{width:min(100%,76px);margin:auto auto 5px;border-radius:12px}
 
 .mu-launch,.mu-settings{max-width:760px;margin:auto;padding:4px 2px 12px}
 .mu-launch>h1,.mu-settings>h1{margin:.3rem 0 .35rem;color:#173551}
@@ -1217,7 +1212,7 @@ body.mu-active{overflow:hidden}.mu-active .waps-header,.mu-active .bottomnav,.mu
   .mu-child-head{grid-template-columns:44px 1fr auto;padding-left:9px;padding-right:9px}.mu-child-head>strong{font-size:.72rem}
   .mu-work{padding:9px}.mu-choice-grid{gap:7px}.mu-picture-choice{min-height:104px;padding:5px;border-radius:14px}
   .mu-picture-choice .concept-hi,.mu-picture-choice .concept-fallback{height:94px}
-  .mu-sprite::after{width:21%;height:19%}
+  
   .mu-match-stimulus{margin-bottom:10px}.mu-match-stimulus .concept-hi,.mu-match-stimulus .concept-fallback{height:140px}
   .mu-shape-grid{gap:10px}.mu-shape-grid button{min-height:128px}.mu-shape{width:66px;height:66px}.mu-shape.diamond{width:58px;height:58px}
   .mu-sort-item .concept-hi,.mu-sort-item .concept-fallback{height:145px}

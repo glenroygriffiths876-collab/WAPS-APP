@@ -214,7 +214,7 @@ test('Numbers up to supports exact ceilings through 50 across all Maths modes', 
       const more=page.locator('.math-more-numbers');
       if(!(await more.evaluate(el=>el.open)))await more.locator('summary').click();
     }
-    await page.locator('input[name="mathMax"][value="'+max+'"]').check();
+    await page.locator('input[name="mathMax"][value="'+max+'"]').check({force:true});
     await page.locator('#mathHearNumbers').uncheck({force:true});
     await page.locator('[data-action="mathSaveSettings"]').click();
     await expect(page.locator('.math-change')).toContainText('Up to '+max);

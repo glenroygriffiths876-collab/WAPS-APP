@@ -62,7 +62,7 @@ test('WhatsApp Support uses the approved group link and hides in child work', as
   await expect(join).toHaveAttribute('href','https://chat.whatsapp.com/DvI8bqupHVQD2lLQUgAKYK');
   await expect(join).toHaveAttribute('target','_blank');
   await expect(page.locator('dialog[open]')).toContainText('New members need approval from a group admin.');
-  await page.locator('dialog[open] [data-action="closeModal"]').click();
+  await page.getByRole('button',{name:'Not now'}).click();
   await page.goto('http://127.0.0.1:4173/#talk');
   await expect(page.locator('#supportFab')).toBeHidden();
   await page.goto('http://127.0.0.1:4173/#practice');

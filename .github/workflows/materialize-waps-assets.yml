@@ -1,0 +1,60 @@
+name: Materialize WAPS individual assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/waps-asset-payload-*.txt'
+      - '.github/workflows/materialize-waps-assets.yml'
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decode staged WebP assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64
+          payloads=sorted(Path('tools').glob('waps-asset-payload-*.txt'))
+          if not payloads:
+              print('No staged asset payloads; nothing to do.')
+              raise SystemExit(0)
+          out=Path('assets/concepts/highres')
+          out.mkdir(parents=True,exist_ok=True)
+          created=[]
+          for payload in payloads:
+              for raw in payload.read_text(encoding='utf-8').splitlines():
+                  if not raw.strip():
+                      continue
+                  name,b64=raw.split('\t',1)
+                  data=base64.b64decode(b64)
+                  if data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+                      raise SystemExit(f'Invalid WebP payload: {name}')
+                  target=out/f'{name}.webp'
+                  target.write_bytes(data)
+                  if target.stat().st_size < 4000:
+                      raise SystemExit(f'Asset too small: {target}')
+                  created.append(str(target))
+          print('Decoded',len(created),'individual WAPS assets')
+          PY
+      - name: Commit individual assets
+        run: |
+          if ! compgen -G "tools/waps-asset-payload-*.txt" > /dev/null; then
+            echo "No payload files found."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/concepts/highres/*.webp
+          git rm -f tools/waps-asset-payload-*.txt
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Materialize individual WAPS comprehension assets"
+          git push origin HEAD:main

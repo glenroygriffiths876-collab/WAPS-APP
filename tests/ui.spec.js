@@ -156,6 +156,142 @@ test('Numbers & Maths supports touch counting, addition and take away', async ({
   expect(errors).toEqual([]);
 });
 
+
+test('Count finishes the spoken final number before showing How many', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.addInitScript(()=>{
+    window.__wapsSpeechLog=[];
+    window.__wapsSpeechTimer=null;
+    class MockUtterance{constructor(text){this.text=String(text);this.rate=1;this.pitch=1;this.onend=null;this.onerror=null}}
+    const synth={
+      cancel(){if(window.__wapsSpeechTimer){clearTimeout(window.__wapsSpeechTimer);window.__wapsSpeechTimer=null}window.__wapsSpeechLog.push('cancel')},
+      speak(u){window.__wapsSpeechLog.push('speak:'+u.text);window.__wapsSpeechTimer=setTimeout(()=>{window.__wapsSpeechTimer=null;window.__wapsSpeechLog.push('end:'+u.text);if(u.onend)u.onend()},350)}
+    };
+    try{Object.defineProperty(window,'SpeechSynthesisUtterance',{configurable:true,value:MockUtterance})}catch{window.SpeechSynthesisUtterance=MockUtterance}
+    try{Object.defineProperty(window,'speechSynthesis',{configurable:true,value:synth})}catch{window.speechSynthesis=synth}
+  });
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await page.locator('input[name="mathMax"][value="3"]').check({force:true});
+  await page.locator('#mathHearNumbers').check({force:true});
+  await page.locator('[data-action="mathSaveSettings"]').click();
+  await page.locator('[data-math-type="count"]').click();
+  await page.waitForTimeout(600);
+  await page.evaluate(()=>window.__wapsSpeechLog=[]);
+
+  const total=Number(await page.locator('.math-child-screen').getAttribute('data-math-total'));
+  const first=page.locator('.math-object-btn').first();
+  await first.click();
+  await first.click();
+  await expect(page.locator('.math-object-btn.counted')).toHaveCount(1);
+
+  for(let i=1;i<total;i++){
+    const next=page.locator('.math-object-btn:not(.counted)').first();
+    await next.click();
+  }
+
+  const hiddenImmediately=await page.locator('#mathAnswerGrid').evaluate(el=>el.classList.contains('hidden'));
+  expect(hiddenImmediately).toBe(true);
+  const immediateLog=await page.evaluate(()=>[...window.__wapsSpeechLog]);
+  expect(immediateLog).toContain('speak:'+total);
+  expect(immediateLog).not.toContain('end:'+total);
+
+  await expect(page.locator('#mathAnswerGrid')).toBeVisible({timeout:1400});
+  await page.waitForTimeout(250);
+  const log=await page.evaluate(()=>[...window.__wapsSpeechLog]);
+  const endIndex=log.indexOf('end:'+total);
+  const howManyIndex=log.indexOf('speak:How many?');
+  expect(endIndex).toBeGreaterThanOrEqual(0);
+  expect(howManyIndex).toBeGreaterThan(endIndex);
+  expect(errors).toEqual([]);
+});
+
+test('Numbers up to supports exact ceilings through 50 across all Maths modes', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+
+  for(const max of [3,10,12,20,50]){
+    await page.locator('[data-action="mathLaunch"]').click();
+    await page.locator('[data-action="mathSettings"]').click();
+    await page.locator('input[name="mathMax"][value="'+max+'"]').check({force:true});
+    await page.locator('#mathHearNumbers').uncheck({force:true});
+    await page.locator('[data-action="mathSaveSettings"]').click();
+    await expect(page.locator('.math-change')).toContainText('Up to '+max);
+
+    await page.locator('[data-math-type="count"]').click();
+    const countScreen=page.locator('.math-child-screen');
+    expect(Number(await countScreen.getAttribute('data-math-max'))).toBe(max);
+    const countTotal=Number(await countScreen.getAttribute('data-math-total'));
+    expect(countTotal).toBeGreaterThanOrEqual(1);
+    expect(countTotal).toBeLessThanOrEqual(max);
+    expect(await page.locator('.math-object-btn').count()).toBeLessThanOrEqual(10);
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(2);
+    await page.locator('[data-action="mathExit"]').click();
+
+    await page.locator('[data-action="mathLaunch"]').click();
+    await page.locator('[data-math-type="add"]').click();
+    const addScreen=page.locator('.math-child-screen');
+    expect(Number(await addScreen.getAttribute('data-math-answer-value'))).toBeLessThanOrEqual(max);
+    expect(Number(await addScreen.getAttribute('data-math-total'))).toBeLessThanOrEqual(max);
+    await page.locator('[data-action="mathExit"]').click();
+
+    await page.locator('[data-action="mathLaunch"]').click();
+    await page.locator('[data-math-type="subtract"]').click();
+    const subScreen=page.locator('.math-child-screen');
+    expect(Number(await subScreen.getAttribute('data-math-start'))).toBeLessThanOrEqual(max);
+    expect(Number(await subScreen.getAttribute('data-math-answer-value'))).toBeGreaterThanOrEqual(0);
+    await page.locator('[data-action="mathExit"]').click();
+  }
+
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await expect(page.locator('input[name="mathMax"][value="50"]')).toBeChecked();
+  expect(errors).toEqual([]);
+});
+
+test('Numbers up to stays separate for each child profile', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('#pname').fill('Math Child A');
+  await page.locator('[data-action="saveProfile"]').click();
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await page.locator('input[name="mathMax"][value="4"]').check({force:true});
+  await page.locator('[data-action="mathSaveSettings"]').click();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('#pname').fill('Math Child B');
+  await page.locator('[data-action="saveProfile"]').click();
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await page.locator('input[name="mathMax"][value="8"]').check({force:true});
+  await page.locator('[data-action="mathSaveSettings"]').click();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('.list-item',{hasText:'Math Child A'}).locator('.choose-profile').click();
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await expect(page.locator('input[name="mathMax"][value="4"]')).toBeChecked();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('.list-item',{hasText:'Math Child B'}).locator('.choose-profile').click();
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-action="mathSettings"]').click();
+  await expect(page.locator('input[name="mathMax"][value="8"]')).toBeChecked();
+  expect(errors).toEqual([]);
+});
+
 test('Mobile core screens have no horizontal overflow', async ({page})=>{
   for(const viewport of [{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:820,height:1180}]){
     await page.setViewportSize(viewport);

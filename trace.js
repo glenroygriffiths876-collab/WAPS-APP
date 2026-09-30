@@ -4,6 +4,7 @@ export function createTraceFeature(ctx){
   const {getState,persist,active,show,toast,main,modal,go,esc,celebrate}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const NUMBER_BUTTONS=Array.from({length:21},(_,i)=>String(i));
+  const clone=v=>JSON.parse(JSON.stringify(v));
   const DEFAULTS={
     letters:{type:'letters',selected:['A','B','C','D','E','F'],guidance:'guided',lineSize:'medium',letterAudio:'name'},
     numbers:{type:'numbers',selected:['0','1','2','3','4','5'],guidance:'guided',lineSize:'medium',letterAudio:'name'}
@@ -26,7 +27,7 @@ export function createTraceFeature(ctx){
   function bucket(obj,key){if(!obj[key])obj[key]={};return obj[key]}
   function prefs(type){
     const t=state(),b=bucket(t.prefs,profileKey());
-    if(!b[type])b[type]=structuredClone(DEFAULTS[type]);
+    if(!b[type])b[type]=clone(DEFAULTS[type]);
     return b[type];
   }
   function session(type){
@@ -69,7 +70,7 @@ export function createTraceFeature(ctx){
   }
 
   function config(type){
-    const p=prefs(type);draft={...structuredClone(p),type,selected:[...(p.selected||DEFAULTS[type].selected)]};
+    const p=prefs(type);draft={...clone(p),type,selected:[...(p.selected||DEFAULTS[type].selected)]};
     renderConfig();
   }
   function renderConfig(){
@@ -130,7 +131,7 @@ export function createTraceFeature(ctx){
   async function start(){
     readConfig();
     if(!draft.selected.length){toast('Choose at least one '+(draft.type==='letters'?'letter':'number')+'.');return}
-    const t=state(),pb=bucket(t.prefs,profileKey());pb[draft.type]={...structuredClone(draft)};
+    const t=state(),pb=bucket(t.prefs,profileKey());pb[draft.type]={...clone(draft)};
     let s=session(draft.type),sig=signature(draft.selected,draft);
     if(!s||s.signature!==sig||!Array.isArray(s.items)||s.cursor>=s.items.length){
       s={type:draft.type,items:[...draft.selected],cursor:0,round:(s?.round||0)+1,signature:sig,started:new Date().toISOString()};

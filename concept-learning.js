@@ -44,13 +44,7 @@ export function createConceptLearningFeature(ctx){
   function launch(){
     cleanup();
     const cs=session('colours'),ss=session('shapes');
-    show(`<div class="cs-launch"><span class="eyebrow">WAPS COLOURS & SHAPES</span><h1>What would you like to identify?</h1><p>Simple visual choices. One concept changes to the next after every correct answer.</p>
-      <div class="cs-type-grid">
-        <button data-cs-type="colours"><span>🎨</span><b>Colours</b><small>Same shape, different colours${cs&&cs.current?' · Continue saved question':''}</small></button>
-        <button data-cs-type="shapes"><span>🔷</span><b>Shapes</b><small>Same colour, different shapes${ss&&ss.current?' · Continue saved question':''}</small></button>
-      </div>
-      <div class="notice"><b>Learning safeguard:</b> colour questions change only colour. Shape questions change only shape, so the child cannot solve the task using the wrong clue.</div>
-    </div>`,true);
+    show(`<div class="cs-launch simple-cs-launch"><span class="eyebrow">COLOURS & SHAPES</span><h1>Choose one.</h1><div class="cs-type-grid"><button data-cs-type="colours"><span class="cs-choice-mark">●</span><b>Colours</b><small>${cs&&cs.current?'Continue':'Find the colour'}</small></button><button data-cs-type="shapes"><span class="cs-choice-mark">△</span><b>Shapes</b><small>${ss&&ss.current?'Continue':'Find the shape'}</small></button></div></div>`,true);
   }
 
   function config(type){
@@ -58,19 +52,19 @@ export function createConceptLearningFeature(ctx){
   }
   function renderConfig(){
     const isColour=draft.type==='colours',all=isColour?COLOURS:SHAPES,presets=isColour?COLOUR_PRESETS:SHAPE_PRESETS;
-    show(`<div class="cs-config"><button class="btn ghost" data-action="csLaunch">← Colours & Shapes</button><span class="eyebrow">${typeIcon(draft.type)} ${typeTitle(draft.type).toUpperCase()}</span><h1>Choose what to practise.</h1>
+    show(`<div class="cs-config"><button class="btn ghost" data-action="csLaunch">← Colours & Shapes</button><span class="eyebrow">${typeIcon(draft.type)} ${typeTitle(draft.type).toUpperCase()}</span><h1>Choose.</h1>
       <div class="cs-presets">${Object.entries(presets).map(([id,list])=>`<button data-cs-preset="${id}">${id[0].toUpperCase()+id.slice(1)} · ${list.length}</button>`).join('')}</div>
       <div class="cs-token-grid ${isColour?'colours':'shapes'}">${all.map(x=>`<button class="${draft.selected.includes(x.id)?'selected':''}" data-cs-token="${x.id}">${isColour?`<span class="cs-mini-colour" style="background:${x.value};${x.outline?`border-color:${x.outline}`:''}"></span>`:`<svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1E88E5">${x.svg}</g></svg>`}<b>${esc(x.label)}</b></button>`).join('')}</div>
-      <div class="cs-settings-grid">
+      <details class="cs-more-settings"><summary>Practice options</summary><div class="cs-settings-grid">
         <label>Choices<select id="csChoices"><option value="2" ${draft.choices==2?'selected':''}>2</option><option value="3" ${draft.choices==3?'selected':''}>3</option><option value="4" ${draft.choices==4?'selected':''}>4</option></select></label>
         <label>Session<select id="csSessionLength"><option value="round" ${draft.sessionLength==='round'?'selected':''}>One round</option><option value="5" ${String(draft.sessionLength)==='5'?'selected':''}>5 questions</option><option value="10" ${String(draft.sessionLength)==='10'?'selected':''}>10 questions</option><option value="15" ${String(draft.sessionLength)==='15'?'selected':''}>15 questions</option><option value="continuous" ${draft.sessionLength==='continuous'?'selected':''}>Continuous</option></select></label>
         <label class="cs-toggle"><input id="csShowWord" type="checkbox" ${draft.showWord?'checked':''}><span>Show word</span></label>
         <label class="cs-toggle"><input id="csAutoSpeak" type="checkbox" ${draft.autoSpeak?'checked':''}><span>Auto-speak</span></label>
         <label class="cs-toggle"><input id="csCelebration" type="checkbox" ${draft.celebration?'checked':''}><span>Celebration</span></label>
-      </div>
-      <div class="cs-selection-summary"><b id="csSelectedCount">${draft.selected.length} selected</b><span>Choose at least 2. WAPS remembers the set separately for each child.</span></div>
-      ${isColour?'<div class="notice"><b>Colour accessibility:</b> this activity relies on colour discrimination. If a child has a known colour-vision difference, adapt the selected colours or use Shapes. WAPS does not diagnose colour vision.</div>':''}
-      <div class="actions"><button class="btn" data-action="csStart">Start / continue →</button>${session(draft.type)?'<button class="btn ghost" data-action="csRestartSet">Restart saved set</button>':''}</div>
+      </div></details>
+      <div class="cs-selection-summary"><b id="csSelectedCount">${draft.selected.length} selected</b><span>Choose at least 2.</span></div>
+      
+      <div class="actions"><button class="btn" data-action="csStart">Start</button>${session(draft.type)?'<button class="btn ghost" data-action="csRestartSet">Restart saved set</button>':''}</div>
     </div>`,true);
   }
   function applyPreset(id){

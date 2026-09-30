@@ -11,6 +11,7 @@ on:
       - 'trace.js'
       - 'trace-words.js'
       - 'trace-data.js'
+      - 'math-learning.js'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

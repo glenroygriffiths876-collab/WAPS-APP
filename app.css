@@ -942,3 +942,54 @@ body.trace-active .waps-share-fab,body.concept-id-active .waps-share-fab{display
   .qr-brand{justify-content:flex-start}.qr-frame{width:min(330px,82vw);border-width:9px;border-radius:22px}
 }
 @media print{.waps-share-fab{display:none!important}}
+
+
+/* ===== Install WAPS · v38 ===== */
+.waps-install-fab{
+  position:fixed;right:132px;bottom:24px;z-index:70;
+  min-height:54px;padding:0 17px 0 13px;border:0;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(145deg,#087f45,#18ad60);color:#fff;
+  font-weight:900;box-shadow:0 12px 30px rgba(8,127,69,.25);
+  cursor:pointer;animation:installFabIn .32s ease-out both;
+  transition:transform .18s ease,box-shadow .18s ease
+}
+.waps-install-fab:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(8,127,69,.32)}
+.waps-install-fab:active{transform:translateY(0) scale(.98)}
+.waps-install-fab:focus-visible{outline:4px solid rgba(255,194,28,.75);outline-offset:3px}
+.waps-install-fab svg{width:24px;height:24px;flex:0 0 24px}
+.waps-install-fab span{font-size:.82rem;letter-spacing:.01em;white-space:nowrap}
+@keyframes installFabIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+
+body.trace-active .waps-install-fab,
+body.concept-id-active .waps-install-fab{display:none!important}
+
+.install-help-sheet{max-width:680px;margin:auto}
+.install-brand{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:center;margin-bottom:10px}
+.install-brand img{width:68px;height:68px;border-radius:18px;box-shadow:0 10px 25px rgba(75,42,138,.2)}
+.install-brand h2{font-size:clamp(1.6rem,4vw,2.35rem);line-height:1.05;margin:.2rem 0;color:#0f315f}
+.install-lead{color:#586762;line-height:1.5;margin:9px 0 16px}
+.install-steps{display:grid;gap:9px;margin:14px 0 18px}
+.install-step{display:grid;grid-template-columns:46px 1fr;gap:11px;align-items:center;padding:12px;border:1px solid #d8e6e2;border-radius:16px;background:#fff}
+.install-step>span{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#eee9ff;color:#54279b;font-size:1.12rem;font-weight:1000}
+.install-step b,.install-step small{display:block}.install-step b{color:#173551}.install-step small{color:#63716d;line-height:1.3;margin-top:2px}
+
+html[data-high-contrast="1"] .waps-install-fab{background:#006a32!important;color:#fff!important;border:2px solid #000}
+html[data-low-stim="1"] .waps-install-fab{animation:none!important}
+
+@media(max-width:760px){
+  .waps-install-fab{
+    right:70px;bottom:calc(70px + env(safe-area-inset-bottom));
+    min-height:52px;height:52px;padding:0 13px;border-radius:18px;gap:6px
+  }
+  .waps-install-fab svg{width:22px;height:22px;flex-basis:22px}
+  .waps-install-fab span{font-size:.7rem}
+  .install-brand{grid-template-columns:58px 1fr}.install-brand img{width:56px;height:56px;border-radius:16px}
+  .install-step{padding:10px;grid-template-columns:40px 1fr}.install-step>span{width:38px;height:38px}
+}
+@media(max-width:390px){
+  .waps-install-fab{right:68px;padding:0 10px}
+  .waps-install-fab span{font-size:.66rem}
+}
+@media(prefers-reduced-motion:reduce){.waps-install-fab{animation:none!important;transition:none!important}}
+@media print{.waps-install-fab{display:none!important}}

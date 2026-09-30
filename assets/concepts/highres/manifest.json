@@ -1498,5 +1498,215 @@
     "width": 1024,
     "height": 1024,
     "version": "approved-2026-09-28"
+  },
+  "supermarket": {
+    "path": "./assets/concepts/highres/supermarket.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "playground": {
+    "path": "./assets/concepts/highres/playground.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "clock": {
+    "path": "./assets/concepts/highres/clock.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "calendar": {
+    "path": "./assets/concepts/highres/calendar.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "fork": {
+    "path": "./assets/concepts/highres/fork.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "glass": {
+    "path": "./assets/concepts/highres/glass.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "bottle": {
+    "path": "./assets/concepts/highres/bottle.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "pen": {
+    "path": "./assets/concepts/highres/pen.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "marker": {
+    "path": "./assets/concepts/highres/marker.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "dress": {
+    "path": "./assets/concepts/highres/dress.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "hat": {
+    "path": "./assets/concepts/highres/hat.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "red-apple": {
+    "path": "./assets/concepts/highres/red-apple.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "red-car": {
+    "path": "./assets/concepts/highres/red-car.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "blue-car": {
+    "path": "./assets/concepts/highres/blue-car.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "brown-dog": {
+    "path": "./assets/concepts/highres/brown-dog.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "brown-horse": {
+    "path": "./assets/concepts/highres/brown-horse.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "green-dotted-ball": {
+    "path": "./assets/concepts/highres/green-dotted-ball.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "hot-soup": {
+    "path": "./assets/concepts/highres/hot-soup.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "ice-cream": {
+    "path": "./assets/concepts/highres/ice-cream.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "snack": {
+    "path": "./assets/concepts/highres/snack.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
+  },
+  "kite": {
+    "path": "./assets/concepts/highres/kite.webp",
+    "source": "WAPS approved production visual library",
+    "rights_status": "User-supplied AI-generated production asset",
+    "review_status": "Approved WAPS visual asset; individual production crop integrated 2026-09-30",
+    "visual_type": "high-resolution teaching image",
+    "width": 1024,
+    "height": 1024,
+    "version": "approved-2026-09-30"
   }
 }

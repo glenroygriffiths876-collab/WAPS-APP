@@ -7,7 +7,7 @@ export function createMathLearningFeature(ctx){
   const DEFAULTS={maxNumber:5,sessionLength:5,hearNumbers:true};
   const MAX_ALLOWED=50;
   const PAGE_SIZE=10;
-  let runtime=null,advanceTimer=null,cueTimers=[];
+  let runtime=null,advanceTimer=null,cueTimers=[],speechTransitionTimer=null;
 
   function clone(v){return JSON.parse(JSON.stringify(v))}
   function state(){
@@ -43,7 +43,7 @@ export function createMathLearningFeature(ctx){
   function maxValue(p=prefs()){return Math.max(1,Math.min(MAX_ALLOWED,Number(p.maxNumber)||5))}
   function goal(p=prefs()){return String(p.sessionLength)==='continuous'?Infinity:Number(p.sessionLength||5)}
   function signature(p=prefs()){return JSON.stringify([maxValue(p),String(p.sessionLength),!!p.hearNumbers])}
-  function clearTimers(){clearTimeout(advanceTimer);advanceTimer=null;cueTimers.forEach(clearTimeout);cueTimers=[]}
+  function clearTimers(){clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;cueTimers.forEach(clearTimeout);cueTimers=[]}
   function stopSpeech(){if('speechSynthesis'in window)speechSynthesis.cancel()}
   function cleanup(){clearTimers();stopSpeech();runtime=null;document.body.classList.remove('math-active')}
   function speechAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
@@ -61,14 +61,15 @@ export function createMathLearningFeature(ctx){
   }
   function speakNumberThen(n,done){
     if(runtime?.transitioning)return;
-    const finish=()=>{if(runtime)runtime.transitioning=false;done?.()};
+    const token=runtime;
+    const finish=()=>{if(runtime!==token)return;if(runtime)runtime.transitioning=false;done?.()};
     if(!prefs().hearNumbers||!speechAvailable()){finish();return}
     if(runtime)runtime.transitioning=true;
     speechSynthesis.cancel();
-    let settled=false,fallback=null;
-    const once=()=>{if(settled)return;settled=true;if(fallback)clearTimeout(fallback);finish()};
+    let settled=false;
+    const once=()=>{if(settled)return;settled=true;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;finish()};
     const u=utter(n);u.onend=once;u.onerror=once;
-    fallback=setTimeout(once,1500);
+    speechTransitionTimer=setTimeout(once,1500);
     try{speechSynthesis.speak(u)}catch{once()}
   }
   function label(type){return LABELS[type]||'Maths'}
@@ -81,7 +82,8 @@ export function createMathLearningFeature(ctx){
     return '<button class="math-object-btn '+(counted?'counted ':'')+(removed?'removed ':'')+'" data-math-object="'+index+'" '+(removed?'disabled':'')+' aria-label="'+esc((removed?'Taken away ':'')+'object '+(index+1))+'"><img src="./assets/concepts/highres/'+id+'.webp" alt="" draggable="false">'+(counted&&!removed?'<span class="math-count-badge">'+seq+'</span>':'')+'</button>';
   }
   function chunkParts(start,count,labelText){
-    const out=[],parts=Math.ceil(count/PAGE_SIZE)||1;
+    const out=[];if(count<=0)return out;
+    const parts=Math.ceil(count/PAGE_SIZE);
     for(let part=0;part<parts;part++){
       const first=start+part*PAGE_SIZE,last=Math.min(start+count,first+PAGE_SIZE);
       out.push({indices:Array.from({length:last-first},(_,i)=>first+i),label:labelText,part:part+1,parts});
@@ -143,7 +145,7 @@ export function createMathLearningFeature(ctx){
       return max<=10?shuffled(deck):mixDifficulty(deck.filter(x=>x.quantity<=10),deck.filter(x=>x.quantity>10));
     }
     if(type==='add'){
-      for(let a=1;a<=max;a++)for(let b=1;b<=max;b++)if(a+b<=max)deck.push({a,b,answer:a+b});
+      for(let a=0;a<=max;a++)for(let b=0;b<=max;b++)if(a+b>=1&&a+b<=max)deck.push({a,b,answer:a+b});
       return max<=10?shuffled(deck):mixDifficulty(deck.filter(x=>x.answer<=10),deck.filter(x=>x.answer>10));
     }
     for(let start=1;start<=max;start++)for(let remove=1;remove<=start;remove++)deck.push({start,remove,answer:start-remove});

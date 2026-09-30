@@ -12,6 +12,7 @@ on:
       - 'trace-words.js'
       - 'trace-data.js'
       - 'concept-learning.js'
+      - 'math-learning.js'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'
@@ -38,6 +39,7 @@ jobs:
           node --check trace-words.js
           node --check trace-data.js
           node --check concept-learning.js
+          node --check math-learning.js
       - name: Structural smoke gate
         run: python3 smoke.py
       - name: Product ceiling gate

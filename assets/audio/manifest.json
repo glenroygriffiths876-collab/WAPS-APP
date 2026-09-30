@@ -1,0 +1,14 @@
+{
+  "track_id": "waps-gentle-drift",
+  "title": "Gentle Drift",
+  "type": "procedural ambient background audio",
+  "source": "Original WAPS-generated Web Audio synthesis",
+  "creator": "WAPS Communication",
+  "rights_status": "Original application-generated audio; no third-party recording bundled",
+  "created": "2026-09-30",
+  "character": "soft sustained tones; no vocals; no percussion; no alert sounds",
+  "default": "off",
+  "default_volume": 0.2,
+  "speech_ducking": true,
+  "notes": "Optional sensory-aware ambience only. No therapeutic or autism-treatment claim."
+}

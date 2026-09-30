@@ -295,12 +295,12 @@ export function createTraceFeature(ctx){
   function speechMatches(transcript){
     const got=normalizeSpeech(transcript);
     if(runtime.type==='numbers'){
-      const target=String(Number(runtime.token)),word=numberWords(runtime.token);return got===target||got===word||got==='number '+target||got==='number '+word;
+      const target=String(Number(runtime.token)),word=numberWords(runtime.token);return got===target||got===word||got==='number '+target||got==='number '+word||(target==='0'&&got==='oh');
     }
     const L=String(runtime.token).toUpperCase(),low=L.toLowerCase(),name=normalizeSpeech(LETTER_NAMES[L]||L);
     const aliases=new Set([low,name,'letter '+low,'letter '+name]);
-    if(L==='A')aliases.add('hey');if(L==='C')aliases.add('sea');if(L==='G')aliases.add('gee');if(L==='R')aliases.add('are');if(L==='U')aliases.add('you');if(L==='Y')aliases.add('why');if(L==='Z'){aliases.add('zee');aliases.add('zed')}
-    return aliases.has(got);
+    const common={A:['hey'],B:['be','bee'],C:['sea','see'],D:['dee'],E:['e'],F:['eff'],G:['gee'],H:['aitch','h'],I:['eye'],J:['jay'],K:['kay'],L:['el'],M:['em'],N:['en'],O:['oh'],P:['pea','pee'],Q:['cue','queue'],R:['are','ar'],S:['ess'],T:['tea','tee'],U:['you'],V:['vee'],W:['double you','double u'],X:['ex'],Y:['why'],Z:['zee','zed']};
+    (common[L]||[]).forEach(x=>aliases.add(x));return aliases.has(got);
   }
   function listen(){
     const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R){toast('Speech checking is not available.');return}

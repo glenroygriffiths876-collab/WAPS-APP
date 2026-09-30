@@ -448,7 +448,7 @@ const TraceWords=createTraceWordsFeature({getState:()=>S,persist,active,show,toa
 const ConceptLearning=createConceptLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect});
 document.addEventListener('click',async e=>{
   const el=e.target instanceof Element?e.target:null;if(!el)return;
-  let routeBtn=el.closest('[data-route]');if(routeBtn){e.preventDefault();go(routeBtn.dataset.route);return}
+  let routeBtn=el.closest('button[data-route],a[data-route]');if(routeBtn){e.preventDefault();go(routeBtn.dataset.route);return}
   if(await Trace.handleClick(el)){e.preventDefault();return}
   if(await TraceWords.handleClick(el)){e.preventDefault();return}
   if(await ConceptLearning.handleClick(el)){e.preventDefault();return}

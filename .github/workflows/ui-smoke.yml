@@ -8,6 +8,9 @@ on:
       - 'app.css'
       - 'data.js'
       - 'storage.js'
+      - 'trace.js'
+      - 'trace-words.js'
+      - 'trace-data.js'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

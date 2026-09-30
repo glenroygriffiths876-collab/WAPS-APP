@@ -406,22 +406,27 @@ test('Match & Understand individual production images load', async ({page})=>{
     for(const id of ids){
       const cell=document.createElement('div');
       cell.dataset.qa=id;
-      cell.innerHTML=mod.muSpecialVisualHTML(id,'qa-photo');
+      cell.innerHTML=mod.muSpecialVisualHTML(id,'qa-photo').replace('loading="lazy"','loading="eager"');
       host.append(cell);
     }
+    Object.assign(host.style,{position:'fixed',inset:'0',zIndex:'99999',overflow:'auto',background:'#fff'});
     const requests=await Promise.all(ids.map(async id=>{
       const src='./assets/concepts/highres/'+id+'.webp';
       const response=await fetch(src,{cache:'no-store'});
       return {id,src,status:response.status,ok:response.ok};
     }));
     const imgs=[...host.querySelectorAll('img')];
-    await Promise.all(imgs.map(img=>img.complete
-      ? (img.naturalWidth>0?Promise.resolve():Promise.reject(new Error('broken '+img.src)))
-      : new Promise((resolve,reject)=>{
-          img.addEventListener('load',resolve,{once:true});
-          img.addEventListener('error',()=>reject(new Error('broken '+img.src)),{once:true});
-        })
-    ));
+    for(const img of imgs){
+      img.loading='eager';
+      img.style.width='64px';
+      img.style.height='64px';
+    }
+    await Promise.all(imgs.map(img=>new Promise((resolve,reject)=>{
+      if(img.complete)return img.naturalWidth>0?resolve():reject(new Error('broken '+img.src));
+      const timer=setTimeout(()=>reject(new Error('image timeout '+img.src)),5000);
+      img.addEventListener('load',()=>{clearTimeout(timer);resolve()},{once:true});
+      img.addEventListener('error',()=>{clearTimeout(timer);reject(new Error('broken '+img.src))},{once:true});
+    })));
     return {
       requests,
       images:imgs.map(img=>({

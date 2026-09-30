@@ -493,8 +493,67 @@ test('Core app remains available offline after first load', async ({page,context
   await page.waitForTimeout(1200);
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded'});
-  await expect(page.locator('.simple-home')).toBeVisible();
+  await expect(page.locator('.calm-home')).toBeVisible();
   await page.locator('.desktopnav [data-route="practice"]').click();
   await expect(page.locator('.practice-library')).toBeVisible();
   await context.setOffline(false);
+});
+
+
+test('v48 home keeps only Talk and Practice Together dominant', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#home');
+  await expect(page.locator('.home-big-action')).toHaveCount(2);
+  await expect(page.locator('.home-big-action').filter({hasText:'Talk'})).toBeVisible();
+  await expect(page.locator('.home-big-action').filter({hasText:'Practice Together'})).toBeVisible();
+  await expect(page.locator('.calm-home')).not.toContainText('Help Now');
+  await expect(page.locator('.calm-home')).not.toContainText('Coach');
+  await expect(page.locator('.desktopnav [data-route="coach"]')).toHaveCount(0);
+  await expect(page.locator('.bottomnav [data-route="coach"]')).toHaveCount(0);
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test('v48 Practice Together presents balanced activities and external Explore & Play', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await expect(page.locator('.practice-six-tools .practice-tool-card')).toHaveCount(6);
+  await expect(page.locator('[data-action="startUnifiedPractice"]')).toContainText('Mixed Practice');
+  await expect(page.locator('a.practice-tool-card.explore')).toContainText('Explore & Play');
+  await expect(page.locator('a.practice-tool-card.explore')).toHaveAttribute('href','https://toytheater.com/');
+  await expect(page.locator('a.practice-tool-card.explore')).toHaveAttribute('target','_blank');
+  await expect(page.locator('.practice-library')).not.toContainText('Ready to start?');
+  expect(errors).toEqual([]);
+});
+
+test('v48 Find Help contains Coach and School Shadow Caregiver resource', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#more');
+  await page.locator('[data-more-group="help"]').click();
+  await expect(page.locator('dialog[open]')).toContainText('Help now');
+  await expect(page.locator('dialog[open]')).toContainText('Coach');
+  await expect(page.locator('dialog[open]')).toContainText('School Shadow / Caregiver');
+  await page.locator('[data-action="shadowHelp"]').click();
+  await expect(page.locator('.shadow-help-sheet')).toBeVisible();
+  await expect(page.locator('.shadow-help-sheet')).toContainText('Documents you may need');
+  await expect(page.locator('[data-shadow-pdf="requirements"]')).toBeVisible();
+  await expect(page.locator('[data-shadow-pdf="job"]')).toBeVisible();
+  await expect(page.locator('.shadow-help-sheet a[href="https://moey.gov.jm/special-education-unit/"]')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('v48 calm sound is opt-in and volume is caregiver controlled', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+  await page.locator('[data-action="settings"]').first().click();
+  await expect(page.locator('#backgroundAudioSetting')).not.toBeChecked();
+  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.2');
+  await page.locator('#audioVolumeSetting').fill('0.35');
+  await expect(page.locator('#audioVolumeSettingValue')).toHaveText('35%');
+  await page.locator('[data-action="saveSettings"]').click();
+  await page.locator('[data-action="settings"]').first().click();
+  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.35');
+  expect(errors).toEqual([]);
 });

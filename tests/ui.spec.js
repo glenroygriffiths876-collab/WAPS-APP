@@ -500,7 +500,7 @@ test('Core app remains available offline after first load', async ({page,context
 });
 
 
-test('v48 home keeps only Talk and Practice Together dominant', async ({page})=>{
+test('v49 home keeps only Talk and Practice Together dominant', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
@@ -516,19 +516,24 @@ test('v48 home keeps only Talk and Practice Together dominant', async ({page})=>
   expect(errors).toEqual([]);
 });
 
-test('v48 Practice Together presents balanced activities and external Explore & Play', async ({page})=>{
+test('v49 Practice Together separates WAPS Activities from Explore More', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#practice');
-  await expect(page.locator('.practice-six-tools .practice-tool-card')).toHaveCount(6);
+  await expect(page.locator('.practice-tabs [data-practice-tab="waps"]')).toHaveAttribute('aria-selected','true');
+  await expect(page.locator('.practice-native-grid .practice-tool-card')).toHaveCount(6);
   await expect(page.locator('[data-action="startUnifiedPractice"]')).toContainText('Mixed Practice');
-  await expect(page.locator('a.practice-tool-card.explore')).toContainText('Explore & Play');
-  await expect(page.locator('a.practice-tool-card.explore')).toHaveAttribute('href','https://toytheater.com/');
-  await expect(page.locator('a.practice-tool-card.explore')).toHaveAttribute('target','_blank');
-  await expect(page.locator('.practice-library')).not.toContainText('Ready to start?');
+  await expect(page.locator('.practice-native-grid')).toContainText('Words & Names');
+  await expect(page.locator('[data-external-learning]')).toHaveCount(0);
+  await page.locator('[data-practice-tab="explore"]').click();
+  await expect(page.locator('[data-practice-tab="explore"]')).toHaveAttribute('aria-selected','true');
+  const toy=page.locator('[data-external-learning="toy-theater"]');
+  await expect(toy).toContainText('Toy Theater');
+  await expect(toy).toHaveAttribute('href','https://toytheater.com/');
+  await expect(toy).toHaveAttribute('target','_blank');
   expect(errors).toEqual([]);
 });
 
-test('v48 Find Help contains Coach and School Shadow Caregiver resource', async ({page})=>{
+test('v49 Find Help contains Coach and School Shadow Caregiver resource', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#more');
   await page.locator('[data-more-group="help"]').click();
@@ -544,16 +549,118 @@ test('v48 Find Help contains Coach and School Shadow Caregiver resource', async 
   expect(errors).toEqual([]);
 });
 
-test('v48 calm sound is opt-in and volume is caregiver controlled', async ({page})=>{
+test('v49 Gentle Steps music is opt-in, bundled and caregiver controlled', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
+  const asset=await page.evaluate(()=>fetch('./assets/audio/waps-gentle-steps.mp3',{cache:'no-store'}).then(r=>({ok:r.ok,status:r.status,size:Number(r.headers.get('content-length')||0)})));
+  expect(asset.ok).toBeTruthy();
+  expect(asset.status).toBe(200);
   await page.locator('[data-action="settings"]').first().click();
   await expect(page.locator('#backgroundAudioSetting')).not.toBeChecked();
-  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.2');
+  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.24');
   await page.locator('#audioVolumeSetting').fill('0.35');
   await expect(page.locator('#audioVolumeSettingValue')).toHaveText('35%');
+  await page.locator('[data-action="previewMusic"]').click();
+  await page.waitForTimeout(250);
+  const state=await page.evaluate(()=>({music:document.documentElement.dataset.music,src:document.querySelector('audio')?.src||null}));
+  expect(['playing','blocked']).toContain(state.music);
   await page.locator('[data-action="saveSettings"]').click();
   await page.locator('[data-action="settings"]').first().click();
   await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.35');
   expect(errors).toEqual([]);
+});
+
+
+
+test('v49 Talk is compact on a 390x844 phone', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#talk');
+  await expect(page.locator('.compact-talk-title')).toBeVisible();
+  await expect(page.locator('.talk-sticky-zone')).toBeVisible();
+  await expect(page.locator('.compact-quick')).toBeVisible();
+  await expect(page.locator('.compact-catbar')).toBeVisible();
+  await expect(page.locator('.aac-grid .aac').first()).toBeVisible();
+  const dims=await page.evaluate(()=>{
+    const first=document.querySelector('.aac-grid .aac')?.getBoundingClientRect();
+    const sticky=document.querySelector('.talk-sticky-zone')?.getBoundingClientRect();
+    return {
+      firstTop:first?.top||9999,
+      stickyBottom:sticky?.bottom||0,
+      vh:innerHeight,
+      cols:getComputedStyle(document.querySelector('#aacGrid')).gridTemplateColumns.split(' ').length,
+      overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+    };
+  });
+  expect(dims.firstTop).toBeLessThan(780);
+  expect(dims.cols).toBe(3);
+  expect(dims.overflow).toBeLessThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test('v49 phone landscape uses a denser Talk grid without horizontal page overflow', async ({page})=>{
+  await page.setViewportSize({width:844,height:390});
+  await page.goto('http://127.0.0.1:4173/#talk');
+  const dims=await page.evaluate(()=>({
+    cols:getComputedStyle(document.querySelector('#aacGrid')).gridTemplateColumns.split(' ').length,
+    overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+  }));
+  expect(dims.cols).toBeGreaterThanOrEqual(5);
+  expect(dims.overflow).toBeLessThanOrEqual(2);
+});
+
+test('v49 Fredoka is self-hosted and loads on phone viewport', async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#home');
+  const result=await page.evaluate(async()=>{
+    await document.fonts.ready;
+    const response=await fetch('./assets/fonts/fredoka-variable.woff2',{cache:'no-store'});
+    return {
+      ok:response.ok,
+      fontCheck:document.fonts.check('16px "WAPS Fredoka"'),
+      family:getComputedStyle(document.body).fontFamily
+    };
+  });
+  expect(result.ok).toBeTruthy();
+  expect(result.fontCheck).toBeTruthy();
+  expect(result.family).toContain('WAPS Fredoka');
+});
+
+test('v49 Child Mode persists across Talk Practice and internal activity navigation', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#more');
+  await page.locator('[data-more-group="settings"]').click();
+  await page.locator('[data-action="childMode"]').click();
+  await expect(page.locator('#childLock')).toBeVisible();
+  await page.locator('.child-go[data-child-route="talk"]').click();
+  await expect(page.locator('body')).toHaveClass(/child-mode-active/);
+  await expect(page.locator('#childModeExitDock')).toBeVisible();
+  await expect(page.locator('.bottomnav [data-route="more"]')).toBeHidden();
+  await page.locator('.bottomnav [data-route="home"]').click();
+  await expect(page.locator('body')).toHaveClass(/child-mode-active/);
+  await page.locator('.bottomnav [data-route="practice"]').click();
+  await expect(page.locator('body')).toHaveClass(/child-mode-active/);
+  await page.locator('[data-action="startUnifiedPractice"]').click();
+  await expect(page.locator('.premium-activity')).toBeVisible();
+  await expect(page.locator('body')).toHaveClass(/child-mode-active/);
+  await page.locator('[data-route="practice"]').first().click();
+  await expect(page.locator('body')).toHaveClass(/child-mode-active/);
+  await page.locator('#childModeExitDock').dispatchEvent('pointerdown');
+  await page.waitForTimeout(1800);
+  await expect(page.locator('body')).not.toHaveClass(/child-mode-active/);
+  expect(errors).toEqual([]);
+});
+
+test('v49 Explore More does not open external links from Child Mode', async ({page})=>{
+  await page.goto('http://127.0.0.1:4173/#more');
+  await page.locator('[data-more-group="settings"]').click();
+  await page.locator('[data-action="childMode"]').click();
+  await page.locator('.child-go[data-child-route="practice"]').click();
+  await page.locator('[data-practice-tab="explore"]').click();
+  const toy=page.locator('[data-external-learning="toy-theater"]');
+  await expect(toy).toBeVisible();
+  const before=page.url();
+  await toy.click();
+  await expect(page).toHaveURL(before);
+  await expect(page.locator('#toast')).toContainText('caregiver');
 });

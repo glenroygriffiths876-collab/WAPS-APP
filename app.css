@@ -962,7 +962,12 @@ body.trace-active .waps-share-fab,body.concept-id-active .waps-share-fab{display
 @keyframes installFabIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 
 body.trace-active .waps-install-fab,
-body.concept-id-active .waps-install-fab{display:none!important}
+body.concept-id-active .waps-install-fab,
+body.child-mode-active .waps-install-fab,
+body[data-route="practice"]:has(.premium-activity) .waps-install-fab{display:none!important}
+
+body.child-mode-active .waps-share-fab,
+body[data-route="practice"]:has(.premium-activity) .waps-share-fab{display:none!important}
 
 .install-help-sheet{max-width:680px;margin:auto}
 .install-brand{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:center;margin-bottom:10px}

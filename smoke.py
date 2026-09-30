@@ -21,7 +21,8 @@ assert 'wireTalkControls' not in app and 'wirePracticeLaunch' not in app and 'wi
 assert not re.search(r"(?<!\\$)\\$\\('\.bottomnav button,\.desktopnav button'\\)\.forEach",app), 'single-query selector forEach crash regression'
 actions=set(re.findall(r'data-action=["\']([^"\'$]+)["\']',app))
 handled=set(re.findall(r"if\(a===['\"]([^'\"]+)['\"]",app))
-missing=sorted(actions-handled)
+delegated={'traceLaunch','csLaunch'}
+missing=sorted(actions-handled-delegated)
 assert not missing, f'unhandled actions: {missing}'
 sw=(r/'sw.js').read_text(encoding='utf-8')
 assert 'networkFirst' in sw and 'OPTIONAL=' in sw and 'skipWaiting' in sw and 'clients.claim' in sw

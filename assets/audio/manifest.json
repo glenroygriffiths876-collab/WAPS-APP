@@ -9,7 +9,7 @@
   "file": "./assets/audio/waps-gentle-steps.mp3",
   "character": "slow warm pad and soft bell-like melody; no vocals; no percussion; no therapeutic claim",
   "default": "off",
-  "default_volume": 0.24,
+  "default_volume": 0.25,
   "speech_ducking": true,
   "loop": true,
   "notes": "Generated specifically for WAPS v49. Optional background music only."

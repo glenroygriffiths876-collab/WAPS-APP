@@ -1,0 +1,33 @@
+name: WAPS Words & Names smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app.js'
+      - 'app.css'
+      - 'trace.js'
+      - 'trace-words.js'
+      - 'trace-data.js'
+      - 'storage.js'
+      - 'index.html'
+      - 'tests/ui.spec.js'
+      - '.github/workflows/words-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  words:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install --no-save @playwright/test
+      - run: npx playwright install --with-deps chromium
+      - name: Start local WAPS
+        run: |
+          python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
+          sleep 2
+      - name: Test Words & Names picture flow
+        run: npx playwright test tests/ui.spec.js --grep "Words & Names" --reporter=line

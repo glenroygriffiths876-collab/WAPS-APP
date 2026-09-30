@@ -107,6 +107,55 @@ test('Colours and Shapes setup is simple and still starts', async ({page})=>{
   expect(errors).toEqual([]);
 });
 
+
+test('Numbers & Maths supports touch counting, addition and take away', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await expect(page.locator('[data-action="mathLaunch"]')).toBeVisible();
+  await page.locator('[data-action="mathLaunch"]').click();
+  await expect(page.locator('.math-launch')).toBeVisible();
+
+  await page.locator('[data-math-type="count"]').click();
+  await expect(page.locator('.math-child-screen')).toBeVisible();
+  await expect(page.locator('#supportFab')).toBeHidden();
+  const first=page.locator('.math-object-btn').first();
+  await first.click();
+  await first.click();
+  await expect(page.locator('.math-object-btn.counted')).toHaveCount(1);
+  for(let i=0;i<12;i++){
+    if(await page.locator('#mathAnswerGrid:not(.hidden)').count())break;
+    const next=page.locator('.math-object-btn:not(.counted)').first();
+    if(await next.count())await next.click(); else break;
+  }
+  await expect(page.locator('#mathAnswerGrid')).toBeVisible();
+  await page.locator('.math-answer[data-correct="1"]').click();
+  await expect(page.locator('.math-answer.correct')).toBeVisible();
+  await page.locator('[data-action="mathExit"]').click();
+
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-math-type="add"]').click();
+  await expect(page.locator('.math-equation')).toContainText('+');
+  await expect(page.locator('#mathAnswerGrid')).toBeVisible();
+  await page.locator('.math-answer[data-correct="1"]').click();
+  await expect(page.locator('.math-answer.correct')).toBeVisible();
+  await page.locator('[data-action="mathExit"]').click();
+
+  await page.locator('[data-action="mathLaunch"]').click();
+  await page.locator('[data-math-type="subtract"]').click();
+  await expect(page.locator('.math-equation')).toContainText('−');
+  for(let i=0;i<12;i++){
+    if(await page.locator('#mathAnswerGrid:not(.hidden)').count())break;
+    const next=page.locator('.math-object-btn:not(.removed)').first();
+    if(await next.count())await next.click(); else break;
+  }
+  await expect(page.locator('#mathAnswerGrid')).toBeVisible();
+  await expect(page.locator('.math-away-tray')).toBeVisible();
+  await page.locator('.math-answer[data-correct="1"]').click();
+  await expect(page.locator('.math-answer.correct')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
 test('Mobile core screens have no horizontal overflow', async ({page})=>{
   for(const viewport of [{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:820,height:1180}]){
     await page.setViewportSize(viewport);

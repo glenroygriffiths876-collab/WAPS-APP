@@ -145,7 +145,7 @@ export function createTraceFeature(ctx){
     const s=currentSession(type);return s?.items?.[s.cursor]??null;
   }
   function newRuntime(type,token){
-    return {type,token,chars:type==='numbers'?[...String(token)]:[String(token)],digitIndex:0,strokeIndex:0,strokeAttempts:0,totalAttempts:0,started:Date.now()};
+    return {type,token,chars:type==='numbers'?[...String(token)]:[String(token)],digitIndex:0,strokeIndex:0,strokeAttempts:0,totalAttempts:0,pointerAttempts:0,touched:false,recorded:false,started:Date.now()};
   }
   function traceWidth(){
     const p=currentPrefs(runtime.type);return p.lineSize==='small'?48:p.lineSize==='large'?88:68;
@@ -226,8 +226,9 @@ export function createTraceFeature(ctx){
     };
     svg.onpointerdown=e=>{
       if(e.isPrimary===false)return;e.preventDefault();const pt=svgPoint(svg,e);
+      if(e.pointerType==='touch'&&Math.max(e.width||0,e.height||0)>95)return;
       if(dist(pt,start)>tolerance*1.55){status('Start at the glowing dot.');pulse();return}
-      tracing=true;pointerId=e.pointerId;index=0;accepted=[pt];last=pt;try{svg.setPointerCapture(pointerId)}catch{};status('Follow the line.');
+      runtime.pointerAttempts++;runtime.touched=true;tracing=true;pointerId=e.pointerId;index=0;accepted=[pt];last=pt;try{svg.setPointerCapture(pointerId)}catch{};status('Follow the line.');
     };
     svg.onpointermove=e=>{
       if(!tracing||e.pointerId!==pointerId)return;e.preventDefault();
@@ -235,11 +236,11 @@ export function createTraceFeature(ctx){
     };
     const end=e=>{
       if(!tracing||e.pointerId!==pointerId)return;e.preventDefault();tracing=false;try{svg.releasePointerCapture(pointerId)}catch{}
-      const progress=index/(count-1);
-      if(progress>=.86){completeStroke()}else{
+      const progress=index/(count-1),nearEnd=last?dist(last,samples[count-1])<=tolerance*1.7:false;
+      if(progress>=.86&&nearEnd){completeStroke()}else{
         runtime.strokeAttempts++;runtime.totalAttempts++;index=0;accepted=[];bright.style.strokeDashoffset=String(len);live.setAttribute('points','');
-        status(runtime.strokeAttempts>=2?'Let’s try together. The guide is a little easier now.':'Almost. Try this line again.');
-        if(runtime.strokeAttempts>=2)setTimeout(showDemo,450);
+        const extra=runtime.strokeAttempts>=2;status(extra?'Let’s try together. The guide will be a little easier.':'Almost. Try this line again.');
+        setTimeout(()=>{renderTraceScreen();if(extra)setTimeout(showDemo,260)},650);
       }
     };
     svg.onpointerup=end;svg.onpointercancel=end;
@@ -318,7 +319,7 @@ export function createTraceFeature(ctx){
   }
   async function finishSpeech(status){
     stopMedia();const t=state(),s=currentSession(runtime.type);
-    t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:runtime.type,token:runtime.token,traceAttempts:runtime.totalAttempts,guidance:currentPrefs(runtime.type).guidance,lineSize:currentPrefs(runtime.type).lineSize,speech:status});
+    t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:runtime.type,token:runtime.token,completed:true,traceAttempts:runtime.pointerAttempts,retries:runtime.totalAttempts,guidance:currentPrefs(runtime.type).guidance,lineSize:currentPrefs(runtime.type).lineSize,speech:status});runtime.recorded=true;
     if(t.history.length>500)t.history=t.history.slice(-500);
     s.cursor=Math.min(s.items.length,s.cursor+1);await persist();
     celebrate?.($('.trace-say-token'));
@@ -343,16 +344,19 @@ export function createTraceFeature(ctx){
     s.cursor=0;s.round=(s.round||1)+1;s.started=new Date().toISOString();await persist();if(modal.open)modal.close();renderCurrent(type);
   }
   function exit(){
-    cleanup();if(modal.open)modal.close();go('practice');
+    const r=runtime;if(r?.touched&&!r.recorded){
+      const t=state();t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:r.type,token:r.token,completed:false,traceAttempts:r.pointerAttempts,retries:r.totalAttempts,guidance:currentPrefs(r.type).guidance,lineSize:currentPrefs(r.type).lineSize,speech:'not completed'});if(t.history.length>500)t.history=t.history.slice(-500);persist().catch(()=>{});
+    }
+    cleanup();runtime=null;if(modal.open)modal.close();go('practice');
   }
   function progressHTML(){
-    const h=state().history.filter(x=>x.profile===profileKey()),week=7*86400000,now=Date.now(),recent=h.filter(x=>now-new Date(x.at).getTime()<=week);
+    const h=state().history.filter(x=>x.profile===profileKey()),week=7*86400000,now=Date.now(),recent=h.filter(x=>x.completed!==false&&now-new Date(x.at).getTime()<=week);
     if(!recent.length)return '';
     const tokens=unique(recent.map(x=>x.token));
     const spoken=recent.filter(x=>x.speech==='recognized'||x.speech==='caregiver').length;
     let retry='';
     const grouped={};for(const x of h){(grouped[x.token]??=[]).push(x)}
-    for(const [token,rows] of Object.entries(grouped)){if(rows.length>=2&&rows.at(-1).traceAttempts<rows.at(-2).traceAttempts){retry=`Recent tracing of ${esc(token)} used fewer retries than the previous recorded attempt.`;break}}
+    for(const [token,rows] of Object.entries(grouped)){const completed=rows.filter(x=>x.completed!==false);if(completed.length>=2&&(completed.at(-1).retries??0)<(completed.at(-2).retries??0)){retry=`Recent tracing of ${esc(token)} used fewer retries than the previous recorded attempt.`;break}}
     return `<section class="trace-progress-card"><div class="story-illustration">✏️</div><div><span class="eyebrow">TRACE & SAY</span><h2>${tokens.length} character${tokens.length===1?'':'s'} traced this week.</h2><p>${esc(tokens.slice(0,12).join(', '))}${tokens.length>12?'…':''}. ${spoken} included recognised or caregiver-confirmed spoken practice.</p>${retry?`<small>${retry}</small>`:''}<button class="btn ghost" data-action="traceLaunch">Open Trace & Say</button></div></section>`;
   }
   function preview(){

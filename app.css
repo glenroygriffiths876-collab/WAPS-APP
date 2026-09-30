@@ -1304,3 +1304,139 @@ body{letter-spacing:.005em}
  .home-big-action b{font-size:1.45rem}
  .home-big-action small{font-size:.86rem}
 }
+
+
+/* WAPS v49 — true phone layout, self-hosted Fredoka, practice tabs, persistent Child Mode */
+@font-face{
+  font-family:'WAPS Fredoka';
+  src:url('./assets/fonts/fredoka-variable.woff2') format('woff2');
+  font-style:normal;
+  font-weight:300 700;
+  font-display:swap;
+}
+:root{
+  --waps-play-font:'WAPS Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --phone-bottom-nav:76px;
+  --phone-gap:8px;
+  --touch-min:44px;
+}
+html,body,button,input,select,textarea{font-family:var(--waps-play-font)}
+button,.btn,.chip,.aac span,.practice-tool-card b,.home-big-action b{font-weight:600}
+h1,h2,h3,.brand b,.official-brand-name{font-weight:650}
+
+/* Practice library tabs */
+.practice-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#edf3f3;padding:5px;border-radius:18px;margin:0 0 14px}
+.practice-tabs button{min-height:48px;border:0;border-radius:14px;background:transparent;color:#536a72;font-weight:650;padding:8px 12px}
+.practice-tabs button[aria-selected="true"]{background:#fff;color:#173551;box-shadow:0 5px 14px rgba(29,64,82,.11)}
+.practice-native-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.explore-more-grid{display:grid;gap:12px}
+.external-learning-card{display:flex;align-items:center;gap:16px;text-decoration:none;color:#18384f;background:#fff;border:1px solid #dbe8e8;border-radius:22px;padding:18px;box-shadow:0 8px 24px rgba(30,65,83,.07)}
+.external-learning-card .external-resource-icon{width:62px;height:62px;border-radius:18px;background:#e9f8f0;color:#176c63;display:grid;place-items:center;font-size:1.6rem;flex:0 0 auto}
+.external-learning-card b{display:block;font-size:1.25rem}
+.external-learning-card small,.external-learning-card em{display:block;margin-top:4px;color:#667b80;font-style:normal}
+
+/* Persistent Child Mode */
+.child-mode-exit-dock{position:fixed;z-index:9997;top:max(8px,env(safe-area-inset-top));right:8px;width:42px;height:34px;border:0;border-radius:14px;background:rgba(17,44,64,.18);color:rgba(17,44,64,.48);font-weight:700;letter-spacing:2px}
+body.child-mode-active .header-actions,
+body.child-mode-active #childSwitcher,
+body.child-mode-active #caregiverUtilities,
+body.child-mode-active .bottomnav [data-route="more"],
+body.child-mode-active .desktopnav [data-route="more"]{display:none!important}
+body.child-mode-active .bottomnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.child-mode-active .desktopnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.child-mode-active .talk-profile-note{display:none!important}
+
+/* Mobile AAC / phone-first */
+@media (max-width:600px){
+  :root{--page-gap:8px;--card-gap:8px;--control-height:44px}
+  body{padding-bottom:calc(var(--phone-bottom-nav) + env(safe-area-inset-bottom));}
+  .topbar{min-height:64px;padding:7px 10px}
+  .official-wordmark .official-brand-mark{max-height:42px}
+  .official-brand-name{font-size:.68rem}
+  .header-actions{gap:6px}
+  .header-circle{width:40px;height:40px}
+  #childSwitcher{min-height:42px;padding:6px 10px;font-size:.86rem}
+  main{padding-bottom:8px}
+
+  .talk-stage{padding:6px 7px 4px;max-width:none}
+  .compact-talk-title{margin:0 0 4px;padding:0 3px;min-height:0}
+  .compact-talk-title .eyebrow{display:none}
+  .compact-talk-title h1{font-size:1.5rem;line-height:1;margin:2px 0;color:#163a5a}
+  .compact-talk-title p{display:none}
+  .talk-sticky-zone{position:sticky;top:0;z-index:18;background:rgba(248,252,251,.97);backdrop-filter:blur(8px);border:1px solid #dce9e8;border-radius:16px;padding:7px;margin-bottom:7px;box-shadow:0 4px 14px rgba(20,52,70,.06)}
+  .sentence-row{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:stretch}
+  .sentence{min-height:48px!important;max-height:92px;overflow:auto;border-width:2px!important;border-radius:13px!important;padding:8px 10px!important;font-size:1rem!important}
+  .compact-speak{min-width:62px;min-height:48px;padding:7px 9px!important;border-radius:13px!important}
+  .compact-speak span{display:none}
+  .compact-aac-actions{display:flex;gap:5px;margin:5px 0}
+  .compact-aac-actions .btn{min-height:36px!important;padding:5px 9px!important;font-size:.78rem!important;border-radius:11px!important}
+  .partner-compact{margin-left:auto}
+  .compact-quick{display:flex!important;gap:5px;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;padding:3px 1px 5px;margin:0}
+  .compact-quick::-webkit-scrollbar,.compact-catbar::-webkit-scrollbar{display:none}
+  .compact-quick .quick-label{display:none}
+  .compact-quick button{flex:0 0 64px;min-width:64px!important;min-height:58px!important;padding:4px!important;border-radius:12px!important}
+  .compact-quick .waps-aac-symbol,.compact-quick img{width:30px!important;height:30px!important}
+  .compact-quick b{font-size:.67rem!important;margin-top:1px!important}
+  .compact-search{display:grid!important;grid-template-columns:1fr auto;gap:6px;margin-top:2px}
+  .aac-search{min-height:42px!important;border-radius:13px!important;padding:0 9px!important}
+  .aac-search input{font-size:.9rem!important}
+  .my-word-compact{min-width:46px!important;min-height:42px!important;padding:6px 9px!important;border-radius:13px!important}
+  .my-word-compact span{display:none}
+  .compact-catbar{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:5px;padding:5px 0 1px;scrollbar-width:none}
+  .compact-catbar .chip{flex:0 0 auto;min-height:34px!important;padding:5px 10px!important;font-size:.74rem!important;border-radius:12px!important}
+  .aac-grid.premium-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;padding:0 0 4px!important}
+  .aac-wrap{min-width:0}
+  .aac{min-height:112px!important;padding:7px 4px 6px!important;border-radius:16px!important}
+  .aac .waps-aac-symbol,.aac .concept-hi,.aac>img{width:54px!important;height:54px!important;max-height:54px!important}
+  .aac>span:last-child,.aac span:not(.waps-aac-symbol):not(.concept-hi){font-size:.76rem!important;line-height:1.05}
+  .aac-star{width:31px!important;height:31px!important;right:3px!important;top:3px!important;font-size:1rem!important}
+  .talk-profile-note{margin:7px 0}
+  .talk-profile-note .btn{min-height:40px;padding:7px 12px}
+
+  .practice-simple-head,.more-simple-head,.coach-simple-head{padding:3px 2px 8px!important}
+  .practice-simple-head .eyebrow,.more-simple-head .eyebrow,.coach-simple-head .eyebrow{font-size:.65rem}
+  .practice-simple-head h1,.more-simple-head h1,.coach-simple-head h1{font-size:1.55rem!important;margin:.1rem 0!important}
+  .practice-simple-head p,.coach-simple-head p{font-size:.88rem!important;margin:.15rem 0!important}
+  .practice-tabs{position:sticky;top:0;z-index:12;margin:0 0 8px;border-radius:14px;padding:4px}
+  .practice-tabs button{min-height:42px;font-size:.85rem;border-radius:11px}
+  .practice-native-grid{grid-template-columns:1fr;gap:8px}
+  .practice-native-grid .practice-tool-card{min-height:82px!important;padding:10px 12px!important;border-radius:17px!important}
+  .practice-tool-icon{width:50px!important;height:50px!important;border-radius:14px!important}
+  .practice-tool-card b{font-size:1rem!important}
+  .practice-tool-card small{font-size:.75rem!important}
+  .external-learning-card{padding:13px;border-radius:17px;gap:11px}
+  .external-learning-card .external-resource-icon{width:52px;height:52px;border-radius:14px}
+  .external-learning-card b{font-size:1.02rem}
+  .external-learning-card small,.external-learning-card em{font-size:.76rem}
+  .external-resource-note{font-size:.73rem;padding:8px 10px;margin-top:4px}
+
+  .reference-page{padding:7px!important}
+  dialog{max-height:calc(100dvh - 18px)!important}
+  .bottomnav{height:calc(var(--phone-bottom-nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);position:fixed;bottom:0;left:0;right:0;z-index:60}
+  .bottomnav button{min-height:60px}
+  .bottomnav button span{font-size:1.05rem}
+  .bottomnav button{font-size:.75rem}
+  .activity-shell,.math-child-screen,.mu-child-screen,.concept-child-screen,.trace-child-screen{max-height:calc(100dvh - var(--phone-bottom-nav) - env(safe-area-inset-bottom));overflow:hidden}
+}
+
+@media (max-width:600px) and (orientation:landscape){
+  :root{--phone-bottom-nav:58px}
+  .topbar{min-height:48px}
+  .official-wordmark .official-brand-mark{max-height:34px}
+  .compact-talk-title{display:none}
+  .talk-stage{padding-top:3px}
+  .talk-sticky-zone{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);column-gap:8px;align-items:start}
+  .sentence-row,.compact-aac-actions{grid-column:1}
+  .compact-quick,.compact-search,.compact-catbar{grid-column:2}
+  .aac-grid.premium-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .aac{min-height:90px!important}
+}
+
+@media (min-width:601px) and (max-width:1024px){
+  .practice-native-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aac-grid.premium-grid{gap:10px}
+}
+
+@media (min-width:1025px){
+  .practice-native-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}

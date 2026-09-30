@@ -16,6 +16,7 @@ on:
       - 'comprehension-learning.js'
       - 'comprehension-data.js'
       - 'assets/concepts/highres/**'
+      - 'assets/audio/**'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'

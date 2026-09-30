@@ -788,7 +788,7 @@ body.trace-active main{position:fixed!important;inset:0!important;height:100dvh!
 .trace-writing-line{fill:none;stroke:#cbdad6;stroke-width:4;stroke-dasharray:18 18;opacity:.34}.trace-writing-line.mid{opacity:.24}.trace-writing-line.base{opacity:.44}.trace-writing-line.desc{opacity:.2}
 .trace-guide,.trace-bright{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:var(--trace-w)}
 .trace-guide{stroke:#8fa2a0;opacity:var(--guide-opacity,.28);transition:opacity .2s,stroke .2s}.trace-guide.active{stroke:#7053ba;opacity:max(var(--guide-opacity,.28),.24)}.trace-guide.complete{stroke:#23a66e;opacity:.95}
-.trace-bright{stroke:#6a43bd;opacity:1}.trace-bright.complete{stroke:#23a66e;stroke-dasharray:none!important;stroke-dashoffset:0!important}
+.trace-bright{stroke:#6a43bd;opacity:0}.trace-bright.active,.trace-bright.complete{opacity:1}.trace-bright.complete{stroke:#23a66e;stroke-dasharray:none!important;stroke-dashoffset:0!important}
 .trace-live{fill:none;stroke:#3e2b7f;stroke-linecap:round;stroke-linejoin:round;stroke-width:var(--trace-w);opacity:.72;pointer-events:none}
 .trace-start-dot{fill:#fff;stroke:#754fc4;stroke-width:18;filter:drop-shadow(0 0 18px rgba(111,76,194,.45));animation:traceStartPulse 1.35s ease-in-out infinite;pointer-events:none}
 .trace-demo-dot{fill:#ffb52e;stroke:#fff;stroke-width:12;opacity:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.16));pointer-events:none}.trace-demo-dot.show{opacity:1}

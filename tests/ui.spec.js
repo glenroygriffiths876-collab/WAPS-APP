@@ -290,6 +290,109 @@ test('Numbers up to stays separate for each child profile', async ({page})=>{
   expect(errors).toEqual([]);
 });
 
+
+test('Talk includes reviewer-requested functional words and places', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#talk');
+  for(const word of ['WAIT','I SEE','DOCTOR','SUPERMARKET','PLAYGROUND','SNACK']){
+    await expect(page.locator('.aac').filter({hasText:word}).first()).toBeVisible();
+  }
+  await expect(page.locator('.aac').filter({hasText:'CLINIC'})).toHaveCount(0);
+  await expect(page.locator('.aac').filter({hasText:'SUPERMARKET'}).locator('.mu-sprite')).toBeVisible();
+  await expect(page.locator('.aac').filter({hasText:'PLAYGROUND'}).locator('.mu-sprite')).toBeVisible();
+  await page.locator('.aac').filter({hasText:'I SEE'}).first().click();
+  await page.locator('.aac').filter({hasText:'APPLE'}).first().click();
+  await expect(page.locator('#sentence')).toContainText('I SEE');
+  await expect(page.locator('#sentence')).toContainText('APPLE');
+  expect(errors).toEqual([]);
+});
+
+test('Match & Understand opens all five modes and respects picture field size', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await expect(page.locator('[data-action="muLaunch"]')).toBeVisible();
+  await page.locator('[data-action="muLaunch"]').click();
+  await expect(page.locator('.mu-launch')).toBeVisible();
+  await expect(page.locator('button[data-mu-mode]')).toHaveCount(5);
+
+  await page.locator('[data-action="muSettings"]').click();
+  await page.locator('input[name="muField"][value="5"]').check({force:true});
+  await page.locator('#muHearPrompts').uncheck({force:true});
+  await page.locator('[data-action="muSaveSettings"]').click();
+  await expect(page.locator('.mu-change')).toContainText('5 pictures');
+
+  await page.locator('button[data-mu-mode="find"]').click();
+  await expect(page.locator('.mu-child-screen')).toHaveAttribute('data-mu-field','5');
+  await expect(page.locator('.mu-picture-choice')).toHaveCount(5);
+  await expect(page.locator('#supportFab')).toBeHidden();
+  let overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(2);
+  await page.locator('[data-action="muExit"]').click();
+
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('button[data-mu-mode="match"]').click();
+  await expect(page.locator('.mu-shape-grid button')).toHaveCount(2);
+  await expect(page.locator('.mu-shape.circle')).toBeVisible();
+  await expect(page.locator('.mu-shape.diamond')).toBeVisible();
+  await page.locator('[data-action="muExit"]').click();
+
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('button[data-mu-mode="sort"]').click();
+  await expect(page.locator('.mu-sort-bins button')).toHaveCount(2);
+  await page.locator('[data-action="muExit"]').click();
+
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('button[data-mu-mode="group"]').click();
+  await expect(page.locator('.mu-picture-choice')).toHaveCount(5);
+  await page.locator('[data-action="muExit"]').click();
+
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('button[data-mu-mode="rules"]').click();
+  await expect(page.locator('.mu-rule-legend')).toContainText('Apple');
+  await expect(page.locator('.mu-rule-legend')).toContainText('Kite');
+  await expect(page.locator('.mu-picture-choice')).toHaveCount(5);
+  overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test('Match & Understand picture setting is profile specific and survives reload', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+  await page.locator('#childSwitcher').click();
+  await page.locator('#pname').fill('Understanding Child A');
+  await page.locator('[data-action="saveProfile"]').click();
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('[data-action="muSettings"]').click();
+  await page.locator('input[name="muField"][value="4"]').check({force:true});
+  await page.locator('[data-action="muSaveSettings"]').click();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('#pname').fill('Understanding Child B');
+  await page.locator('[data-action="saveProfile"]').click();
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('[data-action="muSettings"]').click();
+  await page.locator('input[name="muField"][value="5"]').check({force:true});
+  await page.locator('[data-action="muSaveSettings"]').click();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.locator('#childSwitcher').click();
+  await page.locator('.list-item',{hasText:'Understanding Child A'}).locator('.choose-profile').click();
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('[data-action="muSettings"]').click();
+  await expect(page.locator('input[name="muField"][value="4"]')).toBeChecked();
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('[data-action="muLaunch"]').click();
+  await page.locator('[data-action="muSettings"]').click();
+  await expect(page.locator('input[name="muField"][value="4"]')).toBeChecked();
+  expect(errors).toEqual([]);
+});
+
 test('Mobile core screens have no horizontal overflow', async ({page})=>{
   for(const viewport of [{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:820,height:1180}]){
     await page.setViewportSize(viewport);

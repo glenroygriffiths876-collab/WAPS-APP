@@ -2,12 +2,12 @@
   "id": "./",
   "name": "WAPS Communication",
   "short_name": "WAPS",
-  "description": "Free, private, caregiver-guided communication support.",
+  "description": "WAPS Communication by Western Autism Parents Support — free, private, caregiver-guided communication support.",
   "start_url": "./#home",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#F4F9FF",
-  "theme_color": "#4B2A8A",
+  "background_color": "#FFFDF8",
+  "theme_color": "#164EBD",
   "icons": [
     {
       "src": "./icon-192.png",

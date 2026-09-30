@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WAPS maskable app icon">
+  <rect width="512" height="512" fill="#4B2A8A"/>
+  <path d="M92 112h328a64 64 0 0 1 64 64v192a64 64 0 0 1-64 64H196l-54 48 16-48H92a64 64 0 0 1-64-64V176a64 64 0 0 1 64-64Z" fill="#3D2375"/>
+  <path d="M145 190 187 344 242 258 270 258 325 344 367 190" fill="none" stroke="#FFFDF5" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M352 139c-14-20-44-14-44 13 0 25 44 52 44 52s44-27 44-52c0-27-30-33-44-13Z" fill="#FFC21C"/>
+</svg>

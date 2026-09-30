@@ -7,16 +7,16 @@ function collectErrors(page){
   return errors;
 }
 
-test('Home makes Practice Together primary and caregiver shortcuts work', async ({page})=>{
+test('Home keeps Talk and Practice Together as the two primary choices', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
-  await expect(page.locator('.home-practice-primary')).toBeVisible();
-  await expect(page.locator('.home-practice-primary')).toContainText('Practice Together');
-  await page.locator('.home-practice-primary').click();
+  await expect(page.locator('.home-big-action')).toHaveCount(2);
+  await expect(page.locator('.home-practice-action')).toContainText('Practice Together');
+  await page.locator('.home-practice-action').click();
   await expect(page).toHaveURL(/#practice$/);
-  await expect(page.locator('.practice-main-focus')).toBeVisible();
+  await expect(page.locator('.practice-six-tools')).toBeVisible();
   await page.locator('.brand[data-route="home"]').click();
-  await page.locator('.home-quick-card[data-route="talk"]').click();
+  await page.locator('.home-talk-action').click();
   await expect(page.locator('.talk-stage')).toBeVisible();
   expect(errors).toEqual([]);
 });

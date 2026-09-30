@@ -59,13 +59,12 @@ export function createTraceWordsFeature(ctx){
     show(`<div class="trace-words-config">
       <button class="btn ghost" data-action="traceLaunch">← Trace & Say</button>
       <span class="eyebrow">WORDS & NAMES</span>
-      <h1>Trace spelling and sight words.</h1>
-      <p>Add a name or school word. A picture is optional and can make the word more meaningful.</p>
+      <h1>Add words. Then practise.</h1>
       <div class="trace-word-toolbar">
         <button class="btn" data-action="traceWordsAdd">+ Add a word</button>
         ${canAddName?`<button class="btn secondary" data-action="traceWordsAddName">Practise ${esc(childName)}</button>`:''}
       </div>
-      <div class="trace-word-privacy"><b>Optional pictures stay in this WAPS data on this device.</b><span>You can use a WAPS picture, choose a photo, take a photo, or use no picture.</span></div>
+      <div class="trace-word-privacy"><b>Pictures are optional.</b><span>Your pictures stay in WAPS on this device.</span></div>
       <div class="trace-word-list">
         ${list.length?list.map(rec=>`<article class="trace-word-card ${p.selected.includes(rec.id)?'selected':''}">
           <button class="trace-word-select" data-trace-word-select="${rec.id}" aria-pressed="${p.selected.includes(rec.id)?'true':'false'}">
@@ -76,13 +75,13 @@ export function createTraceWordsFeature(ctx){
           <button class="trace-word-edit" data-trace-word-edit="${rec.id}" aria-label="Edit ${esc(rec.word)}">Edit</button>
         </article>`).join(''):`<div class="friendly-empty trace-word-empty"><span>Aa</span><div><b>No words added yet.</b><p>Add a spelling word, sight word, or name to begin.</p></div></div>`}
       </div>
-      <div class="trace-setting-grid trace-word-settings">
-        <label>Guidance<select id="traceWordsGuidance"><option value="guided" ${p.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${p.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${p.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
+      <details class="trace-word-more"><summary>Practice options</summary><div class="trace-setting-grid trace-word-settings">
+        <label>Help<select id="traceWordsGuidance"><option value="guided" ${p.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${p.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${p.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
         <label>Trace line<select id="traceWordsLineSize"><option value="small" ${p.lineSize==='small'?'selected':''}>Small</option><option value="medium" ${p.lineSize==='medium'?'selected':''}>Medium</option><option value="large" ${p.lineSize==='large'?'selected':''}>Large</option></select></label>
-        <label class="trace-word-picture-toggle"><input id="traceWordsPictureDuringTrace" type="checkbox" ${p.showPictureDuringTrace!==false?'checked':''}> Keep the picture visible while tracing</label>
-      </div>
-      <div class="trace-config-summary"><b id="traceWordsSelectedCount">${p.selected.length} selected</b><span>WAPS remembers these words for ${esc(child?.name||'this profile')}.</span></div>
-      <div class="actions"><button class="btn" data-action="traceWordsStart" ${p.selected.length?'':'disabled'}>Start word practice →</button>${list.length?'<button class="btn ghost" data-action="traceWordsSelectAll">Select all</button>':''}</div>
+        <label class="trace-word-picture-toggle"><input id="traceWordsPictureDuringTrace" type="checkbox" ${p.showPictureDuringTrace!==false?'checked':''}> Show picture while tracing</label>
+      </div></details>
+      <div class="trace-config-summary"><b id="traceWordsSelectedCount">${p.selected.length} selected</b><span>${esc(child?.name||'Saved')}</span></div>
+      <div class="actions"><button class="btn" data-action="traceWordsStart" ${p.selected.length?'':'disabled'}>Start</button>${list.length?'<button class="btn ghost" data-action="traceWordsSelectAll">Select all</button>':''}</div>
     </div>`,true);
   }
   function currentEditorRecord(){return editorId?findWord(editorId):null}
@@ -109,11 +108,11 @@ export function createTraceWordsFeature(ctx){
     show(`<div class="trace-word-editor">
       <button class="btn ghost" data-action="traceWordsCancel">← Words & Names</button>
       <span class="eyebrow">${rec?'EDIT WORD':'ADD WORD'}</span>
-      <h1>${rec?'Update this word.':'Add a word to practise.'}</h1>
-      <div class="field"><label>Word<input id="traceWordText" maxlength="24" autocomplete="off" autocapitalize="words" value="${esc(word)}" placeholder="e.g. Genesis, dog, school"></label><div class="mini">Letters A–Z are supported for tracing in this version.</div></div>
+      <h1>${rec?'Edit word':'Add word'}</h1>
+      <div class="field"><label>Word<input id="traceWordText" maxlength="24" autocomplete="off" autocapitalize="words" value="${esc(word)}" placeholder="e.g. Genesis, dog, school"></label></div>
       <div class="trace-word-picture-editor">
         <div id="traceWordPicturePreview" class="trace-word-picture-preview">${editorImage()||'<span>Aa</span>'}</div>
-        <div><b id="traceWordPictureLabel">${editorImageLabel()}</b><p>Add a picture only when it clearly matches the word.</p></div>
+        <div><b id="traceWordPictureLabel">${editorImageLabel()}</b><small>Picture (optional)</small></div>
       </div>
       <div id="traceWordWapsSuggestion"></div>
       <div class="trace-word-picture-actions">
@@ -123,8 +122,8 @@ export function createTraceWordsFeature(ctx){
       </div>
       <input id="traceWordFile" class="trace-hidden-file" type="file" accept="image/jpeg,image/png,image/webp">
       <input id="traceWordCamera" class="trace-hidden-file" type="file" accept="image/*" capture="environment">
-      <div class="notice"><b>Private by design:</b> WAPS processes the selected photo in your browser. It is not sent to an image-analysis service.</div>
-      <div class="actions"><button class="btn" data-action="traceWordsSave">${rec?'Save changes':'Save word'}</button>${rec?'<button class="btn danger-soft" data-action="traceWordsDelete">Delete word</button>':''}</div>
+      <div class="trace-photo-note">Pictures stay in WAPS on this device.</div>
+      <div class="actions"><button class="btn" data-action="traceWordsSave">Save</button>${rec?'<button class="btn danger-soft" data-action="traceWordsDelete">Delete word</button>':''}</div>
     </div>`,true);
     bindEditor();
   }

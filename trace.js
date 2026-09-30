@@ -69,11 +69,11 @@ export function createTraceFeature(ctx){
     const lp=ls&&ls.cursor<ls.items.length?ls.cursor+'/'+ls.items.length:null;
     const np=ns&&ns.cursor<ns.items.length?ns.cursor+'/'+ns.items.length:null;
     const wp=ws&&ws.cursor<ws.items.length?ws.cursor+'/'+ws.items.length:null;
-    show(`<div class="trace-launch"><span class="eyebrow">WAPS TRACE & SAY</span><h1>What would you like to practise?</h1><p>Trace letters, numbers, names and school words using the same child-friendly stroke guidance.</p><div class="trace-type-grid">
-      <button data-trace-type="letters"><span>🔤</span><b>Letters</b><small>Uppercase, lowercase, custom sets${lp?' · Continue '+lp:''}</small></button>
-      <button data-trace-type="numbers"><span>🔢</span><b>Numbers</b><small>0–5, 0–9, 0–10, 0–20 or custom${np?' · Continue '+np:''}</small></button>
-      <button data-action="traceWordsLaunch"><span class="trace-word-launch-mark">Aa</span><b>Words & Names</b><small>Names, sight words and spelling words${wp?' · Continue '+wp:''}</small></button>
-    </div><div class="notice"><b>Child-friendly tracing:</b> WAPS checks the current stroke path with generous motor tolerance. Pictures are optional supports, not required.</div></div>`,true);
+    show(`<div class="trace-launch simple-trace-launch"><span class="eyebrow">TRACE & SAY</span><h1>Choose one.</h1><div class="trace-type-grid">
+      <button data-trace-type="letters"><span class="trace-choice-mark">Aa</span><b>Letters</b><small>${lp?'Continue '+lp:'A–Z · a–z'}</small></button>
+      <button data-trace-type="numbers"><span class="trace-choice-mark">123</span><b>Numbers</b><small>${np?'Continue '+np:'0–20 or your numbers'}</small></button>
+      <button data-action="traceWordsLaunch"><span class="trace-word-launch-mark">Aa</span><b>Words & Names</b><small>${wp?'Continue '+wp:'Names · sight words · spelling'}</small></button>
+    </div></div>`,true);
   }
   function config(type){
     const p=prefs(type);draft={...clone(p),type,selected:[...(p.selected||DEFAULTS[type].selected)]};
@@ -85,17 +85,17 @@ export function createTraceFeature(ctx){
     const presets=isLetters
       ?[['upper','A–Z'],['lower','a–z'],['both','A–Z + a–z'],['af','A–F'],['gl','G–L'],['mr','M–R'],['sz','S–Z'],...(nameLetters.length?[['name','Name letters']]:[])]
       :[['05','0–5'],['09','0–9'],['010','0–10'],['020','0–20']];
-    show(`<div class="trace-config"><button class="btn ghost" data-action="traceLaunch">← Trace & Say</button><span class="eyebrow">${isLetters?'LETTERS':'NUMBERS'}</span><h1>Choose what to practise.</h1>
+    show(`<div class="trace-config"><button class="btn ghost" data-action="traceLaunch">← Trace & Say</button><span class="eyebrow">${isLetters?'LETTERS':'NUMBERS'}</span><h1>Choose.</h1>
       <div class="trace-presets">${presets.map(x=>`<button data-trace-preset="${x[0]}">${x[1]}</button>`).join('')}</div>
       <div class="trace-token-grid ${isLetters?'letters':'numbers'}">${tokens.map(t=>`<button class="${draft.selected.includes(t)?'selected':''}" data-trace-token="${esc(t)}">${esc(t)}</button>`).join('')}</div>
       ${!isLetters?`<div class="field"><label>Optional custom numbers (0–99)<input id="traceCustomNumbers" inputmode="numeric" placeholder="e.g. 12, 15, 20"></label><div class="mini">Separate numbers with commas. Selected numbers above are included too.</div></div>`:''}
-      <div class="trace-setting-grid">
-        <label>Guidance<select id="traceGuidance"><option value="guided" ${draft.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${draft.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${draft.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
+      <details class="trace-more-settings"><summary>Practice options</summary><div class="trace-setting-grid">
+        <label>Help<select id="traceGuidance"><option value="guided" ${draft.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${draft.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${draft.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
         <label>Trace line<select id="traceLineSize"><option value="small" ${draft.lineSize==='small'?'selected':''}>Small</option><option value="medium" ${draft.lineSize==='medium'?'selected':''}>Medium</option><option value="large" ${draft.lineSize==='large'?'selected':''}>Large</option></select></label>
-        ${isLetters?`<label>Letter audio<select id="traceLetterAudio"><option value="name" ${draft.letterAudio==='name'?'selected':''}>Letter name</option><option value="sound" ${draft.letterAudio==='sound'?'selected':''}>Letter sound + example</option><option value="both" ${draft.letterAudio==='both'?'selected':''}>Name + sound/example</option></select></label>`:''}
-      </div>
-      <div class="trace-config-summary"><b id="traceSelectedCount">${draft.selected.length} selected</b><span>WAPS will remember this set for ${esc(active()?.name||'this device')}.</span></div>
-      <div class="actions"><button class="btn" data-action="traceStart">${resumePossible()?'Continue / start selected set':'Start tracing'} →</button><button class="btn secondary" data-action="tracePreview">Preview formation</button>${session(draft.type)?'<button class="btn ghost" data-action="traceRestartSet">Restart saved set</button>':''}</div>
+        ${isLetters?`<label>Sound<select id="traceLetterAudio"><option value="name" ${draft.letterAudio==='name'?'selected':''}>Letter name</option><option value="sound" ${draft.letterAudio==='sound'?'selected':''}>Sound + example</option><option value="both" ${draft.letterAudio==='both'?'selected':''}>Both</option></select></label>`:''}
+      </div></details>
+      <div class="trace-config-summary"><b id="traceSelectedCount">${draft.selected.length} selected</b><span>${esc(active()?.name||'Saved on this device')}</span></div>
+      <div class="actions"><button class="btn" data-action="traceStart">${resumePossible()?'Continue':'Start'}</button><button class="btn secondary" data-action="tracePreview">Preview formation</button>${session(draft.type)?'<button class="btn ghost" data-action="traceRestartSet">Restart saved set</button>':''}</div>
     </div>`,true);
   }
   function resumePossible(){

@@ -1,14 +1,16 @@
 {
-  "track_id": "waps-gentle-drift",
-  "title": "Gentle Drift",
-  "type": "procedural ambient background audio",
-  "source": "Original WAPS-generated Web Audio synthesis",
+  "track_id": "waps-gentle-steps",
+  "title": "Gentle Steps",
+  "type": "original instrumental background music",
+  "source": "Original WAPS-generated audio asset",
   "creator": "WAPS Communication",
-  "rights_status": "Original application-generated audio; no third-party recording bundled",
+  "rights_status": "Original application asset; no third-party recording bundled",
   "created": "2026-09-30",
-  "character": "soft sustained tones; no vocals; no percussion; no alert sounds",
+  "file": "./assets/audio/waps-gentle-steps.mp3",
+  "character": "slow warm pad and soft bell-like melody; no vocals; no percussion; no therapeutic claim",
   "default": "off",
-  "default_volume": 0.2,
+  "default_volume": 0.24,
   "speech_ducking": true,
-  "notes": "Optional sensory-aware ambience only. No therapeutic or autism-treatment claim."
+  "loop": true,
+  "notes": "Generated specifically for WAPS v49. Optional background music only."
 }

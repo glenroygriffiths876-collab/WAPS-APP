@@ -316,6 +316,19 @@ export function createMathLearningFeature(ctx){
     if(sub.length)parts.push('<div><span>−</span><b>Take Away</b><p>'+sub.length+' take-away opportunities this week.</p><small>'+first(sub)+' of '+sub.length+' were correct on the first try.</small></div>');
     return '<section class="math-progress-card"><span class="eyebrow">NUMBERS & MATHS</span><h2>Recent maths practice</h2><div class="math-progress-grid">'+parts.join('')+'</div><button class="btn ghost" data-action="mathLaunch">Open Numbers & Maths</button></section>';
   }
+  function validateMathGenerator(){
+    const errors=[];
+    for(const max of [1,3,10,12,20,50]){
+      const c=deckFor('count',max),a=deckFor('add',max),sub=deckFor('subtract',max);
+      if(!c.length||Math.max(...c.map(x=>x.quantity))!==max||c.some(x=>x.quantity<1||x.quantity>max))errors.push('Count ceiling '+max);
+      if(!a.length||Math.max(...a.map(x=>x.answer))!==max||a.some(x=>x.answer<1||x.answer>max))errors.push('Add ceiling '+max);
+      if(!sub.length||Math.max(...sub.map(x=>x.start))!==max||sub.some(x=>x.start<1||x.start>max||x.answer<0))errors.push('Take Away ceiling '+max);
+    }
+    return errors;
+  }
+  const validationErrors=validateMathGenerator();
+  if(validationErrors.length)console.error('WAPS Numbers & Maths generator validation',validationErrors);
+
   async function handleClick(el){
     const obj=el.closest('[data-math-object]');if(obj){await touchObject(obj.dataset.mathObject);return true}
     const ans=el.closest('[data-math-answer]');if(ans){await answer(ans.dataset.mathAnswer,ans);return true}
@@ -331,5 +344,5 @@ export function createMathLearningFeature(ctx){
     if(action==='mathExit'){exit();return true}
     return false;
   }
-  return {launch,handleClick,progressHTML,cleanup};
+  return {launch,handleClick,progressHTML,cleanup,validationErrors};
 }

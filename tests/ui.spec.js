@@ -14,7 +14,7 @@ test('Home keeps Talk and Practice Together as the two primary choices', async (
   await expect(page.locator('.home-practice-action')).toContainText('Practice Together');
   await page.locator('.home-practice-action').click();
   await expect(page).toHaveURL(/#practice$/);
-  await expect(page.locator('.practice-six-tools')).toBeVisible();
+  await expect(page.locator('.practice-native-grid')).toBeVisible();
   await page.locator('.brand[data-route="home"]').click();
   await page.locator('.home-talk-action').click();
   await expect(page.locator('.talk-stage')).toBeVisible();
@@ -557,7 +557,7 @@ test('v49 Gentle Steps music is opt-in, bundled and caregiver controlled', async
   expect(asset.status).toBe(200);
   await page.locator('[data-action="settings"]').first().click();
   await expect(page.locator('#backgroundAudioSetting')).not.toBeChecked();
-  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.24');
+  await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.25');
   await page.locator('#audioVolumeSetting').fill('0.35');
   await expect(page.locator('#audioVolumeSettingValue')).toHaveText('35%');
   await page.locator('[data-action="previewMusic"]').click();

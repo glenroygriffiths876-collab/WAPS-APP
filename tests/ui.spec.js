@@ -399,7 +399,7 @@ test('Mobile core screens have no horizontal overflow', async ({page})=>{
     for(const route of ['home','talk','practice','coach','progress','more']){
       await page.goto('http://127.0.0.1:4173/#'+route);
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
-      expect(overflow).toBeLessThanOrEqual(2);
+      expect(overflow, route+' at '+viewport.width+'x'+viewport.height).toBeLessThanOrEqual(2);
     }
   }
 });

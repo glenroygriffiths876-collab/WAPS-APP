@@ -14,7 +14,7 @@ on:
       - 'math-learning.js'
       - 'comprehension-learning.js'
       - 'comprehension-data.js'
-      - 'assets/comprehension/**'
+      - 'assets/concepts/highres/**'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

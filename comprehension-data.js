@@ -1,36 +1,30 @@
 export const MU_SPECIAL_VISUALS={
-  supermarket:{label:'Supermarket',board:'001',col:0,row:0},
-  playground:{label:'Playground',board:'001',col:1,row:0},
-  clock:{label:'Clock',board:'001',col:3,row:0},
-  calendar:{label:'Calendar',board:'001',col:4,row:0},
-  fork:{label:'Fork',board:'001',col:0,row:1},
-  glass:{label:'Drinking glass',board:'001',col:2,row:1},
-  bottle:{label:'Water bottle',board:'001',col:3,row:1},
-  pen:{label:'Pen',board:'001',col:4,row:1},
-  marker:{label:'Marker',board:'001',col:0,row:2},
-  dress:{label:'Dress',board:'001',col:1,row:2},
-  hat:{label:'Hat',board:'001',col:2,row:2},
-  'red-apple':{label:'Red apple',board:'041',col:0,row:0},
-  'red-car':{label:'Red car',board:'041',col:2,row:0},
-  'blue-car':{label:'Blue car',board:'041',col:3,row:0},
-  'brown-dog':{label:'Brown dog',board:'041',col:4,row:0},
-  'brown-horse':{label:'Brown horse',board:'041',col:0,row:1},
-  'green-dotted-ball':{label:'Green ball with dots',board:'041',col:2,row:1},
-  'hot-soup':{label:'Hot soup',board:'041',col:3,row:1},
-  'ice-cream':{label:'Ice cream',board:'041',col:4,row:1},
-  kite:{label:'Kite',src:'./assets/comprehension/kite.webp'}
-};
-const BOARD_SRC={
-  '001':'./assets/comprehension/board-001-020.webp',
-  '041':'./assets/comprehension/board-041-060.webp'
+  supermarket:{label:'Supermarket',src:'./assets/concepts/highres/supermarket.webp'},
+  playground:{label:'Playground',src:'./assets/concepts/highres/playground.webp'},
+  clock:{label:'Clock',src:'./assets/concepts/highres/clock.webp'},
+  calendar:{label:'Calendar',src:'./assets/concepts/highres/calendar.webp'},
+  fork:{label:'Fork',src:'./assets/concepts/highres/fork.webp'},
+  glass:{label:'Drinking glass',src:'./assets/concepts/highres/glass.webp'},
+  bottle:{label:'Water bottle',src:'./assets/concepts/highres/bottle.webp'},
+  pen:{label:'Pen',src:'./assets/concepts/highres/pen.webp'},
+  marker:{label:'Marker',src:'./assets/concepts/highres/marker.webp'},
+  dress:{label:'Dress',src:'./assets/concepts/highres/dress.webp'},
+  hat:{label:'Hat',src:'./assets/concepts/highres/hat.webp'},
+  'red-apple':{label:'Red apple',src:'./assets/concepts/highres/red-apple.webp'},
+  'red-car':{label:'Red car',src:'./assets/concepts/highres/red-car.webp'},
+  'blue-car':{label:'Blue car',src:'./assets/concepts/highres/blue-car.webp'},
+  'brown-dog':{label:'Brown dog',src:'./assets/concepts/highres/brown-dog.webp'},
+  'brown-horse':{label:'Brown horse',src:'./assets/concepts/highres/brown-horse.webp'},
+  'green-dotted-ball':{label:'Green ball with dots',src:'./assets/concepts/highres/green-dotted-ball.webp'},
+  'hot-soup':{label:'Hot soup',src:'./assets/concepts/highres/hot-soup.webp'},
+  'ice-cream':{label:'Ice cream',src:'./assets/concepts/highres/ice-cream.webp'},
+  snack:{label:'Snack',src:'./assets/concepts/highres/snack.webp'},
+  kite:{label:'Kite',src:'./assets/concepts/highres/kite.webp'}
 };
 const h=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 export function muSpecialVisualHTML(id,cls=''){
-  if(id==='snack')return '<span class="mu-snack-visual '+h(cls)+'" role="img" aria-label="Snack"><img src="./assets/concepts/highres/apple.webp" alt=""><img src="./assets/concepts/highres/cookie.webp" alt=""><img src="./assets/concepts/highres/banana.webp" alt=""></span>';
   const v=MU_SPECIAL_VISUALS[id];if(!v)return '';
-  if(v.src)return '<span class="mu-direct-visual '+h(cls)+'" role="img" aria-label="'+h(v.label)+'"><img src="'+v.src+'" alt="'+h(v.label)+'" loading="lazy" decoding="async"></span>';
-  const x=v.col*25,y=v.row*(100/3);
-  return '<span class="mu-sprite '+h(cls)+'" role="img" aria-label="'+h(v.label)+'" style="--mu-board:url(\''+BOARD_SRC[v.board]+'\');--mu-x:'+x+'%;--mu-y:'+y+'%"><i aria-hidden="true"></i></span>';
+  return '<span class="mu-direct-visual '+h(cls)+'" role="img" aria-label="'+h(v.label)+'"><img src="'+v.src+'" alt="'+h(v.label)+'" loading="lazy" decoding="async"></span>';
 }
 export const MU_FIND_POOL=['apple','kite','doll','pencil','car','book','cup','ball','spoon','shirt','doctor','school','banana','shoe','bird','bus'];
 export const MU_MATCH_TASKS=[

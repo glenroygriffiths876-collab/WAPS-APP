@@ -35,7 +35,7 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=47' in html and 'app.js?v=47' in html, 'v48 public asset references missing'
+assert 'app.css?v=48' in html and 'app.js?v=48' in html, 'v48 public asset references missing'
 assert 'waps-reference-shell-v48' in sw, 'v48 cache name missing'
 for legacy in ['board-001-020.webp','board-041-060.webp','assets/comprehension/kite.webp','mu-sprite','BOARD_SRC']:
     assert legacy not in comp, f'legacy comprehension reference remains: {legacy}'

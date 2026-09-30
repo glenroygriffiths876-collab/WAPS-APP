@@ -141,7 +141,7 @@ test('Core app remains available offline after first load', async ({page,context
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded'});
   await expect(page.locator('.simple-home')).toBeVisible();
-  await page.locator('.bottomnav [data-route="practice"]').click();
+  await page.locator('.desktopnav [data-route="practice"]').click();
   await expect(page.locator('.practice-library')).toBeVisible();
   await context.setOffline(false);
 });

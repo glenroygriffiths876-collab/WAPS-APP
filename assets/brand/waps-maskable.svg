@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="WAPS maskable app icon"><rect width="1024" height="1024" fill="#fffdf8"/><g transform="translate(142 339) scale(.616667)"><defs>
+  <linearGradient id="wBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#275fd0"/><stop offset=".5" stop-color="#164ebd"/><stop offset="1" stop-color="#0a2f80"/></linearGradient>
+  <linearGradient id="wGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8bea2e"/><stop offset=".5" stop-color="#63d31a"/><stop offset="1" stop-color="#3ba200"/></linearGradient>
+  <linearGradient id="wRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3040"/><stop offset=".5" stop-color="#ea0b20"/><stop offset="1" stop-color="#b30014"/></linearGradient>
+</defs>
+<g stroke-linejoin="round">
+  <text x="8" y="455" font-family="Arial Black,DejaVu Sans,sans-serif" font-weight="900" font-size="430" fill="url(#wBlue)" stroke="#08276d" stroke-width="7">W</text>
+  <g fill="none" stroke-linecap="butt" stroke-linejoin="round">
+    <path d="M545 74 C605 98 649 154 649 219 C649 273 617 320 572 365 L482 478" stroke="#18306d" stroke-width="84"/>
+    <path d="M609 74 C549 98 505 154 505 219 C505 273 537 320 582 365 L672 478" stroke="#18306d" stroke-width="84"/>
+    <path d="M545 74 C570 84 593 99 611 118" stroke="#e9342e" stroke-width="64"/>
+    <path d="M611 118 C635 145 649 180 649 219" stroke="#ffd91f" stroke-width="64"/>
+    <path d="M649 219 C649 257 632 292 607 322" stroke="#2470d7" stroke-width="64"/>
+    <path d="M607 322 L554 389" stroke="#2cc88f" stroke-width="64"/>
+    <path d="M554 389 L482 478" stroke="#ef5038" stroke-width="64"/>
+    <path d="M609 74 C584 84 561 99 543 118" stroke="#246bdd" stroke-width="64"/>
+    <path d="M543 118 C519 145 505 180 505 219" stroke="#2fcf96" stroke-width="64"/>
+    <path d="M505 219 C505 257 522 292 547 322" stroke="#ef4937" stroke-width="64"/>
+    <path d="M547 322 L600 389" stroke="#ffda22" stroke-width="64"/>
+    <path d="M600 389 L672 478" stroke="#2370d8" stroke-width="64"/>
+    <g stroke="#18306d" stroke-width="6.5" opacity=".95">
+      <path d="M569 92 l18 17 -12 16 18 15"/><path d="M620 146 l-17 15 14 18 -18 17"/>
+      <path d="M622 246 l-19 15 12 18 -19 14"/><path d="M579 345 l-16 16 14 18 -16 16"/>
+      <path d="M521 164 l19 15 -14 18 18 15"/><path d="M523 252 l17 16 -13 17 18 15"/>
+      <path d="M568 341 l18 15 -13 19 18 13"/><path d="M621 415 l-18 16 13 18"/>
+      <circle cx="588" cy="110" r="8" fill="#ffd91f"/><circle cx="618" cy="207" r="8" fill="#2470d7"/>
+      <circle cx="597" cy="302" r="8" fill="#2cc88f"/><circle cx="543" cy="286" r="8" fill="#ef4937"/>
+      <circle cx="552" cy="205" r="8" fill="#2fcf96"/><circle cx="591" cy="374" r="8" fill="#ffda22"/>
+    </g>
+  </g>
+  <text x="690" y="455" font-family="Arial Black,DejaVu Sans,sans-serif" font-weight="900" font-size="400" fill="url(#wGreen)" stroke="#337f06" stroke-width="7">P</text>
+  <text x="925" y="455" font-family="Arial Black,DejaVu Sans,sans-serif" font-weight="900" font-size="400" fill="url(#wRed)" stroke="#8b0614" stroke-width="7">S</text>
+  <g opacity=".18" fill="#fff">
+    <path d="M76 171h260l-12 32H86z"/><path d="M744 180h154l-8 28H748z"/><path d="M974 188h155l-12 28H970z"/>
+  </g>
+</g></g></svg>

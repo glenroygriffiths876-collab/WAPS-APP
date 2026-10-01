@@ -1771,3 +1771,245 @@ html[data-large-text="1"] .mu-choice-grid.field-3{grid-template-columns:repeat(2
     height:auto!important;max-height:150px!important;aspect-ratio:1/1!important
   }
 }
+
+
+/* ==========================================================================
+   WAPS v51 — joyful responsive visual identity
+   Bright on navigation screens; intentionally quiet inside child workspaces.
+   ========================================================================== */
+:root{
+  --v51-ink:#14234f;
+  --v51-blue:#00a8e8;
+  --v51-blue2:#2477ff;
+  --v51-aqua:#00d6df;
+  --v51-purple:#6c5ce7;
+  --v51-purple2:#8d55ef;
+  --v51-yellow:#ffd166;
+  --v51-green:#06d6a0;
+  --v51-green2:#13ad6f;
+  --v51-coral:#ff6b6b;
+  --v51-pink:#ff477e;
+  --v51-soft:#f6fbff;
+  --v51-focus:#fbfdff;
+  --v51-line:#dceaf4;
+  --v51-shadow:0 12px 28px rgba(31,66,117,.12);
+  --v51-shadow-strong:0 18px 42px rgba(31,66,117,.18);
+}
+body{
+  color:var(--v51-ink)!important;
+  background:
+    radial-gradient(circle at 8% 7%,rgba(0,229,255,.20),transparent 24rem),
+    radial-gradient(circle at 92% 14%,rgba(255,209,102,.30),transparent 24rem),
+    radial-gradient(circle at 84% 88%,rgba(108,92,231,.10),transparent 28rem),
+    linear-gradient(180deg,#f6fcff 0,#fffdf8 55%,#f8fcff 100%)!important;
+}
+body::before,body::after{display:none!important}
+.v51-ui-icon{display:block;width:100%;height:100%;overflow:visible}
+.navico .v51-ui-icon{width:44px;height:44px}
+.desktopnav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.desktopnav button{min-width:84px}
+.desktopnav button.active{
+  background:linear-gradient(180deg,#fff,#edf8ff)!important;
+  box-shadow:0 9px 24px rgba(0,126,190,.13)!important;
+  color:var(--v51-ink)!important;
+}
+.header-circle{overflow:visible}
+.header-circle .v51-ui-icon{width:36px;height:36px;margin:auto}
+.bottom-nav-icon{width:32px!important;height:32px!important}
+.bottom-nav-icon .v51-ui-icon{width:32px!important;height:32px!important}
+
+/* Home: rich and inviting without scenic clutter. */
+.v51-home{max-width:1180px;margin:0 auto}
+.v51-home-hero{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:34px;
+  padding:clamp(18px,3vw,34px);
+  background:
+    radial-gradient(circle at 92% 12%,rgba(255,209,102,.62),transparent 24%),
+    radial-gradient(circle at 5% 88%,rgba(0,229,255,.28),transparent 30%),
+    linear-gradient(135deg,#eefaff 0%,#ffffff 48%,#fff7dc 100%);
+  box-shadow:var(--v51-shadow-strong);
+}
+.v51-home-hero::after{
+  content:"";position:absolute;right:-70px;bottom:-90px;width:280px;height:280px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,214,223,.10));pointer-events:none
+}
+.v51-home-welcome{position:relative;z-index:1;margin-bottom:18px}
+.v51-home-welcome .eyebrow{color:var(--v51-purple)}
+.v51-home-welcome h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1;margin:.1em 0;color:var(--v51-ink)}
+.v51-home-welcome p{margin:.4rem 0 0;color:#587089;font-size:clamp(.95rem,2vw,1.08rem)}
+.v51-home-actions{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.v51-hero-action{
+  border:0;min-height:220px;border-radius:30px;padding:22px;
+  display:grid;grid-template-columns:128px minmax(0,1fr) 46px;align-items:center;gap:18px;text-align:left;
+  color:#fff;box-shadow:0 14px 32px rgba(32,71,130,.18),inset 0 1px 0 rgba(255,255,255,.45);
+  position:relative;overflow:hidden
+}
+.v51-hero-action::after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,rgba(255,255,255,.22),transparent 34%,rgba(255,255,255,.08));pointer-events:none}
+.v51-talk-action{background:linear-gradient(145deg,#05c9e8,#148ee4 58%,#1768d8)}
+.v51-practice-action{background:linear-gradient(145deg,#20df85,#13ad6f 55%,#078b54)}
+.v51-hero-icon{width:128px;height:128px;filter:drop-shadow(0 9px 9px rgba(16,40,80,.16))}
+.v51-hero-action b{display:block;font-size:clamp(1.7rem,3vw,2.45rem);line-height:1}
+.v51-hero-action small{display:block;margin-top:8px;font-family:var(--v50-body);font-size:1rem;color:rgba(255,255,255,.92)}
+.v51-hero-action>i{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--v51-ink);display:grid;place-items:center;font-size:2rem;font-style:normal;box-shadow:0 5px 14px rgba(0,0,0,.12)}
+.v51-home-secondary{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.v51-mini-action{min-height:78px;border:1px solid #dcebf4;background:rgba(255,255,255,.92);border-radius:22px;padding:11px 14px;display:grid;grid-template-columns:52px 1fr;align-items:center;gap:12px;text-align:left;color:var(--v51-ink);box-shadow:0 6px 18px rgba(32,72,105,.07)}
+.v51-mini-action .v51-ui-icon{width:50px;height:50px}
+.v51-mini-action b{display:block;font-size:1.03rem}
+.v51-mini-action small{font-family:var(--v50-body);color:#6b7e90}
+
+/* Practice + More use vivid cards, but preserve density. */
+.v51-practice-home,.v51-more{max-width:1120px;margin:0 auto}
+.v51-practice-grid{gap:14px!important}
+.v51-practice-card{
+  border:1px solid rgba(255,255,255,.9)!important;
+  box-shadow:var(--v51-shadow)!important;
+  background:linear-gradient(145deg,#fff,#f6fbff)!important;
+  overflow:hidden!important;position:relative
+}
+.v51-practice-card:nth-child(1){background:linear-gradient(145deg,#fff8dc,#fff)!important}
+.v51-practice-card:nth-child(2){background:linear-gradient(145deg,#eafaff,#fff)!important}
+.v51-practice-card:nth-child(3){background:linear-gradient(145deg,#eef5ff,#fff)!important}
+.v51-practice-card:nth-child(4){background:linear-gradient(145deg,#fff0eb,#fff)!important}
+.v51-practice-card:nth-child(5){background:linear-gradient(145deg,#e9fff4,#fff)!important}
+.v51-practice-card:nth-child(6){background:linear-gradient(145deg,#f2edff,#fff)!important}
+.v51-practice-card .practice-tool-icon{background:transparent!important;border:0!important;box-shadow:none!important;object-fit:contain}
+.v51-practice-card b{color:var(--v51-ink)}
+.v51-practice-card>i{color:var(--v51-purple)}
+.v51-external-card .external-resource-icon{background:transparent!important;border:0!important;border-radius:0!important}
+.more-group-card .more-group-icon{background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Talk: communication clarity outranks decoration. */
+body[data-route="talk"]{background:linear-gradient(180deg,#f8fcff,#fffefb)!important}
+body[data-route="talk"] main{max-width:1280px}
+.talk-stage{background:transparent!important}
+.talk-sticky-zone{background:rgba(255,255,255,.98)!important;border-color:#dcebf4!important}
+.v51-control-icon{width:27px;height:27px;flex:none}
+.compact-speak .v51-control-icon{width:30px;height:30px}
+.compact-aac-actions .btn{display:flex;align-items:center;justify-content:center;gap:6px}
+.aac-search .v51-search-icon{width:27px;height:27px;flex:none}
+.my-word-compact{display:flex!important;align-items:center!important;gap:5px}
+.aac,.quick-needs button{background:#fff!important}
+.aac-grid.premium-grid{align-items:start}
+
+/* Focus screens: intentionally almost white, no decorative scenery. */
+.premium-activity,
+.trace-child-screen,.trace-word-child,.trace-build-screen,.trace-try-screen,.trace-say-screen,
+.cs-child-screen,.math-child-screen,.mu-child-screen{
+  background:linear-gradient(180deg,#fbfdff,#fffdf9)!important;
+}
+body[data-view="focus"]{background:#fbfdff!important}
+body[data-view="focus"] main{background:#fbfdff!important}
+.activity-banner,.cs-prompt-card,.math-prompt-card,.mu-prompt{
+  box-shadow:none!important
+}
+.choice,.cs-answer,.math-answer,.mu-picture-choice{
+  background:#fff!important;
+  box-shadow:0 4px 14px rgba(30,66,95,.07)!important
+}
+
+/* Low stimulation / high contrast always wins over premium decoration. */
+html[data-low-stim="1"] body,
+html[data-low-stim="1"] body[data-route="home"],
+html[data-low-stim="1"] body[data-route="practice"],
+html[data-low-stim="1"] body[data-route="more"]{background:#f8fafb!important}
+html[data-low-stim="1"] .v51-home-hero,
+html[data-low-stim="1"] .v51-practice-card,
+html[data-low-stim="1"] .more-group-card{background:#fff!important;box-shadow:none!important}
+html[data-low-stim="1"] .v51-home-hero::after{display:none!important}
+html[data-high-contrast="1"] .v51-hero-action{box-shadow:none!important;border:3px solid #000!important}
+html[data-high-contrast="1"] .v51-practice-card,
+html[data-high-contrast="1"] .more-group-card{border:2px solid #000!important}
+
+/* Phone first. */
+@media(max-width:600px){
+  body{background:linear-gradient(180deg,#f4fbff 0,#fffefb 58%,#fafcff 100%)!important}
+  main{padding-left:9px!important;padding-right:9px!important}
+  .navico .v51-ui-icon{width:28px;height:28px}
+  .header-circle .v51-ui-icon{width:31px!important;height:31px!important}
+  .bottom-nav-icon,.bottom-nav-icon .v51-ui-icon{width:30px!important;height:30px!important}
+  .v51-home{padding:0}
+  .v51-home-hero{border-radius:24px;padding:13px;box-shadow:0 10px 24px rgba(31,66,117,.11)}
+  .v51-home-welcome{margin-bottom:10px}
+  .v51-home-welcome .eyebrow{display:none}
+  .v51-home-welcome h1{font-size:1.72rem;margin:0}
+  .v51-home-welcome p{font-size:.84rem;margin-top:3px}
+  .v51-home-actions{grid-template-columns:1fr 1fr;gap:8px}
+  .v51-hero-action{
+    min-height:172px;border-radius:21px;padding:12px;
+    grid-template-columns:1fr;grid-template-rows:82px auto;gap:4px;align-content:start;text-align:left
+  }
+  .v51-hero-icon{width:82px;height:82px}
+  .v51-hero-action b{font-size:1.18rem;line-height:1.05}
+  .v51-hero-action small{font-size:.71rem;line-height:1.15;margin-top:3px}
+  .v51-hero-action>i{display:none}
+  .v51-home-secondary{gap:8px;margin-top:8px}
+  .v51-mini-action{min-height:62px;border-radius:17px;padding:8px;grid-template-columns:40px 1fr;gap:7px}
+  .v51-mini-action .v51-ui-icon{width:38px;height:38px}
+  .v51-mini-action b{font-size:.82rem}
+  .v51-mini-action small{font-size:.64rem}
+  .practice-native-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .v51-practice-card{min-height:124px!important;padding:10px!important;grid-template-rows:58px auto!important}
+  .v51-practice-card .practice-tool-icon{width:58px!important;height:58px!important}
+  .more-group-card{min-height:118px!important;grid-template-rows:54px auto!important}
+  .more-group-card .more-group-icon{width:52px!important;height:52px!important}
+  .compact-speak .v51-control-icon{width:27px;height:27px}
+  .compact-aac-actions .v51-control-icon{width:22px;height:22px}
+  .aac-search .v51-search-icon{width:23px;height:23px}
+  body:has(.premium-activity,.trace-child-screen,.cs-child-screen,.math-child-screen,.mu-child-screen){
+    background:#fbfdff!important
+  }
+}
+
+/* Very small phones: preserve above-the-fold density. */
+@media(max-width:380px){
+  .v51-home-hero{padding:10px;border-radius:20px}
+  .v51-home-actions{gap:7px}
+  .v51-hero-action{min-height:156px;padding:9px;grid-template-rows:74px auto}
+  .v51-hero-icon{width:72px;height:72px}
+  .v51-hero-action b{font-size:1.04rem}
+  .v51-hero-action small{font-size:.65rem}
+  .v51-home-secondary{grid-template-columns:1fr 1fr}
+  .v51-mini-action small{display:none}
+}
+
+/* Tablet: intentionally recompose instead of stretching phone cards. */
+@media(min-width:601px) and (max-width:1024px){
+  main{padding-left:22px!important;padding-right:22px!important}
+  .v51-home-hero{padding:24px}
+  .v51-hero-action{min-height:190px;grid-template-columns:105px 1fr 40px;padding:18px}
+  .v51-hero-icon{width:104px;height:104px}
+  .practice-native-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .more-group-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+/* Desktop: composed workspace, never a giant stretched phone. */
+@media(min-width:1025px){
+  main{max-width:1240px!important;padding-left:28px!important;padding-right:28px!important}
+  .waps-header{grid-template-columns:250px minmax(430px,680px) minmax(250px,1fr)!important}
+  .desktopnav{height:84px!important}
+  .desktopnav button{gap:2px!important}
+  .desktopnav button b{font-size:14px!important}
+  .v51-home-hero{max-width:1120px;margin:0 auto}
+  .v51-practice-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .v51-practice-card{min-height:160px!important}
+  .v51-practice-card .practice-tool-icon{width:74px!important;height:74px!important}
+  .more-group-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+
+/* Landscape phones: exploit width, suppress unnecessary vertical chrome. */
+@media(max-width:900px) and (max-height:500px) and (orientation:landscape){
+  .v51-home-welcome{display:none}
+  .v51-home-hero{padding:8px}
+  .v51-home-actions{grid-template-columns:1fr 1fr}
+  .v51-hero-action{min-height:112px;grid-template-columns:72px 1fr;grid-template-rows:1fr;padding:8px}
+  .v51-hero-icon{width:68px;height:68px}
+  .v51-home-secondary{grid-template-columns:repeat(2,1fr)}
+  .practice-native-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .v51-practice-card{min-height:92px!important;grid-template-columns:52px 1fr!important;grid-template-rows:1fr!important;align-items:center!important}
+  .v51-practice-card .practice-tool-icon{width:50px!important;height:50px!important}
+}
+
+/* Reduced movement keeps the look but removes motion cues. */
+html[data-reduced="1"] *,html[data-low-stim="1"] *{animation:none!important;transition:none!important}

@@ -1,0 +1,248 @@
+{
+  "release": "v51",
+  "format": "svg-symbol-sprite",
+  "sprite": "./assets/ui/v51/icons.svg",
+  "note": "Original WAPS bright 2.5D vector icon system. Raster review art remains a visual reference; SVG symbols are lightweight production UI assets.",
+  "icons": {
+    "home": {
+      "id": 1,
+      "href": "./assets/ui/v51/icons.svg#home",
+      "viewBox": "0 0 96 96"
+    },
+    "talk": {
+      "id": 2,
+      "href": "./assets/ui/v51/icons.svg#talk",
+      "viewBox": "0 0 96 96"
+    },
+    "practice": {
+      "id": 3,
+      "href": "./assets/ui/v51/icons.svg#practice",
+      "viewBox": "0 0 96 96"
+    },
+    "more": {
+      "id": 4,
+      "href": "./assets/ui/v51/icons.svg#more",
+      "viewBox": "0 0 96 96"
+    },
+    "progress": {
+      "id": 5,
+      "href": "./assets/ui/v51/icons.svg#progress",
+      "viewBox": "0 0 96 96"
+    },
+    "child-profile": {
+      "id": 6,
+      "href": "./assets/ui/v51/icons.svg#child-profile",
+      "viewBox": "0 0 96 96"
+    },
+    "caregiver-tools": {
+      "id": 7,
+      "href": "./assets/ui/v51/icons.svg#caregiver-tools",
+      "viewBox": "0 0 96 96"
+    },
+    "settings": {
+      "id": 8,
+      "href": "./assets/ui/v51/icons.svg#settings",
+      "viewBox": "0 0 96 96"
+    },
+    "speak": {
+      "id": 9,
+      "href": "./assets/ui/v51/icons.svg#speak",
+      "viewBox": "0 0 96 96"
+    },
+    "backspace": {
+      "id": 10,
+      "href": "./assets/ui/v51/icons.svg#backspace",
+      "viewBox": "0 0 96 96"
+    },
+    "clear": {
+      "id": 11,
+      "href": "./assets/ui/v51/icons.svg#clear",
+      "viewBox": "0 0 96 96"
+    },
+    "partner-mode": {
+      "id": 12,
+      "href": "./assets/ui/v51/icons.svg#partner-mode",
+      "viewBox": "0 0 96 96"
+    },
+    "search": {
+      "id": 13,
+      "href": "./assets/ui/v51/icons.svg#search",
+      "viewBox": "0 0 96 96"
+    },
+    "add-word": {
+      "id": 14,
+      "href": "./assets/ui/v51/icons.svg#add-word",
+      "viewBox": "0 0 96 96"
+    },
+    "favourite": {
+      "id": 15,
+      "href": "./assets/ui/v51/icons.svg#favourite",
+      "viewBox": "0 0 96 96"
+    },
+    "recent": {
+      "id": 16,
+      "href": "./assets/ui/v51/icons.svg#recent",
+      "viewBox": "0 0 96 96"
+    },
+    "core": {
+      "id": 17,
+      "href": "./assets/ui/v51/icons.svg#core",
+      "viewBox": "0 0 96 96"
+    },
+    "safety": {
+      "id": 18,
+      "href": "./assets/ui/v51/icons.svg#safety",
+      "viewBox": "0 0 96 96"
+    },
+    "people": {
+      "id": 19,
+      "href": "./assets/ui/v51/icons.svg#people",
+      "viewBox": "0 0 96 96"
+    },
+    "actions": {
+      "id": 20,
+      "href": "./assets/ui/v51/icons.svg#actions",
+      "viewBox": "0 0 96 96"
+    },
+    "mixed-practice": {
+      "id": 21,
+      "href": "./assets/ui/v51/icons.svg#mixed-practice",
+      "viewBox": "0 0 96 96"
+    },
+    "trace-say": {
+      "id": 22,
+      "href": "./assets/ui/v51/icons.svg#trace-say",
+      "viewBox": "0 0 96 96"
+    },
+    "words-names": {
+      "id": 23,
+      "href": "./assets/ui/v51/icons.svg#words-names",
+      "viewBox": "0 0 96 96"
+    },
+    "colours-shapes": {
+      "id": 24,
+      "href": "./assets/ui/v51/icons.svg#colours-shapes",
+      "viewBox": "0 0 96 96"
+    },
+    "numbers-maths": {
+      "id": 25,
+      "href": "./assets/ui/v51/icons.svg#numbers-maths",
+      "viewBox": "0 0 96 96"
+    },
+    "match-understand": {
+      "id": 26,
+      "href": "./assets/ui/v51/icons.svg#match-understand",
+      "viewBox": "0 0 96 96"
+    },
+    "explore-more": {
+      "id": 27,
+      "href": "./assets/ui/v51/icons.svg#explore-more",
+      "viewBox": "0 0 96 96"
+    },
+    "school-sharing": {
+      "id": 28,
+      "href": "./assets/ui/v51/icons.svg#school-sharing",
+      "viewBox": "0 0 96 96"
+    },
+    "learn-print": {
+      "id": 29,
+      "href": "./assets/ui/v51/icons.svg#learn-print",
+      "viewBox": "0 0 96 96"
+    },
+    "find-help": {
+      "id": 30,
+      "href": "./assets/ui/v51/icons.svg#find-help",
+      "viewBox": "0 0 96 96"
+    },
+    "about-waps": {
+      "id": 31,
+      "href": "./assets/ui/v51/icons.svg#about-waps",
+      "viewBox": "0 0 96 96"
+    },
+    "display": {
+      "id": 32,
+      "href": "./assets/ui/v51/icons.svg#display",
+      "viewBox": "0 0 96 96"
+    },
+    "sound": {
+      "id": 33,
+      "href": "./assets/ui/v51/icons.svg#sound",
+      "viewBox": "0 0 96 96"
+    },
+    "accessibility": {
+      "id": 34,
+      "href": "./assets/ui/v51/icons.svg#accessibility",
+      "viewBox": "0 0 96 96"
+    },
+    "background-music": {
+      "id": 35,
+      "href": "./assets/ui/v51/icons.svg#background-music",
+      "viewBox": "0 0 96 96"
+    },
+    "backup": {
+      "id": 36,
+      "href": "./assets/ui/v51/icons.svg#backup",
+      "viewBox": "0 0 96 96"
+    },
+    "install": {
+      "id": 37,
+      "href": "./assets/ui/v51/icons.svg#install",
+      "viewBox": "0 0 96 96"
+    },
+    "share": {
+      "id": 38,
+      "href": "./assets/ui/v51/icons.svg#share",
+      "viewBox": "0 0 96 96"
+    },
+    "child-mode": {
+      "id": 39,
+      "href": "./assets/ui/v51/icons.svg#child-mode",
+      "viewBox": "0 0 96 96"
+    },
+    "privacy": {
+      "id": 40,
+      "href": "./assets/ui/v51/icons.svg#privacy",
+      "viewBox": "0 0 96 96"
+    },
+    "reset": {
+      "id": 41,
+      "href": "./assets/ui/v51/icons.svg#reset",
+      "viewBox": "0 0 96 96"
+    },
+    "help-now": {
+      "id": 42,
+      "href": "./assets/ui/v51/icons.svg#help-now",
+      "viewBox": "0 0 96 96"
+    },
+    "coach": {
+      "id": 43,
+      "href": "./assets/ui/v51/icons.svg#coach",
+      "viewBox": "0 0 96 96"
+    },
+    "school-shadow": {
+      "id": 44,
+      "href": "./assets/ui/v51/icons.svg#school-shadow",
+      "viewBox": "0 0 96 96"
+    },
+    "where-hurts": {
+      "id": 45,
+      "href": "./assets/ui/v51/icons.svg#where-hurts",
+      "viewBox": "0 0 96 96"
+    },
+    "find-help-jamaica": {
+      "id": 46,
+      "href": "./assets/ui/v51/icons.svg#find-help-jamaica",
+      "viewBox": "0 0 96 96"
+    },
+    "difficult-moments": {
+      "id": 47,
+      "href": "./assets/ui/v51/icons.svg#difficult-moments",
+      "viewBox": "0 0 96 96"
+    },
+    "care-support": {
+      "id": 48,
+      "href": "./assets/ui/v51/icons.svg#care-support",
+      "viewBox": "0 0 96 96"
+    }
+  }
+}

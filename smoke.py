@@ -35,8 +35,8 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=51' in html and 'app.js?v=51' in html, 'v51 public asset references missing'
-assert 'waps-reference-shell-v51' in sw, 'v51 cache name missing'
+assert 'app.css?v=52' in html and 'app.js?v=52' in html, 'v52 public asset references missing'
+assert 'waps-reference-shell-v52' in sw, 'v52 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
 assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'
@@ -50,6 +50,15 @@ assert v51_manifest.get('release')=='v51', 'v51 manifest release mismatch'
 assert len(v51_manifest.get('icons',{}))==48, 'v51 manifest must contain 48 icons'
 assert './assets/ui/v51/icons.svg' in sw and './assets/ui/v51/manifest.json' in sw, 'v51 UI assets not cached'
 assert 'WAPS v51 — joyful responsive visual identity' in css, 'v51 CSS layer missing'
+assert 'WAPS v52 — premium illustrated Home' in css, 'v52 Home CSS layer missing'
+assert (r/'assets/ui/v52/manifest.json').exists(), 'v52 Home manifest missing'
+v52_manifest=json.loads((r/'assets/ui/v52/manifest.json').read_text(encoding='utf-8'))
+assert v52_manifest.get('release')=='v52', 'v52 manifest release mismatch'
+for asset in ['home-world.svg','talk-scene.svg','practice-scene.svg']:
+    p=r/'assets/ui/v52'/asset
+    assert p.exists() and p.stat().st_size>1000, f'v52 scene missing/suspicious: {asset}'
+    assert f'./assets/ui/v52/{asset}' in sw, f'v52 scene not cached: {asset}'
+assert './assets/ui/v52/manifest.json' in sw, 'v52 manifest not cached'
 assert 'fredoka-variable.woff2' in css, 'Fredoka not wired in CSS'
 assert 'nunito-variable.ttf' in css, 'Nunito not wired in CSS'
 assert './assets/audio/waps-gentle-steps.mp3' in sw, 'music not listed for runtime/offline cache'

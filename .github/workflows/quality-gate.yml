@@ -20,6 +20,7 @@ on:
       - 'assets/fonts/**'
       - 'assets/ui/v51/**'
       - 'assets/ui/v52/**'
+      - 'assets/ui/v53/**'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'

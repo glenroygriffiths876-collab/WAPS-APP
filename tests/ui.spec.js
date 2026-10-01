@@ -494,7 +494,7 @@ test('Core app remains available offline after first load', async ({page,context
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded'});
   await expect(page.locator('.calm-home')).toBeVisible();
-  await page.locator('.desktopnav [data-route="practice"]').click();
+  await page.locator('.home-practice-action').click();
   await expect(page.locator('.practice-library')).toBeVisible();
   await context.setOffline(false);
 });
@@ -745,7 +745,7 @@ test('v51 icon manifest exposes the complete 48-icon system', async ({page})=>{
   expect(result.release).toBe('v51');
   expect(result.count).toBe(48);
   expect(result.symbols).toBeGreaterThanOrEqual(48);
-  await expect(page.locator('.v51-ui-icon').first()).toBeVisible();
+  await expect(page.locator('.home-settings-control .v51-ui-icon')).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -870,16 +870,21 @@ test('v53 premium Home assets and manifest are bundled for offline use', async (
   expect(errors).toEqual([]);
 });
 
-test('v53 Child Mode still reduces Home navigation to Talk Practice and Home only', async ({page})=>{
+test('v53 Child Mode presentation keeps caregiver Home extras guarded', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
-  await page.locator('[data-action="settings"]').first().click();
-  await page.locator('#childModeSetting').check({force:true}).catch(()=>{});
-  const save=page.locator('[data-action="saveSettings"]');
-  if(await save.count()) await save.click();
-  // Existing child mode tests exercise the full state transition; this check only guards the v53 nav CSS.
-  const cssRule=await page.evaluate(()=>Array.from(document.styleSheets).some(s=>{try{return Array.from(s.cssRules||[]).some(r=>String(r.cssText).includes('child-mode-active')&&String(r.cssText).includes('v53-bottomnav'))}catch{return false}}));
-  expect(cssRule).toBeTruthy();
+  const guarded=await page.evaluate(()=>{
+    for(const sheet of Array.from(document.styleSheets)){
+      try{
+        for(const rule of Array.from(sheet.cssRules||[])){
+          const text=String(rule.cssText||'');
+          if(text.includes('child-mode-active')&&text.includes('v53-bottomnav')) return true;
+        }
+      }catch{}
+    }
+    return false;
+  });
+  expect(guarded).toBeTruthy();
   expect(errors).toEqual([]);
 });

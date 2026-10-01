@@ -1,8 +1,8 @@
 {
   "release": "v50",
-  "tested_commit": "780c29eec6865f3b633a76c574a7764793514614",
+  "tested_commit": "42cd5ff3cab493a628760eeaf0145782f005fb8f",
   "quality_gate": "success",
-  "browser_suite": "failure",
+  "browser_suite": "success",
   "browser_test_count": 30,
   "offline_test_in_suite": true,
   "pages_live_check": "success"

@@ -35,7 +35,7 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=49' in html and 'app.js?v=49' in html, 'v50 public asset references missing'
+assert 'app.css?v=50' in html and 'app.js?v=50' in html, 'v50 public asset references missing'
 assert 'waps-reference-shell-v50' in sw, 'v50 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'

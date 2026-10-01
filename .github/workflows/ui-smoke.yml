@@ -17,6 +17,7 @@ on:
       - 'assets/concepts/highres/**'
       - 'assets/audio/**'
       - 'assets/fonts/**'
+      - 'assets/ui/v51/**'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

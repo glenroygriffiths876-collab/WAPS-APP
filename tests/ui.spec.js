@@ -726,3 +726,71 @@ test('v50 Talk quick labels are not clipped on phone', async ({page})=>{
   });
   expect(clipped).toBeFalsy();
 });
+
+
+test('v51 icon manifest exposes the complete 48-icon system', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+  const result=await page.evaluate(async()=>{
+    const [m,s]=await Promise.all([
+      fetch('./assets/ui/v51/manifest.json',{cache:'no-store'}),
+      fetch('./assets/ui/v51/icons.svg',{cache:'no-store'})
+    ]);
+    const manifest=await m.json();
+    const sprite=await s.text();
+    return {manifestStatus:m.status,spriteStatus:s.status,count:Object.keys(manifest.icons||{}).length,release:manifest.release,symbols:(sprite.match(/<symbol id=/g)||[]).length};
+  });
+  expect(result.manifestStatus).toBe(200);
+  expect(result.spriteStatus).toBe(200);
+  expect(result.release).toBe('v51');
+  expect(result.count).toBe(48);
+  expect(result.symbols).toBeGreaterThanOrEqual(48);
+  await expect(page.locator('.v51-ui-icon').first()).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('v51 home preserves primary actions without horizontal overflow across target viewports', async ({page})=>{
+  const errors=collectErrors(page);
+  for(const vp of [{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:820,height:1180},{width:1366,height:768}]){
+    await page.setViewportSize(vp);
+    await page.goto('http://127.0.0.1:4173/#home');
+    await expect(page.locator('.home-talk-action')).toBeVisible();
+    await expect(page.locator('.home-practice-action')).toBeVisible();
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(2);
+  }
+  expect(errors).toEqual([]);
+});
+
+test('v51 responsive recomposition keeps the same route and functions after orientation change', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await expect(page.locator('[data-action="mathLaunch"]')).toBeVisible();
+  await page.setViewportSize({width:844,height:390});
+  await expect(page).toHaveURL(/#practice$/);
+  await expect(page.locator('[data-action="mathLaunch"]')).toBeVisible();
+  await expect(page.locator('[data-action="traceLaunch"]')).toBeVisible();
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(2);
+  expect(errors).toEqual([]);
+});
+
+test('v51 low stimulation suppresses decorative treatment and focused practice stays quiet', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#home');
+  await page.locator('[data-action="settings"]').click();
+  await page.locator('#stimSetting').check({force:true});
+  await page.locator('[data-action="saveSettings"]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-low-stim','1');
+  const bg=await page.locator('.v51-home-hero').evaluate(el=>getComputedStyle(el).backgroundImage);
+  expect(bg==='none'||bg.includes('none')||bg.includes('linear-gradient')).toBeTruthy();
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="startUnifiedPractice"]').click();
+  await expect(page.locator('.premium-activity')).toBeVisible();
+  await expect(page.locator('body')).toHaveAttribute('data-view','focus');
+  const activityBg=await page.locator('.premium-activity').evaluate(el=>getComputedStyle(el).backgroundImage);
+  expect(activityBg).toContain('linear-gradient');
+  expect(errors).toEqual([]);
+});

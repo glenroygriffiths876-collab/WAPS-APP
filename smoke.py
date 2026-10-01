@@ -30,19 +30,26 @@ assert not missing, f'unhandled actions: {missing}'
 sw=(r/'sw.js').read_text(encoding='utf-8')
 assert 'networkFirst' in sw and 'OPTIONAL=' in sw and 'skipWaiting' in sw and 'clients.claim' in sw
 
-# v50 comprehension visual gate
+# v51 production visual gate (includes v50 comprehension assets)
 special=["supermarket","playground","clock","fork","glass","bottle","pen","marker","dress","hat","red-apple","red-car","blue-car","brown-dog","brown-horse","green-dotted-ball","hot-soup","ice-cream","calendar","snack","kite"]
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=50' in html and 'app.js?v=50' in html, 'v50 public asset references missing'
-assert 'waps-reference-shell-v50' in sw, 'v50 cache name missing'
+assert 'app.css?v=51' in html and 'app.js?v=51' in html, 'v51 public asset references missing'
+assert 'waps-reference-shell-v51' in sw, 'v51 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
 assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'
 assert (r/'assets/fonts/OFL-Nunito.txt').exists(), 'Nunito OFL missing'
 assert (r/'assets/audio/waps-gentle-steps.mp3').exists(), 'Gentle Steps MP3 missing'
 assert (r/'assets/audio/waps-gentle-steps.mp3').stat().st_size>100000, 'Gentle Steps MP3 suspiciously small'
+assert (r/'assets/ui/v51/icons.svg').exists(), 'v51 icon sprite missing'
+assert (r/'assets/ui/v51/manifest.json').exists(), 'v51 icon manifest missing'
+v51_manifest=json.loads((r/'assets/ui/v51/manifest.json').read_text(encoding='utf-8'))
+assert v51_manifest.get('release')=='v51', 'v51 manifest release mismatch'
+assert len(v51_manifest.get('icons',{}))==48, 'v51 manifest must contain 48 icons'
+assert './assets/ui/v51/icons.svg' in sw and './assets/ui/v51/manifest.json' in sw, 'v51 UI assets not cached'
+assert 'WAPS v51 — joyful responsive visual identity' in css, 'v51 CSS layer missing'
 assert 'fredoka-variable.woff2' in css, 'Fredoka not wired in CSS'
 assert 'nunito-variable.ttf' in css, 'Nunito not wired in CSS'
 assert './assets/audio/waps-gentle-steps.mp3' in sw, 'music not listed for runtime/offline cache'

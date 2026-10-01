@@ -327,8 +327,8 @@ function home(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-ho
 <section class="v51-home-hero">
   <div class="v51-home-welcome"><span class="eyebrow">WAPS</span><h1>${p?`Hi ${name}`:"Welcome to WAPS"}</h1><p>What would you like to do?</p></div>
   <div class="v51-home-actions">
-    <button class="v51-hero-action v51-talk-action" data-route="talk">${uiIcon('talk','v51-hero-icon')}<span><b>Talk</b><small>Tell me what you need</small></span><i aria-hidden="true">›</i></button>
-    <button class="v51-hero-action v51-practice-action" data-route="practice">${uiIcon('practice','v51-hero-icon')}<span><b>Practice Together</b><small>Learn and play together</small></span><i aria-hidden="true">›</i></button>
+    <button class="home-big-action home-talk-action v51-hero-action v51-talk-action" data-route="talk">${uiIcon('talk','v51-hero-icon')}<span><b>Talk</b><small>Tell me what you need</small></span><i aria-hidden="true">›</i></button>
+    <button class="home-big-action home-practice-action v51-hero-action v51-practice-action" data-route="practice">${uiIcon('practice','v51-hero-icon')}<span><b>Practice Together</b><small>Learn and play together</small></span><i aria-hidden="true">›</i></button>
   </div>
   <div class="v51-home-secondary">
     ${p?`<button class="v51-mini-action" data-action="progressOpen">${uiIcon('progress')}<span><b>Progress</b><small>See recent learning</small></span></button>`:`<button class="v51-mini-action" data-action="profile">${uiIcon('child-profile')}<span><b>My Child</b><small>Set up a profile</small></span></button>`}

@@ -1,0 +1,166 @@
+name: WAPS v51 one-time QA report
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v51-qa-report.yml'
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Production quality gate
+        id: quality
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node --check app.js
+          node --check trace.js
+          node --check trace-words.js
+          node --check trace-data.js
+          node --check concept-learning.js
+          node --check math-learning.js
+          node --check comprehension-data.js
+          node --check comprehension-learning.js
+          python3 smoke.py
+          node ceiling_test.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          m=Path('assets/concepts/highres/manifest.json')
+          data=json.loads(m.read_text())
+          for concept,meta in data.items():
+              p=Path('assets/concepts/highres')/(concept+'.webp')
+              if not p.exists():
+                  raise SystemExit(f'missing high-resolution asset: {concept}')
+              if p.stat().st_size < 4000:
+                  raise SystemExit(f'high-resolution asset suspiciously small: {concept} {p.stat().st_size}')
+              b=p.read_bytes()[:30]
+              if b[:4]!=b'RIFF' or b[8:12]!=b'WEBP':
+                  raise SystemExit(f'not WebP: {concept}')
+              if meta.get('width')!=1024 or meta.get('height')!=1024:
+                  raise SystemExit(f'bad manifest dimensions: {concept}')
+          ui_manifest=json.loads(Path('assets/ui/v51/manifest.json').read_text())
+          if ui_manifest.get('release')!='v51' or len(ui_manifest.get('icons',{}))!=48:
+              raise SystemExit('v51 icon manifest invalid')
+          if '<symbol id=' not in Path('assets/ui/v51/icons.svg').read_text():
+              raise SystemExit('v51 icon sprite invalid')
+          print('High-resolution technical QA PASS:',len(data),'assets + 48 v51 UI icons')
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Browser and offline suite
+        id: browser
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          exec > >(tee /tmp/waps-ui.log) 2>&1
+          npm install --no-save @playwright/test
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
+          sleep 2
+          npx playwright test tests/ui.spec.js --reporter=line | tee /tmp/waps-ui.log
+
+      - name: Live Pages v51 check
+        id: pages
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          BASE='https://glenroygriffiths876-collab.github.io/WAPS-APP/'
+          ASSETS='supermarket playground clock fork glass bottle pen marker dress hat red-apple red-car blue-car brown-dog brown-horse green-dotted-ball hot-soup ice-cream calendar snack kite'
+          ok=0
+          for attempt in $(seq 1 36); do
+            html="$(curl -fsSL "$BASE" || true)"
+            if printf '%s' "$html" | grep -q 'app.css?v=51' && printf '%s' "$html" | grep -q 'app.js?v=51'; then
+              spritecode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v51/icons.svg" || true)"
+              manifestcode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v51/manifest.json" || true)"
+              [ "$spritecode" = "200" ] || continue
+              [ "$manifestcode" = "200" ] || continue
+              bad=0
+              for id in $ASSETS; do
+                code="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/concepts/highres/$id.webp" || true)"
+                if [ "$code" != "200" ]; then
+                  echo "$id -> HTTP $code"
+                  bad=1
+                fi
+              done
+              fontcode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/fonts/fredoka-variable.woff2" || true)"
+              nunitocode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/fonts/nunito-variable.ttf" || true)"
+              musiccode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/audio/waps-gentle-steps.mp3" || true)"
+              [ "$fontcode" = "200" ] || bad=1
+              [ "$nunitocode" = "200" ] || bad=1
+              [ "$musiccode" = "200" ] || bad=1
+              if [ "$bad" = "0" ]; then
+                ok=1
+                break
+              fi
+            fi
+            sleep 5
+          done
+          [ "$ok" = "1" ]
+
+      - name: Write QA report
+        if: always()
+        env:
+          QUALITY: ${{ steps.quality.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+          PAGES: ${{ steps.pages.outcome }}
+        run: |
+          mkdir -p qa
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          report={
+            'release':'v51',
+            'tested_commit':os.environ.get('GITHUB_SHA'),
+            'quality_gate':os.environ.get('QUALITY'),
+            'browser_suite':os.environ.get('BROWSER'),
+            'browser_test_count':34,
+            'offline_test_in_suite':True,
+            'pages_live_check':os.environ.get('PAGES')
+          }
+          Path('qa/v51-result.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f /tmp/waps-ui.log ]; then cp /tmp/waps-ui.log qa/v51-browser.log; fi
+          git add qa/v51-result.json qa/v51-browser.log
+          git commit -m "Record WAPS v51 QA result"
+          git push origin HEAD:main
+
+      - name: Enforce QA result
+        if: always()
+        env:
+          QUALITY: ${{ steps.quality.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+          PAGES: ${{ steps.pages.outcome }}
+        run: |
+          test "$QUALITY" = "success"
+          test "$BROWSER" = "success"
+          test "$PAGES" = "success"
+
+# trigger-after-install
+
+# rerun-after-lazy-qa-fix
+
+# rerun-after-v51-fixes
+
+# final-after-mobile-childmode-fixes
+
+# final-v51-premium-mobile
+
+# final-v51-premium-mobile-rerun

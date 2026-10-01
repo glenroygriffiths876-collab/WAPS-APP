@@ -20,3 +20,11 @@
 - Integrated My Child/Progress and More as coherent secondary illustrated actions.
 - Grouped desktop caregiver shortcuts into a single utility dock.
 - Preserved calm Talk/activity workspaces, Low Stimulation, Child Mode, offline operation and all v51 functionality.
+
+## v53 — Approved premium illustrated Home target
+- Rebuilt Home to match the user-approved premium concept instead of the pale dashboard-style v52 layout.
+- Added a full tropical WAPS Home world, large dimensional WAPS hero logo, original boy/girl mascots and glossy Talk / Practice Together destination art.
+- Added Home-only top profile + Settings / Progress / More controls and an approved seven-item Home dock.
+- Restored floating WhatsApp Support, Install and Share controls on Home while keeping them out of Talk and focused learning screens.
+- Preserved calm Talk and child activity backgrounds, Child Mode safeguards, offline support and existing learning logic.
+- Added v53 responsive QA for phone, tablet, landscape and desktop plus screenshot capture.

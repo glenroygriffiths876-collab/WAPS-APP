@@ -2110,7 +2110,7 @@ body[data-route="home"] main{
   display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;
   align-items:start!important;
 }
-.v53-home-scene{position:absolute;inset:-6px -24px 0;z-index:-1;pointer-events:none}
+.v53-home-scene{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .v53-home-accessible-note{
   position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
   overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important
@@ -2427,3 +2427,7 @@ html[data-reduced="1"] .v53-destination:hover .v53-destination-card{transform:no
 body.child-mode-active[data-route="home"] .v53-bottomnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 body.child-mode-active[data-route="home"] .v53-bottomnav .home-extra-nav,
 body.child-mode-active[data-route="home"] .v53-bottomnav .nonhome-more-nav{display:none!important}
+
+/* v53-overflow-guard: keep premium art inside the viewport without clipping controls */
+body[data-route="home"],html:has(body[data-route="home"]){overflow-x:clip!important;max-width:100%!important}
+.v53-home,.v53-primary-grid,.v53-brand-zone{max-width:100%!important}

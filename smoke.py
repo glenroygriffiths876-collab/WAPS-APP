@@ -17,9 +17,9 @@ assert "'home','talk','practice','coach','progress','more'" in app, 'progress ro
 for brand_asset in ['assets/brand/waps-mark.svg','assets/brand/waps-full.svg','assets/brand/waps-icon.svg','assets/brand/waps-maskable.svg']:
     assert (r/brand_asset).exists(), f'missing official brand asset {brand_asset}'
 assert 'official-brand-mark' in html, 'official WAPS header branding missing'
-assert 'Mixed Practice' in app and 'EXTERNAL_LEARNING_RESOURCES' in app and 'Explore More' in app, 'v49 practice tabs missing'
+assert 'Mixed Practice' in app and 'EXTERNAL_LEARNING_RESOURCES' in app and 'Explore More' in app, 'v50 practice tabs missing'
 assert 'School Shadow / Caregiver' in app, 'shadow resource missing'
-assert 'Gentle Steps' in app and 'waps-gentle-steps.mp3' in app, 'v49 background music missing'
+assert 'Gentle Steps' in app and 'waps-gentle-steps.mp3' in app, 'v50 background music missing'
 assert 'wireTalkControls' not in app and 'wirePracticeLaunch' not in app and 'wireCoachLaunch' not in app
 assert not re.search(r"(?<!\\$)\\$\\('\.bottomnav button,\.desktopnav button'\\)\.forEach",app), 'single-query selector forEach crash regression'
 actions=set(re.findall(r'data-action=["\']([^"\'$]+)["\']',app))
@@ -30,18 +30,21 @@ assert not missing, f'unhandled actions: {missing}'
 sw=(r/'sw.js').read_text(encoding='utf-8')
 assert 'networkFirst' in sw and 'OPTIONAL=' in sw and 'skipWaiting' in sw and 'clients.claim' in sw
 
-# v49 comprehension visual gate
+# v50 comprehension visual gate
 special=["supermarket","playground","clock","fork","glass","bottle","pen","marker","dress","hat","red-apple","red-car","blue-car","brown-dog","brown-horse","green-dotted-ball","hot-soup","ice-cream","calendar","snack","kite"]
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=49' in html and 'app.js?v=49' in html, 'v49 public asset references missing'
-assert 'waps-reference-shell-v49' in sw, 'v49 cache name missing'
+assert 'app.css?v=49' in html and 'app.js?v=49' in html, 'v50 public asset references missing'
+assert 'waps-reference-shell-v50' in sw, 'v50 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
+assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'
+assert (r/'assets/fonts/OFL-Nunito.txt').exists(), 'Nunito OFL missing'
 assert (r/'assets/audio/waps-gentle-steps.mp3').exists(), 'Gentle Steps MP3 missing'
 assert (r/'assets/audio/waps-gentle-steps.mp3').stat().st_size>100000, 'Gentle Steps MP3 suspiciously small'
 assert 'fredoka-variable.woff2' in css, 'Fredoka not wired in CSS'
+assert 'nunito-variable.ttf' in css, 'Nunito not wired in CSS'
 assert './assets/audio/waps-gentle-steps.mp3' in sw, 'music not listed for runtime/offline cache'
 for legacy in ['board-001-020.webp','board-041-060.webp','assets/comprehension/kite.webp','mu-sprite','BOARD_SRC']:
     assert legacy not in comp, f'legacy comprehension reference remains: {legacy}'
@@ -52,12 +55,12 @@ for asset in ['board-001-020.webp','board-041-060.webp','assets/comprehension/ki
 for concept in special:
     rel=f'./assets/concepts/highres/{concept}.webp'
     p=r/'assets/concepts/highres'/f'{concept}.webp'
-    assert p.exists(), f'missing v49 visual: {concept}'
-    assert p.stat().st_size>4000, f'suspiciously small v49 visual: {concept}'
-    assert rel in comp, f'v49 visual not wired: {concept}'
-    assert rel in sw, f'v49 visual not cached: {concept}'
+    assert p.exists(), f'missing v50 visual: {concept}'
+    assert p.stat().st_size>4000, f'suspiciously small v50 visual: {concept}'
+    assert rel in comp, f'v50 visual not wired: {concept}'
+    assert rel in sw, f'v50 visual not cached: {concept}'
     meta=visual_manifest.get(concept)
-    assert meta, f'v49 visual not registered in manifest: {concept}'
+    assert meta, f'v50 visual not registered in manifest: {concept}'
     assert meta.get('path')==rel, f'wrong manifest path: {concept}'
     assert meta.get('width')==1024 and meta.get('height')==1024, f'wrong manifest dimensions: {concept}'
 print('WAPS smoke gate PASS:',{'actions':len(actions),'primary_routes':4,'progress_route':'app','cache_optional':sw.count('./')})

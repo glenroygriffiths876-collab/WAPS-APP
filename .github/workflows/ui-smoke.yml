@@ -19,6 +19,7 @@ on:
       - 'assets/fonts/**'
       - 'assets/ui/v51/**'
       - 'assets/ui/v52/**'
+      - 'assets/ui/v53/**'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

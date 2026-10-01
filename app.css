@@ -1759,3 +1759,15 @@ button:active,.btn:active{transform:scale(.98)}
 html[data-large-text="1"] .practice-native-grid{grid-template-columns:1fr!important}
 html[data-large-text="1"] .premium-activity .choices-3,
 html[data-large-text="1"] .mu-choice-grid.field-3{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+/* v50 QA hardening: answer cards are content-sized, never viewport-height columns */
+@media(max-width:600px){
+  .premium-activity .choices{grid-auto-rows:auto!important;align-content:center!important}
+  .premium-activity .choice{
+    height:auto!important;min-height:0!important;max-height:230px!important;
+    aspect-ratio:4/5!important;align-self:center!important
+  }
+  .premium-activity .choice .concept-hi,.premium-activity .choice .activity-photo{
+    height:auto!important;max-height:150px!important;aspect-ratio:1/1!important
+  }
+}

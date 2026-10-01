@@ -2336,7 +2336,7 @@ body[data-route="home"] .caregiver-utilities>button{
     width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
     gap:7px!important;align-items:stretch!important
   }
-  .v53-destination{min-height:492px!important;height:calc(100dvh - 320px)!important;max-height:530px!important}
+  .v53-destination{min-height:420px!important;height:calc(100dvh - 365px)!important;max-height:530px!important}
   .v53-mascot{width:132px!important;top:-58px!important}
   .v53-boy{left:2%!important}.v53-girl{right:-1%!important}
   .v53-destination-card{
@@ -2386,7 +2386,7 @@ body[data-route="home"] .caregiver-utilities>button{
   body[data-route="home"] .home-top-control,body[data-route="home"] .home-settings-control{width:45px!important;min-width:45px!important}
   .v53-home{grid-template-rows:137px minmax(0,1fr)!important}
   .v53-brand-zone{height:137px!important;min-height:137px!important}.v53-hero-logo{max-height:137px!important}
-  .v53-destination{min-height:440px!important;height:calc(100dvh - 303px)!important}
+  .v53-destination{min-height:390px!important;height:calc(100dvh - 350px)!important}
   .v53-mascot{width:118px!important;top:-47px!important}
   .v53-art-frame img{height:168px!important}
   .v53-button-band b{font-size:1.15rem!important}

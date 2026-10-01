@@ -1,0 +1,12 @@
+{
+  "release": "v53",
+  "visual_target": "premium illustrated WAPS Home inspired by the user-approved concept",
+  "assets": [
+    "tropical-bg.svg",
+    "hero-logo.svg",
+    "boy.svg",
+    "girl.svg",
+    "talk-art.svg",
+    "practice-art.svg"
+  ]
+}

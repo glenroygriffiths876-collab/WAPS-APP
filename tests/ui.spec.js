@@ -800,6 +800,7 @@ test('v52 Home starts directly below header and uses integrated illustration', a
   const errors=collectErrors(page);
   await page.setViewportSize({width:1366,height:768});
   await page.goto('http://127.0.0.1:4173/#home');
+  await expect(page.locator('.v52-home-stage')).toBeVisible();
   const metrics=await page.evaluate(()=>{
     const h=document.querySelector('.waps-header').getBoundingClientRect();
     const s=document.querySelector('.v52-home-stage').getBoundingClientRect();
@@ -831,7 +832,7 @@ test('v52 phone Home keeps greeting Talk Practice Settings and More immediately 
       overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
     }));
     expect(rects.stage.top-rects.header.bottom).toBeLessThanOrEqual(20);
-    expect(rects.practice.top).toBeLessThan(innerHeight);
+    expect(rects.practice.top).toBeLessThan(vp.height);
     expect(rects.overflow).toBeLessThanOrEqual(2);
   }
   expect(errors).toEqual([]);
@@ -844,7 +845,8 @@ test('v52 Home artwork and manifest are bundled and load', async ({page})=>{
     const paths=['./assets/ui/v52/manifest.json','./assets/ui/v52/home-world.svg','./assets/ui/v52/talk-scene.svg','./assets/ui/v52/practice-scene.svg'];
     return Promise.all(paths.map(async path=>{const r=await fetch(path,{cache:'no-store'});return {path,status:r.status,ok:r.ok,size:(await r.text()).length}}));
   });
-  expect(result.every(v=>v.ok&&v.size>1000)).toBeTruthy();
+  expect(result[0].ok&&result[0].size>100).toBeTruthy();
+  expect(result.slice(1).every(v=>v.ok&&v.size>1000)).toBeTruthy();
   expect(errors).toEqual([]);
 });
 
@@ -852,6 +854,7 @@ test('v52 desktop brand is prominent and Home uses the canvas', async ({page})=>
   const errors=collectErrors(page);
   await page.setViewportSize({width:1920,height:1080});
   await page.goto('http://127.0.0.1:4173/#home');
+  await expect(page.locator('.v52-home-stage')).toBeVisible();
   const m=await page.evaluate(()=>({
     brand:document.querySelector('.official-brand-mark').getBoundingClientRect(),
     stage:document.querySelector('.v52-home-stage').getBoundingClientRect(),

@@ -91,7 +91,7 @@ jobs:
           ok=0
           for attempt in $(seq 1 36); do
             html="$(curl -fsSL "$BASE" || true)"
-            if printf '%s' "$html" | grep -q 'app.css?v=51' && printf '%s' "$html" | grep -q 'app.js?v=51'; then
+            if printf '%s' "$html" | grep -q 'app.css?v=52' && printf '%s' "$html" | grep -q 'app.js?v=52'; then
               spritecode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v51/icons.svg" || true)"
               manifestcode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v52/manifest.json" || true)"
               [ "$spritecode" = "200" ] || continue
@@ -181,3 +181,5 @@ jobs:
 # rerun-after-home-selector-compat
 
 # rerun-after-v52-responsive-fixes
+
+# rerun-after-live-v52-ref-fix

@@ -711,6 +711,9 @@ document.addEventListener('click',async e=>{
   if(a==='supports'){supportsModal();return}
   if(a==='academy'){academyModal();return}
   if(a==='help'){helpModal();return}
+  if(a==='homeProgress'){if(modal.open)modal.close();go('progress');return}
+  if(a==='homeCaregiverTools'){if(modal.open)modal.close();go('more');return}
+  if(a==='homeSettings'){settingsModal();return}
   if(a==='settings'){settingsModal();return}
   if(a==='previewMusic'){S.settings.backgroundAudio=true;let cb=$('#backgroundAudioSetting');if(cb)cb.checked=true;let ok=await syncBackgroundAudio(true);if(ok)toast('Previewing Gentle Steps');return}
   if(a==='professional'){professionalModal();return}

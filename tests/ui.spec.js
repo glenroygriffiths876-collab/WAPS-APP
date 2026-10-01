@@ -794,3 +794,73 @@ test('v51 low stimulation suppresses decorative treatment and focused practice s
   expect(activityBg).toContain('linear-gradient');
   expect(errors).toEqual([]);
 });
+
+
+test('v52 Home starts directly below header and uses integrated illustration', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:1366,height:768});
+  await page.goto('http://127.0.0.1:4173/#home');
+  const metrics=await page.evaluate(()=>{
+    const h=document.querySelector('.waps-header').getBoundingClientRect();
+    const s=document.querySelector('.v52-home-stage').getBoundingClientRect();
+    const card=document.querySelector('.v52-primary-action').getBoundingClientRect();
+    const art=document.querySelector('.v52-primary-art').getBoundingClientRect();
+    return {gap:s.top-h.bottom,ratio:art.width/card.width,stageW:s.width,viewW:innerWidth};
+  });
+  expect(metrics.gap).toBeLessThanOrEqual(40);
+  expect(metrics.ratio).toBeGreaterThan(.85);
+  expect(metrics.stageW).toBeGreaterThan(metrics.viewW*.75);
+  await expect(page.locator('.v52-primary-art img')).toHaveCount(2);
+  expect(errors).toEqual([]);
+});
+
+test('v52 phone Home keeps greeting Talk Practice Settings and More immediately usable', async ({page})=>{
+  const errors=collectErrors(page);
+  for(const vp of [{width:360,height:800},{width:390,height:844},{width:430,height:932}]){
+    await page.setViewportSize(vp);
+    await page.goto('http://127.0.0.1:4173/#home');
+    await expect(page.locator('.v52-home-copy h1')).toBeVisible();
+    await expect(page.locator('.home-talk-action')).toBeVisible();
+    await expect(page.locator('.home-practice-action')).toBeVisible();
+    await expect(page.locator('[data-action="settings"]')).toBeVisible();
+    await expect(page.locator('.v52-secondary-action.more')).toBeVisible();
+    const rects=await page.evaluate(()=>({
+      header:document.querySelector('.waps-header').getBoundingClientRect(),
+      stage:document.querySelector('.v52-home-stage').getBoundingClientRect(),
+      practice:document.querySelector('.home-practice-action').getBoundingClientRect(),
+      overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+    }));
+    expect(rects.stage.top-rects.header.bottom).toBeLessThanOrEqual(20);
+    expect(rects.practice.top).toBeLessThan(innerHeight);
+    expect(rects.overflow).toBeLessThanOrEqual(2);
+  }
+  expect(errors).toEqual([]);
+});
+
+test('v52 Home artwork and manifest are bundled and load', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.goto('http://127.0.0.1:4173/#home');
+  const result=await page.evaluate(async()=>{
+    const paths=['./assets/ui/v52/manifest.json','./assets/ui/v52/home-world.svg','./assets/ui/v52/talk-scene.svg','./assets/ui/v52/practice-scene.svg'];
+    return Promise.all(paths.map(async path=>{const r=await fetch(path,{cache:'no-store'});return {path,status:r.status,ok:r.ok,size:(await r.text()).length}}));
+  });
+  expect(result.every(v=>v.ok&&v.size>1000)).toBeTruthy();
+  expect(errors).toEqual([]);
+});
+
+test('v52 desktop brand is prominent and Home uses the canvas', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:1920,height:1080});
+  await page.goto('http://127.0.0.1:4173/#home');
+  const m=await page.evaluate(()=>({
+    brand:document.querySelector('.official-brand-mark').getBoundingClientRect(),
+    stage:document.querySelector('.v52-home-stage').getBoundingClientRect(),
+    intro:document.querySelector('.v52-home-intro').getBoundingClientRect(),
+    main:document.querySelector('main').getBoundingClientRect()
+  }));
+  expect(m.brand.width).toBeGreaterThanOrEqual(155);
+  expect(m.stage.width).toBeGreaterThan(1300);
+  expect(m.stage.width/m.main.width).toBeGreaterThan(.9);
+  expect(m.intro.width).toBeGreaterThan(280);
+  expect(errors).toEqual([]);
+});

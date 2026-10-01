@@ -11,3 +11,12 @@
 - Upgraded Talk controls without changing AAC content or communication behavior.
 - Added responsive phone/tablet/desktop composition and quiet focus backgrounds for child activity screens.
 - Preserved Low Stimulation, High Contrast, Child Mode, offline caching and existing v50 density fixes.
+
+## v52 — Premium illustrated Home
+- Rebuilt Home composition so it begins directly below the app header and uses the desktop canvas intentionally.
+- Added original WAPS Home, Talk and Practice Together scene artwork under assets/ui/v52/.
+- Reworked primary destinations as integrated illustrated experiences rather than generic gradient dashboard cards.
+- Strengthened WAPS branding and desktop navigation while keeping phone chrome compact.
+- Integrated My Child/Progress and More as coherent secondary illustrated actions.
+- Grouped desktop caregiver shortcuts into a single utility dock.
+- Preserved calm Talk/activity workspaces, Low Stimulation, Child Mode, offline operation and all v51 functionality.

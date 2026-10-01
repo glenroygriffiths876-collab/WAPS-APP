@@ -323,7 +323,7 @@ function renderJamaicaDirectory(){
  out.innerHTML=rows.length?rows.map(r=>`<article class="directory-card"><div class="resource-meta"><span class="service-tag">${esc(r.cat)}</span><span class="service-tag muted-tag">${esc(r.parish)}</span></div><h3>${esc(r.title)}</h3><p>${esc(r.desc)}</p><div class="actions">${r.phone?`<a class="btn ghost" href="tel:${r.phone.replace(/[^0-9+]/g,'')}">Call ${esc(r.phone)}</a>`:''}<a class="btn secondary" href="${r.url}" target="_blank" rel="noopener">${esc(r.action||'Official information')} ↗</a></div></article>`).join(''):'<div class="friendly-empty"><span>⌕</span><div><b>No matching service.</b><p>Try a broader word such as school, grant, therapy, western, assessment or support.</p></div></div>';
 }
 
-function home(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home v51-home">
+function home(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home calm-home v51-home">
 <section class="v51-home-hero">
   <div class="v51-home-welcome"><span class="eyebrow">WAPS</span><h1>${p?`Hi ${name}`:"Welcome to WAPS"}</h1><p>What would you like to do?</p></div>
   <div class="v51-home-actions">

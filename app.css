@@ -2420,5 +2420,10 @@ html[data-low-stim="1"] .v53-destination-card{background:#fff!important;border-c
 html[data-low-stim="1"] .v53-art-frame::before{display:none!important}
 html[data-low-stim="1"] .v53-art-frame img{filter:saturate(.6)!important}
 html[data-high-contrast="1"] .v53-destination-card{border:4px solid #000!important;box-shadow:none!important}
-html[data-reduced="1"] .v53-destination:hover .v53-destination-card,
-@media(prefers-reduced-motion:reduce){.v53-destination-card{transition:none!important}}
+html[data-reduced="1"] .v53-destination:hover .v53-destination-card{transform:none!important}
+@media(prefers-reduced-motion:reduce){.v53-destination-card{transition:none!important}.v53-destination:hover .v53-destination-card{transform:none!important}}
+
+/* WAPS v53 child-mode nav guard */
+body.child-mode-active[data-route="home"] .v53-bottomnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body.child-mode-active[data-route="home"] .v53-bottomnav .home-extra-nav,
+body.child-mode-active[data-route="home"] .v53-bottomnav .nonhome-more-nav{display:none!important}

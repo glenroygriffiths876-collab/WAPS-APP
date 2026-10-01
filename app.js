@@ -323,18 +323,36 @@ function renderJamaicaDirectory(){
  out.innerHTML=rows.length?rows.map(r=>`<article class="directory-card"><div class="resource-meta"><span class="service-tag">${esc(r.cat)}</span><span class="service-tag muted-tag">${esc(r.parish)}</span></div><h3>${esc(r.title)}</h3><p>${esc(r.desc)}</p><div class="actions">${r.phone?`<a class="btn ghost" href="tel:${r.phone.replace(/[^0-9+]/g,'')}">Call ${esc(r.phone)}</a>`:''}<a class="btn secondary" href="${r.url}" target="_blank" rel="noopener">${esc(r.action||'Official information')} ↗</a></div></article>`).join(''):'<div class="friendly-empty"><span>⌕</span><div><b>No matching service.</b><p>Try a broader word such as school, grant, therapy, western, assessment or support.</p></div></div>';
 }
 
-function home(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home calm-home v51-home">
-<section class="v51-home-hero">
-  <div class="v51-home-welcome"><span class="eyebrow">WAPS</span><h1>${p?`Hi ${name}`:"Welcome to WAPS"}</h1><p>What would you like to do?</p></div>
-  <div class="v51-home-actions">
-    <button class="home-big-action home-talk-action v51-hero-action v51-talk-action" data-route="talk">${uiIcon('talk','v51-hero-icon')}<span><b>Talk</b><small>Tell me what you need</small></span><i aria-hidden="true">›</i></button>
-    <button class="home-big-action home-practice-action v51-hero-action v51-practice-action" data-route="practice">${uiIcon('practice','v51-hero-icon')}<span><b>Practice Together</b><small>Learn and play together</small></span><i aria-hidden="true">›</i></button>
+function home(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home calm-home v51-home v52-home">
+<section class="v51-home-hero v52-home-stage">
+  <aside class="v52-home-intro">
+    <div class="v52-home-copy">
+      <span class="eyebrow">WAPS COMMUNICATION</span>
+      <h1>${p?`Hi ${name}`:"Welcome to WAPS"}</h1>
+      <p>Communication, learning and support — made easier to use together.</p>
+    </div>
+    <img class="v52-home-world" src="./assets/ui/v52/home-world.svg" alt="" aria-hidden="true" decoding="async">
+  </aside>
+  <div class="v52-home-main">
+    <div class="v51-home-actions v52-primary-grid">
+      <button class="home-big-action home-talk-action v51-hero-action v51-talk-action v52-primary-action talk" data-route="talk">
+        <span class="v52-primary-art"><img src="./assets/ui/v52/talk-scene.svg" alt="" aria-hidden="true" decoding="async"></span>
+        <span class="v52-primary-copy"><b>Talk</b><small>Tell me what you need</small></span>
+        <span class="v52-go" aria-hidden="true">→</span>
+      </button>
+      <button class="home-big-action home-practice-action v51-hero-action v51-practice-action v52-primary-action practice" data-route="practice">
+        <span class="v52-primary-art"><img src="./assets/ui/v52/practice-scene.svg" alt="" aria-hidden="true" decoding="async"></span>
+        <span class="v52-primary-copy"><b>Practice Together</b><small>Learn and play together</small></span>
+        <span class="v52-go" aria-hidden="true">→</span>
+      </button>
+    </div>
+    <div class="v51-home-secondary v52-secondary-grid">
+      ${p?`<button class="v51-mini-action v52-secondary-action progress" data-action="progressOpen">${uiIcon('progress')}<span><b>Progress</b><small>Celebrate recent learning</small></span><i aria-hidden="true">›</i></button>`:`<button class="v51-mini-action v52-secondary-action child" data-action="profile">${uiIcon('child-profile')}<span><b>My Child</b><small>Set up a profile</small></span><i aria-hidden="true">›</i></button>`}
+      <button class="v51-mini-action v52-secondary-action more" data-route="more">${uiIcon('more')}<span><b>More</b><small>Caregiver tools & support</small></span><i aria-hidden="true">›</i></button>
+    </div>
   </div>
-  <div class="v51-home-secondary">
-    ${p?`<button class="v51-mini-action" data-action="progressOpen">${uiIcon('progress')}<span><b>Progress</b><small>See recent learning</small></span></button>`:`<button class="v51-mini-action" data-action="profile">${uiIcon('child-profile')}<span><b>My Child</b><small>Set up a profile</small></span></button>`}
-    <button class="v51-mini-action" data-route="more">${uiIcon('more')}<span><b>More</b><small>Caregiver tools</small></span></button>
-  </div>
-</section></div>`}
+</section>
+</div>`}
 function talk(){let p=active();let cats=["all","favorites","recent","core","safety","people","actions","food","places","feelings","body","social","repair","personal"];return `<div class="talk-stage mobile-aac">
 <div class="talk-title compact-talk-title"><div><span class="eyebrow">TALK</span><h1>Talk</h1><p>Tap pictures or words.</p></div></div>
 <div class="talk-sticky-zone">

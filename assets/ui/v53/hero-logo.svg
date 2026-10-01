@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 330">
+<defs>
+  <linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#19e0ff"/><stop offset=".55" stop-color="#00a4ef"/><stop offset="1" stop-color="#0673e4"/></linearGradient>
+  <linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe970"/><stop offset=".55" stop-color="#ffcf29"/><stop offset="1" stop-color="#ff9c00"/></linearGradient>
+  <linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#67ff5e"/><stop offset=".55" stop-color="#23dc36"/><stop offset="1" stop-color="#07ac28"/></linearGradient>
+  <linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d86dff"/><stop offset=".55" stop-color="#9c3cff"/><stop offset="1" stop-color="#6d2bd1"/></linearGradient>
+  <filter id="ds" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="13" stdDeviation="8" flood-color="#14255b" flood-opacity=".35"/></filter>
+</defs>
+<g filter="url(#ds)" stroke="#fff" stroke-width="18" stroke-linejoin="round" paint-order="stroke">
+  <text x="90" y="191" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-weight="900" font-size="190" fill="url(#w)" stroke="#16236d" stroke-width="28">W</text>
+  <text x="282" y="191" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-weight="900" font-size="190" fill="url(#a)" stroke="#16236d" stroke-width="28">A</text>
+  <text x="420" y="191" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-weight="900" font-size="190" fill="url(#p)" stroke="#16236d" stroke-width="28">P</text>
+  <text x="562" y="191" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-weight="900" font-size="190" fill="url(#s)" stroke="#16236d" stroke-width="28">S</text>
+</g>
+<g transform="translate(383 8)" fill="#ffd331" stroke="#fff" stroke-width="9" stroke-linecap="round">
+  <circle cx="25" cy="49" r="24"/>
+  <path d="M25 4v20M25 74v19M-17 49H2M48 49h19M-4 19 10 32M40 66l13 13M54 19 40 33M10 66-4 80"/>
+</g>
+<rect x="162" y="210" width="495" height="64" rx="32" fill="#1637a2" stroke="#fff" stroke-width="9" filter="url(#ds)"/>
+<text x="410" y="253" text-anchor="middle" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-size="34" font-weight="800" fill="#fff">Western Autism Parents Support</text>
+<text x="410" y="315" text-anchor="middle" font-family="Fredoka,Arial Rounded MT Bold,sans-serif" font-size="29" font-weight="700" font-style="italic" fill="#14357f">Communication  •  Learning  •  Independence</text>
+</svg>

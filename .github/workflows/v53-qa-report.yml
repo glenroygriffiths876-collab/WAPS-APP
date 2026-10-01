@@ -117,7 +117,7 @@ jobs:
           ok=0
           for attempt in $(seq 1 36); do
             html="$(curl -fsSL "$BASE" || true)"
-            if printf '%s' "$html" | grep -q 'app.css?v=52' && printf '%s' "$html" | grep -q 'app.js?v=52'; then
+            if printf '%s' "$html" | grep -q 'app.css?v=53' && printf '%s' "$html" | grep -q 'app.js?v=53'; then
               spritecode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v51/icons.svg" || true)"
               manifestcode="$(curl -L -sS -o /dev/null -w '%{http_code}' "$BASE/assets/ui/v53/manifest.json" || true)"
               [ "$spritecode" = "200" ] || continue
@@ -221,3 +221,5 @@ jobs:
 # rerun-v53-after-childmode-fix
 
 # rerun-v53-screenshot-module-path
+
+# rerun-v53-live-ref-final

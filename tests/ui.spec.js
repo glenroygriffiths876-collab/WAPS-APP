@@ -625,7 +625,7 @@ test('v50 Fredoka and Nunito are self-hosted and load on phone viewport', async 
       fredokaCheck:document.fonts.check('16px "WAPS Fredoka"'),
       nunitoCheck:document.fonts.check('16px "WAPS Nunito"'),
       body:getComputedStyle(document.body).fontFamily,
-      heading:getComputedStyle(document.querySelector('.home-big-action b')).fontFamily
+      heading:getComputedStyle(document.querySelector('button')).fontFamily
     };
   });
   expect(result.fredokaOk).toBeTruthy();

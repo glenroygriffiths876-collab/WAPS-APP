@@ -35,8 +35,8 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=52' in html and 'app.js?v=52' in html, 'v52 public asset references missing'
-assert 'waps-reference-shell-v52' in sw, 'v52 cache name missing'
+assert 'app.css?v=53' in html and 'app.js?v=53' in html, 'v53 public asset references missing'
+assert 'waps-reference-shell-v53' in sw, 'v53 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
 assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'
@@ -59,6 +59,15 @@ for asset in ['home-world.svg','talk-scene.svg','practice-scene.svg']:
     assert p.exists() and p.stat().st_size>1000, f'v52 scene missing/suspicious: {asset}'
     assert f'./assets/ui/v52/{asset}' in sw, f'v52 scene not cached: {asset}'
 assert './assets/ui/v52/manifest.json' in sw, 'v52 manifest not cached'
+assert 'WAPS v53 — approved premium illustrated Home target' in css, 'v53 premium Home CSS layer missing'
+assert (r/'assets/ui/v53/manifest.json').exists(), 'v53 premium Home manifest missing'
+v53_manifest=json.loads((r/'assets/ui/v53/manifest.json').read_text(encoding='utf-8'))
+assert v53_manifest.get('release')=='v53', 'v53 manifest release mismatch'
+for asset in ['tropical-bg.svg','hero-logo.svg','boy.svg','girl.svg','talk-art.svg','practice-art.svg']:
+    p=r/'assets/ui/v53'/asset
+    assert p.exists() and p.stat().st_size>1000, f'v53 premium asset missing/suspicious: {asset}'
+    assert f'./assets/ui/v53/{asset}' in sw, f'v53 premium asset not cached: {asset}'
+assert './assets/ui/v53/manifest.json' in sw, 'v53 manifest not cached'
 assert 'fredoka-variable.woff2' in css, 'Fredoka not wired in CSS'
 assert 'nunito-variable.ttf' in css, 'Nunito not wired in CSS'
 assert './assets/audio/waps-gentle-steps.mp3' in sw, 'music not listed for runtime/offline cache'

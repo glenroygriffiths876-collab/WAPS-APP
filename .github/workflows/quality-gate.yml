@@ -19,6 +19,7 @@ on:
       - 'assets/audio/**'
       - 'assets/fonts/**'
       - 'assets/ui/v51/**'
+      - 'assets/ui/v52/**'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'smoke.py'

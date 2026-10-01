@@ -1,0 +1,19 @@
+{
+  "release": "v52",
+  "style": "original WAPS illustrated home scenes",
+  "depends_on": "./assets/ui/v51/icons.svg",
+  "assets": {
+    "homeWorld": {
+      "path": "./assets/ui/v52/home-world.svg",
+      "purpose": "home peripheral visual world"
+    },
+    "talkScene": {
+      "path": "./assets/ui/v52/talk-scene.svg",
+      "purpose": "Home Talk destination illustration"
+    },
+    "practiceScene": {
+      "path": "./assets/ui/v52/practice-scene.svg",
+      "purpose": "Home Practice Together destination illustration"
+    }
+  }
+}

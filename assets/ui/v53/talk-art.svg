@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330">
+<defs>
+ <linearGradient id="b1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#16e2ff"/><stop offset=".6" stop-color="#08b0f0"/><stop offset="1" stop-color="#0875dd"/></linearGradient>
+ <linearGradient id="b2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff5cb7"/><stop offset="1" stop-color="#ed197f"/></linearGradient>
+ <filter id="s" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="7" flood-color="#092763" flood-opacity=".28"/></filter>
+</defs>
+<g filter="url(#s)" stroke="#18245f" stroke-width="7" stroke-linejoin="round">
+ <path d="M66 77h281q38 0 38 38v79q0 38-38 38H212l-66 56 15-56H66q-38 0-38-38v-79q0-38 38-38z" fill="url(#b1)"/>
+ <path d="M275 160h150q31 0 31 31v54q0 31-31 31h-61l-42 36 9-36h-56q-31 0-31-31v-54q0-31 31-31z" fill="url(#b2)"/>
+</g>
+<g fill="#fff" filter="url(#s)"><circle cx="119" cy="153" r="15"/><circle cx="181" cy="153" r="15"/><circle cx="243" cy="153" r="15"/></g>
+<path d="M377 205q26 22 0 44M405 187q45 39 0 78" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+<g fill="#ffd43f" stroke="#fff" stroke-width="4"><path d="m35 278 12 21 24 3-18 16 4 13H12l4-13-18-16 24-3z"/><path d="m473 66 11 20 23 3-17 16 4 22-21-11-20 11 4-22-17-16 23-3z"/></g>
+</svg>

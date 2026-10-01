@@ -2046,3 +2046,22 @@ body[data-route="home"] main{width:min(100%,1600px)!important;max-width:1600px!i
 @media(min-width:1400px){body[data-route="home"] main{padding-top:20px!important}.v52-home-stage{grid-template-columns:minmax(310px,.66fr) minmax(0,1.8fr)!important}.v52-home-intro{min-height:610px}.v52-primary-action{min-height:470px!important}.v52-primary-art img{max-height:340px}}
 @media(min-width:1800px){.v52-home-stage{gap:52px!important}.v52-home-intro{min-height:650px}.v52-primary-action{min-height:500px!important}.v52-primary-art img{max-height:365px}}
 html[data-low-stim="1"] .v52-home-intro,html[data-low-stim="1"] .v52-primary-action,html[data-low-stim="1"] .v52-secondary-action{background:#fff!important;box-shadow:none!important}html[data-low-stim="1"] .v52-home-world,html[data-low-stim="1"] .v52-home-intro::before,html[data-low-stim="1"] .v52-home-intro::after,html[data-low-stim="1"] .v52-primary-action::after{display:none!important}html[data-low-stim="1"] .v52-primary-art img{filter:saturate(.72)!important}html[data-high-contrast="1"] .v52-home-intro,html[data-high-contrast="1"] .v52-primary-action,html[data-high-contrast="1"] .v52-secondary-action{border:3px solid #000!important;box-shadow:none!important}@media(prefers-reduced-motion:reduce){.v52-primary-action{transition:none!important}}
+
+
+/* WAPS v52.1 — responsive header hardening */
+@media(min-width:701px) and (max-width:1024px){
+  .v52-header{
+    grid-template-columns:150px minmax(300px,1fr) 210px!important;
+    gap:8px!important;padding:6px 10px!important;height:72px!important;min-height:72px!important
+  }
+  .v52-brand{min-width:145px!important;max-width:150px!important;height:58px!important}
+  .v52-brand .official-brand-mark{width:132px!important;height:42px!important}
+  .v52-brand .official-brand-name{font-size:8px!important}
+  .v52-header .desktopnav{height:60px!important;padding:4px!important;border-radius:20px!important}
+  .v52-header .desktopnav .navico,.v52-header .desktopnav .navico .v51-ui-icon{width:30px!important;height:30px!important}
+  .v52-header .desktopnav button{padding:3px 5px!important}
+  .v52-header .desktopnav button b{font-size:10px!important}
+  .v52-header .header-actions{gap:4px!important;min-width:0!important}
+  .v52-header #childSwitcher{min-width:0!important;max-width:120px!important;padding:6px 8px!important;font-size:.72rem!important}
+  .v52-header .header-circle{width:40px!important;height:40px!important;min-width:40px!important}
+}

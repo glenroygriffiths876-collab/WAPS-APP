@@ -2431,3 +2431,8 @@ body.child-mode-active[data-route="home"] .v53-bottomnav .nonhome-more-nav{displ
 /* v53-overflow-guard: keep premium art inside the viewport without clipping controls */
 body[data-route="home"],html:has(body[data-route="home"]){overflow-x:clip!important;max-width:100%!important}
 .v53-home,.v53-primary-grid,.v53-brand-zone{max-width:100%!important}
+
+/* v53-childmode-final-guard — caregiver-only dock items never surface in Child Mode */
+body.child-mode-active .v53-bottomnav .home-extra-nav,
+body.child-mode-active .v53-bottomnav .nonhome-more-nav{display:none!important}
+body.child-mode-active .v53-bottomnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}

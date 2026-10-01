@@ -1,8 +1,8 @@
 {
   "release": "v51",
-  "tested_commit": "d9fb8f25dc7b0eeffb0cc02a50b50ffe9c586856",
+  "tested_commit": "52c363dc60bfcc58a2dd086ceda017be69889a28",
   "quality_gate": "success",
-  "browser_suite": "failure",
+  "browser_suite": "success",
   "browser_test_count": 34,
   "offline_test_in_suite": true,
   "pages_live_check": "success"

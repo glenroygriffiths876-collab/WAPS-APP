@@ -500,7 +500,7 @@ test('Core app remains available offline after first load', async ({page,context
 });
 
 
-test('v49 home keeps only Talk and Practice Together dominant', async ({page})=>{
+test('v50 home keeps only Talk and Practice Together dominant', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
@@ -516,7 +516,7 @@ test('v49 home keeps only Talk and Practice Together dominant', async ({page})=>
   expect(errors).toEqual([]);
 });
 
-test('v49 Practice Together separates WAPS Activities from Explore More', async ({page})=>{
+test('v50 Practice Together separates WAPS Activities from Explore More', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#practice');
   await expect(page.locator('.practice-tabs [data-practice-tab="waps"]')).toHaveAttribute('aria-selected','true');
@@ -533,7 +533,7 @@ test('v49 Practice Together separates WAPS Activities from Explore More', async 
   expect(errors).toEqual([]);
 });
 
-test('v49 Find Help contains Coach and School Shadow Caregiver resource', async ({page})=>{
+test('v50 Find Help contains Coach and School Shadow Caregiver resource', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#more');
   await page.locator('[data-more-group="help"]').click();
@@ -549,7 +549,7 @@ test('v49 Find Help contains Coach and School Shadow Caregiver resource', async 
   expect(errors).toEqual([]);
 });
 
-test('v49 Gentle Steps music is opt-in, bundled and caregiver controlled', async ({page})=>{
+test('v50 Gentle Steps music is opt-in, bundled and caregiver controlled', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
   const asset=await page.evaluate(()=>fetch('./assets/audio/waps-gentle-steps.mp3',{cache:'no-store'}).then(r=>({ok:r.ok,status:r.status,size:Number(r.headers.get('content-length')||0)})));
@@ -572,7 +572,7 @@ test('v49 Gentle Steps music is opt-in, bundled and caregiver controlled', async
 
 
 
-test('v49 Talk is compact on a 390x844 phone', async ({page})=>{
+test('v50 Talk is compact on a 390x844 phone', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#talk');
@@ -598,7 +598,7 @@ test('v49 Talk is compact on a 390x844 phone', async ({page})=>{
   expect(errors).toEqual([]);
 });
 
-test('v49 phone landscape uses a denser Talk grid without horizontal page overflow', async ({page})=>{
+test('v50 phone landscape uses a denser Talk grid without horizontal page overflow', async ({page})=>{
   await page.setViewportSize({width:844,height:390});
   await page.goto('http://127.0.0.1:4173/#talk');
   await expect(page.locator('#aacGrid')).toBeVisible();
@@ -610,24 +610,33 @@ test('v49 phone landscape uses a denser Talk grid without horizontal page overfl
   expect(dims.overflow).toBeLessThanOrEqual(2);
 });
 
-test('v49 Fredoka is self-hosted and loads on phone viewport', async ({page})=>{
+test('v50 Fredoka and Nunito are self-hosted and load on phone viewport', async ({page})=>{
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
   const result=await page.evaluate(async()=>{
     await document.fonts.ready;
-    const response=await fetch('./assets/fonts/fredoka-variable.woff2',{cache:'no-store'});
+    const [fredoka,nunito]=await Promise.all([
+      fetch('./assets/fonts/fredoka-variable.woff2',{cache:'no-store'}),
+      fetch('./assets/fonts/nunito-variable.ttf',{cache:'no-store'})
+    ]);
     return {
-      ok:response.ok,
-      fontCheck:document.fonts.check('16px "WAPS Fredoka"'),
-      family:getComputedStyle(document.body).fontFamily
+      fredokaOk:fredoka.ok,
+      nunitoOk:nunito.ok,
+      fredokaCheck:document.fonts.check('16px "WAPS Fredoka"'),
+      nunitoCheck:document.fonts.check('16px "WAPS Nunito"'),
+      body:getComputedStyle(document.body).fontFamily,
+      heading:getComputedStyle(document.querySelector('h1')).fontFamily
     };
   });
-  expect(result.ok).toBeTruthy();
-  expect(result.fontCheck).toBeTruthy();
-  expect(result.family).toContain('WAPS Fredoka');
+  expect(result.fredokaOk).toBeTruthy();
+  expect(result.nunitoOk).toBeTruthy();
+  expect(result.fredokaCheck).toBeTruthy();
+  expect(result.nunitoCheck).toBeTruthy();
+  expect(result.body).toContain('WAPS Nunito');
+  expect(result.heading).toContain('WAPS Fredoka');
 });
 
-test('v49 Child Mode persists across Talk Practice and internal activity navigation', async ({page})=>{
+test('v50 Child Mode persists across Talk Practice and internal activity navigation', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#more');
@@ -653,7 +662,7 @@ test('v49 Child Mode persists across Talk Practice and internal activity navigat
   expect(errors).toEqual([]);
 });
 
-test('v49 Explore More does not open external links from Child Mode', async ({page})=>{
+test('v50 Explore More does not open external links from Child Mode', async ({page})=>{
   await page.goto('http://127.0.0.1:4173/#more');
   await page.locator('[data-more-group="settings"]').click();
   await page.locator('[data-action="childMode"]').click();
@@ -665,4 +674,55 @@ test('v49 Explore More does not open external links from Child Mode', async ({pa
   await toy.click();
   await expect(page).toHaveURL(before);
   await expect(page.locator('#toast')).toContainText('caregiver');
+});
+
+
+test('v50 mobile Settings remains visible and caregiver utilities do not cover content', async ({page})=>{
+  for(const viewport of [{width:360,height:800},{width:390,height:844},{width:430,height:932}]){
+    await page.setViewportSize(viewport);
+    await page.goto('http://127.0.0.1:4173/#practice');
+    await expect(page.locator('.header-circle[data-action="settings"]')).toBeVisible();
+    await expect(page.locator('#caregiverUtilities')).toBeHidden();
+    await page.locator('.header-circle[data-action="settings"]').click();
+    await expect(page.locator('.premium-settings')).toBeVisible();
+    await expect(page.locator('.premium-settings')).toContainText('Background Music');
+    await page.locator('[data-action="closeModal"]').click();
+  }
+});
+
+test('v50 Practice shows four activities above the fold on 390x844 phone', async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  const cards=page.locator('.practice-native-grid .practice-tool-card');
+  await expect(cards).toHaveCount(6);
+  const boxes=await cards.evaluateAll(els=>els.slice(0,4).map(e=>e.getBoundingClientRect().bottom));
+  expect(Math.max(...boxes)).toBeLessThan(780);
+  const cols=await page.locator('.practice-native-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length);
+  expect(cols).toBe(2);
+});
+
+test('v50 Mixed Practice choice cards are compact rather than vertically stretched', async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="startUnifiedPractice"]').click();
+  await expect(page.locator('.premium-activity')).toBeVisible();
+  const dims=await page.locator('.choice').evaluateAll(els=>els.map(e=>{const r=e.getBoundingClientRect();return {w:r.width,h:r.height,bottom:r.bottom}}));
+  expect(dims.length).toBeGreaterThanOrEqual(2);
+  for(const d of dims){
+    expect(d.h).toBeLessThan(360);
+    expect(d.h/d.w).toBeLessThan(1.5);
+  }
+  expect(Math.max(...dims.map(x=>x.bottom))).toBeLessThan(790);
+});
+
+test('v50 Talk quick labels are not clipped on phone', async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#talk');
+  const toilet=page.locator('.compact-quick [data-quickword="toilet"]');
+  await expect(toilet).toContainText('TOILET');
+  const clipped=await toilet.evaluate(el=>{
+    const label=el.querySelector('b');
+    return label.scrollWidth>label.clientWidth+1 || label.scrollHeight>label.clientHeight+1;
+  });
+  expect(clipped).toBeFalsy();
 });

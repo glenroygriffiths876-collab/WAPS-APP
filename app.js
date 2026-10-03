@@ -360,33 +360,35 @@ function homeReference(){let p=active(),name=p?esc(p.name):"";let exactName=(nam
   </section>
 </div>`}
 
-function homeAdaptive(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home calm-home v53-home" aria-label="WAPS home">
-  <div class="v53-home-scene" aria-hidden="true"></div>
-  <section class="v53-brand-zone">
-    <img class="v53-hero-logo" src="./assets/ui/v53/hero-logo.svg" alt="WAPS — Western Autism Parents Support">
+function homeLandscape(){let p=active(),name=p?esc(p.name):"My Child";return `<div class="v58-landscape-home" aria-label="WAPS Home landscape">
+  <section class="v58-landscape-stage" aria-label="WAPS main choices">
+    <div class="v58-approved-hero" aria-hidden="true"></div>
+    <div class="v58-approved-actions">
+      <button type="button" class="v58-approved-card v58-approved-talk" data-route="talk" aria-label="Talk — tell me what you need"><span class="v55-sr">Talk</span></button>
+      <button type="button" class="v58-approved-card v58-approved-practice" data-route="practice" aria-label="Practice Together — learn and play together"><span class="v55-sr">Practice Together</span></button>
+    </div>
+    <div class="v58-landscape-controls v55-caregiver-hotspot">
+      <button type="button" class="v58-chip v58-child-chip" data-action="profile" aria-label="My Child"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#child-profile"></use></svg><span>${p?name:"My Child"}</span></button>
+      <button type="button" class="v58-chip" data-action="progressOpen" aria-label="Progress"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#progress"></use></svg><span>Progress</span></button>
+      <button type="button" class="v58-chip" data-action="homeCaregiverTools" aria-label="Caregiver Tools"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#caregiver-tools"></use></svg><span>Caregiver Tools</span></button>
+      <button type="button" class="v58-chip" data-action="settings" aria-label="Settings"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#settings"></use></svg><span>Settings</span></button>
+      <button type="button" class="v58-chip" data-route="more" aria-label="More"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#more"></use></svg><span>More</span></button>
+      <button type="button" class="v58-chip v58-support-chip" data-action="whatsappSupport" aria-label="WhatsApp Support"><span class="v58-symbol">◉</span><span>Support</span></button>
+      <button type="button" class="v58-chip" data-action="installWaps" aria-label="Install WAPS"><span class="v58-symbol">↓</span><span>Install</span></button>
+      <button type="button" class="v58-chip" data-action="shareApp" aria-label="Share WAPS"><span class="v58-symbol">↗</span><span>Share</span></button>
+    </div>
   </section>
-  <section class="v53-primary-grid" aria-label="Main choices">
-    <button class="home-big-action home-talk-action v53-destination v53-talk" data-route="talk" aria-label="Talk — tell me what you need">
-      <img class="v53-mascot v53-boy" src="./assets/ui/v53/boy.svg" alt="" aria-hidden="true">
-      <span class="v53-destination-card">
-        <span class="v53-art-frame"><img src="./assets/ui/v53/talk-art.svg" alt="" aria-hidden="true"></span>
-        <span class="v53-button-band"><b>Talk</b><i aria-hidden="true">›</i></span>
-        <span class="v53-microcopy">Communicate <em>•</em> Express <em>•</em> Be Heard</span>
-      </span>
-    </button>
-    <button class="home-big-action home-practice-action v53-destination v53-practice" data-route="practice" aria-label="Practice Together — learn and play together">
-      <img class="v53-mascot v53-girl" src="./assets/ui/v53/girl.svg" alt="" aria-hidden="true">
-      <span class="v53-destination-card">
-        <span class="v53-art-frame"><img src="./assets/ui/v53/practice-art.svg" alt="" aria-hidden="true"></span>
-        <span class="v53-button-band"><b>Practice Together</b><i aria-hidden="true">›</i></span>
-        <span class="v53-microcopy">Learn <em>•</em> Play <em>•</em> Grow <em>•</em> Build Skills</span>
-      </span>
-    </button>
-  </section>
-  <p class="v53-home-accessible-note">${p?`Ready for ${name}`:"Set up a child profile to personalise WAPS."}</p>
+  <nav class="v58-nav-frame" aria-label="Home navigation">
+    <img class="v58-nav-image" src="./assets/ui/v55/home-nav.png" alt="" aria-hidden="true" decoding="sync">
+    <button type="button" class="v58-nav-hotspot v58-nav-home" data-route="home" aria-label="Home"><span class="v55-sr">Home</span></button>
+    <button type="button" class="v58-nav-hotspot v58-nav-talk" data-route="talk" aria-label="Talk"><span class="v55-sr">Talk</span></button>
+    <button type="button" class="v58-nav-hotspot v58-nav-practice" data-route="practice" aria-label="Practice"><span class="v55-sr">Practice</span></button>
+    <button type="button" class="v58-nav-hotspot v58-nav-progress v55-caregiver-hotspot" data-action="progressOpen" aria-label="Progress"><span class="v55-sr">Progress</span></button>
+    <button type="button" class="v58-nav-hotspot v58-nav-child v55-caregiver-hotspot" data-action="profile" aria-label="My Child"><span class="v55-sr">My Child</span></button>
+    <button type="button" class="v58-nav-hotspot v58-nav-more v55-caregiver-hotspot" data-route="more" aria-label="More"><span class="v55-sr">More</span></button>
+  </nav>
 </div>`}
-
-function home(){return '<div class="v57-home-router">'+homeReference()+homeAdaptive()+'</div>'}
+function home(){return '<div class="v58-home-router">'+homeReference()+homeLandscape()+'</div>'}
 function talk(){let p=active();let cats=["all","favorites","recent","core","safety","people","actions","food","places","feelings","body","social","repair","personal"];return `<div class="talk-stage mobile-aac">
 <div class="talk-title compact-talk-title"><div><span class="eyebrow">TALK</span><h1>Talk</h1><p>Tap pictures or words.</p></div></div>
 <div class="talk-sticky-zone">

@@ -21,6 +21,12 @@
 - Grouped desktop caregiver shortcuts into a single utility dock.
 - Preserved calm Talk/activity workspaces, Low Stimulation, Child Mode, offline operation and all v51 functionality.
 
+## v54 — Curated Explore More library
+- Expanded Practice Together → Explore More from Toy Theater alone to nine approved free learning and play resources.
+- Added Level One Reading, Unite for Literacy, Chrome Music Lab, Quick, Draw!, Learn 2 Draw Kids, World Geography Games, Maggie Games and Kiddo Games.
+- Added compact WAPS-native category badges and responsive cards without copying external branding or artwork.
+- Preserved Child Mode external-link protection, WAPS Activities, Low Stimulation, accessibility settings and offline core functionality.
+
 ## v53 — Approved premium illustrated Home target
 - Rebuilt Home to match the user-approved premium concept instead of the pale dashboard-style v52 layout.
 - Added a full tropical WAPS Home world, large dimensional WAPS hero logo, original boy/girl mascots and glossy Talk / Practice Together destination art.

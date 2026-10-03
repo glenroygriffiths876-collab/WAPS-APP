@@ -3094,3 +3094,136 @@ body.child-mode-active[data-route="home"] .v58-nav-more{display:none!important}
 /* Low stimulation always uses the existing quiet fallback, never rich crops. */
 html[data-low-stim="1"] body[data-route="home"] .v58-landscape-home{display:none!important}
 html[data-low-stim="1"] body[data-route="home"] .v58-home-router>.v55-home{display:flex!important}
+
+
+/* ==========================================================================
+   WAPS v59 — LOCKED APPROVED HOME ART
+   The two user-approved Home compositions are authoritative:
+   portrait for portrait orientation, landscape for landscape orientation.
+   Phone fills the usable screen. Larger displays preserve the approved ratio.
+   Do not substitute legacy v53-v58 Home art.
+   ========================================================================== */
+body[data-route="home"]{
+  position:relative!important;width:100%!important;height:100dvh!important;min-height:100dvh!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#36c9f2 0%,#b9eff9 48%,#ffe5a2 100%)!important;
+}
+body[data-route="home"]::before,body[data-route="home"]::after{display:none!important}
+body[data-route="home"] .waps-header,
+body[data-route="home"] .v53-bottomnav,
+body[data-route="home"] .caregiver-utilities{display:none!important}
+body[data-route="home"] main{
+  width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;
+  padding:0!important;margin:0!important;overflow:hidden!important;background:transparent!important;
+}
+.v59-home-shell{
+  width:100%!important;height:100%!important;min-height:0!important;
+  display:grid!important;place-items:center!important;position:relative!important;overflow:hidden!important;
+}
+.v59-art-stage{
+  position:relative!important;overflow:hidden!important;isolation:isolate!important;
+  background-repeat:no-repeat!important;background-position:center!important;background-size:100% 100%!important;
+  box-shadow:0 22px 60px rgba(11,54,91,.22)!important;
+}
+.v59-stage-portrait{display:none!important;aspect-ratio:941/1672!important;max-width:100%!important;max-height:100%!important}
+.v59-stage-landscape{display:none!important;aspect-ratio:1870/841!important;max-width:100%!important;max-height:100%!important}
+@media (orientation:portrait){
+  .v59-stage-portrait{
+    display:block!important;
+    width:min(100vw,calc(100dvh * 941 / 1672))!important;height:auto!important;
+  }
+}
+@media (orientation:landscape){
+  .v59-stage-landscape{
+    display:block!important;
+    width:min(100vw,calc(100dvh * 1870 / 841))!important;height:auto!important;
+  }
+}
+/* Phone: fill the available app viewport with the approved orientation art. */
+@media (orientation:portrait) and (max-width:700px){
+  .v59-stage-portrait{
+    width:100%!important;height:100%!important;aspect-ratio:auto!important;max-width:none!important;max-height:none!important;
+    box-shadow:none!important;border-radius:0!important;
+  }
+}
+@media (orientation:landscape) and (max-height:650px){
+  .v59-stage-landscape{
+    width:100%!important;height:100%!important;aspect-ratio:auto!important;max-width:none!important;max-height:none!important;
+    box-shadow:none!important;border-radius:0!important;
+  }
+}
+/* Tablet and desktop: preserve the approved image ratio and centre it cleanly. */
+@media (min-width:701px) and (orientation:portrait),
+       (min-height:651px) and (orientation:landscape){
+  .v59-art-stage{border-radius:clamp(18px,2vw,34px)!important}
+}
+.v59-hit{
+  position:absolute!important;z-index:5!important;border:0!important;margin:0!important;padding:0!important;
+  background:rgba(255,255,255,.001)!important;color:transparent!important;border-radius:18px!important;
+  box-shadow:none!important;cursor:pointer!important;-webkit-tap-highlight-color:transparent!important;
+}
+.v59-hit:active{background:rgba(255,255,255,.12)!important}
+.v59-hit:focus-visible{
+  outline:4px solid #fff!important;outline-offset:-5px!important;box-shadow:0 0 0 7px #143b86!important;
+}
+.v59-sr{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
+
+/* Portrait hotspot map — approved 941×1672 artwork. */
+.p59-profile{left:2.5%!important;top:3%!important;width:31%!important;height:6.8%!important}
+.p59-progress-top{left:59%!important;top:3%!important;width:12%!important;height:7%!important}
+.p59-settings{left:71.2%!important;top:3%!important;width:12%!important;height:7%!important}
+.p59-more-top{left:83.4%!important;top:3%!important;width:13%!important;height:7%!important}
+.p59-talk{left:1.5%!important;top:40.2%!important;width:48.5%!important;height:27.5%!important}
+.p59-practice{left:50%!important;top:40.2%!important;width:48.5%!important;height:27.5%!important}
+.p59-child2{left:1.5%!important;top:68.6%!important;width:31.5%!important;height:7%!important}
+.p59-progress2{left:33.4%!important;top:68.6%!important;width:31.5%!important;height:7%!important}
+.p59-caregiver{left:65.5%!important;top:68.6%!important;width:32%!important;height:7%!important}
+.p59-support{left:11%!important;top:76.8%!important;width:26.5%!important;height:6.5%!important}
+.p59-install{left:38.5%!important;top:76.8%!important;width:25%!important;height:6.5%!important}
+.p59-share{left:63.5%!important;top:76.8%!important;width:25%!important;height:6.5%!important}
+.p59-home{left:2.5%!important;top:88.3%!important;width:19%!important;height:10%!important}
+.p59-talk-nav{left:21.5%!important;top:88.3%!important;width:15.5%!important;height:10%!important}
+.p59-practice-nav{left:37%!important;top:88.3%!important;width:17%!important;height:10%!important}
+.p59-progress-nav{left:54%!important;top:88.3%!important;width:16%!important;height:10%!important}
+.p59-child-nav{left:70%!important;top:88.3%!important;width:15%!important;height:10%!important}
+.p59-more-nav{left:85%!important;top:88.3%!important;width:13%!important;height:10%!important}
+
+/* Landscape hotspot map — approved 1870×841 artwork. */
+.l59-profile{left:3.5%!important;top:4%!important;width:22%!important;height:12.5%!important}
+.l59-progress-top{left:70.5%!important;top:4%!important;width:8.5%!important;height:14%!important}
+.l59-settings{left:79%!important;top:4%!important;width:8.5%!important;height:14%!important}
+.l59-more-top{left:87.3%!important;top:4%!important;width:8%!important;height:14%!important}
+.l59-talk{left:21.8%!important;top:32.5%!important;width:27.5%!important;height:39%!important}
+.l59-practice{left:49.8%!important;top:32.5%!important;width:28%!important;height:39%!important}
+.l59-child2{left:5.2%!important;top:72%!important;width:18.5%!important;height:10.8%!important}
+.l59-progress2{left:23.8%!important;top:72%!important;width:18.7%!important;height:10.8%!important}
+.l59-caregiver{left:42.5%!important;top:72%!important;width:18.5%!important;height:10.8%!important}
+.l59-support{left:63.8%!important;top:72%!important;width:12%!important;height:10.8%!important}
+.l59-install{left:75.5%!important;top:72%!important;width:9%!important;height:10.8%!important}
+.l59-share{left:84.5%!important;top:72%!important;width:9%!important;height:10.8%!important}
+.l59-home{left:2.5%!important;top:84.7%!important;width:17%!important;height:13%!important}
+.l59-talk-nav{left:19.5%!important;top:84.7%!important;width:17%!important;height:13%!important}
+.l59-practice-nav{left:36.5%!important;top:84.7%!important;width:17%!important;height:13%!important}
+.l59-progress-nav{left:53.5%!important;top:84.7%!important;width:17%!important;height:13%!important}
+.l59-child-nav{left:70.5%!important;top:84.7%!important;width:15%!important;height:13%!important}
+.l59-more-nav{left:85.5%!important;top:84.7%!important;width:12%!important;height:13%!important}
+
+/* Caregiver-only controls stay inaccessible in Child Mode. */
+body.child-mode-active[data-route="home"] .v59-caregiver-only{display:none!important}
+
+/* Low Stimulation deliberately replaces the rich artwork with a quiet fallback. */
+.v59-low-fallback{display:none!important}
+html[data-low-stim="1"] body[data-route="home"]{overflow:auto!important;background:#f8fafc!important}
+html[data-low-stim="1"] body[data-route="home"] main{height:auto!important;min-height:100dvh!important;overflow:auto!important}
+html[data-low-stim="1"] .v59-art-stage{display:none!important}
+html[data-low-stim="1"] .v59-home-shell{min-height:100dvh!important;height:auto!important;padding:18px!important}
+html[data-low-stim="1"] .v59-low-fallback{
+  display:grid!important;width:min(100%,560px)!important;gap:16px!important;padding:26px!important;border-radius:28px!important;
+  background:#fff!important;border:1px solid #dce8ef!important;box-shadow:none!important;text-align:center!important
+}
+html[data-low-stim="1"] .v59-low-fallback h1{margin:0!important;color:#17324d!important;font-size:2.2rem!important}
+html[data-low-stim="1"] .v59-low-fallback p{margin:0!important;color:#5b7082!important}
+html[data-low-stim="1"] .v59-low-fallback>div{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}

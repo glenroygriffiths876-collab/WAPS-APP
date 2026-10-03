@@ -34,3 +34,11 @@
 - Restored floating WhatsApp Support, Install and Share controls on Home while keeping them out of Talk and focused learning screens.
 - Preserved calm Talk and child activity backgrounds, Child Mode safeguards, offline support and existing learning logic.
 - Added v53 responsive QA for phone, tablet, landscape and desktop plus screenshot capture.
+
+## v55 — Locked approved Home reference
+- Replaced the hand-built Home approximation with the exact approved generated Home artwork.
+- Removed only the fake device status bar from the artwork for production use; visible WAPS art remains pixel-locked.
+- Added invisible semantic hit targets over Talk, Practice Together, profile, Progress, Settings, More, My Child, Caregiver Tools, WhatsApp Support, Install and Share.
+- Added the exact approved bottom navigation artwork with functional Home, Talk, Practice, Progress, My Child and More hit targets.
+- Tall phones preserve the exact artwork and extend only the ambient background rather than stretching/redrawing the art.
+- Child Mode and Low Stimulation intentionally override caregiver-heavy artwork to preserve safety and accessibility.

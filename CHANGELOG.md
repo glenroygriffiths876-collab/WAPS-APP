@@ -35,6 +35,11 @@
 - Preserved calm Talk and child activity backgrounds, Child Mode safeguards, offline support and existing learning logic.
 - Added v53 responsive QA for phone, tablet, landscape and desktop plus screenshot capture.
 
+## v56 — Tall-phone Home polish
+- Fixed the v55 tall-phone spacer stacking so the intended blurred tropical ambience shows instead of a flat turquoise block.
+- Restored a crisp visible Settings gear and label over the approved Home artwork while retaining the existing semantic hotspot.
+- Kept the locked Home artwork geometry, bottom navigation placement, desktop sizing logic, Child Mode and all existing routes/functions unchanged.
+
 ## v55 — Locked approved Home reference
 - Replaced the hand-built Home approximation with the exact approved generated Home artwork.
 - Removed only the fake device status bar from the artwork for production use; visible WAPS art remains pixel-locked.

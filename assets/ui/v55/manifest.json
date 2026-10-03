@@ -1,0 +1,19 @@
+{
+  "release": "v55",
+  "home_visual": "locked approved reference",
+  "source_generation_id": "4fe3d63c-d238-492b-97fc-824881bf2f8a",
+  "pixel_locked": true,
+  "note": "Normal Home renders the approved generated artwork directly. Only the fake device status bar was removed for production.",
+  "assets": {
+    "main": {
+      "path": "./assets/ui/v55/home-main.png",
+      "width": 1024,
+      "height": 1304
+    },
+    "nav": {
+      "path": "./assets/ui/v55/home-nav.png",
+      "width": 1024,
+      "height": 174
+    }
+  }
+}

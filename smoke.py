@@ -35,8 +35,8 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=53' in html and 'app.js?v=53' in html, 'v53 public asset references missing'
-assert 'waps-reference-shell-v53' in sw, 'v53 cache name missing'
+assert 'app.css?v=55' in html and 'app.js?v=55' in html, 'v55 public asset references missing'
+assert 'waps-reference-shell-v55' in sw, 'v55 cache name missing'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
 assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'
@@ -89,3 +89,14 @@ for concept in special:
     assert meta.get('path')==rel, f'wrong manifest path: {concept}'
     assert meta.get('width')==1024 and meta.get('height')==1024, f'wrong manifest dimensions: {concept}'
 print('WAPS smoke gate PASS:',{'actions':len(actions),'primary_routes':4,'progress_route':'app','cache_optional':sw.count('./')})
+
+# v55 locked-reference Home gate
+assert 'WAPS v55 — LOCKED HOME REFERENCE' in css, 'v55 locked Home CSS layer missing'
+assert (r/'assets/ui/v55/manifest.json').exists(), 'v55 locked Home manifest missing'
+v55_manifest=json.loads((r/'assets/ui/v55/manifest.json').read_text(encoding='utf-8'))
+assert v55_manifest.get('release')=='v55' and v55_manifest.get('pixel_locked') is True, 'v55 locked Home manifest invalid'
+main_art=r/'assets/ui/v55/home-main.png'
+nav_art=r/'assets/ui/v55/home-nav.png'
+assert main_art.exists() and main_art.stat().st_size>1500000, 'v55 locked main art missing/suspicious'
+assert nav_art.exists() and nav_art.stat().st_size>100000, 'v55 locked nav art missing/suspicious'
+assert './assets/ui/v55/home-main.png' in sw and './assets/ui/v55/home-nav.png' in sw and './assets/ui/v55/manifest.json' in sw, 'v55 locked art not cached'

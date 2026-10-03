@@ -2436,3 +2436,152 @@ body[data-route="home"],html:has(body[data-route="home"]){overflow-x:clip!import
 body.child-mode-active .v53-bottomnav .home-extra-nav,
 body.child-mode-active .v53-bottomnav .nonhome-more-nav{display:none!important}
 body.child-mode-active .v53-bottomnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+
+
+/* WAPS v54 — curated Explore More library */
+.explore-more-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+}
+.explore-more-intro,
+.explore-more-grid>.external-resource-note{
+  grid-column:1 / -1;
+}
+.explore-more-intro{
+  padding:4px 2px 2px;
+}
+.explore-more-intro h2{
+  margin:.2rem 0 .35rem;
+  color:#173551;
+  font-size:clamp(1.35rem,2.2vw,1.85rem);
+}
+.explore-more-intro p{
+  margin:0;
+  color:#607579;
+  line-height:1.45;
+}
+.external-learning-card{
+  min-width:0;
+  min-height:150px;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.external-learning-card .external-card-icon{
+  width:64px;
+  height:64px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  background:#e9f8f0;
+  color:#176c63;
+}
+.external-learning-card .external-resource-icon{
+  width:46px;
+  height:46px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:inherit;
+  box-shadow:none;
+}
+.external-card-copy{
+  min-width:0;
+  flex:1;
+}
+.external-card-tag{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#eef5ff;
+  color:#275b89;
+  font-size:.68rem;
+  line-height:1;
+  letter-spacing:.055em;
+  font-weight:750;
+}
+.external-learning-card b{
+  margin-top:7px;
+  font-size:1.18rem;
+  line-height:1.18;
+}
+.external-learning-card small{
+  font-size:.88rem;
+  line-height:1.38;
+}
+.external-learning-card em{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:5px 10px;
+  padding-top:6px;
+  font-size:.75rem;
+}
+.resource-level-one-reading .external-card-icon,
+.resource-unite-literacy .external-card-icon{background:#eef7ff;color:#275b89}
+.resource-chrome-music-lab .external-card-icon{background:#f3ecff;color:#663a98}
+.resource-quick-draw .external-card-icon,
+.resource-learn-2-draw .external-card-icon{background:#fff1e8;color:#9a542e}
+.resource-world-geography-games .external-card-icon{background:#e9f8f0;color:#176c63}
+.resource-maggie-games .external-card-icon{background:#fff7df;color:#8a6712}
+.resource-kiddo-games .external-card-icon{background:#f3ecff;color:#663a98}
+.external-learning-card:focus-visible{
+  outline:4px solid #174f87;
+  outline-offset:3px;
+}
+@media (hover:hover) and (pointer:fine){
+  .external-learning-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(30,65,83,.11);
+    border-color:#c9dddd;
+  }
+}
+html[data-low-stim="1"] .external-learning-card{
+  transition:none;
+  box-shadow:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .external-learning-card{transition:none}
+  .external-learning-card:hover{transform:none}
+}
+@media (max-width:700px){
+  .explore-more-grid{grid-template-columns:1fr;gap:9px}
+  .external-learning-card{
+    min-height:0;
+    padding:13px;
+    gap:11px;
+    border-radius:18px;
+  }
+  .external-learning-card .external-card-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+  }
+  .external-learning-card .external-resource-icon{
+    width:39px;
+    height:39px;
+  }
+  .external-learning-card b{
+    font-size:1.06rem;
+    margin-top:5px;
+  }
+  .external-learning-card small{
+    font-size:.82rem;
+    line-height:1.32;
+  }
+  .external-learning-card em{
+    font-size:.7rem;
+    padding-top:4px;
+  }
+  .external-card-tag{
+    min-height:21px;
+    padding:3px 7px;
+    font-size:.62rem;
+  }
+  .explore-more-intro h2{font-size:1.3rem}
+  .explore-more-intro p{font-size:.88rem}
+}

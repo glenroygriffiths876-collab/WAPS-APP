@@ -2585,3 +2585,155 @@ html[data-low-stim="1"] .external-learning-card{
   .explore-more-intro h2{font-size:1.3rem}
   .explore-more-intro p{font-size:.88rem}
 }
+
+
+/* ==========================================================================
+   WAPS v55 — LOCKED HOME REFERENCE
+   Normal Home is rendered from the exact approved artwork. Interactive hit
+   targets sit invisibly on top; Talk and learning screens remain unchanged.
+   ========================================================================== */
+:root{--v55-canvas-w:min(100vw,69.283dvh)}
+body[data-route="home"]{
+  height:100dvh!important;min-height:100dvh!important;overflow:hidden!important;
+  background:#22bfe8!important
+}
+body[data-route="home"]::before{
+  content:""!important;display:block!important;position:fixed!important;inset:-32px!important;z-index:-2!important;
+  background:url("./assets/ui/v55/home-main.png") center/cover no-repeat!important;
+  filter:blur(24px) saturate(1.06) brightness(.82)!important;transform:scale(1.08)!important;pointer-events:none!important
+}
+body[data-route="home"]::after{
+  content:""!important;display:block!important;position:fixed!important;inset:0!important;z-index:-1!important;
+  background:linear-gradient(180deg,rgba(14,163,215,.12),rgba(255,218,101,.10))!important;pointer-events:none!important
+}
+body[data-route="home"] .waps-header,
+body[data-route="home"] .v53-bottomnav,
+body[data-route="home"] .caregiver-utilities{display:none!important}
+body[data-route="home"] main{
+  width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;background:transparent!important
+}
+.v55-home{
+  width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;
+  overflow:hidden!important;position:relative!important;background:transparent!important
+}
+.v55-main-frame{
+  width:var(--v55-canvas-w)!important;max-width:100vw!important;aspect-ratio:1024/1304!important;
+  flex:0 0 auto!important;position:relative!important;container-type:inline-size!important;
+  overflow:hidden!important;background:#39c9ef!important
+}
+.v55-main-image,.v55-nav-image{
+  display:block!important;width:100%!important;height:100%!important;object-fit:fill!important;
+  user-select:none!important;-webkit-user-drag:none!important
+}
+.v55-reference-spacer{
+  width:100%!important;flex:1 1 auto!important;min-height:0!important;background:transparent!important
+}
+.v55-nav-frame{
+  width:var(--v55-canvas-w)!important;max-width:100vw!important;aspect-ratio:1024/174!important;
+  flex:0 0 auto!important;position:relative!important;overflow:hidden!important;
+  box-shadow:0 -10px 32px rgba(18,61,95,.08)!important
+}
+.v55-hotspot,.v55-nav-hotspot{
+  position:absolute!important;z-index:5!important;margin:0!important;padding:0!important;border:0!important;
+  border-radius:18px!important;background:rgba(255,255,255,.001)!important;color:transparent!important;
+  box-shadow:none!important;cursor:pointer!important;-webkit-tap-highlight-color:transparent!important
+}
+.v55-hotspot:active,.v55-nav-hotspot:active{background:rgba(255,255,255,.10)!important}
+.v55-hotspot:focus-visible,.v55-nav-hotspot:focus-visible{
+  outline:4px solid #fff!important;outline-offset:-4px!important;box-shadow:0 0 0 7px #173f8f!important
+}
+.v55-hotspot .v51-ui-icon{
+  width:1px!important;height:1px!important;opacity:.001!important;position:absolute!important;left:50%!important;top:50%!important
+}
+.v55-sr{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important
+}
+
+/* Pixel-map: main artwork coordinates are percentages of the locked 1024×1304 crop. */
+.v55-profile-hotspot{left:2.4%!important;top:1.0%!important;width:30.0%!important;height:8.2%!important}
+.v55-top-progress{left:65.6%!important;top:1.1%!important;width:10.7%!important;height:8.5%!important}
+.v55-top-settings{left:76.5%!important;top:1.1%!important;width:10.3%!important;height:8.5%!important}
+.v55-top-more{left:87.4%!important;top:1.1%!important;width:10.7%!important;height:8.5%!important}
+.v55-talk-hotspot{left:1.6%!important;top:45.0%!important;width:47.8%!important;height:34.8%!important}
+.v55-practice-hotspot{left:50.5%!important;top:45.0%!important;width:47.9%!important;height:34.8%!important}
+.v55-secondary-child{left:2.2%!important;top:80.3%!important;width:31.3%!important;height:9.8%!important}
+.v55-secondary-progress{left:34.0%!important;top:80.3%!important;width:31.5%!important;height:9.8%!important}
+.v55-secondary-caregiver{left:66.0%!important;top:80.3%!important;width:31.7%!important;height:9.8%!important}
+.v55-support-hotspot{left:51.5%!important;top:92.0%!important;width:18.6%!important;height:6.4%!important;border-radius:999px!important}
+.v55-install-hotspot{left:70.8%!important;top:92.0%!important;width:13.3%!important;height:6.4%!important;border-radius:999px!important}
+.v55-share-hotspot{left:84.7%!important;top:92.0%!important;width:13.4%!important;height:6.4%!important;border-radius:999px!important}
+
+/* Exact reference says Genesis. Only cover that text when another profile is active. */
+.v55-live-child-name{
+  position:absolute!important;z-index:4!important;left:13.4%!important;top:3.2%!important;width:15.1%!important;height:4.5%!important;
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;padding-left:1.2cqw!important;
+  overflow:hidden!important;white-space:nowrap!important;background:#fff!important;color:#13266d!important;
+  font-family:var(--v50-head)!important;font-size:2.2cqw!important;font-weight:850!important;line-height:1!important
+}
+
+/* Pixel-map for the exact 1024×174 navigation crop. */
+.v55-nav-hotspot{top:5%!important;height:86%!important;border-radius:24px!important}
+.v55-nav-home{left:2.5%!important;width:16.7%!important}
+.v55-nav-talk{left:19.2%!important;width:14.5%!important}
+.v55-nav-practice{left:33.8%!important;width:16.0%!important}
+.v55-nav-progress{left:49.8%!important;width:15.7%!important}
+.v55-nav-child{left:65.6%!important;width:15.2%!important}
+.v55-nav-more{left:80.8%!important;width:17.0%!important}
+
+/* Tall phones preserve exact art and extend only the ambient tropical backdrop. */
+@media(max-width:700px) and (min-height:650px){
+  .v55-reference-spacer{
+    backdrop-filter:blur(8px)!important;
+    background:linear-gradient(180deg,rgba(255,235,150,.06),rgba(255,220,100,.14))!important
+  }
+}
+
+/* Child Mode removes caregiver-only regions and uses the existing 3-item child nav. */
+.v55-child-mask{display:none!important;position:absolute!important;z-index:6!important;pointer-events:none!important}
+body.child-mode-active[data-route="home"] .v55-caregiver-hotspot{display:none!important}
+body.child-mode-active[data-route="home"] .v55-child-mask{display:block!important}
+body.child-mode-active[data-route="home"] .v55-child-mask-left{
+  left:0!important;top:0!important;width:34%!important;height:10.2%!important;
+  background:linear-gradient(135deg,#22c6ef,#43d9f4)!important
+}
+body.child-mode-active[data-route="home"] .v55-child-mask-right{
+  right:0!important;top:0!important;width:37%!important;height:10.2%!important;
+  background:linear-gradient(225deg,#22c6ef,#43d9f4)!important
+}
+body.child-mode-active[data-route="home"] .v55-child-mask-lower{
+  left:0!important;right:0!important;top:79.8%!important;bottom:0!important;
+  background:linear-gradient(180deg,#ffe69b,#f7d66d)!important
+}
+body.child-mode-active[data-route="home"] .v55-nav-frame{display:none!important}
+body.child-mode-active[data-route="home"] .v53-bottomnav{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  width:calc(100% - 14px)!important;bottom:6px!important
+}
+body.child-mode-active[data-route="home"] .v53-bottomnav .home-extra-nav,
+body.child-mode-active[data-route="home"] .v53-bottomnav .nonhome-more-nav{display:none!important}
+
+/* Low Stimulation intentionally overrides the rich Home artwork. */
+.v55-low-fallback{display:none!important}
+html[data-low-stim="1"] body[data-route="home"]{background:#f8fafc!important;overflow:auto!important}
+html[data-low-stim="1"] body[data-route="home"]::before,
+html[data-low-stim="1"] body[data-route="home"]::after{display:none!important}
+html[data-low-stim="1"] .v55-main-frame,
+html[data-low-stim="1"] .v55-reference-spacer,
+html[data-low-stim="1"] .v55-nav-frame{display:none!important}
+html[data-low-stim="1"] .v55-home{
+  min-height:100dvh!important;justify-content:center!important;padding:18px!important
+}
+html[data-low-stim="1"] .v55-low-fallback{
+  display:grid!important;width:min(100%,560px)!important;gap:16px!important;padding:26px!important;border-radius:28px!important;
+  background:#fff!important;border:1px solid #dce8ef!important;box-shadow:none!important;text-align:center!important
+}
+html[data-low-stim="1"] .v55-low-fallback h1{margin:0!important;color:#17324d!important;font-size:2.2rem!important}
+html[data-low-stim="1"] .v55-low-fallback p{margin:0!important;color:#5b7082!important}
+html[data-low-stim="1"] .v55-low-fallback>div{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+
+html[data-high-contrast="1"] .v55-hotspot:focus-visible,
+html[data-high-contrast="1"] .v55-nav-hotspot:focus-visible{outline-color:#000!important;box-shadow:0 0 0 7px #fff!important}
+body[data-route="home"],body[data-route="home"] main,.v55-home{max-width:100vw!important;overflow-x:hidden!important}

@@ -796,95 +796,89 @@ test('v51 low stimulation suppresses decorative treatment and focused practice s
 });
 
 
-test('v53 Home matches the approved premium composition across target viewports', async ({page})=>{
+test('v55 Home renders the locked approved reference artwork across target viewports', async ({page})=>{
   const errors=collectErrors(page);
   for(const vp of [{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:820,height:1180},{width:1366,height:768},{width:1920,height:1080}]){
     await page.setViewportSize(vp);
     await page.goto('http://127.0.0.1:4173/#home');
-    await expect(page.locator('.v53-hero-logo')).toBeVisible();
-    await expect(page.locator('.v53-boy')).toBeVisible();
-    await expect(page.locator('.v53-girl')).toBeVisible();
+    await expect(page.locator('.v55-main-image')).toBeVisible();
+    await expect(page.locator('.v55-nav-image')).toBeVisible();
     await expect(page.locator('.home-talk-action')).toBeVisible();
     await expect(page.locator('.home-practice-action')).toBeVisible();
     const m=await page.evaluate(()=>({
       overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-      talk:document.querySelector('.home-talk-action').getBoundingClientRect(),
-      practice:document.querySelector('.home-practice-action').getBoundingClientRect(),
-      logo:document.querySelector('.v53-hero-logo').getBoundingClientRect()
+      main:[document.querySelector('.v55-main-image').naturalWidth,document.querySelector('.v55-main-image').naturalHeight],
+      nav:[document.querySelector('.v55-nav-image').naturalWidth,document.querySelector('.v55-nav-image').naturalHeight],
+      bodyH:document.body.getBoundingClientRect().height,
+      viewH:innerHeight
     }));
     expect(m.overflow).toBeLessThanOrEqual(2);
-    expect(m.talk.width).toBeGreaterThan(130);
-    expect(m.practice.width).toBeGreaterThan(130);
-    expect(m.logo.width).toBeGreaterThan(180);
+    expect(m.main).toEqual([1024,1304]);
+    expect(m.nav).toEqual([1024,174]);
+    expect(Math.abs(m.bodyH-m.viewH)).toBeLessThanOrEqual(4);
   }
   expect(errors).toEqual([]);
 });
 
-test('v53 phone Home fills the useful screen and exposes the approved seven-item dock', async ({page})=>{
+test('v55 phone Home keeps the locked navigation on the bottom edge with no page scrolling', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
-  await expect(page.locator('.v53-bottomnav .home-extra-nav')).toHaveCount(4);
-  const visibleExtras=await page.locator('.v53-bottomnav .home-extra-nav:visible').count();
-  expect(visibleExtras).toBe(4);
-  await expect(page.locator('.v53-bottomnav .nonhome-more-nav')).toBeHidden();
-  const m=await page.evaluate(()=>({
-    cards:document.querySelector('.v53-primary-grid').getBoundingClientRect(),
-    nav:document.querySelector('.v53-bottomnav').getBoundingClientRect(),
-    h:innerHeight
-  }));
-  expect(m.cards.bottom).toBeGreaterThan(m.h*.72);
-  expect(m.cards.bottom).toBeLessThanOrEqual(m.nav.top+16);
+  const m=await page.evaluate(()=>{
+    const n=document.querySelector('.v55-nav-frame').getBoundingClientRect();
+    const main=document.querySelector('.v55-main-frame').getBoundingClientRect();
+    return {navBottom:n.bottom,mainTop:main.top,scrollH:document.documentElement.scrollHeight,h:innerHeight};
+  });
+  expect(Math.abs(m.navBottom-m.h)).toBeLessThanOrEqual(3);
+  expect(m.mainTop).toBeGreaterThanOrEqual(-1);
+  expect(m.scrollH).toBeLessThanOrEqual(m.h+3);
   expect(errors).toEqual([]);
 });
 
-test('v53 Home top controls and floating WhatsApp Install Share remain available without leaking into Talk', async ({page})=>{
+test('v55 locked Home hit targets preserve approved actions', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
-  await expect(page.locator('#childSwitcher')).toBeVisible();
-  await expect(page.locator('.home-progress-control')).toBeVisible();
-  await expect(page.locator('.home-settings-control')).toBeVisible();
-  await expect(page.locator('.home-more-control')).toBeVisible();
-  await expect(page.locator('#supportFab')).toBeVisible();
-  await expect(page.locator('#shareFab')).toBeVisible();
-  // Install can legitimately be hidden when the browser already considers the PWA installed.
-  const supportBox=await page.locator('#supportFab').boundingBox();
-  const navBox=await page.locator('.v53-bottomnav').boundingBox();
-  expect(supportBox.y+supportBox.height).toBeLessThanOrEqual(navBox.y+2);
-  await page.goto('http://127.0.0.1:4173/#talk');
-  await expect(page.locator('#supportFab')).toBeHidden();
-  await expect(page.locator('#shareFab')).toBeHidden();
+  await expect(page.locator('.v55-profile-hotspot')).toBeVisible();
+  await expect(page.locator('.v55-top-progress')).toBeVisible();
+  await expect(page.locator('.v55-top-settings')).toBeVisible();
+  await expect(page.locator('.v55-top-more')).toBeVisible();
+  await expect(page.locator('.v55-secondary-caregiver')).toBeVisible();
+  await expect(page.locator('.v55-support-hotspot')).toBeVisible();
+  await expect(page.locator('.v55-install-hotspot')).toBeVisible();
+  await expect(page.locator('.v55-share-hotspot')).toBeVisible();
+  await page.locator('.v55-talk-hotspot').click();
+  await expect(page).toHaveURL(/#talk$/);
+  await page.goto('http://127.0.0.1:4173/#home');
+  await page.locator('.v55-practice-hotspot').click();
+  await expect(page).toHaveURL(/#practice$/);
   expect(errors).toEqual([]);
 });
 
-test('v53 premium Home assets and manifest are bundled for offline use', async ({page})=>{
+test('v55 locked Home assets and manifest are bundled for offline use', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
   const result=await page.evaluate(async()=>{
-    const paths=['./assets/ui/v53/manifest.json','./assets/ui/v53/tropical-bg.svg','./assets/ui/v53/hero-logo.svg','./assets/ui/v53/boy.svg','./assets/ui/v53/girl.svg','./assets/ui/v53/talk-art.svg','./assets/ui/v53/practice-art.svg'];
-    return Promise.all(paths.map(async path=>{const r=await fetch(path,{cache:'no-store'});return {path,ok:r.ok,size:(await r.text()).length}}));
+    const paths=['./assets/ui/v55/manifest.json','./assets/ui/v55/home-main.png','./assets/ui/v55/home-nav.png'];
+    return Promise.all(paths.map(async path=>{const r=await fetch(path,{cache:'no-store'});return {path,ok:r.ok,status:r.status,size:(await r.arrayBuffer()).byteLength}}));
   });
-  expect(result[0].ok&&result[0].size>100).toBeTruthy();
-  expect(result.slice(1).every(v=>v.ok&&v.size>1000)).toBeTruthy();
+  expect(result.every(v=>v.ok)).toBeTruthy();
+  expect(result[1].size).toBeGreaterThan(1500000);
+  expect(result[2].size).toBeGreaterThan(100000);
   expect(errors).toEqual([]);
 });
 
-test('v53 Child Mode presentation keeps caregiver Home extras guarded', async ({page})=>{
+test('v55 Low Stimulation and Child Mode still override caregiver-heavy Home art', async ({page})=>{
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
-  const guarded=await page.evaluate(()=>{
+  const guards=await page.evaluate(()=>{
+    let all='';
     for(const sheet of Array.from(document.styleSheets)){
-      try{
-        for(const rule of Array.from(sheet.cssRules||[])){
-          const text=String(rule.cssText||'');
-          if(text.includes('child-mode-active')&&text.includes('v53-bottomnav')) return true;
-        }
-      }catch{}
+      try{all+='\n'+Array.from(sheet.cssRules||[]).map(r=>String(r.cssText||'')).join('\n')}catch{}
     }
-    return false;
+    return all.includes('child-mode-active')&&all.includes('v55-caregiver-hotspot')&&all.includes('data-low-stim');
   });
-  expect(guarded).toBeTruthy();
+  expect(guards).toBeTruthy();
   expect(errors).toEqual([]);
 });

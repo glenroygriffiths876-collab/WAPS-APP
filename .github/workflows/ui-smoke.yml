@@ -20,6 +20,7 @@ on:
       - 'assets/ui/v51/**'
       - 'assets/ui/v52/**'
       - 'assets/ui/v53/**'
+      - 'assets/ui/v55/**'
       - 'tests/ui.spec.js'
       - '.github/workflows/ui-smoke.yml'
 permissions:

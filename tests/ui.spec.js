@@ -56,8 +56,8 @@ test('More is six simple groups and opens the old tools through groups', async (
 test('WhatsApp Support uses the approved group link and hides in child work', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
-  await expect(page.locator('#supportFab')).toBeVisible();
-  await page.locator('#supportFab').click();
+  await expect(page.locator('.v55-support-hotspot')).toBeVisible();
+  await page.locator('.v55-support-hotspot').click();
   const join=page.locator('dialog[open] a.whatsapp-join-btn');
   await expect(join).toHaveAttribute('href','https://chat.whatsapp.com/DvI8bqupHVQD2lLQUgAKYK');
   await expect(join).toHaveAttribute('target','_blank');
@@ -256,7 +256,7 @@ test('Numbers up to stays separate for each child profile', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('#pname').fill('Math Child A');
   await page.locator('[data-action="saveProfile"]').click();
   await page.goto('http://127.0.0.1:4173/#practice');
@@ -266,7 +266,7 @@ test('Numbers up to stays separate for each child profile', async ({page})=>{
   await page.locator('[data-action="mathSaveSettings"]').click();
   await page.locator('dialog[open] [data-action="closeModal"]').click();
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('#pname').fill('Math Child B');
   await page.locator('[data-action="saveProfile"]').click();
   await page.locator('[data-action="mathLaunch"]').click();
@@ -275,14 +275,14 @@ test('Numbers up to stays separate for each child profile', async ({page})=>{
   await page.locator('[data-action="mathSaveSettings"]').click();
   await page.locator('dialog[open] [data-action="closeModal"]').click();
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('.list-item',{hasText:'Math Child A'}).locator('.choose-profile').click();
   await page.locator('[data-action="mathLaunch"]').click();
   await page.locator('[data-action="mathSettings"]').click();
   await expect(page.locator('input[name="mathMax"][value="4"]')).toBeChecked();
   await page.locator('dialog[open] [data-action="closeModal"]').click();
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('.list-item',{hasText:'Math Child B'}).locator('.choose-profile').click();
   await page.locator('[data-action="mathLaunch"]').click();
   await page.locator('[data-action="mathSettings"]').click();
@@ -361,7 +361,7 @@ test('Match & Understand opens all five modes and respects picture field size', 
 test('Match & Understand picture setting is profile specific and survives reload', async ({page})=>{
   const errors=collectErrors(page);
   await page.goto('http://127.0.0.1:4173/#home');
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('#pname').fill('Understanding Child A');
   await page.locator('[data-action="saveProfile"]').click();
   await page.goto('http://127.0.0.1:4173/#practice');
@@ -371,7 +371,7 @@ test('Match & Understand picture setting is profile specific and survives reload
   await page.locator('[data-action="muSaveSettings"]').click();
   await page.locator('dialog[open] [data-action="closeModal"]').click();
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('#pname').fill('Understanding Child B');
   await page.locator('[data-action="saveProfile"]').click();
   await page.locator('[data-action="muLaunch"]').click();
@@ -380,7 +380,7 @@ test('Match & Understand picture setting is profile specific and survives reload
   await page.locator('[data-action="muSaveSettings"]').click();
   await page.locator('dialog[open] [data-action="closeModal"]').click();
 
-  await page.locator('#childSwitcher').click();
+  await page.locator('.v55-profile-hotspot:visible, #childSwitcher:visible').first().click();
   await page.locator('.list-item',{hasText:'Understanding Child A'}).locator('.choose-profile').click();
   await page.locator('[data-action="muLaunch"]').click();
   await page.locator('[data-action="muSettings"]').click();
@@ -555,7 +555,7 @@ test('v50 Gentle Steps music is opt-in, bundled and caregiver controlled', async
   const asset=await page.evaluate(()=>fetch('./assets/audio/waps-gentle-steps.mp3',{cache:'no-store'}).then(r=>({ok:r.ok,status:r.status,size:Number(r.headers.get('content-length')||0)})));
   expect(asset.ok).toBeTruthy();
   expect(asset.status).toBe(200);
-  await page.locator('[data-action="settings"]').first().click();
+  await page.locator('.v55-top-settings:visible, .header-circle[data-action="settings"]:visible').first().click();
   await expect(page.locator('#backgroundAudioSetting')).not.toBeChecked();
   await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.25');
   await page.locator('#audioVolumeSetting').fill('0.35');
@@ -565,7 +565,7 @@ test('v50 Gentle Steps music is opt-in, bundled and caregiver controlled', async
   const state=await page.evaluate(()=>({music:document.documentElement.dataset.music,src:document.querySelector('audio')?.src||null}));
   expect(['playing','blocked']).toContain(state.music);
   await page.locator('[data-action="saveSettings"]').click();
-  await page.locator('[data-action="settings"]').first().click();
+  await page.locator('.v55-top-settings:visible, .header-circle[data-action="settings"]:visible').first().click();
   await expect(page.locator('#audioVolumeSetting')).toHaveValue('0.35');
   expect(errors).toEqual([]);
 });
@@ -745,7 +745,6 @@ test('v51 icon manifest exposes the complete 48-icon system', async ({page})=>{
   expect(result.release).toBe('v51');
   expect(result.count).toBe(48);
   expect(result.symbols).toBeGreaterThanOrEqual(48);
-  await expect(page.locator('.home-settings-control .v51-ui-icon')).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -780,7 +779,7 @@ test('v51 low stimulation suppresses decorative treatment and focused practice s
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
-  await page.locator('[data-action="settings"]').click();
+  await page.locator('.v55-top-settings').click();
   await page.locator('#stimSetting').check({force:true});
   await page.locator('[data-action="saveSettings"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-low-stim','1');
@@ -824,6 +823,7 @@ test('v55 phone Home keeps the locked navigation on the bottom edge with no page
   const errors=collectErrors(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto('http://127.0.0.1:4173/#home');
+  await expect(page.locator('.v55-nav-frame')).toBeVisible();
   const m=await page.evaluate(()=>{
     const n=document.querySelector('.v55-nav-frame').getBoundingClientRect();
     const main=document.querySelector('.v55-main-frame').getBoundingClientRect();

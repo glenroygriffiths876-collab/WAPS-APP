@@ -323,7 +323,7 @@ function renderJamaicaDirectory(){
  out.innerHTML=rows.length?rows.map(r=>`<article class="directory-card"><div class="resource-meta"><span class="service-tag">${esc(r.cat)}</span><span class="service-tag muted-tag">${esc(r.parish)}</span></div><h3>${esc(r.title)}</h3><p>${esc(r.desc)}</p><div class="actions">${r.phone?`<a class="btn ghost" href="tel:${r.phone.replace(/[^0-9+]/g,'')}">Call ${esc(r.phone)}</a>`:''}<a class="btn secondary" href="${r.url}" target="_blank" rel="noopener">${esc(r.action||'Official information')} ↗</a></div></article>`).join(''):'<div class="friendly-empty"><span>⌕</span><div><b>No matching service.</b><p>Try a broader word such as school, grant, therapy, western, assessment or support.</p></div></div>';
 }
 
-function home(){let p=active(),name=p?esc(p.name):"";let exactName=(name||"").trim().toLowerCase()==="genesis";return `<div class="waps-home calm-home v55-home" aria-label="WAPS Home">
+function homeReference(){let p=active(),name=p?esc(p.name):"";let exactName=(name||"").trim().toLowerCase()==="genesis";return `<div class="waps-home calm-home v55-home" aria-label="WAPS Home">
   <section class="v55-main-frame" aria-label="WAPS premium Home">
     <img class="v55-main-image" src="./assets/ui/v55/home-main.png" alt="" aria-hidden="true" decoding="sync">
     ${exactName?"":`<span class="v55-live-child-name">${p?name:"My Child"}</span>`}
@@ -359,6 +359,34 @@ function home(){let p=active(),name=p?esc(p.name):"";let exactName=(name||"").tr
     <button class="btn ghost" data-action="settings">Settings</button>
   </section>
 </div>`}
+
+function homeAdaptive(){let p=active(),name=p?esc(p.name):"";return `<div class="waps-home calm-home v53-home" aria-label="WAPS home">
+  <div class="v53-home-scene" aria-hidden="true"></div>
+  <section class="v53-brand-zone">
+    <img class="v53-hero-logo" src="./assets/ui/v53/hero-logo.svg" alt="WAPS — Western Autism Parents Support">
+  </section>
+  <section class="v53-primary-grid" aria-label="Main choices">
+    <button class="home-big-action home-talk-action v53-destination v53-talk" data-route="talk" aria-label="Talk — tell me what you need">
+      <img class="v53-mascot v53-boy" src="./assets/ui/v53/boy.svg" alt="" aria-hidden="true">
+      <span class="v53-destination-card">
+        <span class="v53-art-frame"><img src="./assets/ui/v53/talk-art.svg" alt="" aria-hidden="true"></span>
+        <span class="v53-button-band"><b>Talk</b><i aria-hidden="true">›</i></span>
+        <span class="v53-microcopy">Communicate <em>•</em> Express <em>•</em> Be Heard</span>
+      </span>
+    </button>
+    <button class="home-big-action home-practice-action v53-destination v53-practice" data-route="practice" aria-label="Practice Together — learn and play together">
+      <img class="v53-mascot v53-girl" src="./assets/ui/v53/girl.svg" alt="" aria-hidden="true">
+      <span class="v53-destination-card">
+        <span class="v53-art-frame"><img src="./assets/ui/v53/practice-art.svg" alt="" aria-hidden="true"></span>
+        <span class="v53-button-band"><b>Practice Together</b><i aria-hidden="true">›</i></span>
+        <span class="v53-microcopy">Learn <em>•</em> Play <em>•</em> Grow <em>•</em> Build Skills</span>
+      </span>
+    </button>
+  </section>
+  <p class="v53-home-accessible-note">${p?`Ready for ${name}`:"Set up a child profile to personalise WAPS."}</p>
+</div>`}
+
+function home(){return '<div class="v57-home-router">'+homeReference()+homeAdaptive()+'</div>'}
 function talk(){let p=active();let cats=["all","favorites","recent","core","safety","people","actions","food","places","feelings","body","social","repair","personal"];return `<div class="talk-stage mobile-aac">
 <div class="talk-title compact-talk-title"><div><span class="eyebrow">TALK</span><h1>Talk</h1><p>Tap pictures or words.</p></div></div>
 <div class="talk-sticky-zone">

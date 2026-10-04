@@ -323,118 +323,68 @@ function renderJamaicaDirectory(){
  out.innerHTML=rows.length?rows.map(r=>`<article class="directory-card"><div class="resource-meta"><span class="service-tag">${esc(r.cat)}</span><span class="service-tag muted-tag">${esc(r.parish)}</span></div><h3>${esc(r.title)}</h3><p>${esc(r.desc)}</p><div class="actions">${r.phone?`<a class="btn ghost" href="tel:${r.phone.replace(/[^0-9+]/g,'')}">Call ${esc(r.phone)}</a>`:''}<a class="btn secondary" href="${r.url}" target="_blank" rel="noopener">${esc(r.action||'Official information')} ↗</a></div></article>`).join(''):'<div class="friendly-empty"><span>⌕</span><div><b>No matching service.</b><p>Try a broader word such as school, grant, therapy, western, assessment or support.</p></div></div>';
 }
 
-function homeReference(){let p=active(),name=p?esc(p.name):"";let exactName=(name||"").trim().toLowerCase()==="genesis";return `<div class="waps-home calm-home v55-home" aria-label="WAPS Home">
-  <section class="v55-main-frame" aria-label="WAPS premium Home">
-    <img class="v55-main-image" src="./assets/ui/v55/home-main.png" alt="" aria-hidden="true" decoding="sync">
-    ${exactName?"":`<span class="v55-live-child-name">${p?name:"My Child"}</span>`}
-    <button type="button" class="v55-hotspot v55-profile-hotspot v55-caregiver-hotspot" data-action="profile" aria-label="${p?`Open ${name}'s profile`:"Set up child profile"}"><span class="v55-sr">${p?name:"My Child"}</span></button>
-    <button type="button" class="v55-hotspot v55-top-progress v55-caregiver-hotspot" data-action="progressOpen" aria-label="Progress"><span class="v55-sr">Progress</span></button>
-    <button type="button" class="v55-hotspot v55-top-settings home-settings-control v55-caregiver-hotspot" data-action="settings" aria-label="Settings"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#settings"></use></svg><span class="v55-sr">Settings</span></button>
-    <button type="button" class="v55-hotspot v55-top-more v55-caregiver-hotspot" data-route="more" aria-label="More"><span class="v55-sr">More</span></button>
-    <button type="button" class="v55-hotspot v55-talk-hotspot home-big-action home-talk-action" data-route="talk" aria-label="Talk — tell me what you need"><span class="v55-sr">Talk</span></button>
-    <button type="button" class="v55-hotspot v55-practice-hotspot home-big-action home-practice-action" data-route="practice" aria-label="Practice Together — learn and play together"><span class="v55-sr">Practice Together</span></button>
-    <button type="button" class="v55-hotspot v55-secondary-child v55-caregiver-hotspot" data-action="profile" aria-label="My Child"><span class="v55-sr">My Child</span></button>
-    <button type="button" class="v55-hotspot v55-secondary-progress v55-caregiver-hotspot" data-action="progressOpen" aria-label="Progress"><span class="v55-sr">Progress</span></button>
-    <button type="button" class="v55-hotspot v55-secondary-caregiver v55-caregiver-hotspot" data-action="homeCaregiverTools" aria-label="Caregiver Tools"><span class="v55-sr">Caregiver Tools</span></button>
-    <button type="button" class="v55-hotspot v55-support-hotspot v55-caregiver-hotspot" data-action="whatsappSupport" aria-label="WhatsApp Support"><span class="v55-sr">WhatsApp Support</span></button>
-    <button type="button" class="v55-hotspot v55-install-hotspot v55-caregiver-hotspot" data-action="installWaps" aria-label="Install WAPS"><span class="v55-sr">Install</span></button>
-    <button type="button" class="v55-hotspot v55-share-hotspot v55-caregiver-hotspot" data-action="shareApp" aria-label="Share WAPS"><span class="v55-sr">Share</span></button>
-    <span class="v55-child-mask v55-child-mask-left" aria-hidden="true"></span>
-    <span class="v55-child-mask v55-child-mask-right" aria-hidden="true"></span>
-    <span class="v55-child-mask v55-child-mask-lower" aria-hidden="true"></span>
-  </section>
-  <div class="v55-reference-spacer" aria-hidden="true"></div>
-  <nav class="v55-nav-frame" aria-label="Home navigation">
-    <img class="v55-nav-image" src="./assets/ui/v55/home-nav.png" alt="" aria-hidden="true" decoding="sync">
-    <button type="button" class="v55-nav-hotspot v55-nav-home" data-route="home" aria-label="Home"><span class="v55-sr">Home</span></button>
-    <button type="button" class="v55-nav-hotspot v55-nav-talk" data-route="talk" aria-label="Talk"><span class="v55-sr">Talk</span></button>
-    <button type="button" class="v55-nav-hotspot v55-nav-practice" data-route="practice" aria-label="Practice"><span class="v55-sr">Practice</span></button>
-    <button type="button" class="v55-nav-hotspot v55-nav-progress v55-caregiver-hotspot" data-action="progressOpen" aria-label="Progress"><span class="v55-sr">Progress</span></button>
-    <button type="button" class="v55-nav-hotspot v55-nav-child v55-caregiver-hotspot" data-action="profile" aria-label="My Child"><span class="v55-sr">My Child</span></button>
-    <button type="button" class="v55-nav-hotspot v55-nav-more v55-caregiver-hotspot" data-route="more" aria-label="More"><span class="v55-sr">More</span></button>
-  </nav>
-  <section class="v55-low-fallback" aria-label="WAPS Home">
-    <h1>WAPS</h1><p>Communication, learning and support.</p>
-    <div><button class="btn primary" data-route="talk">Talk</button><button class="btn secondary" data-route="practice">Practice Together</button></div>
-    <button class="btn ghost" data-action="settings">Settings</button>
-  </section>
-</div>`}
-
-function homeLandscape(){let p=active(),name=p?esc(p.name):"My Child";return `<div class="v58-landscape-home" aria-label="WAPS Home landscape">
-  <section class="v58-landscape-stage" aria-label="WAPS main choices">
-    <div class="v58-approved-hero" aria-hidden="true"></div>
-    <div class="v58-approved-actions">
-      <button type="button" class="v58-approved-card v58-approved-talk" data-route="talk" aria-label="Talk — tell me what you need"><span class="v55-sr">Talk</span></button>
-      <button type="button" class="v58-approved-card v58-approved-practice" data-route="practice" aria-label="Practice Together — learn and play together"><span class="v55-sr">Practice Together</span></button>
-    </div>
-    <div class="v58-landscape-controls v55-caregiver-hotspot">
-      <button type="button" class="v58-chip v58-child-chip" data-action="profile" aria-label="My Child"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#child-profile"></use></svg><span>${p?name:"My Child"}</span></button>
-      <button type="button" class="v58-chip" data-action="progressOpen" aria-label="Progress"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#progress"></use></svg><span>Progress</span></button>
-      <button type="button" class="v58-chip" data-action="homeCaregiverTools" aria-label="Caregiver Tools"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#caregiver-tools"></use></svg><span>Caregiver Tools</span></button>
-      <button type="button" class="v58-chip" data-action="settings" aria-label="Settings"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#settings"></use></svg><span>Settings</span></button>
-      <button type="button" class="v58-chip" data-route="more" aria-label="More"><svg class="v51-ui-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="./assets/ui/v51/icons.svg#more"></use></svg><span>More</span></button>
-      <button type="button" class="v58-chip v58-support-chip" data-action="whatsappSupport" aria-label="WhatsApp Support"><span class="v58-symbol">◉</span><span>Support</span></button>
-      <button type="button" class="v58-chip" data-action="installWaps" aria-label="Install WAPS"><span class="v58-symbol">↓</span><span>Install</span></button>
-      <button type="button" class="v58-chip" data-action="shareApp" aria-label="Share WAPS"><span class="v58-symbol">↗</span><span>Share</span></button>
-    </div>
-  </section>
-  <nav class="v58-nav-frame" aria-label="Home navigation">
-    <img class="v58-nav-image" src="./assets/ui/v55/home-nav.png" alt="" aria-hidden="true" decoding="sync">
-    <button type="button" class="v58-nav-hotspot v58-nav-home" data-route="home" aria-label="Home"><span class="v55-sr">Home</span></button>
-    <button type="button" class="v58-nav-hotspot v58-nav-talk" data-route="talk" aria-label="Talk"><span class="v55-sr">Talk</span></button>
-    <button type="button" class="v58-nav-hotspot v58-nav-practice" data-route="practice" aria-label="Practice"><span class="v55-sr">Practice</span></button>
-    <button type="button" class="v58-nav-hotspot v58-nav-progress v55-caregiver-hotspot" data-action="progressOpen" aria-label="Progress"><span class="v55-sr">Progress</span></button>
-    <button type="button" class="v58-nav-hotspot v58-nav-child v55-caregiver-hotspot" data-action="profile" aria-label="My Child"><span class="v55-sr">My Child</span></button>
-    <button type="button" class="v58-nav-hotspot v58-nav-more v55-caregiver-hotspot" data-route="more" aria-label="More"><span class="v55-sr">More</span></button>
-  </nav>
-</div>`}
-function home(){return `<div class="v59-home-shell" aria-label="WAPS Home">
-<section class="v59-art-stage v59-art-portrait v59-stage-portrait" aria-label="WAPS Home portrait">
-<button type="button" class="v59-hit p59-profile v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit p59-progress-top v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit p59-settings v59-caregiver-only" data-action="settings" aria-label="Settings"><span class="v59-sr">Settings</span></button>
-<button type="button" class="v59-hit p59-more-top v59-caregiver-only" data-route="more" aria-label="More"><span class="v59-sr">More</span></button>
-<button type="button" class="v59-hit p59-talk" data-route="talk" aria-label="Talk"><span class="v59-sr">Talk</span></button>
-<button type="button" class="v59-hit p59-practice" data-route="practice" aria-label="Practice Together"><span class="v59-sr">Practice Together</span></button>
-<button type="button" class="v59-hit p59-child2 v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit p59-progress2 v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit p59-caregiver v59-caregiver-only" data-action="homeCaregiverTools" aria-label="Caregiver Tools"><span class="v59-sr">Caregiver Tools</span></button>
-<button type="button" class="v59-hit p59-support v59-caregiver-only" data-action="whatsappSupport" aria-label="WhatsApp Support"><span class="v59-sr">WhatsApp Support</span></button>
-<button type="button" class="v59-hit p59-install v59-caregiver-only" data-action="installWaps" aria-label="Install WAPS"><span class="v59-sr">Install WAPS</span></button>
-<button type="button" class="v59-hit p59-share v59-caregiver-only" data-action="shareApp" aria-label="Share WAPS"><span class="v59-sr">Share WAPS</span></button>
-<button type="button" class="v59-hit p59-home" data-route="home" aria-label="Home"><span class="v59-sr">Home</span></button>
-<button type="button" class="v59-hit p59-talk-nav" data-route="talk" aria-label="Talk"><span class="v59-sr">Talk</span></button>
-<button type="button" class="v59-hit p59-practice-nav" data-route="practice" aria-label="Practice"><span class="v59-sr">Practice</span></button>
-<button type="button" class="v59-hit p59-progress-nav v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit p59-child-nav v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit p59-more-nav v59-caregiver-only" data-route="more" aria-label="More"><span class="v59-sr">More</span></button>
-</section>
-<section class="v59-art-stage v59-art-landscape v59-stage-landscape" aria-label="WAPS Home landscape">
-<button type="button" class="v59-hit l59-profile v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit l59-progress-top v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit l59-settings v59-caregiver-only" data-action="settings" aria-label="Settings"><span class="v59-sr">Settings</span></button>
-<button type="button" class="v59-hit l59-more-top v59-caregiver-only" data-route="more" aria-label="More"><span class="v59-sr">More</span></button>
-<button type="button" class="v59-hit l59-talk" data-route="talk" aria-label="Talk"><span class="v59-sr">Talk</span></button>
-<button type="button" class="v59-hit l59-practice" data-route="practice" aria-label="Practice Together"><span class="v59-sr">Practice Together</span></button>
-<button type="button" class="v59-hit l59-child2 v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit l59-progress2 v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit l59-caregiver v59-caregiver-only" data-action="homeCaregiverTools" aria-label="Caregiver Tools"><span class="v59-sr">Caregiver Tools</span></button>
-<button type="button" class="v59-hit l59-support v59-caregiver-only" data-action="whatsappSupport" aria-label="WhatsApp Support"><span class="v59-sr">WhatsApp Support</span></button>
-<button type="button" class="v59-hit l59-install v59-caregiver-only" data-action="installWaps" aria-label="Install WAPS"><span class="v59-sr">Install WAPS</span></button>
-<button type="button" class="v59-hit l59-share v59-caregiver-only" data-action="shareApp" aria-label="Share WAPS"><span class="v59-sr">Share WAPS</span></button>
-<button type="button" class="v59-hit l59-home" data-route="home" aria-label="Home"><span class="v59-sr">Home</span></button>
-<button type="button" class="v59-hit l59-talk-nav" data-route="talk" aria-label="Talk"><span class="v59-sr">Talk</span></button>
-<button type="button" class="v59-hit l59-practice-nav" data-route="practice" aria-label="Practice"><span class="v59-sr">Practice</span></button>
-<button type="button" class="v59-hit l59-progress-nav v59-caregiver-only" data-action="progressOpen" aria-label="Progress"><span class="v59-sr">Progress</span></button>
-<button type="button" class="v59-hit l59-child-nav v59-caregiver-only" data-action="profile" aria-label="My Child"><span class="v59-sr">My Child</span></button>
-<button type="button" class="v59-hit l59-more-nav v59-caregiver-only" data-route="more" aria-label="More"><span class="v59-sr">More</span></button>
-</section>
-<section class="v59-low-fallback" aria-label="WAPS Home">
-<h1>WAPS</h1><p>Communication, learning and support.</p>
-<div><button class="btn primary" data-route="talk">Talk</button><button class="btn secondary" data-route="practice">Practice Together</button></div>
-<button class="btn ghost" data-action="settings">Settings</button>
-</section>
-</div>`}
+/* WAPS v59 LOCKED HOME — approved portrait and landscape artwork only. */
+let v59HomeArtPromise=null;
+function v59Hotspot(cls,label,attrs){return '<button type="button" class="v59-hotspot '+cls+'" '+attrs+' aria-label="'+esc(label)+'"><span class="v59-sr">'+esc(label)+'</span></button>'}
+function loadV59HomeArt(){
+ if(!v59HomeArtPromise)v59HomeArtPromise=Promise.all([
+  fetch('./assets/ui/v59/home-landscape.b64').then(r=>{if(!r.ok)throw Error('landscape art');return r.text()}),
+  Promise.all([fetch('./assets/ui/v59/home-portrait-1.b64'),fetch('./assets/ui/v59/home-portrait-2.b64')]).then(async rs=>{if(rs.some(r=>!r.ok))throw Error('portrait art');return (await rs[0].text())+(await rs[1].text())})
+ ]).then(([landscape,portrait])=>({landscape:landscape.trim(),portrait:portrait.trim()}));
+ return v59HomeArtPromise
+}
+async function hydrateV59Home(){
+ const p=document.querySelector('.v59-portrait-art'),l=document.querySelector('.v59-landscape-art');if(!p&&!l)return;
+ try{const a=await loadV59HomeArt();if(p)p.src='data:image/webp;base64,'+a.portrait;if(l)l.src='data:image/webp;base64,'+a.landscape}
+ catch(e){document.querySelector('.v59-home')?.classList.add('v59-art-error')}
+}
+function home(){
+ const portrait=[
+  v59Hotspot('v59-p-profile v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-p-progress-top v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-p-settings v59-caregiver','Settings','data-action="settings"'),
+  v59Hotspot('v59-p-more-top v59-caregiver','More','data-route="more"'),
+  v59Hotspot('v59-p-talk','Talk — tell me what you need','data-route="talk"'),
+  v59Hotspot('v59-p-practice','Practice Together — learn and play together','data-route="practice"'),
+  v59Hotspot('v59-p-child-card v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-p-progress-card v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-p-caregiver v59-caregiver','Caregiver Tools','data-action="homeCaregiverTools"'),
+  v59Hotspot('v59-p-support v59-caregiver','WhatsApp Support','data-action="whatsappSupport"'),
+  v59Hotspot('v59-p-install v59-caregiver','Install WAPS','data-action="installWaps"'),
+  v59Hotspot('v59-p-share v59-caregiver','Share WAPS','data-action="shareApp"'),
+  v59Hotspot('v59-p-nav-home','Home','data-route="home"'),
+  v59Hotspot('v59-p-nav-talk','Talk','data-route="talk"'),
+  v59Hotspot('v59-p-nav-practice','Practice','data-route="practice"'),
+  v59Hotspot('v59-p-nav-progress v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-p-nav-child v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-p-nav-more v59-caregiver','More','data-route="more"')
+ ].join('');
+ const landscape=[
+  v59Hotspot('v59-l-profile v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-l-progress-top v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-l-settings v59-caregiver','Settings','data-action="settings"'),
+  v59Hotspot('v59-l-more-top v59-caregiver','More','data-route="more"'),
+  v59Hotspot('v59-l-talk','Talk — tell me what you need','data-route="talk"'),
+  v59Hotspot('v59-l-practice','Practice Together — learn and play together','data-route="practice"'),
+  v59Hotspot('v59-l-child-card v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-l-progress-card v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-l-caregiver v59-caregiver','Caregiver Tools','data-action="homeCaregiverTools"'),
+  v59Hotspot('v59-l-support v59-caregiver','WhatsApp Support','data-action="whatsappSupport"'),
+  v59Hotspot('v59-l-install v59-caregiver','Install WAPS','data-action="installWaps"'),
+  v59Hotspot('v59-l-share v59-caregiver','Share WAPS','data-action="shareApp"'),
+  v59Hotspot('v59-l-nav-home','Home','data-route="home"'),
+  v59Hotspot('v59-l-nav-talk','Talk','data-route="talk"'),
+  v59Hotspot('v59-l-nav-practice','Practice','data-route="practice"'),
+  v59Hotspot('v59-l-nav-progress v59-caregiver','Progress','data-action="progressOpen"'),
+  v59Hotspot('v59-l-nav-child v59-caregiver','My Child','data-action="profile"'),
+  v59Hotspot('v59-l-nav-more v59-caregiver','More','data-route="more"')
+ ].join('');
+ return '<div class="v59-home" aria-label="WAPS Home">'+
+  '<section class="v59-view v59-portrait-view" aria-label="WAPS portrait Home"><img class="v59-art v59-portrait-art" alt="" aria-hidden="true">'+portrait+'</section>'+
+  '<section class="v59-view v59-landscape-view" aria-label="WAPS landscape Home"><img class="v59-art v59-landscape-art" alt="" aria-hidden="true">'+landscape+'</section>'+
+  '<section class="v59-low-fallback" aria-label="WAPS Home"><h1>WAPS</h1><p>Communication, learning and support.</p><div><button class="btn primary" data-route="talk">Talk</button><button class="btn secondary" data-route="practice">Practice Together</button></div><button class="btn ghost" data-action="settings">Settings</button></section>'+
+  '</div>'
+}
 function talk(){let p=active();let cats=["all","favorites","recent","core","safety","people","actions","food","places","feelings","body","social","repair","personal"];return `<div class="talk-stage mobile-aac">
 <div class="talk-title compact-talk-title"><div><span class="eyebrow">TALK</span><h1>Talk</h1><p>Tap pictures or words.</p></div></div>
 <div class="talk-sticky-zone">
@@ -600,7 +550,7 @@ const MORE_GROUPS={
 };
 function moreGroupModal(key){const g=MORE_GROUPS[key];if(!g)return;show(`<div class="more-group-sheet"><button class="btn ghost" data-action="closeModal">← More</button><span class="eyebrow">MORE</span><h1>${esc(g.title)}</h1><div class="more-group-list">${g.items.map(x=>`<button data-action="${x[1]}"><b>${esc(x[0])}</b><i>›</i></button>`).join("")}</div></div>`,true)}
 function more(){let groups=[["child","My Child","Profile & progress","child-profile"],["school","School & Sharing","School tools","school-sharing"],["learn","Learn & Print","Lessons & printables","learn-print"],["help","Find Help","Help for families","find-help"],["settings","App Settings","Accessibility & backup","settings"],["about","About WAPS","About this app","about-waps"]];return `<div class="reference-page more-page simple-more v51-more"><section class="more-simple-head"><span class="eyebrow">MORE</span><h1>More tools</h1><p>Caregiver tools and support.</p></section><section class="more-group-grid">${groups.map(x=>`<button class="more-group-card ${x[0]}" data-action="moreGroup" data-more-group="${x[0]}">${uiIcon(x[3],'more-group-icon')}<span><b>${x[1]}</b><small>${x[2]}</small></span><i>›</i></button>`).join("")}</section></div>`}
-function render(){document.body.dataset.view='page';Trace?.cleanup();ConceptLearning?.cleanup();MathLearning?.cleanup();ComprehensionLearning?.cleanup();clearInterval(timerId);let r=route();if(!['home','talk','practice','coach','progress','more'].includes(r))r='home';if(S.settings.childMode&&!['home','talk','practice'].includes(r))r='home';document.body.dataset.route=r;main.innerHTML={home:home,talk:talk,practice:practice,coach:coach,progress:progress,more:more}[r]();nav();if(r==='talk'){drawAAC();drawSentence()}syncChildModeUI()}
+function render(){document.body.dataset.view='page';Trace?.cleanup();ConceptLearning?.cleanup();MathLearning?.cleanup();ComprehensionLearning?.cleanup();clearInterval(timerId);let r=route();if(!['home','talk','practice','coach','progress','more'].includes(r))r='home';if(S.settings.childMode&&!['home','talk','practice'].includes(r))r='home';document.body.dataset.route=r;main.innerHTML={home:home,talk:talk,practice:practice,coach:coach,progress:progress,more:more}[r]();nav();if(r==='home')hydrateV59Home();if(r==='talk'){drawAAC();drawSentence()}syncChildModeUI()}
 function profileModal(){let profiles=S.profiles.map(p=>`<div class="list-item"><b>${esc(p.name)}</b><div class="mini">${esc((p.modes||[]).join(', ')||'Modes not recorded')}${p.interests?.length?' · '+esc(p.interests.slice(0,3).join(', ')):''}</div><div class="actions"><button class="btn secondary choose-profile" data-id="${p.id}">Use profile</button><button class="btn ghost edit-profile" data-id="${p.id}">Edit</button></div></div>`).join('');show(`<h2>My child</h2><div class="list">${profiles||'<p>No profiles yet.</p>'}</div><hr><h3>Add a child</h3><div class="field"><label>Child name<input id="pname" maxlength="40"></label></div><div class="field"><label>Photo (optional)<input id="profilePhoto" type="file" accept="image/*"></label></div><div class="field"><label>What would help most?<input id="priority" maxlength="120" placeholder="e.g. ask for help more easily"></label></div><div class="field"><label>Likes<input id="interests" maxlength="180" placeholder="e.g. music, buses, water, letters"></label></div><div class="field"><label>How does your child communicate?</label><div class="checks">${['Speech','AAC','Pointing','Gesture','Pictures','Signs','Writing/typing','Vocalization'].map(x=>`<label class="check"><input type="checkbox" name="mode" value="${x}">${x}</label>`).join('')}</div></div><div class="field"><label>Language context<select id="lang"><option>English</option><option>Jamaican Creole / Patwa</option><option>English + Jamaican Creole / Patwa</option><option>Other / multilingual</option></select></label></div><details class="passport-details"><summary>More details (optional)</summary><div class="field"><label>How YES looks/sounds<input id="yesSignal" placeholder="e.g. nods, says yes, taps YES"></label></div><div class="field"><label>How NO/refusal looks/sounds<input id="noSignal" placeholder="e.g. says no, turns away, pushes away"></label></div><div class="field"><label>How HELP is requested<input id="helpSignal"></label></div><div class="field"><label>How BREAK is requested<input id="breakSignal"></label></div><div class="field"><label>How pain/discomfort may be shown<input id="painSignal"></label></div><div class="field"><label>What helps when overwhelmed<input id="calms"></label></div></details><button class="btn" data-action="saveProfile">Save profile</button>`)}
 function editProfile(id){let p=S.profiles.find(x=>x.id===id);if(!p)return;show(`<h2>Edit ${esc(p.name)}</h2><div class="profile-edit-photo">${p.photo?`<img src="${p.photo}" alt="" class="profile-photo-preview">`:''}</div><div class="field"><label>Preferred name<input id="epname" value="${esc(p.name)}"></label></div><div class="field"><label>Change profile photo<input id="editProfilePhoto" type="file" accept="image/*"></label></div><div class="field"><label>Caregiver priority<input id="epriority" value="${esc(p.priority||'')}"></label></div><div class="field"><label>Interests<input id="einterests" value="${esc((p.interests||[]).join(', '))}" placeholder="music, cars, water play"></label></div><details class="passport-details" open><summary>Communication passport details</summary><div class="field"><label>YES<input id="eyesSignal" value="${esc(p.yesSignal||'')}"></label></div><div class="field"><label>NO / refusal<input id="enoSignal" value="${esc(p.noSignal||'')}"></label></div><div class="field"><label>HELP<input id="ehelpSignal" value="${esc(p.helpSignal||'')}"></label></div><div class="field"><label>BREAK<input id="ebreakSignal" value="${esc(p.breakSignal||'')}"></label></div><div class="field"><label>Pain / discomfort<input id="epainSignal" value="${esc(p.painSignal||'')}"></label></div><div class="field"><label>What helps when overwhelmed<input id="ecalms" value="${esc(p.calms||'')}"></label></div></details><div class="notice">WAPS does not score Jamaican Creole grammar as incorrect Standard English. Language difference and disorder are not the same thing.</div><div class="actions"><button class="btn" data-save-edit="${id}">Save</button><button class="btn danger" data-delete-profile="${id}">Delete profile</button></div>`)}
 function goalsModal(){let p=active();if(!p){profileModal();return}let goals=S.goals.filter(x=>x.profile===p.id);show(`<h2>${esc(p.name)}’s goals</h2><div class="list">${goals.map(g=>`<div class="list-item"><b>${esc(g.text)}</b><div class="mini">${g.active?'Active':'Paused'}</div><button class="btn ghost toggle-goal" data-id="${g.id}">${g.active?'Pause':'Activate'}</button></div>`).join('')||'<p>No goals yet.</p>'}</div><div class="field"><label>New goal<input id="goalInput" maxlength="160" placeholder="e.g. Ask for HELP using any reliable communication mode"></label></div><button class="btn" data-action="saveGoal">Add goal</button>`)}

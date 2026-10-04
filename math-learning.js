@@ -201,7 +201,17 @@ export function createMathLearningFeature(ctx){
     if(q.type==='subtract')return '<div class="math-equation">'+q.start+' <span>−</span> '+q.remove+' <span>=</span> ?</div>';
     return '';
   }
+  function additionGroupHTML(q,start,count,groupLabel){
+    const indices=Array.from({length:count},(_,i)=>start+i),cols=Math.max(1,Math.min(count||1,10));
+    const width=count<=1?24:count===2?40:count===3?58:count===4?76:count===5?94:100;
+    const density=count>20?'very-dense':count>10?'dense':count>5?'medium':'small';
+    return '<div class="math-add-row" role="group" aria-label="'+esc(groupLabel+', '+count+' '+(count===1?'item':'items'))+'"><div class="math-add-object-row '+density+'" style="--math-add-cols:'+cols+';--math-add-width:'+width+'%">'+(count?indices.map(i=>objectHTML(q.objectId,i,q)).join(''):'<span class="math-add-zero" aria-label="zero items">0</span>')+'</div></div>';
+  }
   function objectsGrid(q){
+    if(q.type==='add'){
+      const total=totalObjects(q),density=total>35?'density-ultra':total>20?'density-high':total>10?'density-medium':'density-low';
+      return '<div class="math-add-stacked '+density+'" aria-label="'+q.a+' plus '+q.b+'">'+additionGroupHTML(q,0,q.a,'First group')+'<div class="math-add-plus" aria-hidden="true">+</div>'+additionGroupHTML(q,q.a,q.b,'Second group')+'</div>';
+    }
     const chunk=currentChunk(q),labelText=chunkLabel(q,chunk);
     return '<div class="math-chunk">'+(labelText?'<div class="math-chunk-label">'+esc(labelText)+'</div>':'')+'<div class="math-object-grid">'+chunk.indices.map(i=>objectHTML(q.objectId,i,q)).join('')+'</div></div>';
   }
@@ -246,15 +256,17 @@ export function createMathLearningFeature(ctx){
   async function touchObject(index){
     const type=runtime?.type,s=session(type),q=s?.current;if(!q||runtime.locked||runtime.transitioning)return;
     index=Number(index);
-    const chunk=currentChunk(q);
-    if(!chunk.indices.includes(index))return;
+    const chunk=q.type==='add'?null:currentChunk(q);
+    if(q.type==='add'){
+      if(index<0||index>=totalObjects(q))return;
+    }else if(!chunk.indices.includes(index))return;
     if(q.type==='subtract'){
       if(q.removed.includes(index)||q.removed.length>=q.remove)return;
       q.removed.push(index);updateObjectState(q,index);
       const n=q.removed.length,stat=$('#mathStatus');if(stat)stat.innerHTML='<span id="mathTakeCount">'+n+' of '+q.remove+'</span>';
       await persist();
       if(n>=q.remove){speakNumberThen(n,()=>finishTouchPhase(type,q));return}
-      if(chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
+      if(chunk&&chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
       speakNumber(n);return;
     }
     if(q.counted.includes(index))return;
@@ -263,7 +275,7 @@ export function createMathLearningFeature(ctx){
     if(stat)stat.innerHTML=q.type==='count'?'<span id="mathTouchCount">'+n+' / '+q.quantity+'</span>':'<span id="mathTouchCount">'+n+' counted</span>';
     await persist();
     if(q.type==='count'&&n>=q.quantity){speakNumberThen(n,()=>finishTouchPhase(type,q));return}
-    if(chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
+    if(chunk&&chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
     if(q.type==='add'&&n>=total){
       speakNumberThen(n,()=>{const out=$('#mathStatus');if(out)out.textContent='Now choose.';});
       return;
@@ -272,10 +284,13 @@ export function createMathLearningFeature(ctx){
   }
   function cueCount(q){
     q.cued=true;
-    const chunk=currentChunk(q),ids=q.type==='subtract'?chunk.indices.filter(i=>!q.removed.includes(i)):chunk.indices;
+    const chunk=q.type==='add'?null:currentChunk(q);
+    const ids=q.type==='add'
+      ?Array.from({length:totalObjects(q)},(_,i)=>i)
+      :q.type==='subtract'?chunk.indices.filter(i=>!q.removed.includes(i)):chunk.indices;
     $$('.math-object-btn').forEach(b=>b.classList.remove('math-cue'));
     ids.forEach((id,i)=>{
-      const spoken=q.type==='subtract'?i+1:id+1;
+      const spoken=q.type==='subtract'||q.type==='add'?i+1:id+1;
       const t=setTimeout(()=>{const b=$('[data-math-object="'+id+'"]');if(b){b.classList.add('math-cue');setTimeout(()=>b.classList.remove('math-cue'),420)}if(prefs().hearNumbers)speakNumber(spoken)},i*480);cueTimers.push(t);
     });
   }

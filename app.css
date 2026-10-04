@@ -3227,3 +3227,111 @@ html[data-low-stim="1"] .v59-low-fallback{
 html[data-low-stim="1"] .v59-low-fallback h1{margin:0!important;color:#17324d!important;font-size:2.2rem!important}
 html[data-low-stim="1"] .v59-low-fallback p{margin:0!important;color:#5b7082!important}
 html[data-low-stim="1"] .v59-low-fallback>div{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+
+
+/* ==========================================================================
+   WAPS v59 FINAL RUNTIME MAP
+   Matches the locked portrait/landscape assets loaded by app.js.
+   ========================================================================== */
+body[data-route="home"]{
+  height:100dvh!important;min-height:100dvh!important;overflow:hidden!important;
+  background:linear-gradient(180deg,#22bfe8,#84e2f5 52%,#ffe39a)!important;
+}
+body[data-route="home"]::before,body[data-route="home"]::after{display:none!important}
+body[data-route="home"] .waps-header,
+body[data-route="home"] .bottomnav,
+body[data-route="home"] .v53-bottomnav,
+body[data-route="home"] .caregiver-utilities{display:none!important}
+body[data-route="home"] main{
+  width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;background:transparent!important;
+}
+.v59-home{position:relative!important;width:100%!important;height:100%!important;overflow:hidden!important}
+.v59-view{
+  position:absolute!important;inset:0!important;margin:auto!important;overflow:hidden!important;
+  background:#22bfe8!important;
+}
+.v59-art{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  object-fit:fill!important;display:block!important;pointer-events:none!important;user-select:none!important;
+}
+.v59-portrait-view{display:block!important}
+.v59-landscape-view{display:none!important}
+@media (orientation:landscape){
+  .v59-portrait-view{display:none!important}
+  .v59-landscape-view{display:block!important}
+}
+.v59-hotspot{
+  position:absolute!important;z-index:5!important;border:0!important;margin:0!important;padding:0!important;
+  background:rgba(255,255,255,.001)!important;color:transparent!important;box-shadow:none!important;
+  border-radius:18px!important;cursor:pointer!important;-webkit-tap-highlight-color:transparent!important;
+}
+.v59-hotspot:active{background:rgba(255,255,255,.10)!important}
+.v59-hotspot:focus-visible{outline:4px solid #fff!important;outline-offset:-5px!important;box-shadow:0 0 0 7px #173f8f!important}
+.v59-sr{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* Portrait hotspot map */
+.v59-p-profile{left:2.7%!important;top:4.1%!important;width:31.8%!important;height:5.7%!important}
+.v59-p-progress-top{left:59.2%!important;top:4%!important;width:11.8%!important;height:6.4%!important}
+.v59-p-settings{left:71.1%!important;top:4%!important;width:11.8%!important;height:6.4%!important}
+.v59-p-more-top{left:83.2%!important;top:4%!important;width:12.4%!important;height:6.4%!important}
+.v59-p-talk{left:1.8%!important;top:40.4%!important;width:47.4%!important;height:27.8%!important}
+.v59-p-practice{left:49.7%!important;top:40.4%!important;width:47.7%!important;height:27.8%!important}
+.v59-p-child-card{left:2%!important;top:68.4%!important;width:31.2%!important;height:7.2%!important}
+.v59-p-progress-card{left:33.6%!important;top:68.4%!important;width:31.3%!important;height:7.2%!important}
+.v59-p-caregiver{left:65.7%!important;top:68.4%!important;width:31.6%!important;height:7.2%!important}
+.v59-p-support{left:10.8%!important;top:76.8%!important;width:27.3%!important;height:6.9%!important;border-radius:999px!important}
+.v59-p-install{left:38.5%!important;top:76.8%!important;width:24%!important;height:6.9%!important;border-radius:999px!important}
+.v59-p-share{left:62.6%!important;top:76.8%!important;width:25.2%!important;height:6.9%!important;border-radius:999px!important}
+.v59-p-nav-home{left:3%!important;top:88.7%!important;width:18.9%!important;height:8.8%!important}
+.v59-p-nav-talk{left:21.9%!important;top:88.7%!important;width:14.9%!important;height:8.8%!important}
+.v59-p-nav-practice{left:36.8%!important;top:88.7%!important;width:15%!important;height:8.8%!important}
+.v59-p-nav-progress{left:51.8%!important;top:88.7%!important;width:15%!important;height:8.8%!important}
+.v59-p-nav-child{left:66.8%!important;top:88.7%!important;width:14.8%!important;height:8.8%!important}
+.v59-p-nav-more{left:81.6%!important;top:88.7%!important;width:14.7%!important;height:8.8%!important}
+
+/* Landscape hotspot map */
+.v59-l-profile{left:3.8%!important;top:4.3%!important;width:21.3%!important;height:12.2%!important}
+.v59-l-progress-top{left:70.6%!important;top:4.2%!important;width:7.6%!important;height:14.1%!important}
+.v59-l-settings{left:78.7%!important;top:4.2%!important;width:7.7%!important;height:14.1%!important}
+.v59-l-more-top{left:86.6%!important;top:4.2%!important;width:8.5%!important;height:14.1%!important}
+.v59-l-talk{left:22%!important;top:32.5%!important;width:27.7%!important;height:39.1%!important}
+.v59-l-practice{left:49.9%!important;top:32.5%!important;width:27.8%!important;height:39.1%!important}
+.v59-l-child-card{left:5.5%!important;top:72%!important;width:18%!important;height:11.1%!important}
+.v59-l-progress-card{left:23.8%!important;top:72%!important;width:18.5%!important;height:11.1%!important}
+.v59-l-caregiver{left:42.5%!important;top:72%!important;width:18.6%!important;height:11.1%!important}
+.v59-l-support{left:64.2%!important;top:72.1%!important;width:10.9%!important;height:11%!important;border-radius:999px!important}
+.v59-l-install{left:75.4%!important;top:72.1%!important;width:8.9%!important;height:11%!important;border-radius:999px!important}
+.v59-l-share{left:84.6%!important;top:72.1%!important;width:9.5%!important;height:11%!important;border-radius:999px!important}
+.v59-l-nav-home{left:3.6%!important;top:84.4%!important;width:16%!important;height:13.8%!important}
+.v59-l-nav-talk{left:19.5%!important;top:84.4%!important;width:14.8%!important;height:13.8%!important}
+.v59-l-nav-practice{left:34.3%!important;top:84.4%!important;width:14.7%!important;height:13.8%!important}
+.v59-l-nav-progress{left:49%!important;top:84.4%!important;width:14.7%!important;height:13.8%!important}
+.v59-l-nav-child{left:63.7%!important;top:84.4%!important;width:14.6%!important;height:13.8%!important}
+.v59-l-nav-more{left:78.3%!important;top:84.4%!important;width:17.2%!important;height:13.8%!important}
+
+/* Phone fills the viewport; tablet/desktop preserve the approved ratio. */
+@media (max-width:767px) and (orientation:portrait){
+  .v59-portrait-view{width:100%!important;height:100%!important}
+}
+@media (max-height:600px) and (orientation:landscape){
+  .v59-landscape-view{width:100%!important;height:100%!important}
+}
+@media (min-width:768px) and (orientation:portrait){
+  .v59-portrait-view{width:min(100vw,56.31dvh)!important;height:min(100dvh,177.7vw)!important;max-height:100dvh!important;border-radius:22px!important;box-shadow:0 0 40px rgba(8,67,107,.20)!important}
+}
+@media (min-height:601px) and (orientation:landscape){
+  .v59-landscape-view{width:min(100vw,222.35dvh)!important;height:min(100dvh,44.97vw)!important;max-width:100vw!important;max-height:100dvh!important;border-radius:20px!important;box-shadow:0 0 40px rgba(8,67,107,.20)!important}
+}
+
+body.child-mode-active[data-route="home"] .v59-caregiver{display:none!important}
+
+.v59-low-fallback{display:none!important}
+.v59-art-error .v59-view{display:none!important}
+.v59-art-error .v59-low-fallback,
+html[data-low-stim="1"] .v59-low-fallback{
+  display:grid!important;width:min(calc(100% - 36px),560px)!important;gap:16px!important;padding:26px!important;
+  border-radius:28px!important;background:#fff!important;border:1px solid #dce8ef!important;text-align:center!important;
+  position:absolute!important;inset:50% auto auto 50%!important;transform:translate(-50%,-50%)!important;
+}
+html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important}

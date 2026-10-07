@@ -57,11 +57,6 @@ function feedbackTechnicalScreen(){
  if(document.body.classList.contains('trace-active'))return 'Tracing';
  if(document.body.classList.contains('concept-id-active'))return 'Concept Learning';
  if(document.body.classList.contains('mu-active'))return 'Reading & Understanding';
- const special=main.querySelector('.math-child-screen,.trace-child-screen,.concept-child-screen,.mu-child-screen');
- if(special){
-  const t=special.querySelector('h1,h2,b')?.textContent?.trim();
-  if(t)return t;
- }
  return '';
 }
 function currentFeedbackContext(){
@@ -71,14 +66,12 @@ function currentFeedbackContext(){
  const special=feedbackTechnicalScreen();
  const pageTitle=main.querySelector('h1,h2,.prompt')?.textContent?.replace(/\s+/g,' ')?.trim()||'';
  const detail=modalTitle||special||pageTitle;
- const screen=detail&&detail.toLowerCase()!==routeLabel.toLowerCase()?routeLabel+' → '+detail:routeLabel;
- const orientation=window.matchMedia?.('(orientation: landscape)').matches?'landscape':'portrait';
  return {
   route:r,
-  screen,
+  screen:detail&&detail.toLowerCase()!==routeLabel.toLowerCase()?routeLabel+' → '+detail:routeLabel,
   url:window.location.href,
   viewport:window.innerWidth+' × '+window.innerHeight,
-  orientation,
+  orientation:window.matchMedia?.('(orientation: landscape)').matches?'landscape':'portrait',
   mode:isStandalone()?'Installed app':'Web browser',
   online:navigator.onLine?'Online':'Offline',
   platform:navigator.userAgentData?.platform||navigator.platform||'Unknown',
@@ -89,34 +82,34 @@ function currentFeedbackContext(){
 function pageFeedbackModal(){
  pendingFeedbackContext=currentFeedbackContext();
  const c=pendingFeedbackContext;
- show(`<div class="feedback-sheet"><div class="feedback-sheet-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 6h20v15H14l-6 5v-5H6z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M11 11h10M11 16h7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><span class="eyebrow">PAGE FEEDBACK</span><h2>Tell us what happened</h2><p class="feedback-context">You are reporting: <b>${esc(c.screen)}</b></p><div class="field"><label>What kind of feedback?<select id="feedbackType"><option>Something broke</option><option>Something did not work</option><option>Visual / layout problem</option><option>Could be easier to use</option><option>Could be improved</option><option>Suggestion / new idea</option><option>Other</option></select></label></div><div class="field"><label>What happened or what could be better?<textarea id="feedbackIssue" rows="5" maxlength="1200" placeholder="Tell us exactly what you noticed. For example: I tapped Next and nothing happened, or this section is too crowded on my phone."></textarea></label></div><div class="feedback-auto-note"><b>WAPS will automatically include:</b> this screen, the page link, screen size/orientation, app/browser mode and time. No child profile or saved WAPS data is included.</div><div class="actions feedback-actions"><button class="btn feedback-send-btn" data-action="sendPageFeedback">Send on WhatsApp</button><button class="btn ghost" data-action="closeModal">Cancel</button></div><p class="mini">After WhatsApp opens, you can also attach a screenshot if it would help show the problem.</p></div>`,true);
- setTimeout(()=>$('#feedbackIssue')?.focus(),80);
+ show(`<div class="feedback-sheet"><span class="eyebrow">PAGE FEEDBACK</span><h2>Tell us what happened</h2><p>You are reporting: <b>${esc(c.screen)}</b></p><div class="field"><label>What kind of feedback?<select id="feedbackType"><option>Something broke</option><option>Something did not work</option><option>Visual / layout problem</option><option>Could be easier to use</option><option>Could be improved</option><option>Suggestion / new idea</option><option>Other</option></select></label></div><div class="field"><label>What happened or what could be better?<textarea id="feedbackIssue" rows="5" maxlength="1200" placeholder="Tell us exactly what you noticed."></textarea></label></div><div style="margin:12px 0;padding:12px;border-radius:14px;background:#f2f6ff;color:#425c79"><b>Automatically included:</b> this screen, page link, screen size/orientation, app/browser mode and time. No child profile or saved WAPS data is included.</div><div class="actions"><button class="btn" style="background:#16834f;border-color:#16834f" data-action="sendPageFeedback">Send on WhatsApp</button><button class="btn ghost" data-action="closeModal">Cancel</button></div><p class="mini">You can attach a screenshot after WhatsApp opens.</p></div>`,true);
 }
 function sendPageFeedback(){
- const c=pendingFeedbackContext||currentFeedbackContext();
- const type=$('#feedbackType')?.value||'Feedback';
- const issue=$('#feedbackIssue')?.value.trim()||'';
+ const c=pendingFeedbackContext||currentFeedbackContext(),type=$('#feedbackType')?.value||'Feedback',issue=$('#feedbackIssue')?.value.trim()||'';
  if(!issue){toast('Please tell us what happened.');$('#feedbackIssue')?.focus();return}
- const msg=[
-  '*WAPS PAGE FEEDBACK*',
-  '',
-  '*Screen:* '+c.screen,
-  '*Route:* #'+c.route,
-  '*Type:* '+type,
-  '*Feedback:* '+issue,
-  '',
-  '*Technical details*',
-  'Screen size: '+c.viewport+' · '+c.orientation,
-  'Mode: '+c.mode+' · '+c.online,
-  'Platform: '+c.platform,
-  'Page: '+c.url,
-  'Time: '+c.at,
-  'Browser: '+c.browser
- ].join('\n');
+ const msg=['*WAPS PAGE FEEDBACK*','','*Screen:* '+c.screen,'*Route:* #'+c.route,'*Type:* '+type,'*Feedback:* '+issue,'','*Technical details*','Screen size: '+c.viewport+' · '+c.orientation,'Mode: '+c.mode+' · '+c.online,'Platform: '+c.platform,'Page: '+c.url,'Time: '+c.at,'Browser: '+c.browser].join('\n');
  const wa='https://wa.me/'+WAPS_FEEDBACK_WHATSAPP+'?text='+encodeURIComponent(msg);
- const opened=window.open(wa,'_blank','noopener,noreferrer');
- if(!opened)window.location.href=wa;
+ const opened=window.open(wa,'_blank','noopener,noreferrer');if(!opened)window.location.href=wa;
 }
+function installPageFeedbackButton(){
+ if($('#feedbackFab'))return;
+ const style=document.createElement('style');
+ style.id='wapsFeedbackStyles';
+ style.textContent=`
+ #feedbackFab{position:fixed;left:18px;bottom:20px;z-index:88;min-height:50px;padding:0 15px;border:1px solid rgba(42,70,150,.14);border-radius:999px;background:rgba(255,255,255,.96);color:#2447a8;display:flex;align-items:center;gap:8px;font-weight:900;box-shadow:0 12px 30px rgba(25,55,115,.18);cursor:pointer}
+ #feedbackFab svg{width:23px;height:23px}
+ body:has(dialog[open])>#feedbackFab{display:none}
+ @media(max-width:760px){#feedbackFab{left:10px;bottom:calc(74px + env(safe-area-inset-bottom));width:46px;height:46px;min-height:46px;padding:0;border-radius:15px;justify-content:center}#feedbackFab span{display:none}}
+ body.math-active>#feedbackFab,body.trace-active>#feedbackFab,body.concept-id-active>#feedbackFab,body.mu-active>#feedbackFab{left:8px;bottom:max(8px,env(safe-area-inset-bottom));width:40px;height:40px;min-height:40px;padding:0;border-radius:13px;justify-content:center;opacity:.86}
+ body.child-mode-active>#feedbackFab{width:40px;height:40px;min-height:40px;padding:0;border-radius:13px;justify-content:center;opacity:.72}body.child-mode-active>#feedbackFab span{display:none}
+ @media print{#feedbackFab{display:none!important}}
+ `;
+ document.head.appendChild(style);
+ const b=document.createElement('button');b.id='feedbackFab';b.type='button';b.dataset.action='pageFeedback';b.setAttribute('aria-label','Report a problem or share feedback about this page');b.title='Feedback';
+ b.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 6h20v15H14l-6 5v-5H6z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M11 11h10M11 16h7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Feedback</span>';
+ document.body.appendChild(b);
+}
+
 function appShareUrl(){let u=new URL('.',window.location.href);u.hash='';u.search='';return u.href}
 async function copyAppLink(){let url=appShareUrl();try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(url)}else{let t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}toast('WAPS link copied ✓')}catch{toast('Could not copy automatically. Press and hold the link to copy it.')}}
 async function shareAppLink(){let url=appShareUrl(),data={title:'WAPS Communication',text:'WAPS Communication — caregiver-guided communication support.',url};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e?.name==='AbortError')return}}await copyAppLink()}
@@ -862,4 +855,4 @@ document.addEventListener('input',e=>{if(e.target.id==='aacSearch'){aacSearch=e.
 document.addEventListener('change',async e=>{if(e.target.id==='jamaicaCategory'){renderJamaicaDirectory();return}if(e.target.id==='restoreFile'){let file=e.target.files[0];if(!file)return;try{let j=JSON.parse(await file.text());if(j.format!=='WAPS-BACKUP'||j.schema!==2||!j.data||!Array.isArray(j.data.profiles))throw Error('format');if(confirm(`Restore backup from ${new Date(j.exported).toLocaleString()}? This will replace current local WAPS data.`)){S=j.data;await persist();modal.close();render();toast('Backup restored')}}catch(err){alert('This is not a valid compatible WAPS backup. Current data were not changed.')}e.target.value=''}});
 
 let holdTimer;document.addEventListener('pointerdown',e=>{if(e.target.closest('#holdExit,#childModeExitDock'))holdTimer=setTimeout(()=>{exitChildMode()},1700)});document.addEventListener('pointerup',()=>clearTimeout(holdTimer));document.addEventListener('pointercancel',()=>clearTimeout(holdTimer));
-document.documentElement.dataset.lowStim=S.settings.lowStim?'1':'0';document.documentElement.dataset.simple=S.settings.simpleMode?'1':'0';document.documentElement.dataset.largeText=S.settings.largeText?'1':'0';document.documentElement.dataset.highContrast=S.settings.highContrast?'1':'0';window.addEventListener('afterprint',()=>document.body.classList.remove('printing-sheet'));window.addEventListener('hashchange',render);window.addEventListener('online',()=>$('#offlineBanner').classList.add('hidden'));window.addEventListener('offline',()=>$('#offlineBanner').classList.remove('hidden'));if(!navigator.onLine)$('#offlineBanner').classList.remove('hidden');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(console.warn);syncInstallFab();render();
+document.documentElement.dataset.lowStim=S.settings.lowStim?'1':'0';document.documentElement.dataset.simple=S.settings.simpleMode?'1':'0';document.documentElement.dataset.largeText=S.settings.largeText?'1':'0';document.documentElement.dataset.highContrast=S.settings.highContrast?'1':'0';window.addEventListener('afterprint',()=>document.body.classList.remove('printing-sheet'));window.addEventListener('hashchange',render);window.addEventListener('online',()=>$('#offlineBanner').classList.add('hidden'));window.addEventListener('offline',()=>$('#offlineBanner').classList.remove('hidden'));if(!navigator.onLine)$('#offlineBanner').classList.remove('hidden');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(console.warn);installPageFeedbackButton();syncInstallFab();render();

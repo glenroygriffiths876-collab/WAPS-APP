@@ -49,6 +49,74 @@ document.addEventListener('pointerdown',()=>{if(S.settings.backgroundAudio&&!S.s
 
 function toast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}function show(html,wide=false){modal.classList.toggle('wide-modal',!!wide);mb.innerHTML=html;if(!modal.open)modal.showModal()}
 function whatsappSupportModal(){show(`<div class="whatsapp-support-sheet"><div class="whatsapp-sheet-icon" aria-hidden="true">WA</div><span class="eyebrow">WAPS SUPPORT</span><h2>WhatsApp Support</h2><p>Talk with other WAPS parents and caregivers.</p><div class="whatsapp-approval">New members need approval from a group admin.</div><div class="actions"><a class="btn whatsapp-join-btn" href="https://chat.whatsapp.com/DvI8bqupHVQD2lLQUgAKYK" target="_blank" rel="noopener noreferrer">Request to Join</a><button class="btn ghost" data-action="closeModal">Not now</button></div></div>`)}
+const WAPS_FEEDBACK_WHATSAPP='18765029756';
+const FEEDBACK_ROUTE_LABELS={home:'Home',talk:'Talk',practice:'Practice',coach:'Coach',progress:'Progress',more:'More'};
+let pendingFeedbackContext=null;
+function feedbackTechnicalScreen(){
+ if(document.body.classList.contains('math-active'))return 'Numbers & Maths';
+ if(document.body.classList.contains('trace-active'))return 'Tracing';
+ if(document.body.classList.contains('concept-id-active'))return 'Concept Learning';
+ if(document.body.classList.contains('mu-active'))return 'Reading & Understanding';
+ const special=main.querySelector('.math-child-screen,.trace-child-screen,.concept-child-screen,.mu-child-screen');
+ if(special){
+  const t=special.querySelector('h1,h2,b')?.textContent?.trim();
+  if(t)return t;
+ }
+ return '';
+}
+function currentFeedbackContext(){
+ const r=document.body.dataset.route||route();
+ const routeLabel=FEEDBACK_ROUTE_LABELS[r]||r||'WAPS';
+ const modalTitle=modal?.open?mb.querySelector('h1,h2,.eyebrow')?.textContent?.replace(/\s+/g,' ')?.trim():'';
+ const special=feedbackTechnicalScreen();
+ const pageTitle=main.querySelector('h1,h2,.prompt')?.textContent?.replace(/\s+/g,' ')?.trim()||'';
+ const detail=modalTitle||special||pageTitle;
+ const screen=detail&&detail.toLowerCase()!==routeLabel.toLowerCase()?routeLabel+' → '+detail:routeLabel;
+ const orientation=window.matchMedia?.('(orientation: landscape)').matches?'landscape':'portrait';
+ return {
+  route:r,
+  screen,
+  url:window.location.href,
+  viewport:window.innerWidth+' × '+window.innerHeight,
+  orientation,
+  mode:isStandalone()?'Installed app':'Web browser',
+  online:navigator.onLine?'Online':'Offline',
+  platform:navigator.userAgentData?.platform||navigator.platform||'Unknown',
+  browser:navigator.userAgent||'Unknown',
+  at:new Date().toLocaleString()
+ };
+}
+function pageFeedbackModal(){
+ pendingFeedbackContext=currentFeedbackContext();
+ const c=pendingFeedbackContext;
+ show(`<div class="feedback-sheet"><div class="feedback-sheet-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 6h20v15H14l-6 5v-5H6z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M11 11h10M11 16h7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><span class="eyebrow">PAGE FEEDBACK</span><h2>Tell us what happened</h2><p class="feedback-context">You are reporting: <b>${esc(c.screen)}</b></p><div class="field"><label>What kind of feedback?<select id="feedbackType"><option>Something broke</option><option>Something did not work</option><option>Visual / layout problem</option><option>Could be easier to use</option><option>Could be improved</option><option>Suggestion / new idea</option><option>Other</option></select></label></div><div class="field"><label>What happened or what could be better?<textarea id="feedbackIssue" rows="5" maxlength="1200" placeholder="Tell us exactly what you noticed. For example: I tapped Next and nothing happened, or this section is too crowded on my phone."></textarea></label></div><div class="feedback-auto-note"><b>WAPS will automatically include:</b> this screen, the page link, screen size/orientation, app/browser mode and time. No child profile or saved WAPS data is included.</div><div class="actions feedback-actions"><button class="btn feedback-send-btn" data-action="sendPageFeedback">Send on WhatsApp</button><button class="btn ghost" data-action="closeModal">Cancel</button></div><p class="mini">After WhatsApp opens, you can also attach a screenshot if it would help show the problem.</p></div>`,true);
+ setTimeout(()=>$('#feedbackIssue')?.focus(),80);
+}
+function sendPageFeedback(){
+ const c=pendingFeedbackContext||currentFeedbackContext();
+ const type=$('#feedbackType')?.value||'Feedback';
+ const issue=$('#feedbackIssue')?.value.trim()||'';
+ if(!issue){toast('Please tell us what happened.');$('#feedbackIssue')?.focus();return}
+ const msg=[
+  '*WAPS PAGE FEEDBACK*',
+  '',
+  '*Screen:* '+c.screen,
+  '*Route:* #'+c.route,
+  '*Type:* '+type,
+  '*Feedback:* '+issue,
+  '',
+  '*Technical details*',
+  'Screen size: '+c.viewport+' · '+c.orientation,
+  'Mode: '+c.mode+' · '+c.online,
+  'Platform: '+c.platform,
+  'Page: '+c.url,
+  'Time: '+c.at,
+  'Browser: '+c.browser
+ ].join('\n');
+ const wa='https://wa.me/'+WAPS_FEEDBACK_WHATSAPP+'?text='+encodeURIComponent(msg);
+ const opened=window.open(wa,'_blank','noopener,noreferrer');
+ if(!opened)window.location.href=wa;
+}
 function appShareUrl(){let u=new URL('.',window.location.href);u.hash='';u.search='';return u.href}
 async function copyAppLink(){let url=appShareUrl();try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(url)}else{let t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}toast('WAPS link copied ✓')}catch{toast('Could not copy automatically. Press and hold the link to copy it.')}}
 async function shareAppLink(){let url=appShareUrl(),data={title:'WAPS Communication',text:'WAPS Communication — caregiver-guided communication support.',url};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e?.name==='AbortError')return}}await copyAppLink()}
@@ -706,6 +774,8 @@ document.addEventListener('click',async e=>{
   if(a==='moreGroup'){moreGroupModal(el.closest('[data-more-group]')?.dataset.moreGroup);return}
   if(a==='openCoach'){if(modal.open)modal.close();go('coach');return}
   if(a==='shadowHelp'){shadowHelpModal();return}
+  if(a==='pageFeedback'){pageFeedbackModal();return}
+  if(a==='sendPageFeedback'){sendPageFeedback();return}
   if(a==='whatsappSupport'){whatsappSupportModal();return}
   if(a==='courseHome'){courseHomeModal();return}
   if(a==='courseVideos'){courseVideosModal();return}

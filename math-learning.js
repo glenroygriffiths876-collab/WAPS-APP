@@ -192,8 +192,10 @@ function label(type){return LABELS[type]||'Maths'}
       const total=totalObjects(q),density=total>35?'density-ultra':total>20?'density-high':total>10?'density-medium':'density-low';
       return '<div class="math-add-stacked '+density+'" aria-label="'+q.a+' plus '+q.b+'">'+additionGroupHTML(q,0,q.a,'First group')+'<div class="math-add-plus" aria-hidden="true">+</div>'+additionGroupHTML(q,q.a,q.b,'Second group')+'</div>';
     }
-    const chunk=currentChunk(q),labelText=chunkLabel(q,chunk);
-    return '<div class="math-chunk">'+(labelText?'<div class="math-chunk-label">'+esc(labelText)+'</div>':'')+'<div class="math-object-grid">'+chunk.indices.map(i=>objectHTML(q.objectId,i,q)).join('')+'</div></div>';
+    const total=totalObjects(q),indices=Array.from({length:total},(_,i)=>i);
+    const cols=total<=4?total:total<=15?5:total<=24?6:7,rows=Math.ceil(total/Math.max(1,cols));
+    const density=total>40?'ultra':total>30?'very-dense':total>20?'dense':total>15?'compact':total>10?'medium':'normal';
+    return '<div class="math-all-visible"><div class="math-object-grid math-object-grid-all density-'+density+'" style="grid-template-columns:repeat('+cols+',minmax(0,1fr));grid-template-rows:repeat('+rows+',minmax(0,1fr))">'+indices.map(i=>objectHTML(q.objectId,i,q)).join('')+'</div></div>';
   }
   function awayTray(q){
     if(q.type!=='subtract'||!(q.removed||[]).length)return '';
@@ -236,17 +238,13 @@ function label(type){return LABELS[type]||'Maths'}
   async function touchObject(index){
     const type=runtime?.type,s=session(type),q=s?.current;if(!q||runtime.locked||runtime.transitioning)return;
     index=Number(index);
-    const chunk=q.type==='add'?null:currentChunk(q);
-    if(q.type==='add'){
-      if(index<0||index>=totalObjects(q))return;
-    }else if(!chunk.indices.includes(index))return;
+    if(index<0||index>=totalObjects(q))return;
     if(q.type==='subtract'){
       if(q.removed.includes(index)||q.removed.length>=q.remove)return;
       q.removed.push(index);updateObjectState(q,index);
       const n=q.removed.length,stat=$('#mathStatus');if(stat)stat.innerHTML='<span id="mathTakeCount">'+n+' of '+q.remove+'</span>';
       await persist();
       if(n>=q.remove){speakNumberThen(n,()=>finishTouchPhase(type,q));return}
-      if(chunk&&chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
       speakNumber(n);return;
     }
     if(q.counted.includes(index))return;
@@ -255,7 +253,6 @@ function label(type){return LABELS[type]||'Maths'}
     if(stat)stat.innerHTML=q.type==='count'?'<span id="mathTouchCount">'+n+' / '+q.quantity+'</span>':'<span id="mathTouchCount">'+n+' counted</span>';
     await persist();
     if(q.type==='count'&&n>=q.quantity){speakNumberThen(n,()=>finishTouchPhase(type,q));return}
-    if(chunk&&chunkDone(q,chunk)&&chunk.page<chunk.totalPages-1){speakNumberThen(n,()=>moveToNextChunk(type,q));return}
     if(q.type==='add'&&n>=total){
       speakNumberThen(n,()=>{const out=$('#mathStatus');if(out)out.textContent='Now choose.';});
       return;
@@ -264,10 +261,7 @@ function label(type){return LABELS[type]||'Maths'}
   }
   function cueCount(q){
     q.cued=true;
-    const chunk=q.type==='add'?null:currentChunk(q);
-    const ids=q.type==='add'
-      ?Array.from({length:totalObjects(q)},(_,i)=>i)
-      :q.type==='subtract'?chunk.indices.filter(i=>!q.removed.includes(i)):chunk.indices;
+    const ids=Array.from({length:totalObjects(q)},(_,i)=>i).filter(i=>q.type!=='subtract'||!q.removed.includes(i));
     $$('.math-object-btn').forEach(b=>b.classList.remove('math-cue'));
     ids.forEach((id,i)=>{
       const spoken=q.type==='subtract'||q.type==='add'?i+1:id+1;

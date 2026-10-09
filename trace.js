@@ -15,7 +15,7 @@ export function createTraceFeature(ctx){
   const LETTER_EXAMPLES={A:'apple',B:'ball',C:'cat',D:'dog',E:'egg',F:'fish',G:'go',H:'hat',I:'igloo',J:'jump',K:'kite',L:'lion',M:'mango',N:'nose',O:'orange',P:'pen',Q:'queen',R:'run',S:'sun',T:'tree',U:'umbrella',V:'van',W:'water',X:'box',Y:'yam',Z:'zebra'};
   const ONES=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
   const TENS=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
-  let draft=null,runtime=null,recognition=null,advanceTimer=null,demoRAF=0;
+  let draft=null,runtime=null,recognition=null,advanceTimer=null,demoRAF=0,customCase='upper';
 
   function state(){
     const S=getState();
@@ -77,45 +77,67 @@ export function createTraceFeature(ctx){
     </div></div>`,true);
   }
   function config(type){
-    const p=prefs(type);draft={...clone(p),type,selected:[...(p.selected||DEFAULTS[type].selected)]};
+    const p=prefs(type);draft={...clone(p),type,selected:[...(p.selected||DEFAULTS[type].selected)]};customCase='upper';
     renderConfig();
+  }
+  function presetTokens(code){
+    if(draft.type==='letters'){
+      if(code==='upper')return [...TRACE_UPPER];
+      if(code==='lower')return [...TRACE_LOWER];
+      if(code==='both')return [...TRACE_UPPER,...TRACE_LOWER];
+      if(code==='af')return 'ABCDEF'.split('');
+      if(code==='gl')return 'GHIJKL'.split('');
+      if(code==='mr')return 'MNOPQR'.split('');
+      if(code==='sz')return 'STUVWXYZ'.split('');
+      if(code==='name')return cleanNameLetters();
+      return [];
+    }
+    const top=code==='05'?5:code==='09'?9:code==='010'?10:20;
+    return Array.from({length:top+1},(_,i)=>String(i));
+  }
+  function sameSelection(items){
+    const a=unique([...(draft.selected||[])]).sort(),b=unique([...(items||[])]).sort();
+    return a.length===b.length&&a.every((x,i)=>x===b[i]);
   }
   function renderConfig(){
     const type=draft.type,isLetters=type==='letters',nameLetters=cleanNameLetters();
-    const tokens=isLetters?[...TRACE_UPPER,...TRACE_LOWER]:NUMBER_BUTTONS;
     const presets=isLetters
-      ?[['upper','A–Z'],['lower','a–z'],['both','A–Z + a–z'],['af','A–F'],['gl','G–L'],['mr','M–R'],['sz','S–Z'],...(nameLetters.length?[['name','Name letters']]:[])]
-      :[['05','0–5'],['09','0–9'],['010','0–10'],['020','0–20']];
-    show(`<div class="trace-config"><button class="btn ghost" data-action="traceLaunch">← Trace & Say</button><span class="eyebrow">${isLetters?'LETTERS':'NUMBERS'}</span><h1>Choose.</h1>
-      <div class="trace-presets">${presets.map(x=>`<button data-trace-preset="${x[0]}">${x[1]}</button>`).join('')}</div>
-      <div class="trace-token-grid ${isLetters?'letters':'numbers'}">${tokens.map(t=>`<button class="${draft.selected.includes(t)?'selected':''}" data-trace-token="${esc(t)}">${esc(t)}</button>`).join('')}</div>
-      ${!isLetters?`<div class="field"><label>Optional custom numbers (0–99)<input id="traceCustomNumbers" inputmode="numeric" placeholder="e.g. 12, 15, 20"></label><div class="mini">Separate numbers with commas. Selected numbers above are included too.</div></div>`:''}
-      <details class="trace-more-settings"><summary>Practice options</summary><div class="trace-setting-grid">
-        <label>Help<select id="traceGuidance"><option value="guided" ${draft.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${draft.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${draft.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
-        <label>Trace line<select id="traceLineSize"><option value="small" ${draft.lineSize==='small'?'selected':''}>Small</option><option value="medium" ${draft.lineSize==='medium'?'selected':''}>Medium</option><option value="large" ${draft.lineSize==='large'?'selected':''}>Large</option></select></label>
-        ${isLetters?`<label>Sound<select id="traceLetterAudio"><option value="name" ${draft.letterAudio==='name'?'selected':''}>Letter name</option><option value="sound" ${draft.letterAudio==='sound'?'selected':''}>Sound + example</option><option value="both" ${draft.letterAudio==='both'?'selected':''}>Both</option></select></label>`:''}
-      </div></details>
+      ?[['af','First 6','A–F'],['gl','Next 6','G–L'],['upper','Capital letters','A–Z'],['lower','Small letters','a–z'],...(nameLetters.length?[['name','My name',nameLetters.join('')]]:[])]
+      :[['05','First numbers','0–5'],['010','Up to 10','0–10'],['020','Up to 20','0–20']];
+    show(`<div class="trace-config trace-quick-config"><button class="btn ghost trace-back" data-action="traceLaunch">← Trace & Say</button><span class="eyebrow">${isLetters?'LETTERS':'NUMBERS'}</span><h1>What should we practise?</h1><p class="trace-quick-help">Choose one. You can change it anytime.</p>
+      <div class="trace-quick-grid">${presets.map(x=>`<button class="${sameSelection(presetTokens(x[0]))?'selected':''}" data-trace-preset="${x[0]}"><b>${x[1]}</b><small>${esc(x[2])}</small></button>`).join('')}</div>
+      <button class="trace-specific-btn" data-action="traceChooseSpecific">＋ Choose specific ${isLetters?'letters':'numbers'}</button>
       <div class="trace-config-summary"><b id="traceSelectedCount">${draft.selected.length} selected</b><span>${esc(active()?.name||'Saved on this device')}</span></div>
-      <div class="actions"><button class="btn" data-action="traceStart">${resumePossible()?'Continue':'Start'}</button><button class="btn secondary" data-action="tracePreview">Preview formation</button>${session(draft.type)?'<button class="btn ghost" data-action="traceRestartSet">Restart saved set</button>':''}</div>
+      <div class="trace-quick-actions"><button class="btn trace-primary-start" data-action="traceStart">${resumePossible()?'Continue practice':'Start practice'}</button><button class="btn secondary" data-action="tracePracticeStyle">Practice style</button></div>
+      ${session(draft.type)?'<button class="trace-restart-link" data-action="traceRestartSet">Restart saved set</button>':''}
+    </div>`,true);
+  }
+  function renderSpecific(){
+    const isLetters=draft.type==='letters';
+    const tokens=isLetters?(customCase==='upper'?TRACE_UPPER:TRACE_LOWER):NUMBER_BUTTONS;
+    show(`<div class="trace-config trace-specific-config"><button class="btn ghost trace-back" data-action="traceSpecificDone">← Quick setup</button><span class="eyebrow">CHOOSE SPECIFIC</span><h1>${isLetters?'Pick letters':'Pick numbers'}</h1>
+      ${isLetters?`<div class="trace-case-switch"><button class="${customCase==='upper'?'selected':''}" data-trace-custom-case="upper">Capital A–Z</button><button class="${customCase==='lower'?'selected':''}" data-trace-custom-case="lower">Small a–z</button></div>`:''}
+      <div class="trace-token-grid trace-token-grid-simple ${isLetters?'letters':'numbers'}">${tokens.map(t=>`<button class="${draft.selected.includes(t)?'selected':''}" data-trace-token="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+      ${!isLetters?`<div class="trace-custom-number-row"><label>Another number (0–99)<input id="traceCustomNumbers" type="number" min="0" max="99" inputmode="numeric" placeholder="e.g. 25"></label><button class="btn secondary" data-action="traceAddCustomNumber">Add</button></div>`:''}
+      <div class="trace-config-summary"><b id="traceSelectedCount">${draft.selected.length} selected</b><span>Tap again to remove</span></div>
+      <button class="btn trace-done-btn" data-action="traceSpecificDone">Done</button>
+    </div>`,true);
+  }
+  function renderPracticeStyle(){
+    const isLetters=draft.type==='letters';
+    const option=(attr,value,label,sub='')=>`<button class="${draft[attr]===value?'selected':''}" data-trace-style="${attr}" data-trace-style-value="${value}"><b>${label}</b>${sub?`<small>${sub}</small>`:''}</button>`;
+    show(`<div class="trace-config trace-style-config"><button class="btn ghost trace-back" data-action="traceStyleDone">← Quick setup</button><span class="eyebrow">PRACTICE STYLE</span><h1>How should WAPS help?</h1>
+      <section class="trace-style-group"><b>Tracing help</b><div class="trace-style-options">${option('guidance','guided','More help','Best starting point')}${option('guidance','standard','Standard')}${option('guidance','fade','Less help')}</div></section>
+      <section class="trace-style-group"><b>Line size</b><div class="trace-style-options">${option('lineSize','large','Large')}${option('lineSize','medium','Medium')}${option('lineSize','small','Small')}</div></section>
+      ${isLetters?`<section class="trace-style-group"><b>When Hear is tapped</b><div class="trace-style-options">${option('letterAudio','name','Letter name')}${option('letterAudio','sound','Sound + example')}${option('letterAudio','both','Both')}</div></section>`:''}
+      <div class="trace-style-footer"><button class="btn" data-action="traceStyleDone">Done</button><button class="btn secondary" data-action="tracePreview">Preview formation</button></div>
     </div>`,true);
   }
   function resumePossible(){
-    const s=session(draft.type);return !!(s&&s.cursor<s.items.length);
+    const s=session(draft.type);return !!(s&&s.cursor<s.items.length&&s.signature===signature(draft.selected,draft));
   }
   function preset(code){
-    if(draft.type==='letters'){
-      if(code==='upper')draft.selected=[...TRACE_UPPER];
-      else if(code==='lower')draft.selected=[...TRACE_LOWER];
-      else if(code==='both')draft.selected=[...TRACE_UPPER,...TRACE_LOWER];
-      else if(code==='af')draft.selected='ABCDEF'.split('');
-      else if(code==='gl')draft.selected='GHIJKL'.split('');
-      else if(code==='mr')draft.selected='MNOPQR'.split('');
-      else if(code==='sz')draft.selected='STUVWXYZ'.split('');
-      else if(code==='name')draft.selected=cleanNameLetters();
-    }else{
-      const top=code==='05'?5:code==='09'?9:code==='010'?10:20;
-      draft.selected=Array.from({length:top+1},(_,i)=>String(i));
-    }
+    draft.selected=presetTokens(code);
     renderConfig();
   }
   function toggleToken(token,button){
@@ -125,15 +147,8 @@ export function createTraceFeature(ctx){
     const out=$('#traceSelectedCount');if(out)out.textContent=draft.selected.length+' selected';
   }
   function readConfig(){
-    draft.guidance=$('#traceGuidance')?.value||'guided';
-    draft.lineSize=$('#traceLineSize')?.value||'medium';
-    draft.letterAudio=$('#traceLetterAudio')?.value||'name';
-    if(draft.type==='numbers'){
-      const extra=($('#traceCustomNumbers')?.value||'').split(/[ ,]+/).map(x=>x.trim()).filter(Boolean).map(Number).filter(n=>Number.isInteger(n)&&n>=0&&n<=99).map(String);
-      draft.selected=unique([...draft.selected,...extra]).sort((a,b)=>Number(a)-Number(b));
-    }else{
-      draft.selected=unique(draft.selected);
-    }
+    if(draft.type==='numbers')draft.selected=unique(draft.selected).sort((a,b)=>Number(a)-Number(b));
+    else draft.selected=unique(draft.selected);
   }
   async function start(){
     readConfig();
@@ -435,7 +450,7 @@ export function createTraceFeature(ctx){
   function preview(){
     readConfig();if(!draft.selected.length){toast('Choose at least one item first.');return}
     const token=draft.selected[0],ch=draft.type==='numbers'?[...String(token)][0]:token,g=TRACE_GLYPHS[ch];if(!g)return;
-    show(`<div class="trace-preview"><button class="btn ghost" data-trace-type="${draft.type}">← Back</button><span class="eyebrow">FORMATION PREVIEW</span><h1>${esc(token)}</h1><svg viewBox="0 0 1000 1000">${g.strokes.map((s,i)=>`<path d="${s.d}" class="preview-stroke s${i%4}"/>`).join('')}</svg><p>Strokes are completed in the displayed order. In the child activity, only one stroke is active at a time.</p></div>`,true);
+    show(`<div class="trace-preview"><button class="btn ghost" data-action="tracePreviewBack">← Back</button><span class="eyebrow">FORMATION PREVIEW</span><h1>${esc(token)}</h1><svg viewBox="0 0 1000 1000">${g.strokes.map((s,i)=>`<path d="${s.d}" class="preview-stroke s${i%4}"/>`).join('')}</svg><p>Strokes are completed in the displayed order. In the child activity, only one stroke is active at a time.</p></div>`,true);
   }
   async function handleClick(el){
     const buildBtn=el.closest('[data-trace-build-id]');if(buildBtn){chooseBuildTile(buildBtn.dataset.traceBuildId);return true}
@@ -443,8 +458,16 @@ export function createTraceFeature(ctx){
     if(typeBtn&&!el.closest('[data-action="traceAgain"],[data-action="traceChooseNew"]')){config(typeBtn.dataset.traceType);return true}
     const tokenBtn=el.closest('[data-trace-token]');if(tokenBtn){toggleToken(tokenBtn.dataset.traceToken,tokenBtn);return true}
     const presetBtn=el.closest('[data-trace-preset]');if(presetBtn){preset(presetBtn.dataset.tracePreset);return true}
+    const caseBtn=el.closest('[data-trace-custom-case]');if(caseBtn){customCase=caseBtn.dataset.traceCustomCase==='lower'?'lower':'upper';renderSpecific();return true}
+    const styleBtn=el.closest('[data-trace-style]');if(styleBtn){const k=styleBtn.dataset.traceStyle,v=styleBtn.dataset.traceStyleValue;if(['guidance','lineSize','letterAudio'].includes(k)){draft[k]=v;renderPracticeStyle()}return true}
     const a=el.closest('[data-action]')?.dataset.action;if(!a||!a.startsWith('trace'))return false;
     if(a==='traceLaunch'){launch();return true}
+    if(a==='traceChooseSpecific'){renderSpecific();return true}
+    if(a==='traceSpecificDone'){renderConfig();return true}
+    if(a==='tracePracticeStyle'){renderPracticeStyle();return true}
+    if(a==='traceStyleDone'){renderConfig();return true}
+    if(a==='tracePreviewBack'){renderPracticeStyle();return true}
+    if(a==='traceAddCustomNumber'){const n=Number($('#traceCustomNumbers')?.value);if(Number.isInteger(n)&&n>=0&&n<=99){draft.selected=unique([...draft.selected,String(n)]).sort((a,b)=>Number(a)-Number(b));renderSpecific()}else toast('Enter a number from 0 to 99.');return true}
     if(a==='traceStart'){await start();return true}
     if(a==='tracePreview'){preview();return true}
     if(a==='traceRestartSet'){await restartSavedSet(draft?.type||'letters');return true}

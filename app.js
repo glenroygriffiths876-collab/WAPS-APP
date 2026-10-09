@@ -37,15 +37,70 @@ async function syncBackgroundAudio(fromUserGesture=false){
 function stopBackgroundAudio(){if(!wapsMusic)return;clearInterval(wapsMusic._wapsFade);wapsMusic.pause();wapsMusic.currentTime=0;wapsMusicStarted=false;document.documentElement.dataset.music='off'}
 function duckBackgroundAudio(){wapsAudioDuck++;if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
 function restoreBackgroundAudio(){wapsAudioDuck=Math.max(0,wapsAudioDuck-1);if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
-function wapsSpeak(u){
- if(!u||!('speechSynthesis'in window))return;
- const end=u.onend,err=u.onerror;duckBackgroundAudio();
- u.onend=e=>{try{end?.call(u,e)}finally{restoreBackgroundAudio()}};
- u.onerror=e=>{try{err?.call(u,e)}finally{restoreBackgroundAudio()}};
- speechSynthesis.speak(u);
-}
+const WAPS_NEURAL_TTS_URL='https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
+const WAPS_NEURAL_MODEL='onnx-community/Kokoro-82M-v1.0-ONNX';
+const WAPS_NEURAL_VOICE='af_heart';
+const WAPSVoice=(()=>{
+ let neuralState='idle',tts=null,preparePromise=null,audioContext=null,current=null,jobSeq=0,fallbackVoices=[];
+ const modeRates={default:.88,learning:.86,communication:.92,encouragement:.9,reader:.9};
+ const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+ const hooks={start:()=>duckBackgroundAudio(),end:()=>restoreBackgroundAudio()};
+ function updateVoiceState(v){document.documentElement.dataset.wapsVoice=v}
+ function rateFor(opts={}){const base=opts.mode==='reader'?Number(S.settings.readerRate||modeRates.reader):(modeRates[opts.mode]??modeRates.default);return clamp(Number(opts.rate??base)||base,.65,1.05)}
+ function speechFallbackAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
+ function audioContextAvailable(){return !!(window.AudioContext||window.webkitAudioContext)}
+ function available(){return speechFallbackAvailable()||audioContextAvailable()}
+ function chooseFallbackVoice(){
+  if(!speechFallbackAvailable())return null;
+  const voices=speechSynthesis.getVoices?.()||[];if(voices.length)fallbackVoices=voices;
+  const source=fallbackVoices.length?fallbackVoices:voices,pool=source.filter(v=>/^en([_-]|$)/i.test(v.lang||''));
+  const score=v=>{const n=(v.name||'').toLowerCase(),l=(v.lang||'').toLowerCase();let s=0;if(/natural|neural|premium|enhanced/.test(n))s+=50;if(/aria|ava|samantha|google us english|serena|sonia|jenny/.test(n))s+=24;if(l==='en-jm')s+=16;if(l==='en-us')s+=12;if(l==='en-gb')s+=8;if(v.localService)s+=2;return s};
+  return [...pool].sort((a,b)=>score(b)-score(a))[0]||source[0]||null;
+ }
+ if(speechFallbackAvailable()){fallbackVoices=speechSynthesis.getVoices?.()||[];speechSynthesis.addEventListener?.('voiceschanged',()=>{fallbackVoices=speechSynthesis.getVoices?.()||[]})}
+ async function ensureAudioContext(){if(!audioContextAvailable())return null;if(!audioContext){const C=window.AudioContext||window.webkitAudioContext;audioContext=new C()}if(audioContext.state==='suspended')await audioContext.resume().catch(()=>{});return audioContext}
+ function begin(job){if(job.started||job.cancelled)return;job.started=true;hooks.start();try{job.opts.onstart?.({type:'start',engine:job.engine})}catch{}}
+ function finish(job,{error=null,cancelled=false}={}){if(!job||job.finished)return;job.finished=true;job.cancelled=job.cancelled||cancelled;if(job.started)hooks.end();if(!cancelled){try{error?job.opts.onerror?.(error):job.opts.onend?.({type:'end',engine:job.engine})}catch{}}try{job.resolve?.(!error&&!cancelled)}catch{}if(current===job)current=null}
+ function stop(){const job=current;if(!job)return;job.cancelled=true;try{job.source?.stop?.()}catch{}try{job.audio?.pause?.()}catch{}if(job.engine==='fallback'&&speechFallbackAvailable())try{speechSynthesis.cancel()}catch{}finish(job,{cancelled:true})}
+ async function unlock(){try{await ensureAudioContext()}catch{}}
+ async function prepare(){
+  if(neuralState==='ready')return true;if(neuralState==='loading')return preparePromise;if(!navigator.onLine){updateVoiceState('fallback');return false}
+  neuralState='loading';updateVoiceState('preparing');
+  preparePromise=(async()=>{try{const mod=await import(WAPS_NEURAL_TTS_URL);tts=await mod.KokoroTTS.from_pretrained(WAPS_NEURAL_MODEL,{dtype:'q8',device:'wasm'});neuralState='ready';updateVoiceState('neural');return true}catch(err){console.warn('WAPS neural voice unavailable; using device fallback.',err);neuralState='failed';updateVoiceState('fallback');return false}})();
+  return preparePromise;
+ }
+ async function playNeural(job){
+  try{
+    const raw=await tts.generate(job.text,{voice:WAPS_NEURAL_VOICE,speed:rateFor(job.opts)});
+    if(job.cancelled||current!==job)return finish(job,{cancelled:true});
+    const ctx=await ensureAudioContext();if(!ctx||!raw?.data?.length)throw new Error('Neural audio could not be prepared');
+    const sampleRate=Number(raw.sample_rate||raw.sampleRate||24000),buffer=ctx.createBuffer(1,raw.data.length,sampleRate);buffer.getChannelData(0).set(raw.data);
+    const src=ctx.createBufferSource();src.buffer=buffer;src.connect(ctx.destination);job.source=src;job.engine='neural';src.onended=()=>finish(job);begin(job);src.start(0);
+  }catch(err){if(job.cancelled||current!==job)return finish(job,{cancelled:true});console.warn('WAPS neural speech failed for this phrase; using fallback.',err);playFallback(job)}
+ }
+ function playFallback(job){
+  if(!speechFallbackAvailable()){finish(job,{error:new Error('Speech unavailable')});return}
+  const u=new SpeechSynthesisUtterance(job.text),selected=chooseFallbackVoice();u.lang=selected?.lang||'en-US';if(selected)u.voice=selected;u.rate=rateFor(job.opts);u.pitch=clamp(Number(job.opts.pitch??1),.8,1.2);job.utterance=u;job.engine='fallback';u.onstart=()=>begin(job);u.onend=()=>finish(job);u.onerror=e=>finish(job,{error:e});try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(err){finish(job,{error:err})}
+ }
+ function speak(text,opts={}){
+  text=String(text??'').replace(/\s+/g,' ').trim();if(!text)return Promise.resolve(false);if(opts.interrupt!==false)stop();
+  let resolve;const promise=new Promise(r=>{resolve=r}),job={id:++jobSeq,text,opts,resolve,promise,started:false,finished:false,cancelled:false,engine:'pending',source:null,audio:null,utterance:null};current=job;
+  if(neuralState==='ready'&&tts){playNeural(job);return promise}
+  if(neuralState==='idle'||neuralState==='failed')prepare().catch(()=>{});
+  if(speechFallbackAvailable()){playFallback(job);return promise}
+  prepare().then(ok=>{if(job.cancelled||current!==job)return finish(job,{cancelled:true});if(ok)playNeural(job);else finish(job,{error:new Error('Speech unavailable')})});
+  return promise;
+ }
+ function pause(){if(!current)return false;if(current.engine==='neural'&&audioContext){audioContext.suspend().catch(()=>{});return true}if(current.engine==='fallback'&&speechFallbackAvailable()){try{speechSynthesis.pause();return true}catch{}}return false}
+ function resume(){if(!current)return false;if(current.engine==='neural'&&audioContext){audioContext.resume().catch(()=>{});return true}if(current.engine==='fallback'&&speechFallbackAvailable()){try{speechSynthesis.resume();return true}catch{}}return false}
+ function isPaused(){if(current?.engine==='neural')return audioContext?.state==='suspended';return speechFallbackAvailable()?!!speechSynthesis.paused:false}
+ function status(){return {engine:neuralState==='ready'?'neural':'fallback',neuralState,voice:WAPS_NEURAL_VOICE,model:WAPS_NEURAL_MODEL}}
+ return {speak,stop,pause,resume,isPaused,available,prepare,unlock,status};
+})();
+function wapsSpeak(u,opts={}){if(!u)return Promise.resolve(false);if(typeof u==='string')return WAPSVoice.speak(u,opts);return WAPSVoice.speak(u.text,{...opts,rate:u.rate||opts.rate,pitch:u.pitch||opts.pitch,onstart:u.onstart,onend:u.onend,onerror:u.onerror})}
 document.addEventListener('visibilitychange',()=>{if(!wapsMusic)return;if(document.hidden){wapsMusic.pause()}else if(S.settings.backgroundAudio&&!S.settings.lowStim){syncBackgroundAudio(false)}});
-document.addEventListener('pointerdown',()=>{if(S.settings.backgroundAudio&&!S.settings.lowStim&&(!wapsMusic||wapsMusic.paused))syncBackgroundAudio(true)},{passive:true});
+document.addEventListener('pointerdown',()=>{WAPSVoice.unlock();if(S.settings.backgroundAudio&&!S.settings.lowStim&&(!wapsMusic||wapsMusic.paused))syncBackgroundAudio(true)},{passive:true});
+setTimeout(()=>{const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(navigator.onLine&&!c?.saveData&&(!c?.effectiveType||c.effectiveType==='4g'))WAPSVoice.prepare().catch(()=>{})},4500);
 
 function toast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}function show(html,wide=false){modal.classList.toggle('wide-modal',!!wide);mb.innerHTML=html;if(!modal.open)modal.showModal()}
 function whatsappSupportModal(){show(`<div class="whatsapp-support-sheet"><div class="whatsapp-sheet-icon" aria-hidden="true">WA</div><span class="eyebrow">WAPS SUPPORT</span><h2>WhatsApp Support</h2><p>Talk with other WAPS parents and caregivers.</p><div class="whatsapp-approval">New members need approval from a group admin.</div><div class="actions"><a class="btn whatsapp-join-btn" href="https://chat.whatsapp.com/DvI8bqupHVQD2lLQUgAKYK" target="_blank" rel="noopener noreferrer">Request to Join</a><button class="btn ghost" data-action="closeModal">Not now</button></div></div>`)}
@@ -371,12 +426,12 @@ function openReaderDock(autoStart=false){
  let dock=document.createElement('section');dock.id='readerDock';dock.className='reader-dock';dock.innerHTML=`<div><b>🔊 Read this page</b><small id="readerStatus">Ready · ${readerSegments.length} sections</small></div><div class="reader-dock-controls"><button data-action="readerPlay">▶ Read</button><button data-action="readerPause">⏸ Pause</button><button data-action="readerStop">■ Stop</button><label>Speed <input id="readerRate" type="range" min="0.6" max="1.3" step="0.05" value="${S.settings.readerRate||0.9}"></label><button data-action="readerClose">✕</button></div>`;document.body.appendChild(dock);if(autoStart)startReader();
 }
 function startReader(){
- if(!('speechSynthesis'in window)){toast('Read-aloud is not available on this device.');return}
- speechSynthesis.cancel();readerPaused=false;
- const speakNext=()=>{if(readerPaused||readerIndex>=readerSegments.length){if(readerIndex>=readerSegments.length){let st=$('#readerStatus');if(st)st.textContent='Finished'}return}let u=new SpeechSynthesisUtterance(readerSegments[readerIndex]);u.rate=Number(S.settings.readerRate||0.9);u.onstart=()=>{let st=$('#readerStatus');if(st)st.textContent=`Reading ${readerIndex+1} of ${readerSegments.length}`};u.onend=()=>{readerIndex++;speakNext()};wapsSpeak(u)};speakNext();
+  if(!WAPSVoice.available()){toast('Read-aloud is not available on this device.');return}
+  WAPSVoice.stop();readerPaused=false;
+  const speakNext=()=>{if(readerPaused||readerIndex>=readerSegments.length){if(readerIndex>=readerSegments.length){let st=$('#readerStatus');if(st)st.textContent='Finished'}return}WAPSVoice.speak(readerSegments[readerIndex],{mode:'reader',rate:Number(S.settings.readerRate||0.9),onstart:()=>{let st=$('#readerStatus');if(st)st.textContent=`Reading ${readerIndex+1} of ${readerSegments.length}`},onend:()=>{readerIndex++;speakNext()}})};speakNext();
 }
-function pauseReader(){if(!('speechSynthesis'in window))return;if(speechSynthesis.paused){readerPaused=false;speechSynthesis.resume();let st=$('#readerStatus');if(st)st.textContent='Reading resumed'}else{readerPaused=true;speechSynthesis.pause();let st=$('#readerStatus');if(st)st.textContent='Paused'}}
-function stopReader(){if('speechSynthesis'in window)speechSynthesis.cancel();readerIndex=0;readerPaused=false;let st=$('#readerStatus');if(st)st.textContent='Stopped'}
+function pauseReader(){if(readerPaused){readerPaused=false;WAPSVoice.resume();let st=$('#readerStatus');if(st)st.textContent='Reading resumed'}else{readerPaused=true;WAPSVoice.pause();let st=$('#readerStatus');if(st)st.textContent='Paused'}}
+function stopReader(){WAPSVoice.stop();readerIndex=0;readerPaused=false;let st=$('#readerStatus');if(st)st.textContent='Stopped'}
 function closeReader(){stopReader();$('#readerDock')?.remove()}
 function renderJamaicaDirectory(){
  let out=$('#jamaicaDirectory');if(!out)return;let q=($('#jamaicaSearch')?.value||'').toLowerCase().trim(),cat=$('#jamaicaCategory')?.value||'All';
@@ -711,11 +766,11 @@ function report(){let p=active(),ss=S.sessions.filter(x=>x.profile===S.active),o
 function download(name,text,type='application/json'){let u=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 async function photoData(file){if(!file)return null;return await new Promise((res,rej)=>{let img=new Image(),r=new FileReader();r.onload=()=>{img.onload=()=>{let max=360,scale=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};img.onerror=rej;img.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
 async function audioData(file){if(!file)return null;if(file.size>1800000)throw Error('audio-too-large');return await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
-const Trace=createTraceFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect});
+const Trace=createTraceFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect,voice:WAPSVoice});
 const TraceWords=createTraceWordsFeature({getState:()=>S,persist,active,show,toast,modal,esc,startWordSet:(ids,options)=>Trace.startWordSet(ids,options),conceptImageForWord});
-const ConceptLearning=createConceptLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect});
-const MathLearning=createMathLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect});
-const ComprehensionLearning=createComprehensionLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect,visualHTML,concept});
+const ConceptLearning=createConceptLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect,voice:WAPSVoice});
+const MathLearning=createMathLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect,voice:WAPSVoice});
+const ComprehensionLearning=createComprehensionLearningFeature({getState:()=>S,persist,active,show,toast,main,modal,go,esc,celebrate:celebrateCorrect,visualHTML,concept,voice:WAPSVoice});
 document.addEventListener('click',async e=>{
   const el=e.target instanceof Element?e.target:null;if(!el)return;
   let routeBtn=el.closest('button[data-route],a[data-route]');if(routeBtn){e.preventDefault();go(routeBtn.dataset.route);return}
@@ -830,11 +885,11 @@ document.addEventListener('click',async e=>{
   if(a==='handbook'){handbookModal();return}
   if(a==='about'){show('<h2>About WAPS</h2><p>WAPS supports caregiver-guided communication practice, AAC access and real-world generalization. It does not diagnose autism, language disorder, speech-sound disorder or motor-speech conditions, and it does not replace qualified professional care.</p>');return}
   if(a==='customAAC'){customAACModal();return}
-  if(a==='speak'){let text=sentence.join(' ');if(text&&'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'){speechSynthesis.cancel();wapsSpeak(new SpeechSynthesisUtterance(text.toLowerCase()))}else if(text)toast('Speech is not available on this device. The message remains visible.');return}
+  if(a==='speak'){let text=sentence.join(' ');if(text&&WAPSVoice.available())WAPSVoice.speak(text.toLowerCase(),{mode:'communication',rate:.92});else if(text)toast('Speech is not available on this device. The message remains visible.');return}
   if(a==='backspace'){if(sentence.length)sentence.pop();drawSentence();return}
   if(a==='clearSentence'){sentence.splice(0,sentence.length);drawSentence();return}
   if(a==='partner'){partner=!partner;let ps=$('#partnerState'),pt=$('#partnerTip');if(ps)ps.textContent=partner?'On':'Off';if(pt)pt.classList.toggle('hidden',!partner);return}
-  if(a==='repeatPrompt'){let t=$('.prompt')?.textContent?.trim();if(t&&'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'){speechSynthesis.cancel();wapsSpeak(new SpeechSynthesisUtterance(t))}else if(t)toast('Read-aloud is not available on this device.');return}
+  if(a==='repeatPrompt'){let t=$('.prompt')?.textContent?.trim();if(t&&WAPSVoice.available())WAPSVoice.speak(t,{mode:'learning',rate:.86});else if(t)toast('Read-aloud is not available on this device.');return}
   if(a==='speakPage'){openReaderDock(true);return}
   if(a==='coachPrev'){if(coachStep>0){coachStep--;drawCoachStep()}return}
   if(a==='coachNext'){if(coachStep<coachRun.steps.length-1){coachStep++;drawCoachStep()}else{show('<h2>How did it go?</h2><div class="outcomes"><button class="btn secondary coach-outcome" data-result="Independent">Independent</button><button class="btn secondary coach-outcome" data-result="With help">With help</button><button class="btn secondary coach-outcome" data-result="Not yet">Not yet</button><button class="btn secondary coach-outcome" data-result="No opportunity">No opportunity</button></div>')}return}

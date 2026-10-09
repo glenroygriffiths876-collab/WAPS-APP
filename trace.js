@@ -207,7 +207,45 @@ export function createTraceFeature(ctx){
     main.innerHTML=`<div class="trace-word-intro"><header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back" aria-label="Exit word practice">←</button><div><span>WORDS & NAMES</span><b>See it. Hear it. Trace it.</b></div><div class="trace-count">${s.cursor+1} / ${s.items.length}</div></header><div class="trace-word-intro-card">${pic?`<div class="trace-word-intro-image">${pic}</div>`:''}<span class="eyebrow">YOUR WORD</span><h1>${esc(runtime.token)}</h1><div class="trace-word-letter-row">${runtime.chars.map(ch=>`<span>${esc(ch)}</span>`).join('')}</div><div class="trace-word-intro-actions"><button class="btn secondary" data-action="traceWordHear">🔊 Hear word</button><button class="btn" data-action="traceWordBegin">Start tracing →</button></div></div></div>`;
     setTimeout(()=>speakWord(),240);
   }
+  function renderMultiNumberTraceScreen(){
+    stopMedia();document.body.classList.add('trace-active');document.body.classList.remove('trace-say-active');
+    const s=currentSession('numbers'),p=currentPrefs('numbers'),mode=traceMode(),formation=mode==='formation',w=traceWidth();
+    const activeIndex=Math.max(0,Math.min(runtime.chars.length-1,runtime.digitIndex||0));
+    const panels=runtime.chars.map((ch,i)=>{
+      const g=TRACE_GLYPHS[ch];if(!g)return '';
+      const done=i<activeIndex,active=i===activeIndex,stateClass=done?'done':active?'active':'upcoming';
+      if(active){
+        const showLines=formation;
+        return `<div class="trace-digit-panel ${stateClass}" data-digit-index="${i}" aria-label="Trace digit ${esc(ch)}">
+          <svg id="traceSvg" class="trace-svg" viewBox="0 0 1000 1000" role="img" aria-label="Trace ${esc(ch)}" touch-action="none">
+            ${showLines?'<path class="trace-writing-line" d="M120 120 H880"/><path class="trace-writing-line mid" d="M120 410 H880"/><path class="trace-writing-line base" d="M120 820 H880"/><path class="trace-writing-line desc" d="M120 960 H880"/>':''}
+            ${g.strokes.map((st,si)=>{const guideClass=formation?`${si<runtime.strokeIndex?'complete':''} ${si===runtime.strokeIndex?'active':''}`:'flex';const brightClass=formation?(si<runtime.strokeIndex?'complete':si===runtime.strokeIndex?'active':''):'';return `<path id="traceGuide${si}" class="trace-guide ${guideClass}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${guideOpacity()}"/><path id="traceBright${si}" class="trace-bright ${brightClass}" d="${st.d}" style="--trace-w:${w}px"/>`}).join('')}
+            <polyline id="traceLive" class="trace-live" points="" style="--trace-w:${Math.max(22,w*.42)}px"/>
+            <circle id="traceStartDot" class="trace-start-dot ${mode==='easy'?'hidden':''}" r="${Math.max(28,w*.42)}"/>
+            <circle id="traceDemoDot" class="trace-demo-dot" r="${Math.max(22,w*.34)}"/>
+          </svg>
+        </div>`;
+      }
+      return `<div class="trace-digit-panel ${stateClass}" data-digit-index="${i}" aria-label="${done?'Completed':'Next'} digit ${esc(ch)}">
+        <svg class="trace-svg trace-static-digit" viewBox="0 0 1000 1000" aria-hidden="true">
+          ${g.strokes.map(st=>`<path class="trace-guide trace-static-guide ${done?'complete':''}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${done?'.95':'.24'}"/>`).join('')}
+        </svg>
+      </div>`;
+    }).join('');
+    const ch=runtime.chars[activeIndex],statusText=formation?`Trace ${esc(ch)}. Start at the glowing dot.`:mode==='guided'?`Trace ${esc(ch)}. The dot is only a guide.`:`Trace ${esc(ch)}. Start anywhere on it.`;
+    main.innerHTML=`<div class="trace-child-screen trace-number-multi-screen">
+      <header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back" aria-label="Exit tracing">←</button><div><span>TRACE & SAY</span><b>Trace ${esc(runtime.token)}</b></div><div class="trace-count">${s.cursor+1} / ${s.items.length}</div></header>
+      <div class="trace-multi-number-wrap trace-mode-${mode}">
+        ${panels}
+        <div id="traceStatus" class="trace-status trace-multi-status">${statusText}</div>
+      </div>
+      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="${autoVoice()?'true':'false'}">${autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off'}</button><button data-action="traceHear">🔊 Hear it again</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">${formation?'↶ Try stroke':'↶ Clear trace'}</button><button data-action="traceStartOver">↺ Start item over</button></div>
+    </div>`;
+    requestAnimationFrame(formation?initStroke:initFlexibleTrace);
+  }
+
   function renderTraceScreen(){
+    if(runtime?.type==='numbers'&&runtime.chars.length>1){renderMultiNumberTraceScreen();return}
     stopMedia();document.body.classList.add('trace-active');document.body.classList.remove('trace-say-active');
     const s=currentSession(runtime.type),p=currentPrefs(runtime.type),g=glyph(),mode=traceMode();
     if(!g){toast('This tracing character is unavailable.');advanceToken('skipped');return}

@@ -37,70 +37,45 @@ async function syncBackgroundAudio(fromUserGesture=false){
 function stopBackgroundAudio(){if(!wapsMusic)return;clearInterval(wapsMusic._wapsFade);wapsMusic.pause();wapsMusic.currentTime=0;wapsMusicStarted=false;document.documentElement.dataset.music='off'}
 function duckBackgroundAudio(){wapsAudioDuck++;if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
 function restoreBackgroundAudio(){wapsAudioDuck=Math.max(0,wapsAudioDuck-1);if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
-const WAPS_NEURAL_TTS_URL='https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
-const WAPS_NEURAL_MODEL='onnx-community/Kokoro-82M-v1.0-ONNX';
-const WAPS_NEURAL_VOICE='af_heart';
 const WAPSVoice=(()=>{
- let neuralState='idle',tts=null,preparePromise=null,audioContext=null,current=null,jobSeq=0,fallbackVoices=[];
+ let current=null,fallbackVoices=[];
  const modeRates={default:.88,learning:.86,communication:.92,encouragement:.9,reader:.9};
  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
- const hooks={start:()=>duckBackgroundAudio(),end:()=>restoreBackgroundAudio()};
- function updateVoiceState(v){document.documentElement.dataset.wapsVoice=v}
+ function speechAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
+ function available(){return speechAvailable()}
  function rateFor(opts={}){const base=opts.mode==='reader'?Number(S.settings.readerRate||modeRates.reader):(modeRates[opts.mode]??modeRates.default);return clamp(Number(opts.rate??base)||base,.65,1.05)}
- function speechFallbackAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
- function audioContextAvailable(){return !!(window.AudioContext||window.webkitAudioContext)}
- function available(){return speechFallbackAvailable()||audioContextAvailable()}
- function chooseFallbackVoice(){
-  if(!speechFallbackAvailable())return null;
+ function chooseVoice(){
+  if(!speechAvailable())return null;
   const voices=speechSynthesis.getVoices?.()||[];if(voices.length)fallbackVoices=voices;
   const source=fallbackVoices.length?fallbackVoices:voices,pool=source.filter(v=>/^en([_-]|$)/i.test(v.lang||''));
   const score=v=>{const n=(v.name||'').toLowerCase(),l=(v.lang||'').toLowerCase();let s=0;if(/natural|neural|premium|enhanced/.test(n))s+=50;if(/aria|ava|samantha|google us english|serena|sonia|jenny/.test(n))s+=24;if(l==='en-jm')s+=16;if(l==='en-us')s+=12;if(l==='en-gb')s+=8;if(v.localService)s+=2;return s};
   return [...pool].sort((a,b)=>score(b)-score(a))[0]||source[0]||null;
  }
- if(speechFallbackAvailable()){fallbackVoices=speechSynthesis.getVoices?.()||[];speechSynthesis.addEventListener?.('voiceschanged',()=>{fallbackVoices=speechSynthesis.getVoices?.()||[]})}
- async function ensureAudioContext(){if(!audioContextAvailable())return null;if(!audioContext){const C=window.AudioContext||window.webkitAudioContext;audioContext=new C()}if(audioContext.state==='suspended')await audioContext.resume().catch(()=>{});return audioContext}
- function begin(job){if(job.started||job.cancelled)return;job.started=true;hooks.start();try{job.opts.onstart?.({type:'start',engine:job.engine})}catch{}}
- function finish(job,{error=null,cancelled=false}={}){if(!job||job.finished)return;job.finished=true;job.cancelled=job.cancelled||cancelled;if(job.started)hooks.end();if(!cancelled){try{error?job.opts.onerror?.(error):job.opts.onend?.({type:'end',engine:job.engine})}catch{}}try{job.resolve?.(!error&&!cancelled)}catch{}if(current===job)current=null}
- function stop(){const job=current;if(!job)return;job.cancelled=true;try{job.source?.stop?.()}catch{}try{job.audio?.pause?.()}catch{}if(job.engine==='fallback'&&speechFallbackAvailable())try{speechSynthesis.cancel()}catch{}finish(job,{cancelled:true})}
- async function unlock(){try{await ensureAudioContext()}catch{}}
- async function prepare(){
-  if(neuralState==='ready')return true;if(neuralState==='loading')return preparePromise;if(!navigator.onLine){updateVoiceState('fallback');return false}
-  neuralState='loading';updateVoiceState('preparing');
-  preparePromise=(async()=>{try{const mod=await import(WAPS_NEURAL_TTS_URL);tts=await mod.KokoroTTS.from_pretrained(WAPS_NEURAL_MODEL,{dtype:'q8',device:'wasm'});neuralState='ready';updateVoiceState('neural');return true}catch(err){console.warn('WAPS neural voice unavailable; using device fallback.',err);neuralState='failed';updateVoiceState('fallback');return false}})();
-  return preparePromise;
- }
- async function playNeural(job){
-  try{
-    const raw=await tts.generate(job.text,{voice:WAPS_NEURAL_VOICE,speed:rateFor(job.opts)});
-    if(job.cancelled||current!==job)return finish(job,{cancelled:true});
-    const ctx=await ensureAudioContext();if(!ctx||!raw?.data?.length)throw new Error('Neural audio could not be prepared');
-    const sampleRate=Number(raw.sample_rate||raw.sampleRate||24000),buffer=ctx.createBuffer(1,raw.data.length,sampleRate);buffer.getChannelData(0).set(raw.data);
-    const src=ctx.createBufferSource();src.buffer=buffer;src.connect(ctx.destination);job.source=src;job.engine='neural';src.onended=()=>finish(job);begin(job);src.start(0);
-  }catch(err){if(job.cancelled||current!==job)return finish(job,{cancelled:true});console.warn('WAPS neural speech failed for this phrase; using fallback.',err);playFallback(job)}
- }
- function playFallback(job){
-  if(!speechFallbackAvailable()){finish(job,{error:new Error('Speech unavailable')});return}
-  const u=new SpeechSynthesisUtterance(job.text),selected=chooseFallbackVoice();u.lang=selected?.lang||'en-US';if(selected)u.voice=selected;u.rate=rateFor(job.opts);u.pitch=clamp(Number(job.opts.pitch??1),.8,1.2);job.utterance=u;job.engine='fallback';u.onstart=()=>begin(job);u.onend=()=>finish(job);u.onerror=e=>finish(job,{error:e});try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(err){finish(job,{error:err})}
- }
+ if(speechAvailable()){fallbackVoices=speechSynthesis.getVoices?.()||[];speechSynthesis.addEventListener?.('voiceschanged',()=>{fallbackVoices=speechSynthesis.getVoices?.()||[]})}
+ function stop(){if(!current)return;const job=current;job.cancelled=true;try{speechSynthesis.cancel()}catch{}if(job.started)restoreBackgroundAudio();try{job.resolve?.(false)}catch{}current=null}
  function speak(text,opts={}){
-  text=String(text??'').replace(/\s+/g,' ').trim();if(!text)return Promise.resolve(false);if(opts.interrupt!==false)stop();
-  let resolve;const promise=new Promise(r=>{resolve=r}),job={id:++jobSeq,text,opts,resolve,promise,started:false,finished:false,cancelled:false,engine:'pending',source:null,audio:null,utterance:null};current=job;
-  if(neuralState==='ready'&&tts){playNeural(job);return promise}
-  if(neuralState==='idle'||neuralState==='failed')prepare().catch(()=>{});
-  if(speechFallbackAvailable()){playFallback(job);return promise}
-  prepare().then(ok=>{if(job.cancelled||current!==job)return finish(job,{cancelled:true});if(ok)playNeural(job);else finish(job,{error:new Error('Speech unavailable')})});
+  text=String(text??'').replace(/\s+/g,' ').trim();if(!text||!speechAvailable())return Promise.resolve(false);
+  if(opts.interrupt!==false)stop();
+  let resolve;const promise=new Promise(r=>{resolve=r}),job={text,opts,resolve,started:false,cancelled:false};current=job;
+  const u=new SpeechSynthesisUtterance(text),selected=chooseVoice();if(selected){u.voice=selected;u.lang=selected.lang||'en-US'}else u.lang='en-US';
+  u.rate=rateFor(opts);u.pitch=clamp(Number(opts.pitch??1),.9,1.08);
+  u.onstart=()=>{if(job.cancelled)return;job.started=true;duckBackgroundAudio();try{opts.onstart?.({type:'start',engine:'device'})}catch{}};
+  const finish=(ok,e)=>{if(current!==job)return;if(job.started)restoreBackgroundAudio();current=null;try{ok?opts.onend?.({type:'end',engine:'device'}):opts.onerror?.(e)}catch{}resolve(ok)};
+  u.onend=e=>finish(true,e);u.onerror=e=>finish(false,e);
+  try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){finish(false,e)}
   return promise;
  }
- function pause(){if(!current)return false;if(current.engine==='neural'&&audioContext){audioContext.suspend().catch(()=>{});return true}if(current.engine==='fallback'&&speechFallbackAvailable()){try{speechSynthesis.pause();return true}catch{}}return false}
- function resume(){if(!current)return false;if(current.engine==='neural'&&audioContext){audioContext.resume().catch(()=>{});return true}if(current.engine==='fallback'&&speechFallbackAvailable()){try{speechSynthesis.resume();return true}catch{}}return false}
- function isPaused(){if(current?.engine==='neural')return audioContext?.state==='suspended';return speechFallbackAvailable()?!!speechSynthesis.paused:false}
- function status(){return {engine:neuralState==='ready'?'neural':'fallback',neuralState,voice:WAPS_NEURAL_VOICE,model:WAPS_NEURAL_MODEL}}
+ function pause(){if(!speechAvailable()||!current)return false;try{speechSynthesis.pause();return true}catch{return false}}
+ function resume(){if(!speechAvailable()||!current)return false;try{speechSynthesis.resume();return true}catch{return false}}
+ function isPaused(){return speechAvailable()?!!speechSynthesis.paused:false}
+ function prepare(){return Promise.resolve(false)}
+ function unlock(){return Promise.resolve(true)}
+ function status(){return {engine:'device-safe',neuralState:'disabled-for-stability'}}
  return {speak,stop,pause,resume,isPaused,available,prepare,unlock,status};
 })();
 function wapsSpeak(u,opts={}){if(!u)return Promise.resolve(false);if(typeof u==='string')return WAPSVoice.speak(u,opts);return WAPSVoice.speak(u.text,{...opts,rate:u.rate||opts.rate,pitch:u.pitch||opts.pitch,onstart:u.onstart,onend:u.onend,onerror:u.onerror})}
 document.addEventListener('visibilitychange',()=>{if(!wapsMusic)return;if(document.hidden){wapsMusic.pause()}else if(S.settings.backgroundAudio&&!S.settings.lowStim){syncBackgroundAudio(false)}});
 document.addEventListener('pointerdown',()=>{WAPSVoice.unlock();if(S.settings.backgroundAudio&&!S.settings.lowStim&&(!wapsMusic||wapsMusic.paused))syncBackgroundAudio(true)},{passive:true});
-setTimeout(()=>{const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(navigator.onLine&&!c?.saveData&&(!c?.effectiveType||c.effectiveType==='4g'))WAPSVoice.prepare().catch(()=>{})},4500);
 
 function toast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}function show(html,wide=false){modal.classList.toggle('wide-modal',!!wide);mb.innerHTML=html;if(!modal.open)modal.showModal()}
 function whatsappSupportModal(){show(`<div class="whatsapp-support-sheet"><div class="whatsapp-sheet-icon" aria-hidden="true">WA</div><span class="eyebrow">WAPS SUPPORT</span><h2>WhatsApp Support</h2><p>Talk with other WAPS parents and caregivers.</p><div class="whatsapp-approval">New members need approval from a group admin.</div><div class="actions"><a class="btn whatsapp-join-btn" href="https://chat.whatsapp.com/DvI8bqupHVQD2lLQUgAKYK" target="_blank" rel="noopener noreferrer">Request to Join</a><button class="btn ghost" data-action="closeModal">Not now</button></div></div>`)}
@@ -650,7 +625,8 @@ function drawActivity(a,setIndex,meta={}){
  <div class="activity-banner"><button class="listen-prompt" data-action="repeatPrompt" aria-label="Hear it">🔊</button><div class="prompt">${esc(q)}</div></div>
  <div class="choices choices-${randomized.length}">${randomized.map(c=>`<button class="choice ${isMessage?"message-choice":""}" data-choice="${c}" data-target="${target}">${isMessage?`<span class="message-symbol symbol-${c}" aria-hidden="true"></span>`:visualHTML(c,"activity-photo")}<span>${a.engine==="label"?"":esc(concept[c].label)}</span></button>`).join("")}</div>
  <section class="practice-response-panel" aria-live="polite"><div id="feedback"></div><div class="support-question"><h3>How much help?</h3><div class="support-buttons"><button type="button" class="support-choice" data-support="Independent"><span>By themselves</span></button><button type="button" class="support-choice" data-support="Gesture"><span>A little help</span></button><button type="button" class="support-choice" data-support="Verbal cue"><span>Spoken help</span></button><button type="button" class="support-choice" data-support="Direct assistance"><span>Full help</span></button></div><select id="promptLevel" class="visually-hidden" aria-label="How much help was needed?"><option selected>Not recorded</option><option>Independent</option><option>Gesture</option><option>Verbal cue</option><option>Direct assistance</option></select></div></section>
- <div class="activity-footer"><button class="activity-back btn ghost" data-route="practice">Leave</button><button class="activity-repeat btn" data-action="repeatPrompt">🔊 Hear again</button></div></div>`;nav()
+ <div class="activity-footer"><button class="activity-back btn ghost" data-route="practice">Leave</button><button class="activity-repeat btn" data-action="repeatPrompt">🔊 Hear again</button></div></div>`;nav();
+ if(meta.unified&&WAPSVoice.available())setTimeout(()=>{if(practiceUnified&&currentPracticeRef)WAPSVoice.speak(q,{mode:'learning',rate:.86})},220)
 }
 function coach(){let icons=["◎","◷","●","↔","★","→","○","+"];let options=COACH_ROUTINES.map((x,i)=>`<button class="coach-simple-card" data-coach="${x.id}"><span class="coach-simple-icon" aria-hidden="true">${icons[i%icons.length]}</span><b>${esc(x.title)}</b><i>›</i></button>`).join("");return `<div class="reference-page coach-home"><section class="coach-simple-head"><span class="eyebrow">COACH</span><h1>What are you doing?</h1><p>Choose one. WAPS will guide you.</p></section><section class="coach-simple-grid">${options}</section><div class="coach-simple-note"><b>Watch. Wait. Respond.</b></div></div>`}
 let coachRun=null,coachStep=0;function coachScreen(id){coachRun=COACH_ROUTINES.find(x=>x.id===id);coachStep=0;drawCoachStep()}function drawCoachStep(){let s=coachRun.steps[coachStep],isWait=s[0]==='Wait';main.innerHTML=`<div class="coach-wrap"><button class="btn ghost" data-route="coach">← Coach choices</button><div class="coach-card" style="margin-top:14px"><div class="coach-visual" aria-hidden="true">${isWait?'◷':'◎'}</div><div class="eyebrow" style="margin-top:18px">Step ${coachStep+1} of ${coachRun.steps.length}</div><h2>${esc(s[0])}</h2><p>${esc(s[1])}</p>${isWait?'<div class="timer" id="waitTimer">8</div><p class="mini">Eight seconds is only a gentle example—not a universal rule.</p>':''}<div class="actions" style="justify-content:center"><button class="btn ghost" data-action="coachPrev" ${coachStep===0?'disabled':''}>Back</button><button class="btn" data-action="coachNext">${coachStep===coachRun.steps.length-1?'Record interaction':'Next'}</button></div></div></div>`;if(isWait)startTimer();nav()}
@@ -666,7 +642,7 @@ const MORE_GROUPS={
 };
 function moreGroupModal(key){const g=MORE_GROUPS[key];if(!g)return;show(`<div class="more-group-sheet"><button class="btn ghost" data-action="closeModal">← More</button><span class="eyebrow">MORE</span><h1>${esc(g.title)}</h1><div class="more-group-list">${g.items.map(x=>`<button data-action="${x[1]}"><b>${esc(x[0])}</b><i>›</i></button>`).join("")}</div></div>`,true)}
 function more(){let groups=[["child","My Child","Profile & progress","child-profile"],["school","School & Sharing","School tools","school-sharing"],["learn","Learn & Print","Lessons & printables","learn-print"],["help","Find Help","Help for families","find-help"],["settings","App Settings","Accessibility & backup","settings"],["about","About WAPS","About this app","about-waps"]];return `<div class="reference-page more-page simple-more v51-more"><section class="more-simple-head"><span class="eyebrow">MORE</span><h1>More tools</h1><p>Caregiver tools and support.</p></section><section class="more-group-grid">${groups.map(x=>`<button class="more-group-card ${x[0]}" data-action="moreGroup" data-more-group="${x[0]}">${uiIcon(x[3],'more-group-icon')}<span><b>${x[1]}</b><small>${x[2]}</small></span><i>›</i></button>`).join("")}</section></div>`}
-function render(){document.body.dataset.view='page';Trace?.cleanup();ConceptLearning?.cleanup();MathLearning?.cleanup();ComprehensionLearning?.cleanup();clearInterval(timerId);let r=route();if(!['home','talk','practice','coach','progress','more'].includes(r))r='home';if(S.settings.childMode&&!['home','talk','practice'].includes(r))r='home';document.body.dataset.route=r;main.innerHTML={home:home,talk:talk,practice:practice,coach:coach,progress:progress,more:more}[r]();nav();if(r==='home')hydrateV59Home();if(r==='talk'){drawAAC();drawSentence()}syncChildModeUI()}
+function render(){WAPSVoice.stop();document.body.dataset.view='page';Trace?.cleanup();ConceptLearning?.cleanup();MathLearning?.cleanup();ComprehensionLearning?.cleanup();clearInterval(timerId);let r=route();if(!['home','talk','practice','coach','progress','more'].includes(r))r='home';if(S.settings.childMode&&!['home','talk','practice'].includes(r))r='home';document.body.dataset.route=r;main.innerHTML={home:home,talk:talk,practice:practice,coach:coach,progress:progress,more:more}[r]();nav();if(r==='home')hydrateV59Home();if(r==='talk'){drawAAC();drawSentence()}syncChildModeUI()}
 function profileModal(){let profiles=S.profiles.map(p=>`<div class="list-item"><b>${esc(p.name)}</b><div class="mini">${esc((p.modes||[]).join(', ')||'Modes not recorded')}${p.interests?.length?' · '+esc(p.interests.slice(0,3).join(', ')):''}</div><div class="actions"><button class="btn secondary choose-profile" data-id="${p.id}">Use profile</button><button class="btn ghost edit-profile" data-id="${p.id}">Edit</button></div></div>`).join('');show(`<h2>My child</h2><div class="list">${profiles||'<p>No profiles yet.</p>'}</div><hr><h3>Add a child</h3><div class="field"><label>Child name<input id="pname" maxlength="40"></label></div><div class="field"><label>Photo (optional)<input id="profilePhoto" type="file" accept="image/*"></label></div><div class="field"><label>What would help most?<input id="priority" maxlength="120" placeholder="e.g. ask for help more easily"></label></div><div class="field"><label>Likes<input id="interests" maxlength="180" placeholder="e.g. music, buses, water, letters"></label></div><div class="field"><label>How does your child communicate?</label><div class="checks">${['Speech','AAC','Pointing','Gesture','Pictures','Signs','Writing/typing','Vocalization'].map(x=>`<label class="check"><input type="checkbox" name="mode" value="${x}">${x}</label>`).join('')}</div></div><div class="field"><label>Language context<select id="lang"><option>English</option><option>Jamaican Creole / Patwa</option><option>English + Jamaican Creole / Patwa</option><option>Other / multilingual</option></select></label></div><details class="passport-details"><summary>More details (optional)</summary><div class="field"><label>How YES looks/sounds<input id="yesSignal" placeholder="e.g. nods, says yes, taps YES"></label></div><div class="field"><label>How NO/refusal looks/sounds<input id="noSignal" placeholder="e.g. says no, turns away, pushes away"></label></div><div class="field"><label>How HELP is requested<input id="helpSignal"></label></div><div class="field"><label>How BREAK is requested<input id="breakSignal"></label></div><div class="field"><label>How pain/discomfort may be shown<input id="painSignal"></label></div><div class="field"><label>What helps when overwhelmed<input id="calms"></label></div></details><button class="btn" data-action="saveProfile">Save profile</button>`)}
 function editProfile(id){let p=S.profiles.find(x=>x.id===id);if(!p)return;show(`<h2>Edit ${esc(p.name)}</h2><div class="profile-edit-photo">${p.photo?`<img src="${p.photo}" alt="" class="profile-photo-preview">`:''}</div><div class="field"><label>Preferred name<input id="epname" value="${esc(p.name)}"></label></div><div class="field"><label>Change profile photo<input id="editProfilePhoto" type="file" accept="image/*"></label></div><div class="field"><label>Caregiver priority<input id="epriority" value="${esc(p.priority||'')}"></label></div><div class="field"><label>Interests<input id="einterests" value="${esc((p.interests||[]).join(', '))}" placeholder="music, cars, water play"></label></div><details class="passport-details" open><summary>Communication passport details</summary><div class="field"><label>YES<input id="eyesSignal" value="${esc(p.yesSignal||'')}"></label></div><div class="field"><label>NO / refusal<input id="enoSignal" value="${esc(p.noSignal||'')}"></label></div><div class="field"><label>HELP<input id="ehelpSignal" value="${esc(p.helpSignal||'')}"></label></div><div class="field"><label>BREAK<input id="ebreakSignal" value="${esc(p.breakSignal||'')}"></label></div><div class="field"><label>Pain / discomfort<input id="epainSignal" value="${esc(p.painSignal||'')}"></label></div><div class="field"><label>What helps when overwhelmed<input id="ecalms" value="${esc(p.calms||'')}"></label></div></details><div class="notice">WAPS does not score Jamaican Creole grammar as incorrect Standard English. Language difference and disorder are not the same thing.</div><div class="actions"><button class="btn" data-save-edit="${id}">Save</button><button class="btn danger" data-delete-profile="${id}">Delete profile</button></div>`)}
 function goalsModal(){let p=active();if(!p){profileModal();return}let goals=S.goals.filter(x=>x.profile===p.id);show(`<h2>${esc(p.name)}’s goals</h2><div class="list">${goals.map(g=>`<div class="list-item"><b>${esc(g.text)}</b><div class="mini">${g.active?'Active':'Paused'}</div><button class="btn ghost toggle-goal" data-id="${g.id}">${g.active?'Pause':'Activate'}</button></div>`).join('')||'<p>No goals yet.</p>'}</div><div class="field"><label>New goal<input id="goalInput" maxlength="160" placeholder="e.g. Ask for HELP using any reliable communication mode"></label></div><button class="btn" data-action="saveGoal">Add goal</button>`)}

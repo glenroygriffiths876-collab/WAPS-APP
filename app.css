@@ -3360,3 +3360,37 @@ html[data-low-stim="1"] .v59-low-fallback{
   position:absolute!important;inset:50% auto auto 50%!important;transform:translate(-50%,-50%)!important;
 }
 html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important}
+
+/* WAPS v62 — simple parent setup screens */
+.trace-quick-config,.trace-specific-config,.trace-style-config,.math-quick-settings,.math-exact-settings{max-width:620px;margin:auto}
+.trace-quick-config h1,.trace-specific-config h1,.trace-style-config h1,.math-quick-settings h1,.math-exact-settings h1{margin:.25rem 0 .35rem;color:#102f67}
+.trace-quick-help{margin:0 0 10px;color:#667974}
+.trace-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0}
+.trace-quick-grid button,.trace-style-options button,.trace-case-switch button,.math-quick-grid button{border:2px solid #d7e3e0;background:#fff;border-radius:17px;min-height:68px;padding:10px 12px;text-align:left;color:#173551;display:flex;flex-direction:column;justify-content:center;gap:2px;font:inherit}
+.trace-quick-grid button b,.trace-style-options button b,.math-quick-grid button b{font-size:1rem;font-weight:1000}.trace-quick-grid button small,.trace-style-options button small,.math-quick-grid button small{font-size:.76rem;color:#6a7b78}
+.trace-quick-grid button.selected,.trace-style-options button.selected,.trace-case-switch button.selected,.math-quick-grid button.selected{border-color:#6842bb;background:#f1ebff;box-shadow:0 0 0 3px rgba(104,66,187,.10)}
+.trace-specific-btn,.math-simple-link,.trace-restart-link{width:100%;border:0;background:transparent;color:#164ebd;font-weight:950;padding:9px 4px;text-align:center}
+.trace-quick-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:9px;margin-top:10px}.trace-quick-actions .btn{min-height:52px}
+.trace-case-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}.trace-case-switch button{min-height:48px;align-items:center;text-align:center;font-weight:950}
+.trace-token-grid.trace-token-grid-simple{max-height:none;overflow:visible;margin:8px 0 12px}
+.trace-token-grid-simple.letters{grid-template-columns:repeat(7,minmax(0,1fr))}.trace-token-grid-simple.numbers{grid-template-columns:repeat(7,minmax(0,1fr))}
+.trace-token-grid-simple button{min-height:44px;aspect-ratio:auto}
+.trace-custom-number-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin:8px 0}.trace-custom-number-row label{display:grid;gap:4px;font-weight:850}.trace-custom-number-row input{min-height:46px;border:2px solid #d5e2e7;border-radius:13px;padding:8px 12px;font:inherit}
+.trace-done-btn{width:100%;min-height:50px;margin-top:9px}
+.trace-style-group{margin:9px 0}.trace-style-group>b{display:block;margin-bottom:6px;color:#173551}.trace-style-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.trace-style-options button{min-height:58px;text-align:center;align-items:center;padding:8px}
+.trace-style-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.trace-style-footer .btn{min-height:50px}
+.math-quick-card{margin:10px 0;padding:12px;border:1px solid #dce8e5;border-radius:18px;background:#f8fbfa}
+.math-quick-heading{display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:center;margin-bottom:8px}.math-quick-heading>span{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#164ebd;color:#fff;font-weight:1000}.math-quick-heading b{display:block;color:#173551;font-size:1.04rem}.math-quick-heading small{display:block;color:#6a797f;margin-top:1px}
+.math-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.math-quick-grid.sessions{grid-template-columns:repeat(2,minmax(0,1fr))}
+.math-quick-grid button{min-height:61px;text-align:center;align-items:center;padding:8px}
+.math-quick-grid button.selected{border-color:#164ebd;background:#eef5ff;box-shadow:0 0 0 3px rgba(22,78,189,.10)}
+.math-current-exact{text-align:center;margin:7px 0 0;color:#526b70}
+.math-sound-choice{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;min-height:58px;border:2px solid #d7e3e0;border-radius:17px;background:#fff;padding:9px 12px;text-align:left;color:#173551}.math-sound-choice.selected{border-color:#2aa36d;background:#f1fbf6}.math-sound-choice>span{font-size:1.35rem}.math-sound-choice b,.math-sound-choice small{display:block}.math-sound-choice small{color:#6a797f}.math-sound-choice i{font-style:normal;color:#168252;font-weight:1000}
+.math-exact-settings p{text-align:center;color:#667974}.math-exact-input{display:grid;grid-template-columns:auto minmax(0,150px);gap:10px;justify-content:center;align-items:center;margin:20px auto}.math-exact-input span{font-weight:1000;color:#173551;font-size:1.2rem}.math-exact-input input{width:100%;min-height:64px;border:3px solid #164ebd;border-radius:18px;text-align:center;font:1000 1.7rem/1 inherit;color:#102f67;background:#fff}
+@media(max-width:520px){
+ .trace-quick-config,.trace-specific-config,.trace-style-config,.math-quick-settings,.math-exact-settings{font-size:.95rem}
+ .trace-quick-grid{gap:7px}.trace-quick-grid button{min-height:62px;padding:8px 10px}
+ .trace-token-grid-simple.letters,.trace-token-grid-simple.numbers{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.trace-token-grid-simple button{min-height:40px;padding:4px}
+ .trace-style-options{gap:5px}.trace-style-options button{min-height:54px;padding:6px}
+ .math-quick-card{padding:10px;margin:8px 0}.math-quick-grid{gap:7px}.math-quick-grid button{min-height:56px}
+}

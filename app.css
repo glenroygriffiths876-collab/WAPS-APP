@@ -3467,3 +3467,10 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
 .settings-tune{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;margin:12px 0;padding:12px;border:1px solid #dfe9e7;border-radius:16px;background:#fbfdfc}.settings-tune span:first-child{font-size:1.35rem}.settings-tune b,.settings-tune small{display:block}.settings-tune small{color:#6f7e7e}.settings-current{font-size:.72rem;font-weight:900;color:#5c3bb2;background:#eee9ff;border-radius:999px;padding:5px 8px}.settings-note{font-size:.78rem;color:#71827f;margin:10px 0 0}
 .danger-zone{border-color:#f0ceca}.danger-zone p{color:#745c58}
 @media(max-width:520px){.settings-shell{padding-bottom:72px}.settings-home-grid>button{min-height:76px;padding:12px 13px}.settings-choice-row.two{grid-template-columns:1fr}.settings-choice-row.three>button{padding:8px 4px;min-height:66px}.settings-card{padding:13px}}
+
+/* WAPS v73 — real multi-tune music selector */
+.settings-music-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.settings-music-grid button{min-height:82px;border:2px solid #d9e4e6;border-radius:17px;background:#fff;padding:10px;color:#173551;font:inherit;text-align:left}
+.settings-music-grid button.selected{border-color:#6945c5;background:#f1ebff;box-shadow:0 0 0 3px rgba(105,69,197,.09)}
+.settings-music-grid span,.settings-music-grid b,.settings-music-grid small{display:block}.settings-music-grid span{font-size:1.15rem}.settings-music-grid small{color:#6d7d80;margin-top:2px;font-size:.76rem}
+@media(max-width:420px){.settings-music-grid{grid-template-columns:1fr}}

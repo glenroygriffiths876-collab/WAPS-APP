@@ -1,5 +1,5 @@
 export function createMathLearningFeature(ctx){
-  const {getState,persist,show,toast,main,modal,go,esc,celebrate}=ctx;
+  const {getState,persist,show,toast,main,modal,go,esc,celebrate,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const OBJECTS=['ball','cookie','fish','flower','egg','orange','crayon'];
@@ -44,35 +44,14 @@ export function createMathLearningFeature(ctx){
   function goal(p=prefs()){return String(p.sessionLength)==='continuous'?Infinity:Number(p.sessionLength||5)}
   function signature(p=prefs()){return JSON.stringify([maxValue(p),String(p.sessionLength),!!p.hearNumbers])}
   function clearTimers(){clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;cueTimers.forEach(clearTimeout);cueTimers=[]}
-  function stopSpeech(){if('speechSynthesis'in window)speechSynthesis.cancel()}
+  function stopSpeech(){if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel()}
   function cleanup(){clearTimers();stopSpeech();runtime=null;document.body.classList.remove('math-active')}
-  function speechAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
-  function utter(text){
-    const u=new SpeechSynthesisUtterance(String(text));u.rate=.86;u.pitch=1.02;return u;
-  }
-  function speak(text,force=false){
-    if(!force&&!prefs().hearNumbers)return;
-    if(!speechAvailable())return;
-    speechSynthesis.cancel();speechSynthesis.speak(utter(text));
-  }
-  function speakNumber(n){
-    if(!prefs().hearNumbers||!speechAvailable())return;
-    speechSynthesis.cancel();speechSynthesis.speak(utter(n));
-  }
-  function speakNumberThen(n,done){
-    if(runtime?.transitioning)return;
-    const token=runtime;
-    const finish=()=>{if(runtime!==token)return;if(runtime)runtime.transitioning=false;done?.()};
-    if(!prefs().hearNumbers||!speechAvailable()){finish();return}
-    if(runtime)runtime.transitioning=true;
-    speechSynthesis.cancel();
-    let settled=false;
-    const once=()=>{if(settled)return;settled=true;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;finish()};
-    const u=utter(n);u.onend=once;u.onerror=once;
-    speechTransitionTimer=setTimeout(once,1500);
-    try{speechSynthesis.speak(u)}catch{once()}
-  }
-  function label(type){return LABELS[type]||'Maths'}
+  function speechAvailable(){return voice?.available?.()||('speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined')}
+  function voiceSpeak(text,opts={}){if(voice?.speak)return voice.speak(String(text),opts);if(!speechAvailable())return Promise.resolve(false);return new Promise(resolve=>{const u=new SpeechSynthesisUtterance(String(text));u.rate=Number(opts.rate||.86);u.pitch=1;u.onend=()=>resolve(true);u.onerror=()=>resolve(false);speechSynthesis.cancel();speechSynthesis.speak(u)})}
+  function speak(text,force=false){if(!force&&!prefs().hearNumbers)return;if(!speechAvailable())return;voiceSpeak(text,{mode:'learning',rate:.86})}
+  function speakNumber(n){if(!prefs().hearNumbers||!speechAvailable())return;voiceSpeak(n,{mode:'learning',rate:.84})}
+  function speakNumberThen(n,done){if(runtime?.transitioning)return;const token=runtime,finish=()=>{if(runtime!==token)return;if(runtime)runtime.transitioning=false;done?.()};if(!prefs().hearNumbers||!speechAvailable()){finish();return}if(runtime)runtime.transitioning=true;let settled=false;const once=()=>{if(settled)return;settled=true;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;finish()};speechTransitionTimer=setTimeout(once,5000);voiceSpeak(n,{mode:'learning',rate:.84}).then(once,once)}
+function label(type){return LABELS[type]||'Maths'}
   function modeMark(type){return type==='count'?'123':type==='add'?'+':'−'}
   function rangeLabel(p=prefs()){return 'Up to '+maxValue(p)}
   function totalObjects(q){return q.type==='count'?q.quantity:q.type==='add'?q.a+q.b:q.start}
@@ -310,7 +289,7 @@ export function createMathLearningFeature(ctx){
     state().history.push(record);if(state().history.length>800)state().history=state().history.slice(-800);
     s.completed++;s.lastProblem=problemSig(type,q);s.lastCorrectPosition=q.correctPosition;s.positionCounts[q.correctPosition]=(s.positionCounts[q.correctPosition]||0)+1;s.current=null;
     const g=goal(p);if(Number.isFinite(g)&&s.completed>=g)s.finished=true;
-    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers)speak('Great job');celebrate?.(btn);
+    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers&&voice?.speak)voice.speak('Great job',{mode:'encouragement',rate:.9});else if(p.hearNumbers)speak('Great job');celebrate?.(btn);
     advanceTimer=setTimeout(()=>{advanceTimer=null;s.finished?finish(type):renderQuestion(type)},850);
   }
   function finish(type){

@@ -3428,3 +3428,14 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
   .trace-number-multi-screen .trace-multi-number-wrap{grid-column:1;grid-row:2}
   .trace-number-multi-screen .trace-child-controls{grid-column:1;grid-row:3;grid-template-columns:repeat(5,minmax(0,1fr))}
 }
+
+/* WAPS v65 — educational numeral display matches tracing glyphs */
+.trace-say-token-educational{font-size:0;letter-spacing:0;display:flex;justify-content:center;align-items:center;margin:14px 0 18px;min-height:180px}
+.trace-edu-number{display:flex;justify-content:center;align-items:center;gap:0;width:min(100%,430px);height:clamp(170px,30vw,250px)}
+.trace-edu-digit{display:block;flex:1 1 0;min-width:0;height:100%;overflow:visible}
+.trace-edu-digit-path{fill:none;stroke:#5b35aa;stroke-width:115;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:520px){
+  .trace-say-token-educational{min-height:150px}
+  .trace-edu-number{height:clamp(145px,44vw,210px)}
+  .trace-edu-digit-path{stroke-width:120}
+}

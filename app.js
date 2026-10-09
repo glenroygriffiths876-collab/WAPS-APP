@@ -38,12 +38,14 @@ function stopBackgroundAudio(){if(!wapsMusic)return;clearInterval(wapsMusic._wap
 function duckBackgroundAudio(){wapsAudioDuck++;if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
 function restoreBackgroundAudio(){wapsAudioDuck=Math.max(0,wapsAudioDuck-1);if(wapsMusic&&!wapsMusic.paused)setBackgroundAudioLevel()}
 const WAPSVoice=(()=>{
- let current=null,fallbackVoices=[];
+ let current=null,fallbackVoices=[],manifest=null,manifestPromise=null;
+ const LIBRARY_ENABLED=true,MANIFEST_URL='./assets/audio/waps-voice/manifest.json';
  const modeRates={default:.88,learning:.86,communication:.92,encouragement:.9,reader:.9};
  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
  function speechAvailable(){return 'speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined'}
- function available(){return speechAvailable()}
+ function available(){return LIBRARY_ENABLED||speechAvailable()}
  function rateFor(opts={}){const base=opts.mode==='reader'?Number(S.settings.readerRate||modeRates.reader):(modeRates[opts.mode]??modeRates.default);return clamp(Number(opts.rate??base)||base,.65,1.05)}
+ function normalizeKey(text){return String(text??'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9' ]+/g,' ').replace(/\s+/g,' ').trim()}
  function chooseVoice(){
   if(!speechAvailable())return null;
   const voices=speechSynthesis.getVoices?.()||[];if(voices.length)fallbackVoices=voices;
@@ -52,27 +54,90 @@ const WAPSVoice=(()=>{
   return [...pool].sort((a,b)=>score(b)-score(a))[0]||source[0]||null;
  }
  if(speechAvailable()){fallbackVoices=speechSynthesis.getVoices?.()||[];speechSynthesis.addEventListener?.('voiceschanged',()=>{fallbackVoices=speechSynthesis.getVoices?.()||[]})}
- function stop(){if(!current)return;const job=current;job.cancelled=true;try{speechSynthesis.cancel()}catch{}if(job.started)restoreBackgroundAudio();try{job.resolve?.(false)}catch{}current=null}
- function speak(text,opts={}){
-  text=String(text??'').replace(/\s+/g,' ').trim();if(!text||!speechAvailable())return Promise.resolve(false);
-  if(opts.interrupt!==false)stop();
-  let resolve;const promise=new Promise(r=>{resolve=r}),job={text,opts,resolve,started:false,cancelled:false};current=job;
+ async function loadManifest(){
+  if(!LIBRARY_ENABLED)return null;
+  if(manifest)return manifest;
+  if(manifestPromise)return manifestPromise;
+  manifestPromise=fetch(MANIFEST_URL,{cache:'no-store'}).then(r=>r.ok?r.json():null).then(m=>manifest=(m&&typeof m==='object')?m:{version:1,clips:{}}).catch(()=>manifest={version:1,clips:{}}).finally(()=>{manifestPromise=null});
+  return manifestPromise;
+ }
+ function clipFor(text,opts={}){
+  if(manifest?.enabled===false)return null;
+  const clips=manifest?.clips;if(!clips||typeof clips!=='object')return null;
+  const key=normalizeKey(opts.voiceKey||text),entry=clips[key];if(!entry)return null;
+  if(typeof entry==='string')return {src:entry};
+  if(typeof entry!=='object'||!entry.src)return null;
+  if(Array.isArray(entry.modes)&&opts.mode&&!entry.modes.includes(opts.mode))return null;
+  return entry;
+ }
+ function finishJob(job,ok,engine,error){
+  if(current!==job)return;
+  if(job.started)restoreBackgroundAudio();
+  current=null;
+  try{ok?job.opts.onend?.({type:'end',engine}):job.opts.onerror?.(error)}catch{}
+  try{job.resolve?.(ok)}catch{}
+ }
+ function stop(){
+  if(!current)return;
+  const job=current;job.cancelled=true;
+  try{speechSynthesis.cancel()}catch{}
+  try{if(job.audio){job.audio.pause();job.audio.currentTime=0;job.audio.removeAttribute('src');job.audio.load?.()}}catch{}
+  if(job.started)restoreBackgroundAudio();
+  try{job.resolve?.(false)}catch{}
+  current=null;
+ }
+ function speakDevice(text,opts,job){
+  if(!speechAvailable()){finishJob(job,false,'device',new Error('speech-unavailable'));return}
   const u=new SpeechSynthesisUtterance(text),selected=chooseVoice();if(selected){u.voice=selected;u.lang=selected.lang||'en-US'}else u.lang='en-US';
   u.rate=rateFor(opts);u.pitch=clamp(Number(opts.pitch??1),.9,1.08);
-  u.onstart=()=>{if(job.cancelled)return;job.started=true;duckBackgroundAudio();try{opts.onstart?.({type:'start',engine:'device'})}catch{}};
-  const finish=(ok,e)=>{if(current!==job)return;if(job.started)restoreBackgroundAudio();current=null;try{ok?opts.onend?.({type:'end',engine:'device'}):opts.onerror?.(e)}catch{}resolve(ok)};
-  u.onend=e=>finish(true,e);u.onerror=e=>finish(false,e);
-  try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){finish(false,e)}
+  u.onstart=()=>{if(job.cancelled)return;if(!job.started){job.started=true;duckBackgroundAudio()}try{opts.onstart?.({type:'start',engine:'device'})}catch{}};
+  u.onend=e=>finishJob(job,true,'device',e);u.onerror=e=>finishJob(job,false,'device',e);
+  try{speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){finishJob(job,false,'device',e)}
+ }
+ function speakClip(entry,text,opts,job){
+  let audio;try{audio=new Audio(entry.src)}catch{return false}
+  job.audio=audio;audio.preload='auto';audio.playsInline=true;
+  const fail=()=>{
+   if(current!==job||job.cancelled)return;
+   if(job.started){restoreBackgroundAudio();job.started=false}
+   job.audio=null;
+   if(opts.libraryOnly){finishJob(job,false,'library',new Error('clip-failed'));return}
+   speakDevice(text,opts,job);
+  };
+  audio.onplay=()=>{if(job.cancelled)return;if(!job.started){job.started=true;duckBackgroundAudio();try{opts.onstart?.({type:'start',engine:'library'})}catch{}}};
+  audio.onended=()=>finishJob(job,true,'library');
+  audio.onerror=fail;
+  const p=audio.play();if(p&&typeof p.catch==='function')p.catch(fail);
+  return true;
+ }
+ function speak(text,opts={}){
+  text=String(text??'').replace(/\s+/g,' ').trim();if(!text)return Promise.resolve(false);
+  if(opts.interrupt!==false)stop();
+  let resolve;const promise=new Promise(r=>{resolve=r}),job={text,opts,resolve,started:false,cancelled:false,audio:null};current=job;
+  const begin=async()=>{
+   if(LIBRARY_ENABLED&&!opts.forceDevice){await loadManifest();if(current!==job||job.cancelled)return;const clip=clipFor(text,opts);if(clip&&speakClip(clip,text,opts,job))return}
+   speakDevice(text,opts,job);
+  };
+  begin().catch(()=>{if(current===job&&!job.cancelled)speakDevice(text,opts,job)});
   return promise;
  }
- function pause(){if(!speechAvailable()||!current)return false;try{speechSynthesis.pause();return true}catch{return false}}
- function resume(){if(!speechAvailable()||!current)return false;try{speechSynthesis.resume();return true}catch{return false}}
- function isPaused(){return speechAvailable()?!!speechSynthesis.paused:false}
- function prepare(){return Promise.resolve(false)}
+ function pause(){
+  if(!current)return false;
+  if(current.audio){try{current.audio.pause();return true}catch{return false}}
+  if(!speechAvailable())return false;try{speechSynthesis.pause();return true}catch{return false}
+ }
+ function resume(){
+  if(!current)return false;
+  if(current.audio){try{const p=current.audio.play();if(p?.catch)p.catch(()=>{});return true}catch{return false}}
+  if(!speechAvailable())return false;try{speechSynthesis.resume();return true}catch{return false}
+ }
+ function isPaused(){if(current?.audio)return !!current.audio.paused;return speechAvailable()?!!speechSynthesis.paused:false}
+ function prepare(){return loadManifest().then(()=>true).catch(()=>false)}
  function unlock(){return Promise.resolve(true)}
- function status(){return {engine:'device-safe',neuralState:'disabled-for-stability'}}
+ function status(){return {engine:LIBRARY_ENABLED?'hybrid-library':'device-safe',libraryEnabled:LIBRARY_ENABLED,libraryClips:Object.keys(manifest?.clips||{}).length,fallback:'device',neuralState:'disabled-for-stability'}}
  return {speak,stop,pause,resume,isPaused,available,prepare,unlock,status};
 })();
+WAPSVoice.prepare().catch(()=>{});
 function wapsSpeak(u,opts={}){if(!u)return Promise.resolve(false);if(typeof u==='string')return WAPSVoice.speak(u,opts);return WAPSVoice.speak(u.text,{...opts,rate:u.rate||opts.rate,pitch:u.pitch||opts.pitch,onstart:u.onstart,onend:u.onend,onerror:u.onerror})}
 function autoVoiceEnabled(){return S.settings.autoVoice===true}
 function autoVoiceButtonHTML(){return '<button type="button" class="btn ghost auto-voice-toggle" data-action="toggleAutoVoice" aria-pressed="'+(autoVoiceEnabled()?'true':'false')+'">'+(autoVoiceEnabled()?'🔊 WAPS prompts on':'👩‍👧 Parent leads')+'</button>'}

@@ -19,9 +19,10 @@ export function createTraceWordsFeature(ctx){
   }
   function prefs(){
     const t=state(),k=profileKey();
-    if(!t.wordPrefs[k])t.wordPrefs[k]={selected:[],guidance:'guided',lineSize:'medium',showPictureDuringTrace:true};
+    if(!t.wordPrefs[k])t.wordPrefs[k]={selected:[],guidance:'guided',lineSize:'medium',showPictureDuringTrace:true,showWordGuide:true};
     const p=t.wordPrefs[k];
     p.selected=Array.isArray(p.selected)?p.selected:[];
+    if(typeof p.showWordGuide!=='boolean')p.showWordGuide=true;
     return p;
   }
   function cleanWord(value){return String(value||'').trim()}
@@ -79,6 +80,7 @@ export function createTraceWordsFeature(ctx){
         <label>Help<select id="traceWordsGuidance"><option value="guided" ${p.guidance==='guided'?'selected':''}>Guided</option><option value="standard" ${p.guidance==='standard'?'selected':''}>Standard</option><option value="fade" ${p.guidance==='fade'?'selected':''}>Fade the guide</option></select></label>
         <label>Trace line<select id="traceWordsLineSize"><option value="small" ${p.lineSize==='small'?'selected':''}>Small</option><option value="medium" ${p.lineSize==='medium'?'selected':''}>Medium</option><option value="large" ${p.lineSize==='large'?'selected':''}>Large</option></select></label>
         <label class="trace-word-picture-toggle"><input id="traceWordsPictureDuringTrace" type="checkbox" ${p.showPictureDuringTrace!==false?'checked':''}> Show picture while tracing</label>
+        <label class="trace-word-picture-toggle"><input id="traceWordsShowGuide" type="checkbox" ${p.showWordGuide!==false?'checked':''}> Show full word as a guide <small>Turn this off for a harder memory/spelling challenge.</small></label>
       </div></details>
       <div class="trace-config-summary"><b id="traceWordsSelectedCount">${p.selected.length} selected</b><span>${esc(child?.name||'Saved')}</span></div>
       <div class="actions"><button class="btn" data-action="traceWordsStart" ${p.selected.length?'':'disabled'}>Start</button>${list.length?'<button class="btn ghost" data-action="traceWordsSelectAll">Select all</button>':''}</div>
@@ -232,10 +234,11 @@ export function createTraceWordsFeature(ctx){
     p.guidance=$('#traceWordsGuidance')?.value||'guided';
     p.lineSize=$('#traceWordsLineSize')?.value||'medium';
     p.showPictureDuringTrace=$('#traceWordsPictureDuringTrace')?.checked!==false;
+    p.showWordGuide=$('#traceWordsShowGuide')?.checked!==false;
     p.selected=selectedIds();
     if(!p.selected.length){toast('Choose at least one word first.');return}
     await persist();
-    await startWordSet(p.selected,{guidance:p.guidance,lineSize:p.lineSize,showPictureDuringTrace:p.showPictureDuringTrace});
+    await startWordSet(p.selected,{guidance:p.guidance,lineSize:p.lineSize,showPictureDuringTrace:p.showPictureDuringTrace,showWordGuide:p.showWordGuide});
   }
   async function handleClick(el){
     const select=el.closest('[data-trace-word-select]');

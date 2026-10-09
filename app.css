@@ -3404,3 +3404,27 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
 .trace-live-saved{opacity:.5}
 .trace-mode-easy .trace-status,.trace-mode-guided .trace-status{background:rgba(20,47,103,.82)}
 .trace-mode-options button{min-width:0}
+
+/* WAPS v64 — multi-digit numbers stay together */
+.trace-number-multi-screen{grid-template-rows:auto minmax(0,1fr) auto}
+.trace-multi-number-wrap{position:relative;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
+.trace-digit-panel{min-width:0;min-height:0;border:2px solid #dce9e5;border-radius:26px;background:rgba(255,255,255,.94);overflow:hidden;box-shadow:0 12px 30px rgba(21,67,58,.07);transition:border-color .18s,background .18s,opacity .18s}
+.trace-digit-panel.active{border-color:#8a68cf;background:#fff;box-shadow:0 0 0 4px rgba(112,83,186,.10),0 12px 30px rgba(21,67,58,.07)}
+.trace-digit-panel.done{border-color:#45aa7d;background:#f4fcf8}
+.trace-digit-panel.upcoming{opacity:.58}
+.trace-digit-panel .trace-svg{width:100%;height:100%;display:block}
+.trace-static-guide{fill:none;stroke:#8fa2a0;stroke-linecap:round;stroke-linejoin:round;stroke-width:var(--trace-w);opacity:var(--guide-opacity,.24)}
+.trace-digit-panel.done .trace-static-guide{stroke:#23a66e;opacity:.95}
+.trace-multi-status{bottom:10px;z-index:4}
+@media(max-width:520px){
+  .trace-multi-number-wrap{gap:7px}
+  .trace-digit-panel{border-radius:22px}
+  .trace-number-multi-screen .trace-child-controls{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .trace-number-multi-screen .trace-child-controls button{font-size:.61rem;padding:4px 3px}
+}
+@media(max-height:650px) and (orientation:landscape){
+  .trace-child-screen.trace-number-multi-screen{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto}
+  .trace-number-multi-screen .trace-child-head{grid-column:1;grid-row:1}
+  .trace-number-multi-screen .trace-multi-number-wrap{grid-column:1;grid-row:2}
+  .trace-number-multi-screen .trace-child-controls{grid-column:1;grid-row:3;grid-template-columns:repeat(5,minmax(0,1fr))}
+}

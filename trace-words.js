@@ -19,10 +19,11 @@ export function createTraceWordsFeature(ctx){
   }
   function prefs(){
     const t=state(),k=profileKey();
-    if(!t.wordPrefs[k])t.wordPrefs[k]={selected:[],guidance:'guided',lineSize:'medium',showPictureDuringTrace:true,showWordGuide:true};
+    if(!t.wordPrefs[k])t.wordPrefs[k]={selected:[],guidance:'guided',lineSize:'medium',showPictureDuringTrace:true,showWordGuide:true,orderMode:'chosen'};
     const p=t.wordPrefs[k];
     p.selected=Array.isArray(p.selected)?p.selected:[];
     if(typeof p.showWordGuide!=='boolean')p.showWordGuide=true;
+    if(!['chosen','shuffle'].includes(p.orderMode))p.orderMode='chosen';
     return p;
   }
   function cleanWord(value){return String(value||'').trim()}
@@ -52,6 +53,14 @@ export function createTraceWordsFeature(ctx){
     const el=$('#traceWordsSelectedCount');
     if(el)el.textContent=n+' selected';
   }
+  function selectedOrderHTML(p){
+    const ids=selectedIds();
+    if(!ids.length)return '<div class="trace-word-today-empty">Tap words below to choose today’s practice.</div>';
+    return '<div class="trace-word-order-list">'+ids.map((id,i)=>{
+      const rec=findWord(id);if(!rec)return '';
+      return '<div class="trace-word-order-row"><span class="trace-word-order-num">'+(i+1)+'</span><b>'+esc(rec.word)+'</b><div class="trace-word-order-actions"><button data-trace-word-move="'+id+'" data-dir="-1" '+(i===0?'disabled':'')+' aria-label="Move '+esc(rec.word)+' earlier">↑</button><button data-trace-word-move="'+id+'" data-dir="1" '+(i===ids.length-1?'disabled':'')+' aria-label="Move '+esc(rec.word)+' later">↓</button></div></div>';
+    }).join('')+'</div>';
+  }
   function render(){
     const list=library(),p=prefs();
     p.selected=selectedIds();
@@ -60,20 +69,26 @@ export function createTraceWordsFeature(ctx){
     show(`<div class="trace-words-config">
       <button class="btn ghost" data-action="traceLaunch">← Trace & Say</button>
       <span class="eyebrow">WORDS & NAMES</span>
-      <h1>Add words. Then practise.</h1>
+      <h1>Choose today’s words.</h1>
+      <p class="trace-word-help">Your word bank stays saved. Tap only the words you want to practise now.</p>
       <div class="trace-word-toolbar">
         <button class="btn" data-action="traceWordsAdd">+ Add a word</button>
-        ${canAddName?`<button class="btn secondary" data-action="traceWordsAddName">Practise ${esc(childName)}</button>`:''}
+        ${canAddName?`<button class="btn secondary" data-action="traceWordsAddName">Add ${esc(childName)}</button>`:''}
       </div>
-      <div class="trace-word-privacy"><b>Pictures are optional.</b><span>Your pictures stay in WAPS on this device.</span></div>
+      <section class="trace-word-today">
+        <div class="trace-word-today-head"><div><span class="eyebrow">TODAY’S PRACTICE</span><b id="traceWordsSelectedCount">${p.selected.length} selected</b></div><button class="btn ghost" data-action="traceWordsClearSelection" ${p.selected.length?'':'disabled'}>Clear</button></div>
+        <div class="trace-word-order-mode"><button class="${p.orderMode==='chosen'?'selected':''}" data-trace-word-order-mode="chosen"><b>My order</b><small>Use the order below</small></button><button class="${p.orderMode==='shuffle'?'selected':''}" data-trace-word-order-mode="shuffle"><b>Shuffle each round</b><small>Mix the selected words</small></button></div>
+        ${p.orderMode==='chosen'?selectedOrderHTML(p):'<div class="trace-word-shuffle-note">WAPS will mix the selected words each time this set is practised.</div>'}
+      </section>
+      <div class="trace-word-privacy"><b>Word bank</b><span>Tap a word to add or remove it from today’s practice.</span></div>
       <div class="trace-word-list">
         ${list.length?list.map(rec=>`<article class="trace-word-card ${p.selected.includes(rec.id)?'selected':''}">
           <button class="trace-word-select" data-trace-word-select="${rec.id}" aria-pressed="${p.selected.includes(rec.id)?'true':'false'}">
             <span class="trace-word-thumb">${pictureHTML(rec,'trace-word-thumb-img')||'<span class="trace-word-text-thumb">Aa</span>'}</span>
-            <span class="trace-word-card-copy"><b>${esc(rec.word)}</b><small>${rec.image?.source==='waps'?'WAPS picture':rec.image?.source==='upload'?'Personal picture':'Text only'}</small></span>
+            <span class="trace-word-card-copy"><b>${esc(rec.word)}</b><small>${p.selected.includes(rec.id)?'In today’s practice':rec.image?.source==='waps'?'WAPS picture':rec.image?.source==='upload'?'Personal picture':'Text only'}</small></span>
             <span class="trace-word-check">${p.selected.includes(rec.id)?'✓':'○'}</span>
           </button>
-          <button class="trace-word-edit" data-trace-word-edit="${rec.id}" aria-label="Edit ${esc(rec.word)}">Edit</button>
+          <div class="trace-word-card-actions"><button class="trace-word-only" data-trace-word-only="${rec.id}">Only this</button><button class="trace-word-edit" data-trace-word-edit="${rec.id}" aria-label="Edit ${esc(rec.word)}">Edit</button></div>
         </article>`).join(''):`<div class="friendly-empty trace-word-empty"><span>Aa</span><div><b>No words added yet.</b><p>Add a spelling word, sight word, or name to begin.</p></div></div>`}
       </div>
       <details class="trace-word-more"><summary>Practice options</summary><div class="trace-setting-grid trace-word-settings">
@@ -82,8 +97,7 @@ export function createTraceWordsFeature(ctx){
         <label class="trace-word-picture-toggle"><input id="traceWordsPictureDuringTrace" type="checkbox" ${p.showPictureDuringTrace!==false?'checked':''}> Show picture while tracing</label>
         <label class="trace-word-picture-toggle"><input id="traceWordsShowGuide" type="checkbox" ${p.showWordGuide!==false?'checked':''}> Show full word as a guide <small>Turn this off for a harder memory/spelling challenge.</small></label>
       </div></details>
-      <div class="trace-config-summary"><b id="traceWordsSelectedCount">${p.selected.length} selected</b><span>${esc(child?.name||'Saved')}</span></div>
-      <div class="actions"><button class="btn" data-action="traceWordsStart" ${p.selected.length?'':'disabled'}>Start</button>${list.length?'<button class="btn ghost" data-action="traceWordsSelectAll">Select all</button>':''}</div>
+      <div class="actions trace-word-start-actions"><button class="btn" data-action="traceWordsStart" ${p.selected.length?'':'disabled'}>Start today’s practice</button>${list.length?'<button class="btn ghost" data-action="traceWordsSelectAll">Select all</button>':''}</div>
     </div>`,true);
   }
   function currentEditorRecord(){return editorId?findWord(editorId):null}
@@ -238,7 +252,7 @@ export function createTraceWordsFeature(ctx){
     p.selected=selectedIds();
     if(!p.selected.length){toast('Choose at least one word first.');return}
     await persist();
-    await startWordSet(p.selected,{guidance:p.guidance,lineSize:p.lineSize,showPictureDuringTrace:p.showPictureDuringTrace,showWordGuide:p.showWordGuide});
+    await startWordSet(p.selected,{guidance:p.guidance,lineSize:p.lineSize,showPictureDuringTrace:p.showPictureDuringTrace,showWordGuide:p.showWordGuide,orderMode:p.orderMode});
   }
   async function handleClick(el){
     const select=el.closest('[data-trace-word-select]');
@@ -252,6 +266,16 @@ export function createTraceWordsFeature(ctx){
       const startBtn=$('[data-action="traceWordsStart"]');if(startBtn)startBtn.disabled=!ids.size;
       return true;
     }
+    const only=el.closest('[data-trace-word-only]');
+    if(only){saveSelected([only.dataset.traceWordOnly]);await persist();render();return true}
+    const move=el.closest('[data-trace-word-move]');
+    if(move){
+      const ids=selectedIds(),id=move.dataset.traceWordMove,from=ids.indexOf(id),dir=Number(move.dataset.dir||0),to=from+dir;
+      if(from>=0&&to>=0&&to<ids.length){[ids[from],ids[to]]=[ids[to],ids[from]];saveSelected(ids);await persist();render()}
+      return true;
+    }
+    const mode=el.closest('[data-trace-word-order-mode]');
+    if(mode){const p=prefs();p.orderMode=mode.dataset.traceWordOrderMode==='shuffle'?'shuffle':'chosen';await persist();render();return true}
     const edit=el.closest('[data-trace-word-edit]');
     if(edit){openEditor(edit.dataset.traceWordEdit);return true}
     const a=el.closest('[data-action]')?.dataset.action;
@@ -270,6 +294,7 @@ export function createTraceWordsFeature(ctx){
     }
     if(a==='traceWordsSave'){await saveEditor();return true}
     if(a==='traceWordsDelete'){await deleteEditor();return true}
+    if(a==='traceWordsClearSelection'){saveSelected([]);await persist();render();return true}
     if(a==='traceWordsSelectAll'){saveSelected(library().map(x=>x.id));await persist();render();return true}
     if(a==='traceWordsStart'){await start();return true}
     return false;

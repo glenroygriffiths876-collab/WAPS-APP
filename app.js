@@ -4,12 +4,20 @@ const fresh=()=>({schema:2,profiles:[],active:null,settings:{reduced:false,lowSt
 function conceptImageForWord(word){const raw=String(word||'').trim().toLowerCase(),aliases={mummy:'mum',mom:'mum',mommy:'mum',daddy:'dad',grandmother:'grandma',grandfather:'grandpa',television:'tv',bicycle:'bike'};const id=aliases[raw]||raw;if(!id||!concept[id]||!HIGHRES_CONCEPTS.has(id))return null;return {id,src:`./assets/concepts/highres/${id}.webp`,label:concept[id].label||word}}
 
 
-const WAPS_MUSIC_SRC='./assets/audio/waps-gentle-steps.mp3';
+const WAPS_MUSIC={
+ gentle:{name:'Gentle Steps',mood:'Calm',src:'./assets/audio/waps-gentle-steps.mp3'},
+ sunny:{name:'Sunny Play',mood:'Bright & bouncy',src:'./assets/audio/waps-sunny-play.wav'},
+ adventure:{name:'Little Adventure',mood:'Playful & curious',src:'./assets/audio/waps-little-adventure.wav'},
+ learning:{name:'Happy Learning',mood:'Upbeat learning',src:'./assets/audio/waps-happy-learning.wav'}
+};
+function currentMusic(){return WAPS_MUSIC[S.settings.musicTune]||WAPS_MUSIC.gentle}
 let wapsMusic=null,wapsAudioDuck=0,wapsMusicStarted=false;
 function musicBaseVolume(){return Math.max(0,Math.min(1,Number(S.settings.audioVolume??0.25)))}
 function ensureWapsMusic(){
- if(wapsMusic)return wapsMusic;
- const a=new Audio(WAPS_MUSIC_SRC);
+ const wanted=currentMusic().src;
+ if(wapsMusic&&wapsMusic.dataset.wapsSrc===wanted)return wapsMusic;
+ if(wapsMusic){try{wapsMusic.pause();wapsMusic.currentTime=0}catch{}}
+ const a=new Audio(wanted);a.dataset.wapsSrc=wanted;
  a.loop=true;a.preload='auto';a.volume=0;
  a.addEventListener('play',()=>{wapsMusicStarted=true;document.documentElement.dataset.music='playing'});
  a.addEventListener('pause',()=>{document.documentElement.dataset.music='paused'});
@@ -809,7 +817,7 @@ function settingsModal(page='home'){
   show(`<div class="settings-shell"><div class="settings-page-head">${back}<span class="eyebrow">VOICE & SOUND</span><h1>How WAPS sounds</h1><p>Keep it simple, then preview before saving.</p></div>
    <section class="settings-card"><h2>Who leads?</h2><div class="settings-choice-row two"><button class="${!autoVoiceEnabled()?'selected':''}" data-action="settingsAutoVoice" data-value="off"><b>👩‍👧 Parent leads</b><small>WAPS stays quiet until Hear is tapped</small></button><button class="${autoVoiceEnabled()?'selected':''}" data-action="settingsAutoVoice" data-value="on"><b>🔊 WAPS speaks</b><small>Short activity prompts play automatically</small></button></div><input id="autoVoiceSetting" type="hidden" value="${autoVoiceEnabled()?'on':'off'}"></section>
    <section class="settings-card"><h2>Speaking speed</h2><div class="field"><label>Speed <input id="voiceSpeedSetting" type="range" min="0.75" max="1.15" step="0.05" value="${speed}"></label><div class="mini"><span id="voiceSpeedSettingValue">${Math.round(speed*100)}%</span> · slower ↔ faster</div></div><div class="actions"><button class="btn secondary" data-action="previewVoice">🔊 Preview voice</button></div><details class="settings-fine"><summary>Fine-tune voice</summary><div class="field"><label>Pitch <input id="voicePitchSetting" type="range" min="0.8" max="1.2" step="0.05" value="${Number(S.settings.voicePitch??1)}"></label><div class="mini"><span id="voicePitchSettingValue">${Number(S.settings.voicePitch??1).toFixed(2)}</span> · deeper ↔ higher</div></div></details></section>
-   <section class="settings-card"><h2>Background music</h2><label class="check audio-toggle"><input id="backgroundAudioSetting" type="checkbox" ${S.settings.backgroundAudio?'checked':''}><span><b>Play music softly</b><small>WAPS lowers it automatically while someone is speaking</small></span></label><div id="musicDetails" ${S.settings.backgroundAudio?'':'hidden'}><div class="settings-tune"><span>🎵</span><div><b>Gentle Steps</b><small>Calm · original WAPS instrumental</small></div><span class="settings-current">Current</span></div><div class="field"><label>Music volume <input id="audioVolumeSetting" type="range" min="0" max="1" step="0.05" value="${Number(S.settings.audioVolume??0.25)}"></label><div class="mini">Level: <span id="audioVolumeSettingValue">${Math.round(Number(S.settings.audioVolume??0.25)*100)}%</span></div></div><div class="actions"><button class="btn secondary" data-action="previewMusic">▶ Preview music</button></div><p class="settings-note">More playful and upbeat WAPS tunes can be added here later without changing this menu.</p></div></section>
+   <section class="settings-card"><h2>Background music</h2><label class="check audio-toggle"><input id="backgroundAudioSetting" type="checkbox" ${S.settings.backgroundAudio?'checked':''}><span><b>Play music softly</b><small>WAPS lowers it automatically while someone is speaking</small></span></label><div id="musicDetails" ${S.settings.backgroundAudio?'':'hidden'}><div class="settings-music-grid">${Object.entries(WAPS_MUSIC).map(([id,t])=>`<button class="${(S.settings.musicTune||'gentle')===id?'selected':''}" data-action="settingsMusicTune" data-value="${id}"><span>🎵</span><b>${t.name}</b><small>${t.mood}</small></button>`).join('')}</div><input id="musicTuneSetting" type="hidden" value="${S.settings.musicTune||'gentle'}"><div class="field"><label>Music volume <input id="audioVolumeSetting" type="range" min="0" max="1" step="0.05" value="${Number(S.settings.audioVolume??0.25)}"></label><div class="mini">Level: <span id="audioVolumeSettingValue">${Math.round(Number(S.settings.audioVolume??0.25)*100)}%</span></div></div><div class="actions"><button class="btn secondary" data-action="previewMusic">▶ Preview selected tune</button></div></div></section>
    <div class="settings-savebar"><button class="btn" data-action="saveSettings">Save & back</button></div></div>`,true);return;
  }
  if(page==='display'){
@@ -950,8 +958,9 @@ document.addEventListener('click',async e=>{
   if(a==='settingsPage'){settingsModal(el.closest('[data-settings-page]')?.dataset.settingsPage||'home');return}
   if(a==='settingsAutoVoice'){const v=el.closest('[data-value]')?.dataset.value==='on',input=$('#autoVoiceSetting');if(input)input.value=v?'on':'off';$('[data-action="settingsAutoVoice"]').forEach(b=>b.classList.toggle('selected',b.dataset.value===(v?'on':'off')));return}
   if(a==='settingsGrid'){const v=Number(el.closest('[data-value]')?.dataset.value||4),input=$('#gridSetting');if(input)input.value=String(v);$('[data-action="settingsGrid"]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.value)===v));return}
+  if(a==='settingsMusicTune'){const id=el.closest('[data-value]')?.dataset.value||'gentle',input=$('#musicTuneSetting');if(input)input.value=id;$('[data-action="settingsMusicTune"]').forEach(b=>b.classList.toggle('selected',b.dataset.value===id));return}
   if(a==='previewVoice'){const speed=Number($('#voiceSpeedSetting')?.value??S.settings.voiceSpeed??1),pitch=Number($('#voicePitchSetting')?.value??S.settings.voicePitch??1);WAPSVoice.speak('Touch each one. Great trying.',{mode:'learning',voiceSpeed:speed,voicePitch:pitch,forceDevice:true});return}
-  if(a==='previewMusic'){const was=S.settings.backgroundAudio;S.settings.backgroundAudio=true;let ok=await syncBackgroundAudio(true);S.settings.backgroundAudio=was;if(ok)toast('Previewing Gentle Steps');return}
+  if(a==='previewMusic'){const wasOn=S.settings.backgroundAudio,wasTune=S.settings.musicTune;S.settings.musicTune=$('#musicTuneSetting')?.value||wasTune||'gentle';S.settings.backgroundAudio=true;let ok=await syncBackgroundAudio(true);S.settings.backgroundAudio=wasOn;if(ok)toast('Previewing '+currentMusic().name);if(!wasOn)S.settings.musicTune=wasTune||'gentle';return}
   if(a==='professional'){professionalModal();return}
   if(a==='routines'){routinesModal();return}
   if(a==='noMaterials'){noMaterialsModal();return}
@@ -973,12 +982,12 @@ document.addEventListener('click',async e=>{
   if(a==='makeChoice'){let x=$('#choiceA')?.value.trim(),y=$('#choiceB')?.value.trim(),out=$('#choiceOut');if(out)out.innerHTML=`<div class="support-grid" style="margin-top:12px"><div class="support-panel"><strong>${esc(x||'Choice 1')}</strong></div><div class="support-panel"><strong>${esc(y||'Choice 2')}</strong></div></div>`;return}
   if(a==='backup'){download(`WAPS-backup-${new Date().toISOString().slice(0,10)}.json`,JSON.stringify({format:'WAPS-BACKUP',schema:2,appVersion:'1.0.0',exported:now(),data:S},null,2));return}
   if(a==='saveSettings'){
-   const grid=$('#gridSetting'),simple=$('#simpleSetting'),large=$('#largeTextSetting'),contrast=$('#contrastSetting'),reduce=$('#reduceSetting'),stim=$('#stimSetting'),speed=$('#voiceSpeedSetting'),pitch=$('#voicePitchSetting'),auto=$('#autoVoiceSetting'),music=$('#backgroundAudioSetting'),volume=$('#audioVolumeSetting');
+   const grid=$('#gridSetting'),simple=$('#simpleSetting'),large=$('#largeTextSetting'),contrast=$('#contrastSetting'),reduce=$('#reduceSetting'),stim=$('#stimSetting'),speed=$('#voiceSpeedSetting'),pitch=$('#voicePitchSetting'),auto=$('#autoVoiceSetting'),music=$('#backgroundAudioSetting'),tune=$('#musicTuneSetting'),volume=$('#audioVolumeSetting');
    if(grid)S.settings.grid=Number(grid.value||4);
    if(simple)S.settings.simpleMode=!!simple.checked;if(large)S.settings.largeText=!!large.checked;if(contrast)S.settings.highContrast=!!contrast.checked;if(reduce)S.settings.reduced=!!reduce.checked;if(stim)S.settings.lowStim=!!stim.checked;
    if(speed)S.settings.voiceSpeed=Number(speed.value||1);if(pitch)S.settings.voicePitch=Number(pitch.value||1);
    if(auto){S.settings.autoVoice=auto.value==='on';S.settings.autoVoicePreferenceVersion=1}
-   if(music)S.settings.backgroundAudio=!!music.checked;if(volume)S.settings.audioVolume=Number(volume.value??0.25);
+   if(music)S.settings.backgroundAudio=!!music.checked;if(tune&&WAPS_MUSIC[tune.value])S.settings.musicTune=tune.value;if(volume)S.settings.audioVolume=Number(volume.value??0.25);
    if(S.settings.backgroundAudio&&!S.settings.lowStim)await syncBackgroundAudio(true);else if(wapsMusic)wapsMusic.pause();
    await persist();document.documentElement.dataset.uiVersion='51';document.documentElement.dataset.lowStim=S.settings.lowStim?'1':'0';document.documentElement.dataset.simple=S.settings.simpleMode?'1':'0';document.documentElement.dataset.largeText=S.settings.largeText?'1':'0';document.documentElement.dataset.highContrast=S.settings.highContrast?'1':'0';settingsModal('home');toast('Settings saved');return
   }

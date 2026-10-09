@@ -7,9 +7,9 @@ export function createTraceFeature(ctx){
   const autoVoice=()=>getState().settings?.autoVoice!==false;
   const clone=v=>JSON.parse(JSON.stringify(v));
   const DEFAULTS={
-    letters:{type:'letters',selected:['A','B','C','D','E','F'],guidance:'guided',lineSize:'medium',letterAudio:'name'},
-    numbers:{type:'numbers',selected:['0','1','2','3','4','5'],guidance:'guided',lineSize:'medium',letterAudio:'name'},
-    words:{type:'words',selected:[],guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true}
+    letters:{type:'letters',selected:['A','B','C','D','E','F'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
+    numbers:{type:'numbers',selected:['0','1','2','3','4','5'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
+    words:{type:'words',selected:[],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true}
   };
   const LETTER_NAMES={A:'ay',B:'bee',C:'see',D:'dee',E:'ee',F:'eff',G:'gee',H:'aitch',I:'eye',J:'jay',K:'kay',L:'el',M:'em',N:'en',O:'oh',P:'pee',Q:'cue',R:'ar',S:'ess',T:'tee',U:'you',V:'vee',W:'double you',X:'ex',Y:'why',Z:'zed'};
   const LETTER_EXAMPLES={A:'apple',B:'ball',C:'cat',D:'dog',E:'egg',F:'fish',G:'go',H:'hat',I:'igloo',J:'jump',K:'kite',L:'lion',M:'mango',N:'nose',O:'orange',P:'pen',Q:'queen',R:'run',S:'sun',T:'tree',U:'umbrella',V:'van',W:'water',X:'box',Y:'yam',Z:'zebra'};
@@ -33,7 +33,8 @@ export function createTraceFeature(ctx){
   function wordPictureHTML(rec,cls=''){if(!rec?.image)return '';let src='';if(rec.image.source==='waps'&&rec.image.id)src='./assets/concepts/highres/'+encodeURIComponent(rec.image.id)+'.webp';else if(rec.image.source==='upload'&&rec.image.data)src=rec.image.data;return src?`<img class="${cls}" src="${src}" alt="${esc(rec.word)} picture">`:''}
   function prefs(type){
     const t=state(),b=bucket(t.prefs,profileKey());
-    if(!b[type])b[type]=clone(DEFAULTS[type]);
+    b[type]={...clone(DEFAULTS[type]),...(b[type]||{})};
+    if(!['easy','guided','formation'].includes(b[type].traceMode))b[type].traceMode='easy';
     return b[type];
   }
   function session(type){
@@ -53,7 +54,7 @@ export function createTraceFeature(ctx){
     const name=(active()?.name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');
     return unique([...name]);
   }
-  function signature(items,p){return JSON.stringify([items,p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false])}
+  function signature(items,p){return JSON.stringify([items,p.traceMode||'easy',p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false])}
   function stopMedia(){
     try{recognition?.abort()}catch{} recognition=null;
     if(demoRAF)cancelAnimationFrame(demoRAF);demoRAF=0;
@@ -127,7 +128,7 @@ export function createTraceFeature(ctx){
     const isLetters=draft.type==='letters';
     const option=(attr,value,label,sub='')=>`<button class="${draft[attr]===value?'selected':''}" data-trace-style="${attr}" data-trace-style-value="${value}"><b>${label}</b>${sub?`<small>${sub}</small>`:''}</button>`;
     show(`<div class="trace-config trace-style-config"><button class="btn ghost trace-back" data-action="traceStyleDone">← Quick setup</button><span class="eyebrow">PRACTICE STYLE</span><h1>How should WAPS help?</h1>
-      <section class="trace-style-group"><b>Tracing help</b><div class="trace-style-options">${option('guidance','guided','More help','Best starting point')}${option('guidance','standard','Standard')}${option('guidance','fade','Less help')}</div></section>
+      <section class="trace-style-group"><b>How should tracing work?</b><div class="trace-style-options trace-mode-options">${option('traceMode','easy','Easy tracing','Start anywhere')}${option('traceMode','guided','Guided tracing','Suggested start')}${option('traceMode','formation','Writing practice','Stroke order')}</div></section>
       <section class="trace-style-group"><b>Line size</b><div class="trace-style-options">${option('lineSize','large','Large')}${option('lineSize','medium','Medium')}${option('lineSize','small','Small')}</div></section>
       ${isLetters?`<section class="trace-style-group"><b>When Hear is tapped</b><div class="trace-style-options">${option('letterAudio','name','Letter name')}${option('letterAudio','sound','Sound + example')}${option('letterAudio','both','Both')}</div></section>`:''}
       <div class="trace-style-footer"><button class="btn" data-action="traceStyleDone">Done</button><button class="btn secondary" data-action="tracePreview">Preview formation</button></div>
@@ -176,8 +177,10 @@ export function createTraceFeature(ctx){
   function traceWidth(){
     const p=currentPrefs(runtime.type);return p.lineSize==='small'?48:p.lineSize==='large'?88:68;
   }
+  function traceMode(){const m=currentPrefs(runtime.type)?.traceMode;return ['easy','guided','formation'].includes(m)?m:'easy'}
   function guideOpacity(){
-    const p=currentPrefs(runtime.type);if(runtime?.type==='words'&&runtime.wordStage==='try')return .12;if(p.guidance!=='fade')return .28;
+    const p=currentPrefs(runtime.type),mode=traceMode();if(runtime?.type==='words'&&runtime.wordStage==='try')return .12;
+    if(mode==='easy')return .40;if(mode==='guided')return .32;if(p.guidance!=='fade')return .28;
     const recent=state().history.filter(x=>x.profile===profileKey()&&x.token===runtime.token).slice(-3).length;
     return Math.max(.09,.25-recent*.05);
   }
@@ -206,27 +209,28 @@ export function createTraceFeature(ctx){
   }
   function renderTraceScreen(){
     stopMedia();document.body.classList.add('trace-active');document.body.classList.remove('trace-say-active');
-    const s=currentSession(runtime.type),p=currentPrefs(runtime.type),g=glyph();
+    const s=currentSession(runtime.type),p=currentPrefs(runtime.type),g=glyph(),mode=traceMode();
     if(!g){toast('This tracing character is unavailable.');advanceToken('skipped');return}
-    const w=traceWidth(),showLines=p.guidance==='guided'&&!(runtime.type==='words'&&runtime.wordStage==='try');
+    const w=traceWidth(),formation=mode==='formation',showLines=formation&&!(runtime.type==='words'&&runtime.wordStage==='try');
     const wordMode=runtime.type==='words',stageLabel=wordMode&&runtime.wordStage==='try'?'TRY':'TRACE & SAY';
     const traceLabel=wordMode?`Trace ${esc(activeChar())} in ${esc(runtime.token)}`:`Trace ${esc(runtime.token)}`;
+    const initialStatus=formation?'Start at the glowing dot.':mode==='guided'?'Trace the shape. The dot shows one suggested start.':'Trace the shape. Start anywhere.';
     main.innerHTML=`<div class="trace-child-screen ${wordMode?'trace-word-child':''}">
       <header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back" aria-label="Exit tracing">←</button><div><span>${stageLabel}</span><b>${traceLabel}</b></div><div class="trace-count">${s.cursor+1} / ${s.items.length}</div></header>
       ${tokenContext()}
-      <div class="trace-canvas-wrap ${p.guidance} ${wordMode&&runtime.wordStage==='try'?'trace-try-guide':''}" id="traceCanvasWrap">
+      <div class="trace-canvas-wrap ${p.guidance} trace-mode-${mode} ${wordMode&&runtime.wordStage==='try'?'trace-try-guide':''}" id="traceCanvasWrap">
         <svg id="traceSvg" class="trace-svg" viewBox="0 0 1000 1000" role="img" aria-label="Trace ${esc(activeChar())}" touch-action="none">
           ${showLines?'<path class="trace-writing-line" d="M120 120 H880"/><path class="trace-writing-line mid" d="M120 410 H880"/><path class="trace-writing-line base" d="M120 820 H880"/><path class="trace-writing-line desc" d="M120 960 H880"/>':''}
-          ${g.strokes.map((st,i)=>`<path id="traceGuide${i}" class="trace-guide ${i<runtime.strokeIndex?'complete':''} ${i===runtime.strokeIndex?'active':''}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${guideOpacity()}"/><path id="traceBright${i}" class="trace-bright ${i<runtime.strokeIndex?'complete':i===runtime.strokeIndex?'active':''}" d="${st.d}" style="--trace-w:${w}px"/>`).join('')}
+          ${g.strokes.map((st,i)=>{const guideClass=formation?`${i<runtime.strokeIndex?'complete':''} ${i===runtime.strokeIndex?'active':''}`:'flex';const brightClass=formation?(i<runtime.strokeIndex?'complete':i===runtime.strokeIndex?'active':''):'';return `<path id="traceGuide${i}" class="trace-guide ${guideClass}" d="${st.d}" style="--trace-w:${w}px;--guide-opacity:${guideOpacity()}"/><path id="traceBright${i}" class="trace-bright ${brightClass}" d="${st.d}" style="--trace-w:${w}px"/>`}).join('')}
           <polyline id="traceLive" class="trace-live" points="" style="--trace-w:${Math.max(22,w*.42)}px"/>
-          <circle id="traceStartDot" class="trace-start-dot" r="${Math.max(28,w*.42)}"/>
+          <circle id="traceStartDot" class="trace-start-dot ${mode==='easy'?'hidden':''}" r="${Math.max(28,w*.42)}"/>
           <circle id="traceDemoDot" class="trace-demo-dot" r="${Math.max(22,w*.34)}"/>
         </svg>
-        <div id="traceStatus" class="trace-status">Start at the glowing dot.</div>
+        <div id="traceStatus" class="trace-status">${initialStatus}</div>
       </div>
-      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="${autoVoice()?'true':'false'}">${autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off'}</button><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
+      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="${autoVoice()?'true':'false'}">${autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off'}</button><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">${formation?'↶ Try stroke':'↶ Clear trace'}</button><button data-action="traceStartOver">↺ Start item over</button></div>
     </div>`;
-    requestAnimationFrame(initStroke);
+    requestAnimationFrame(formation?initStroke:initFlexibleTrace);
   }
   function svgPoint(svg,e){
     const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
@@ -285,6 +289,92 @@ export function createTraceFeature(ctx){
     };
     svg.onpointerup=end;svg.onpointercancel=end;
   }
+  function initFlexibleTrace(){
+    const svg=$('#traceSvg'),live=$('#traceLive'),startDot=$('#traceStartDot'),g=glyph(),mode=traceMode();
+    if(!svg||!live||!startDot||!g?.strokes?.length)return;
+    const p=currentPrefs(runtime.type),baseTol=p.lineSize==='small'?62:p.lineSize==='large'?106:84;
+    const tolerance=baseTol+(mode==='easy'?18:8),threshold=mode==='easy'?.64:.72;
+    const tracks=g.strokes.map((st,i)=>{
+      const path=$('#traceGuide'+i),bright=$('#traceBright'+i),len=path.getTotalLength(),count=Math.max(24,Math.ceil(len/10));
+      const samples=Array.from({length:count},(_,n)=>path.getPointAtLength(len*n/(count-1)));
+      return {i,path,bright,len,count,samples,covered:new Uint8Array(count),complete:false,short:len<90,closed:dist(samples[0],samples[count-1])<=tolerance*1.25};
+    });
+    const suggested=tracks[0].samples[0];startDot.setAttribute('cx',suggested.x);startDot.setAttribute('cy',suggested.y);
+    let tracing=false,pointerId=null,currentStroke=-1,currentIndex=-1,lastAccepted=null,gesture=[],hadAccepted=false,done=false;
+    const status=t=>{const o=$('#traceStatus');if(o)o.textContent=t};
+    const ratio=t=>{let n=0;for(const v of t.covered)n+=v;return n/t.count};
+    const markRange=(t,a,b)=>{
+      if(t.short){t.covered.fill(1);return}
+      const lo=Math.max(0,Math.min(a,b)-2),hi=Math.min(t.count-1,Math.max(a,b)+2);
+      for(let i=lo;i<=hi;i++)t.covered[i]=1;
+    };
+    const markPoint=(t,i)=>markRange(t,i,i);
+    const refresh=()=>{
+      let all=true,firstIncomplete=0;
+      tracks.forEach(t=>{
+        const r=ratio(t);t.complete=r>=threshold;
+        t.path.classList.toggle('partial',r>0&&!t.complete);
+        t.path.classList.toggle('complete',t.complete);
+        t.bright.classList.toggle('complete',t.complete);
+        if(!t.complete&&all){all=false;firstIncomplete=t.i}
+      });
+      runtime.demoStrokeIndex=firstIncomplete;return all;
+    };
+    const nearestGlobal=pt=>{
+      let best={s:-1,i:-1,d:Infinity};
+      for(const t of tracks)for(let i=0;i<t.count;i++){const d=dist(pt,t.samples[i]);if(d<best.d)best={s:t.i,i,d}}
+      return best;
+    };
+    const saveGesture=()=>{
+      if(gesture.length>1){
+        const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+        poly.setAttribute('class','trace-live trace-live-saved');poly.setAttribute('style',live.getAttribute('style')||'');
+        poly.setAttribute('points',gesture.map(q=>q.x.toFixed(1)+','+q.y.toFixed(1)).join(' '));svg.insertBefore(poly,live);
+      }
+      gesture=[];live.setAttribute('points','');
+    };
+    const completeNow=()=>{if(done)return;done=true;tracing=false;saveGesture();status('Nice tracing!');setTimeout(completeFlexibleCharacter,180)};
+    const process=e=>{
+      if(done)return;const pt=svgPoint(svg,e),n=nearestGlobal(pt);
+      if(n.d>tolerance){status('Stay close to the shape.');return}
+      const t=tracks[n.s],jump=lastAccepted?dist(pt,lastAccepted.pt):0;
+      if(lastAccepted&&jump>260){status('Keep your finger near the shape.');return}
+      if(currentStroke===n.s&&currentIndex>=0){
+        const delta=Math.abs(n.i-currentIndex),allowance=Math.max(10,Math.ceil(jump/7)+9);
+        if(t.closed&&delta>t.count*.65){
+          if(currentIndex>t.count*.7&&n.i<t.count*.3){markRange(t,currentIndex,t.count-1);markRange(t,0,n.i)}
+          else if(n.i>t.count*.7&&currentIndex<t.count*.3){markRange(t,0,currentIndex);markRange(t,n.i,t.count-1)}
+          else markPoint(t,n.i);
+        }else if(delta<=allowance)markRange(t,currentIndex,n.i);else markPoint(t,n.i);
+      }else markPoint(t,n.i);
+      currentStroke=n.s;currentIndex=n.i;lastAccepted={pt,s:n.s,i:n.i};gesture.push(pt);hadAccepted=true;
+      live.setAttribute('points',gesture.slice(-100).map(q=>q.x.toFixed(1)+','+q.y.toFixed(1)).join(' '));
+      status(mode==='guided'?'Keep following the shape. The dot is only a guide.':'Keep tracing the shape.');
+      if(refresh())completeNow();
+    };
+    svg.onpointerdown=e=>{
+      if(done||e.isPrimary===false)return;e.preventDefault();const pt=svgPoint(svg,e);
+      if(e.pointerType==='touch'&&Math.max(e.width||0,e.height||0)>95)return;
+      const n=nearestGlobal(pt);
+      if(n.d>tolerance*1.65){status('Touch anywhere on the shape to begin.');tracks[n.s]?.path?.classList.add('trace-pulse');setTimeout(()=>tracks[n.s]?.path?.classList.remove('trace-pulse'),650);return}
+      runtime.pointerAttempts++;runtime.touched=true;tracing=true;pointerId=e.pointerId;currentStroke=-1;currentIndex=-1;lastAccepted=null;gesture=[];hadAccepted=false;
+      try{svg.setPointerCapture(pointerId)}catch{};process(e);
+    };
+    svg.onpointermove=e=>{if(!tracing||e.pointerId!==pointerId||done)return;e.preventDefault();const events=e.getCoalescedEvents?.()||[e];for(const ev of events)process(ev)};
+    const end=e=>{
+      if(!tracing||e.pointerId!==pointerId||done)return;e.preventDefault();tracing=false;try{svg.releasePointerCapture(pointerId)}catch{}
+      saveGesture();currentStroke=-1;currentIndex=-1;lastAccepted=null;
+      if(!hadAccepted){runtime.totalAttempts++;status('Touch the shape and try again.');return}
+      if(refresh()){completeNow();return}status('Good. Keep going — touch any unfinished part.');
+    };
+    svg.onpointerup=end;svg.onpointercancel=end;
+  }
+  function completeFlexibleCharacter(){
+    if(!runtime)return;runtime.strokeAttempts=0;runtime.demoStrokeIndex=0;
+    if(runtime.digitIndex<runtime.chars.length-1){runtime.digitIndex++;runtime.strokeIndex=0;setTimeout(renderTraceScreen,180);return}
+    if(runtime.type==='words'){setTimeout(()=>runtime.wordStage==='try'?showSayStage():showBuildStage(),240);return}
+    setTimeout(showSayStage,240);
+  }
   function completeStroke(){
     runtime.strokeIndex++;runtime.strokeAttempts=0;
     const g=glyph();
@@ -300,7 +390,7 @@ export function createTraceFeature(ctx){
     if(!runtime)return;runtime=newRuntime(runtime.type,runtime.type==='words'?runtime.wordId:runtime.token);renderTraceScreen();
   }
   function showDemo(){
-    if(!runtime)return;const path=$('#traceGuide'+runtime.strokeIndex),dot=$('#traceDemoDot');if(!path||!dot)return;
+    if(!runtime)return;const demoIndex=traceMode()==='formation'?runtime.strokeIndex:Number(runtime.demoStrokeIndex||0),path=$('#traceGuide'+demoIndex),dot=$('#traceDemoDot');if(!path||!dot)return;
     if(demoRAF)cancelAnimationFrame(demoRAF);const len=path.getTotalLength(),start=performance.now(),dur=Math.max(900,Math.min(1800,len*1.45));dot.classList.add('show');
     const tick=t=>{const p=Math.min(1,(t-start)/dur),pt=path.getPointAtLength(len*p);dot.setAttribute('cx',pt.x);dot.setAttribute('cy',pt.y);if(p<1)demoRAF=requestAnimationFrame(tick);else{dot.classList.remove('show');demoRAF=0}};
     demoRAF=requestAnimationFrame(tick);
@@ -394,7 +484,7 @@ export function createTraceFeature(ctx){
   }
   async function finishSpeech(status){
     stopMedia();const t=state(),s=currentSession(runtime.type);
-    t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:runtime.type,token:runtime.token,completed:true,traceAttempts:runtime.pointerAttempts,retries:runtime.totalAttempts,guidance:currentPrefs(runtime.type).guidance,lineSize:currentPrefs(runtime.type).lineSize,speech:status});runtime.recorded=true;
+    t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:runtime.type,token:runtime.token,completed:true,traceAttempts:runtime.pointerAttempts,retries:runtime.totalAttempts,traceMode:currentPrefs(runtime.type).traceMode||'easy',guidance:currentPrefs(runtime.type).guidance,lineSize:currentPrefs(runtime.type).lineSize,speech:status});runtime.recorded=true;
     if(t.history.length>500)t.history=t.history.slice(-500);
     s.cursor=Math.min(s.items.length,s.cursor+1);await persist();
     celebrate?.($('.trace-say-token'));
@@ -422,7 +512,7 @@ export function createTraceFeature(ctx){
   }
   function exit(){
     const r=runtime;if(r?.touched&&!r.recorded){
-      const t=state();t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:r.type,token:r.token,completed:false,traceAttempts:r.pointerAttempts,retries:r.totalAttempts,guidance:currentPrefs(r.type).guidance,lineSize:currentPrefs(r.type).lineSize,speech:'not completed'});if(t.history.length>500)t.history=t.history.slice(-500);persist().catch(()=>{});
+      const t=state();t.history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),type:r.type,token:r.token,completed:false,traceAttempts:r.pointerAttempts,retries:r.totalAttempts,traceMode:currentPrefs(r.type).traceMode||'easy',guidance:currentPrefs(r.type).guidance,lineSize:currentPrefs(r.type).lineSize,speech:'not completed'});if(t.history.length>500)t.history=t.history.slice(-500);persist().catch(()=>{});
     }
     cleanup();runtime=null;if(modal.open)modal.close();go('practice');
   }
@@ -450,7 +540,7 @@ export function createTraceFeature(ctx){
   function preview(){
     readConfig();if(!draft.selected.length){toast('Choose at least one item first.');return}
     const token=draft.selected[0],ch=draft.type==='numbers'?[...String(token)][0]:token,g=TRACE_GLYPHS[ch];if(!g)return;
-    show(`<div class="trace-preview"><button class="btn ghost" data-action="tracePreviewBack">← Back</button><span class="eyebrow">FORMATION PREVIEW</span><h1>${esc(token)}</h1><svg viewBox="0 0 1000 1000">${g.strokes.map((s,i)=>`<path d="${s.d}" class="preview-stroke s${i%4}"/>`).join('')}</svg><p>Strokes are completed in the displayed order. In the child activity, only one stroke is active at a time.</p></div>`,true);
+    show(`<div class="trace-preview"><button class="btn ghost" data-action="tracePreviewBack">← Back</button><span class="eyebrow">FORMATION PREVIEW</span><h1>${esc(token)}</h1><svg viewBox="0 0 1000 1000">${g.strokes.map((s,i)=>`<path d="${s.d}" class="preview-stroke s${i%4}"/>`).join('')}</svg><p>Easy tracing lets the child start anywhere and lift or keep their finger down. Writing practice uses the conventional stroke order shown here.</p></div>`,true);
   }
   async function handleClick(el){
     const buildBtn=el.closest('[data-trace-build-id]');if(buildBtn){chooseBuildTile(buildBtn.dataset.traceBuildId);return true}
@@ -459,7 +549,7 @@ export function createTraceFeature(ctx){
     const tokenBtn=el.closest('[data-trace-token]');if(tokenBtn){toggleToken(tokenBtn.dataset.traceToken,tokenBtn);return true}
     const presetBtn=el.closest('[data-trace-preset]');if(presetBtn){preset(presetBtn.dataset.tracePreset);return true}
     const caseBtn=el.closest('[data-trace-custom-case]');if(caseBtn){customCase=caseBtn.dataset.traceCustomCase==='lower'?'lower':'upper';renderSpecific();return true}
-    const styleBtn=el.closest('[data-trace-style]');if(styleBtn){const k=styleBtn.dataset.traceStyle,v=styleBtn.dataset.traceStyleValue;if(['guidance','lineSize','letterAudio'].includes(k)){draft[k]=v;renderPracticeStyle()}return true}
+    const styleBtn=el.closest('[data-trace-style]');if(styleBtn){const k=styleBtn.dataset.traceStyle,v=styleBtn.dataset.traceStyleValue;if(['traceMode','guidance','lineSize','letterAudio'].includes(k)){draft[k]=v;renderPracticeStyle()}return true}
     const a=el.closest('[data-action]')?.dataset.action;if(!a||!a.startsWith('trace'))return false;
     if(a==='traceLaunch'){launch();return true}
     if(a==='traceChooseSpecific'){renderSpecific();return true}

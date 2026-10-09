@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "enabled": true,
+  "description": "Approved WAPS natural-voice clips. Keys are normalized spoken text; missing keys automatically use the device voice.",
+  "clips": {}
+}

@@ -3394,3 +3394,13 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
  .trace-style-options{gap:5px}.trace-style-options button{min-height:54px;padding:6px}
  .math-quick-card{padding:10px;margin:8px 0}.math-quick-grid{gap:7px}.math-quick-grid button{min-height:56px}
 }
+
+/* WAPS v63 — flexible child tracing */
+.trace-start-dot.hidden{display:none}
+.trace-guide.flex{stroke:#7053ba;opacity:var(--guide-opacity,.36)}
+.trace-guide.flex.partial{stroke:#6842bb;opacity:.72}
+.trace-mode-easy .trace-guide.flex{stroke:#7d6bb0}
+.trace-mode-guided .trace-guide.flex{stroke:#7053ba}
+.trace-live-saved{opacity:.5}
+.trace-mode-easy .trace-status,.trace-mode-guided .trace-status{background:rgba(20,47,103,.82)}
+.trace-mode-options button{min-width:0}

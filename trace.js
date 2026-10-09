@@ -459,7 +459,7 @@ export function createTraceFeature(ctx){
     if(!runtime||runtime.type!=='words')return;
     const tile=runtime.buildTiles?.find(x=>x.id===id);if(!tile||runtime.buildPlaced.includes(id))return;
     const spoken=speakBuildLetter(tile.ch),expected=runtime.chars[runtime.buildPlaced.length];
-    if(tile.ch.toLowerCase()!==String(expected).toLowerCase()){const b=$('[data-trace-build-id]').find(x=>x.dataset.traceBuildId===id);b?.classList.add('try-again');setTimeout(()=>b?.classList.remove('try-again'),500);const st=$('#traceBuildStatus');if(st)st.textContent='Try again. Listen and look for the next letter.';return}
+    if(tile.ch.toLowerCase()!==String(expected).toLowerCase()){const b=[...document.querySelectorAll('[data-trace-build-id]')].find(x=>x.dataset.traceBuildId===id);b?.classList.add('try-again');setTimeout(()=>b?.classList.remove('try-again'),500);const st=$('#traceBuildStatus');if(st)st.textContent='Try again. Listen and look for the next letter.';return}
     runtime.buildPlaced.push(id);
     await spoken.catch(()=>false);
     if(runtime.buildPlaced.length>=runtime.chars.length){celebrate?.(null);setTimeout(showTryStage,180);return}

@@ -46,11 +46,12 @@ export function createMathLearningFeature(ctx){
   function clearTimers(){clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;cueTimers.forEach(clearTimeout);cueTimers=[]}
   function stopSpeech(){if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel()}
   function cleanup(){clearTimers();stopSpeech();runtime=null;document.body.classList.remove('math-active')}
+  const autoVoice=()=>getState().settings?.autoVoice!==false;
   function speechAvailable(){return voice?.available?.()||('speechSynthesis'in window&&typeof SpeechSynthesisUtterance!=='undefined')}
   function voiceSpeak(text,opts={}){if(voice?.speak)return voice.speak(String(text),opts);if(!speechAvailable())return Promise.resolve(false);return new Promise(resolve=>{const u=new SpeechSynthesisUtterance(String(text));u.rate=Number(opts.rate||.86);u.pitch=1;u.onend=()=>resolve(true);u.onerror=()=>resolve(false);speechSynthesis.cancel();speechSynthesis.speak(u)})}
-  function speak(text,force=false){if(!force&&!prefs().hearNumbers)return;if(!speechAvailable())return;voiceSpeak(text,{mode:'learning',rate:.86})}
-  function speakNumber(n){if(!prefs().hearNumbers||!speechAvailable())return;voiceSpeak(n,{mode:'learning',rate:.84})}
-  function speakNumberThen(n,done){if(runtime?.transitioning)return;const token=runtime,finish=()=>{if(runtime!==token)return;if(runtime)runtime.transitioning=false;done?.()};if(!prefs().hearNumbers||!speechAvailable()){finish();return}if(runtime)runtime.transitioning=true;let settled=false;const once=()=>{if(settled)return;settled=true;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;finish()};speechTransitionTimer=setTimeout(once,5000);voiceSpeak(n,{mode:'learning',rate:.84}).then(once,once)}
+  function speak(text,force=false){if(!force&&(!prefs().hearNumbers||!autoVoice()))return;if(!speechAvailable())return;voiceSpeak(text,{mode:'learning',rate:.86})}
+  function speakNumber(n){if(!prefs().hearNumbers||!autoVoice()||!speechAvailable())return;voiceSpeak(n,{mode:'learning',rate:.84})}
+  function speakNumberThen(n,done){if(runtime?.transitioning)return;const token=runtime,finish=()=>{if(runtime!==token)return;if(runtime)runtime.transitioning=false;done?.()};if(!prefs().hearNumbers||!autoVoice()||!speechAvailable()){finish();return}if(runtime)runtime.transitioning=true;let settled=false;const once=()=>{if(settled)return;settled=true;clearTimeout(speechTransitionTimer);speechTransitionTimer=null;finish()};speechTransitionTimer=setTimeout(once,5000);voiceSpeak(n,{mode:'learning',rate:.84}).then(once,once)}
 function label(type){return LABELS[type]||'Maths'}
   function modeMark(type){return type==='count'?'123':type==='add'?'+':'−'}
   function rangeLabel(p=prefs()){return 'Up to '+maxValue(p)}
@@ -216,9 +217,9 @@ function label(type){return LABELS[type]||'Maths'}
     const q=ensureQuestion(type);if(!q){finish(type);return}
     runtime={type,locked:false,transitioning:false};
     const suppress=!!q.suppressPromptOnce;q.suppressPromptOnce=false;
-    main.innerHTML='<div class="math-child-screen" data-math-type="'+type+'" data-math-phase="'+q.phase+'" data-math-max="'+maxValue(p)+'" data-math-total="'+totalObjects(q)+'" data-math-answer-value="'+q.answer+'" '+(q.start!=null?'data-math-start="'+q.start+'"':'')+' data-math-page="'+q.page+'"><header class="math-child-head"><button class="math-caregiver-back" data-action="mathExit" aria-label="Exit activity">←</button><div><span>NUMBERS & MATHS</span><b>'+label(type)+'</b></div><div class="math-progress">'+progressLabel(s,p)+'</div></header><section class="math-prompt-card"><button data-action="mathHear" aria-label="Hear question">🔊</button><h1>'+esc(promptText(q))+'</h1></section><section class="math-work-area">'+equation(q)+objectsGrid(q)+awayTray(q)+'</section>'+answerGrid(q)+'<footer class="math-child-footer"><div id="mathStatus" class="math-status">'+statusText(q)+'</div><button data-action="mathHear">🔊 Hear</button></footer></div>';
+    main.innerHTML='<div class="math-child-screen" data-math-type="'+type+'" data-math-phase="'+q.phase+'" data-math-max="'+maxValue(p)+'" data-math-total="'+totalObjects(q)+'" data-math-answer-value="'+q.answer+'" '+(q.start!=null?'data-math-start="'+q.start+'"':'')+' data-math-page="'+q.page+'"><header class="math-child-head"><button class="math-caregiver-back" data-action="mathExit" aria-label="Exit activity">←</button><div><span>NUMBERS & MATHS</span><b>'+label(type)+'</b></div><div class="math-progress">'+progressLabel(s,p)+'</div></header><section class="math-prompt-card"><button data-action="mathHear" aria-label="Hear question">🔊</button><h1>'+esc(promptText(q))+'</h1></section><section class="math-work-area">'+equation(q)+objectsGrid(q)+awayTray(q)+'</section>'+answerGrid(q)+'<footer class="math-child-footer"><div id="mathStatus" class="math-status">'+statusText(q)+'</div><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="mathHear">🔊 Hear</button></footer></div>';
     persist().catch(()=>{});
-    if(p.hearNumbers&&!suppress)setTimeout(()=>speakPrompt(q),180);
+    if(p.hearNumbers&&autoVoice()&&!suppress)setTimeout(()=>speakPrompt(q),180);
   }
   function speakPrompt(q){speak(promptText(q),true)}
   function updateObjectState(q,index){
@@ -289,7 +290,7 @@ function label(type){return LABELS[type]||'Maths'}
     state().history.push(record);if(state().history.length>800)state().history=state().history.slice(-800);
     s.completed++;s.lastProblem=problemSig(type,q);s.lastCorrectPosition=q.correctPosition;s.positionCounts[q.correctPosition]=(s.positionCounts[q.correctPosition]||0)+1;s.current=null;
     const g=goal(p);if(Number.isFinite(g)&&s.completed>=g)s.finished=true;
-    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers&&voice?.speak)voice.speak('Great job',{mode:'encouragement',rate:.9});else if(p.hearNumbers)speak('Great job');celebrate?.(btn);
+    await persist();const out=$('#mathStatus');if(out)out.textContent='✓ Great job!';if(p.hearNumbers&&autoVoice()&&voice?.speak)voice.speak('Great job',{mode:'encouragement',rate:.9});else if(p.hearNumbers&&autoVoice())speak('Great job');celebrate?.(btn);
     advanceTimer=setTimeout(()=>{advanceTimer=null;s.finished?finish(type):renderQuestion(type)},850);
   }
   function finish(type){

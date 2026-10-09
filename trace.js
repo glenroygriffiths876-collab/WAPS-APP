@@ -9,7 +9,7 @@ export function createTraceFeature(ctx){
   const DEFAULTS={
     letters:{type:'letters',selected:['A','B','C','D','E','F'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
     numbers:{type:'numbers',selected:['0','1','2','3','4','5'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
-    words:{type:'words',selected:[],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true,showWordGuide:true}
+    words:{type:'words',selected:[],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true,showWordGuide:true,orderMode:'chosen'}
   };
   const LETTER_NAMES={A:'ay',B:'bee',C:'see',D:'dee',E:'ee',F:'eff',G:'gee',H:'aitch',I:'eye',J:'jay',K:'kay',L:'el',M:'em',N:'en',O:'oh',P:'pee',Q:'cue',R:'ar',S:'ess',T:'tee',U:'you',V:'vee',W:'double you',X:'ex',Y:'why',Z:'zed'};
   const LETTER_EXAMPLES={A:'apple',B:'ball',C:'cat',D:'dog',E:'egg',F:'fish',G:'go',H:'hat',I:'igloo',J:'jump',K:'kite',L:'lion',M:'mango',N:'nose',O:'orange',P:'pen',Q:'queen',R:'run',S:'sun',T:'tree',U:'umbrella',V:'van',W:'water',X:'box',Y:'yam',Z:'zebra'};
@@ -62,7 +62,7 @@ export function createTraceFeature(ctx){
     const name=(active()?.name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');
     return unique([...name]);
   }
-  function signature(items,p){return JSON.stringify([items,p.traceMode||'easy',p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false,p.showWordGuide!==false])}
+  function signature(items,p){return JSON.stringify([items,p.traceMode||'easy',p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false,p.showWordGuide!==false,p.orderMode||'chosen'])}
   function stopMedia(){
     try{recognition?.abort()}catch{} recognition=null;
     if(demoRAF)cancelAnimationFrame(demoRAF);demoRAF=0;
@@ -557,7 +557,9 @@ export function createTraceFeature(ctx){
     celebrate?.(null);
   }
   async function again(type){
-    const s=currentSession(type);if(!s)return launch();s.cursor=0;s.round=(s.round||1)+1;s.started=new Date().toISOString();await persist();renderCurrent(type);
+    const s=currentSession(type);if(!s)return launch();
+    if(type==='words'&&currentPrefs('words').orderMode==='shuffle')s.items=shuffle(s.items);
+    s.cursor=0;s.round=(s.round||1)+1;s.started=new Date().toISOString();await persist();renderCurrent(type);
   }
   async function restartSavedSet(type){
     const s=currentSession(type);if(!s){toast('There is no saved set to restart.');return}
@@ -587,7 +589,7 @@ export function createTraceFeature(ctx){
     pb.words={...clone(DEFAULTS.words),...(pb.words||{}),...options,selected:valid};
     const p=pb.words,sig=signature(valid,p);let s=session('words');
     if(!s||s.signature!==sig||!Array.isArray(s.items)||s.cursor>=s.items.length){
-      s={type:'words',items:[...valid],cursor:0,round:(s?.round||0)+1,signature:sig,started:new Date().toISOString()};saveSession('words',s);
+      s={type:'words',items:p.orderMode==='shuffle'?shuffle(valid):[...valid],cursor:0,round:(s?.round||0)+1,signature:sig,started:new Date().toISOString()};saveSession('words',s);
     }
     await persist();if(modal.open)modal.close();renderCurrent('words');
   }

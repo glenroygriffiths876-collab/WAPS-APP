@@ -1,7 +1,7 @@
 import {TRACE_GLYPHS,TRACE_UPPER,TRACE_LOWER,TRACE_REQUIRED,validateTraceGlyphs} from './trace-data.js';
 
 export function createTraceFeature(ctx){
-  const {getState,persist,active,show,toast,main,modal,go,esc,celebrate}=ctx;
+  const {getState,persist,active,show,toast,main,modal,go,esc,celebrate,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const NUMBER_BUTTONS=Array.from({length:21},(_,i)=>String(i));
   const clone=v=>JSON.parse(JSON.stringify(v));
@@ -57,7 +57,7 @@ export function createTraceFeature(ctx){
     try{recognition?.abort()}catch{} recognition=null;
     if(demoRAF)cancelAnimationFrame(demoRAF);demoRAF=0;
     clearTimeout(advanceTimer);advanceTimer=null;
-    if('speechSynthesis'in window)speechSynthesis.cancel();
+    if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel();
   }
   function cleanup(){
     stopMedia();document.body.classList.remove('trace-active','trace-say-active');
@@ -314,12 +314,14 @@ export function createTraceFeature(ctx){
     if(!runtime||runtime.type!=='words')return;runtime.wordStage='try';runtime.digitIndex=0;runtime.strokeIndex=0;runtime.strokeAttempts=0;runtime.buildPlaced=[];renderTraceScreen();
   }
   function speakWord(){
-    if(!runtime||runtime.type!=='words'||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
-    speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(runtime.token));u.rate=.78;u.pitch=1.02;speechSynthesis.speak(u);
+    if(!runtime||runtime.type!=='words')return;
+    if(voice?.speak){voice.speak(String(runtime.token),{mode:'learning',rate:.78});return}
+    if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
+    speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(runtime.token));u.rate=.78;u.pitch=1;speechSynthesis.speak(u);
   }
   function speakToken(token,withPrompt=true){
-    if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
-    speechSynthesis.cancel();let text='';
+    if(!voice?.speak&&(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'))return;
+    if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel();let text='';
     if(runtime?.type==='words'){text=withPrompt?'Trace '+activeChar()+' in '+String(token):String(token)}
     else if(runtime?.type==='numbers')text=numberWords(token);
     else{
@@ -329,7 +331,7 @@ export function createTraceFeature(ctx){
       else text=upper;
     }
     if(withPrompt&&runtime?.type!=='words')text='Trace '+text;
-    const u=new SpeechSynthesisUtterance(text);u.rate=.82;u.pitch=1.02;speechSynthesis.speak(u);
+    if(voice?.speak){voice.speak(text,{mode:'learning',rate:.82});return}const u=new SpeechSynthesisUtterance(text);u.rate=.82;u.pitch=1;speechSynthesis.speak(u);
   }
   function showSayStage(){
     stopMedia();document.body.classList.add('trace-active','trace-say-active');
@@ -343,8 +345,9 @@ export function createTraceFeature(ctx){
     setTimeout(()=>speakSayPrompt(),220);
   }
   function speakSayPrompt(){
-    if(!('speechSynthesis'in window))return;let target=runtime.type==='numbers'?numberWords(runtime.token):String(runtime.token);
-    speechSynthesis.cancel();const u=new SpeechSynthesisUtterance('Now say '+target);u.rate=.82;speechSynthesis.speak(u);
+    let target=runtime.type==='numbers'?numberWords(runtime.token):String(runtime.token);
+    if(voice?.speak){voice.speak('Now say '+target,{mode:'learning',rate:.82});return}
+    if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance('Now say '+target);u.rate=.82;speechSynthesis.speak(u);
   }
   function normalizeSpeech(s){return String(s||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
   function speechMatches(transcript){

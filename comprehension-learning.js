@@ -1,7 +1,7 @@
 import {MU_SPECIAL_VISUALS,muSpecialVisualHTML,MU_FIND_POOL,MU_MATCH_TASKS,MU_SORT_FAMILIES,MU_GROUP_TASKS,MU_MODE_LABELS} from './comprehension-data.js';
 
 export function createComprehensionLearningFeature(ctx){
-  const {getState,persist,show,toast,main,modal,go,esc,celebrate,visualHTML}=ctx;
+  const {getState,persist,show,toast,main,modal,go,esc,celebrate,visualHTML,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const DEFAULTS={fieldSize:3,sessionLength:5,hearPrompts:true};
   let runtime=null,advanceTimer=null;
@@ -29,8 +29,8 @@ export function createComprehensionLearningFeature(ctx){
   function setSession(mode,v){const t=state(),k=profileKey();t.sessions[k]=t.sessions[k]||{};t.sessions[k][mode]=v}
   function goal(){const v=prefs().sessionLength;return String(v)==='continuous'?Infinity:Number(v||5)}
   function signature(){const p=prefs();return JSON.stringify([p.fieldSize,String(p.sessionLength),!!p.hearPrompts])}
-  function cleanup(){clearTimeout(advanceTimer);advanceTimer=null;runtime=null;document.body.classList.remove('mu-active');if('speechSynthesis'in window)speechSynthesis.cancel()}
-  function speak(text,force=false){if(!force&&!prefs().hearPrompts)return;if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text));u.rate=.88;u.pitch=1.02;speechSynthesis.speak(u)}
+  function cleanup(){clearTimeout(advanceTimer);advanceTimer=null;runtime=null;document.body.classList.remove('mu-active');if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel()}
+  function speak(text,force=false){if(!force&&!prefs().hearPrompts)return;if(voice?.speak){voice.speak(String(text),{mode:'learning',rate:.88});return}if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text));u.rate=.88;u.pitch=1;speechSynthesis.speak(u)}
   function labelFor(id){
     if(MU_SPECIAL_VISUALS[id])return MU_SPECIAL_VISUALS[id].label;
     const aliases={'green-dotted-ball':'Green ball with dots','brown-dog':'Brown dog','brown-horse':'Brown horse'};
@@ -121,7 +121,7 @@ export function createComprehensionLearningFeature(ctx){
   function bodyHTML(q){return q.mode==='find'?findHTML(q):q.mode==='match'?matchHTML(q):q.mode==='sort'?sortHTML(q):q.mode==='group'?groupHTML(q):rulesHTML(q)}
 
   function renderQuestion(mode){
-    clearSessionTimers();if('speechSynthesis'in window)speechSynthesis.cancel();document.body.classList.add('mu-active');
+    clearSessionTimers();if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel();document.body.classList.add('mu-active');
     const s=session(mode);if(!s){launch();return}const g=goal();if((Number.isFinite(g)&&s.completed>=g)||s.finished){finish(mode);return}
     const q=ensureQuestion(mode);if(!q){finish(mode);return}runtime={mode,locked:false};
     main.innerHTML='<div class="mu-child-screen" data-mu-mode-active="'+mode+'" data-mu-field="'+prefs().fieldSize+'"><header class="mu-child-head"><button data-action="muExit" aria-label="Leave activity">←</button><div><span>MATCH & UNDERSTAND</span><b>'+MU_MODE_LABELS[mode]+'</b></div><strong>'+progressText(s)+'</strong></header><section class="mu-prompt"><button data-action="muHear" aria-label="Hear instruction">🔊</button><h1>'+esc(q.prompt)+'</h1></section><section class="mu-work">'+bodyHTML(q)+'</section><footer class="mu-footer"><div id="muStatus" aria-live="polite">Look carefully.</div><button data-action="muHear">🔊 Hear</button></footer></div>';

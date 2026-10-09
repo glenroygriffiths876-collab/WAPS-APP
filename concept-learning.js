@@ -171,7 +171,7 @@ export function createConceptLearningFeature(ctx){
       <header class="cs-child-head"><button class="cs-caregiver-back" data-action="csExit" aria-label="Exit activity">←</button><div><span>${typeIcon(type)} ${typeTitle(type).toUpperCase()}</span><b>${type==='colours'?'Find the colour':'Find the shape'}</b></div><div class="cs-count">${progressLabel(type,s,p)}</div></header>
       <section class="cs-prompt-card"><button data-action="csHear" aria-label="Hear question">🔊</button><h1>${esc(promptText(q))}</h1></section>
       <section class="cs-answer-grid choices-${q.options.length}" id="csAnswerGrid">${q.options.map((id,i)=>`<button class="cs-answer" data-cs-answer="${id}" aria-label="${esc(itemLabel(type,id))}">${optionVisual(q,id)}${p.showWord?`<b>${esc(itemLabel(type,id))}</b>`:''}</button>`).join('')}</section>
-      <footer class="cs-child-footer"><div id="csStatus" class="cs-status">Look carefully, then choose.</div><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="csHear">🔊 Hear again</button></footer>
+      <footer class="cs-child-footer"><div id="csStatus" class="cs-status">Look carefully, then choose.</div><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="${autoVoice()?'true':'false'}">${autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off'}</button><button data-action="csHear">🔊 Hear again</button></footer>
     </div>`;
     if(p.autoSpeak&&autoVoice())setTimeout(()=>speakQuestion(q),220);
   }

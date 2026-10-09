@@ -6,7 +6,7 @@ export function createMathLearningFeature(ctx){
   const LABELS={count:'Count',add:'Add',subtract:'Take Away'};
   const DEFAULTS={maxNumber:5,sessionLength:5,hearNumbers:true};
   const MAX_ALLOWED=50;
-  let runtime=null,advanceTimer=null,cueTimers=[],speechTransitionTimer=null;
+  let runtime=null,advanceTimer=null,cueTimers=[],speechTransitionTimer=null,settingsDraft=null;
 
   function clone(v){return JSON.parse(JSON.stringify(v))}
   function state(){
@@ -76,19 +76,25 @@ function label(type){return LABELS[type]||'Maths'}
       return '<button data-math-type="'+type+'"><span class="math-choice-mark '+type+'">'+modeMark(type)+'</span><b>'+label(type)+'</b><small>'+(s&&s.current&&!s.finished?'Continue':sub)+'</small></button>';
     }).join('')+'</div><button class="math-change" data-action="mathSettings">Change · '+rangeLabel(p)+' · '+(String(p.sessionLength)==='continuous'?'Continuous':p.sessionLength+' questions')+'</button></div>',true);
   }
-  function numberChoices(from,to,p){
-    let html='';
-    for(let n=from;n<=to;n++)html+='<label class="math-number-option"><input type="radio" name="mathMax" value="'+n+'" '+(maxValue(p)===n?'checked':'')+'><span>'+n+'</span></label>';
-    return html;
-  }
   function settings(){
-    cleanup();const p=prefs(),selected=maxValue(p);
-    show('<div class="math-settings"><button class="btn ghost" data-action="mathLaunch">← Numbers & Maths</button><span class="eyebrow">MATHS</span><h1>Change practice.</h1><div class="math-setting-block math-number-setting"><div class="math-setting-title"><b>Numbers up to</b><span>Currently: Up to '+selected+'</span></div><div class="math-number-grid quick">'+numberChoices(1,10,p)+'</div><details class="math-more-numbers" '+(selected>10?'open':'')+'><summary>More numbers <span>11–50</span></summary><div class="math-number-grid more">'+numberChoices(11,50,p)+'</div></details></div><div class="math-setting-block"><b>Questions</b><div class="math-session-pills">'+[5,10,15,'continuous'].map(v=>'<label><input type="radio" name="mathSession" value="'+v+'" '+(String(p.sessionLength)===String(v)?'checked':'')+'><span>'+(v==='continuous'?'Continuous':v)+'</span></label>').join('')+'</div></div><label class="math-hear-toggle"><input id="mathHearNumbers" type="checkbox" '+(p.hearNumbers?'checked':'')+'><span><b>Hear numbers</b><small>Say each number while counting.</small></span></label><button class="btn math-save" data-action="mathSaveSettings">Save</button></div>',true);
+    cleanup();const p=prefs();
+    settingsDraft={maxNumber:maxValue(p),sessionLength:p.sessionLength,hearNumbers:!!p.hearNumbers};
+    renderSettings();
+  }
+  function renderSettings(){
+    const d=settingsDraft||{maxNumber:5,sessionLength:5,hearNumbers:true},ranges=[5,10,20,50];
+    const rangeButtons=ranges.map(v=>'<button class="'+(Number(d.maxNumber)===v?'selected':'')+'" data-math-range="'+v+'"><b>Up to '+v+'</b><small>'+(v===5?'Start small':v===10?'Everyday counting':v===20?'More challenge':'Full range')+'</small></button>').join('');
+    const sessionButtons=[[5,'Quick'],[10,'Standard'],[15,'Longer'],['continuous','Keep going']].map(([v,label])=>'<button class="'+(String(d.sessionLength)===String(v)?'selected':'')+'" data-math-session-choice="'+v+'"><b>'+label+'</b><small>'+(v==='continuous'?'No fixed end':v+' questions')+'</small></button>').join('');
+    show('<div class="math-settings math-quick-settings"><button class="btn ghost math-back" data-action="mathLaunch">← Numbers & Maths</button><span class="eyebrow">MATHS SETUP</span><h1>Choose what feels right.</h1><section class="math-quick-card"><div class="math-quick-heading"><span>1</span><div><b>How high?</b><small>WAPS uses numbers from 1 up to this number.</small></div></div><div class="math-quick-grid">'+rangeButtons+'</div>'+(ranges.includes(Number(d.maxNumber))?'':'<div class="math-current-exact">Current: up to <b>'+d.maxNumber+'</b></div>')+'<button class="math-simple-link" data-action="mathExactRange">Choose another number</button></section><section class="math-quick-card"><div class="math-quick-heading"><span>2</span><div><b>How long?</b><small>Pick a comfortable practice time.</small></div></div><div class="math-quick-grid sessions">'+sessionButtons+'</div></section><button class="math-sound-choice '+(d.hearNumbers?'selected':'')+'" data-action="mathToggleHear"><span>🔊</span><div><b>Say numbers aloud</b><small>'+(d.hearNumbers?'On':'Off')+'</small></div><i>'+(d.hearNumbers?'✓':'')+'</i></button><button class="btn math-save" data-action="mathSaveSettings">Use these settings</button></div>',true);
+  }
+  function exactRange(){
+    const d=settingsDraft||{maxNumber:maxValue(prefs())};
+    show('<div class="math-settings math-exact-settings"><button class="btn ghost math-back" data-action="mathSettingsBack">← Quick setup</button><span class="eyebrow">NUMBER RANGE</span><h1>Choose the highest number.</h1><p>Enter any number from 1 to 50.</p><label class="math-exact-input"><span>Up to</span><input id="mathExactValue" type="number" min="1" max="50" inputmode="numeric" value="'+Number(d.maxNumber||5)+'"></label><button class="btn math-save" data-action="mathUseExactRange">Use this number</button></div>',true);
   }
   async function saveSettings(){
-    const p=prefs(),max=Math.max(1,Math.min(MAX_ALLOWED,Number($('input[name="mathMax"]:checked')?.value)||5)),sessionLength=$('input[name="mathSession"]:checked')?.value||'5';
-    p.maxNumber=max;p.sessionLength=sessionLength==='continuous'?'continuous':Number(sessionLength);p.hearNumbers=!!$('#mathHearNumbers')?.checked;
-    await persist();launch();toast('Maths practice updated');
+    const p=prefs(),d=settingsDraft||{maxNumber:maxValue(p),sessionLength:p.sessionLength,hearNumbers:p.hearNumbers};
+    p.maxNumber=Math.max(1,Math.min(MAX_ALLOWED,Number(d.maxNumber)||5));p.sessionLength=d.sessionLength==='continuous'?'continuous':Number(d.sessionLength||5);p.hearNumbers=!!d.hearNumbers;
+    settingsDraft=null;await persist();launch();toast('Maths practice updated');
   }
   function mixDifficulty(easy,hard){
     easy=shuffled(easy);hard=shuffled(hard);const out=[];
@@ -300,11 +306,17 @@ function label(type){return LABELS[type]||'Maths'}
     const obj=el.closest('[data-math-object]');if(obj){await touchObject(obj.dataset.mathObject);return true}
     const ans=el.closest('[data-math-answer]');if(ans){await answer(ans.dataset.mathAnswer,ans);return true}
     const typeBtn=el.closest('button[data-math-type]');
+    const rangeBtn=el.closest('[data-math-range]');if(rangeBtn){if(!settingsDraft)settings();settingsDraft.maxNumber=Math.max(1,Math.min(MAX_ALLOWED,Number(rangeBtn.dataset.mathRange)||5));renderSettings();return true}
+    const sessionBtn=el.closest('[data-math-session-choice]');if(sessionBtn){if(!settingsDraft)settings();settingsDraft.sessionLength=sessionBtn.dataset.mathSessionChoice==='continuous'?'continuous':Number(sessionBtn.dataset.mathSessionChoice||5);renderSettings();return true}
     const action=el.closest('[data-action]')?.dataset.action;
     if(typeBtn&&action!=='mathAgain'){await start(typeBtn.dataset.mathType);return true}
     if(!action||!action.startsWith('math'))return false;
     if(action==='mathLaunch'){launch();return true}
     if(action==='mathSettings'){settings();return true}
+    if(action==='mathExactRange'){exactRange();return true}
+    if(action==='mathSettingsBack'){renderSettings();return true}
+    if(action==='mathUseExactRange'){const n=Math.max(1,Math.min(MAX_ALLOWED,Number($('#mathExactValue')?.value)||5));if(!settingsDraft)settingsDraft={maxNumber:n,sessionLength:prefs().sessionLength,hearNumbers:prefs().hearNumbers};settingsDraft.maxNumber=n;renderSettings();return true}
+    if(action==='mathToggleHear'){if(!settingsDraft)settings();settingsDraft.hearNumbers=!settingsDraft.hearNumbers;renderSettings();return true}
     if(action==='mathSaveSettings'){await saveSettings();return true}
     if(action==='mathHear'){const s=session(runtime?.type),q=s?.current;if(q)speakPrompt(q);return true}
     if(action==='mathAgain'){await again(el.closest('[data-math-type]')?.dataset.mathType||runtime?.type||'count');return true}

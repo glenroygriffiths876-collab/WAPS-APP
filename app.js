@@ -76,7 +76,7 @@ const WAPSVoice=(()=>{
 function wapsSpeak(u,opts={}){if(!u)return Promise.resolve(false);if(typeof u==='string')return WAPSVoice.speak(u,opts);return WAPSVoice.speak(u.text,{...opts,rate:u.rate||opts.rate,pitch:u.pitch||opts.pitch,onstart:u.onstart,onend:u.onend,onerror:u.onerror})}
 function autoVoiceEnabled(){return S.settings.autoVoice!==false}
 function autoVoiceButtonHTML(){return '<button type="button" class="btn ghost auto-voice-toggle" data-action="toggleAutoVoice" aria-pressed="'+(autoVoiceEnabled()?'true':'false')+'">'+(autoVoiceEnabled()?'🔊 Auto voice on':'🔇 Auto voice off')+'</button>'}
-function syncAutoVoiceButtons(){$('[data-action="toggleAutoVoice"]').forEach(b=>{b.setAttribute('aria-pressed',autoVoiceEnabled()?'true':'false');b.textContent=autoVoiceEnabled()?'🔊 Auto voice on':'🔇 Auto voice off'})}
+function syncAutoVoiceButtons(){document.querySelectorAll('[data-action="toggleAutoVoice"]').forEach(b=>{b.setAttribute('aria-pressed',autoVoiceEnabled()?'true':'false');b.textContent=autoVoiceEnabled()?'🔊 Auto voice on':'🔇 Auto voice off'})}
 async function toggleAutoVoice(){S.settings.autoVoice=!autoVoiceEnabled();if(!autoVoiceEnabled())WAPSVoice.stop();await persist();syncAutoVoiceButtons();toast(autoVoiceEnabled()?'Automatic voice prompts on':'Automatic voice prompts off · Hear and Read still work')}
 document.addEventListener('visibilitychange',()=>{if(!wapsMusic)return;if(document.hidden){wapsMusic.pause()}else if(S.settings.backgroundAudio&&!S.settings.lowStim){syncBackgroundAudio(false)}});
 document.addEventListener('pointerdown',()=>{WAPSVoice.unlock();if(S.settings.backgroundAudio&&!S.settings.lowStim&&(!wapsMusic||wapsMusic.paused))syncBackgroundAudio(true)},{passive:true});
@@ -344,7 +344,7 @@ function courseHomeModal(){
 function courseModuleModal(id){
  const m=COURSE_MODULES.find(x=>x.id===Number(id));if(!m)return courseHomeModal();S.course.current=m.id;persist().catch(()=>{});
  const saved=S.course.quiz[m.id],journal=S.course.journal[m.id]||'',complete=S.course.completed.includes(m.id);
- show(`<div class="course-shell course-module-view"><div class="course-breadcrumb"><button class="btn ghost" data-action="courseHome">← Course home</button><span>Module ${m.id} of ${COURSE_MODULES.length}</span></div>
+ show(`<div class="course-shell course-module-view"><div class="course-breadcrumb"><button class="btn ghost" data-action="courseHome">← Course home</button><button class="btn ghost" data-action="speakPage">🔊 Read this page</button><span>Module ${m.id} of ${COURSE_MODULES.length}</span></div>
  <section class="course-module-head"><div><span class="eyebrow">MODULE ${m.id}</span><h1>${esc(m.title)}</h1><p>${esc(m.why)}</p></div><span class="course-time">~${m.time} min</span></section>
  <section class="course-section-card"><h2>What you will work on</h2><ul>${m.objectives.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
  ${m.lessons.map(l=>`<section class="course-section-card"><h2>${esc(l.title)}</h2><ul>${l.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`).join('')}

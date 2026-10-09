@@ -4,6 +4,7 @@ export function createTraceFeature(ctx){
   const {getState,persist,active,show,toast,main,modal,go,esc,celebrate,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const NUMBER_BUTTONS=Array.from({length:21},(_,i)=>String(i));
+  const autoVoice=()=>getState().settings?.autoVoice!==false;
   const clone=v=>JSON.parse(JSON.stringify(v));
   const DEFAULTS={
     letters:{type:'letters',selected:['A','B','C','D','E','F'],guidance:'guided',lineSize:'medium',letterAudio:'name'},
@@ -208,7 +209,7 @@ export function createTraceFeature(ctx){
         </svg>
         <div id="traceStatus" class="trace-status">Start at the glowing dot.</div>
       </div>
-      <div class="trace-child-controls"><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
+      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
     </div>`;
     requestAnimationFrame(initStroke);
   }
@@ -313,13 +314,13 @@ export function createTraceFeature(ctx){
   function startTryTrace(){
     if(!runtime||runtime.type!=='words')return;runtime.wordStage='try';runtime.digitIndex=0;runtime.strokeIndex=0;runtime.strokeAttempts=0;runtime.buildPlaced=[];renderTraceScreen();
   }
-  function speakWord(){
+  function speakWord(force=false){if(!force&&!autoVoice())return;
     if(!runtime||runtime.type!=='words')return;
     if(voice?.speak){voice.speak(String(runtime.token),{mode:'learning',rate:.78});return}
     if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
     speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(runtime.token));u.rate=.78;u.pitch=1;speechSynthesis.speak(u);
   }
-  function speakToken(token,withPrompt=true){
+  function speakToken(token,withPrompt=true,force=false){if(!force&&!autoVoice())return;
     if(!voice?.speak&&(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'))return;
     if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel();let text='';
     if(runtime?.type==='words'){text=withPrompt?'Trace '+activeChar()+' in '+String(token):String(token)}
@@ -344,7 +345,7 @@ export function createTraceFeature(ctx){
       <div class="trace-speech-fallback"><button data-action="traceCaregiverConfirm">👩🏽 Caregiver: I heard it</button><button data-action="traceSpeechSkip">Continue without voice →</button></div></div></div>`;
     setTimeout(()=>speakSayPrompt(),220);
   }
-  function speakSayPrompt(){
+  function speakSayPrompt(){if(!autoVoice())return;
     let target=runtime.type==='numbers'?numberWords(runtime.token):String(runtime.token);
     if(voice?.speak){voice.speak('Now say '+target,{mode:'learning',rate:.82});return}
     if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance('Now say '+target);u.rate=.82;speechSynthesis.speak(u);
@@ -448,10 +449,10 @@ export function createTraceFeature(ctx){
     if(a==='tracePreview'){preview();return true}
     if(a==='traceRestartSet'){await restartSavedSet(draft?.type||'letters');return true}
     if(a==='traceWordBegin'){renderTraceScreen();return true}
-    if(a==='traceWordHear'){speakWord();return true}
+    if(a==='traceWordHear'){speakWord(true);return true}
     if(a==='traceTryWord'){startTryTrace();return true}
     if(a==='traceTrySkip'){showSayStage();return true}
-    if(a==='traceHear'){speakToken(runtime.token,runtime?.type!=='words');return true}
+    if(a==='traceHear'){speakToken(runtime.token,runtime?.type!=='words',true);return true}
     if(a==='traceShowMe'){showDemo();return true}
     if(a==='traceRetryStroke'){retryStroke();return true}
     if(a==='traceStartOver'){restartItem();return true}

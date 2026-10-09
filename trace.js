@@ -1,4 +1,4 @@
-import {TRACE_GLYPHS,TRACE_UPPER,TRACE_LOWER,TRACE_REQUIRED,validateTraceGlyphs} from './trace-data.js';
+import {TRACE_GLYPHS,TRACE_UPPER,TRACE_LOWER,TRACE_REQUIRED,validateTraceGlyphs} from './trace-data.js?v=65';
 
 export function createTraceFeature(ctx){
   const {getState,persist,active,show,toast,main,modal,go,esc,celebrate,voice}=ctx;
@@ -48,6 +48,14 @@ export function createTraceFeature(ctx){
     const n=Number(value);if(!Number.isInteger(n)||n<0||n>99)return String(value);
     if(n<20)return ONES[n];
     const ten=TENS[Math.floor(n/10)],one=n%10;return one?ten+' '+ONES[one]:ten;
+  }
+  function educationalNumberHTML(value){
+    const digits=[...String(value)].filter(ch=>/\d/.test(ch));
+    if(!digits.length)return esc(value);
+    return '<span class="trace-edu-number" aria-label="'+esc(numberWords(value))+'">'+digits.map(ch=>{
+      const g=TRACE_GLYPHS[ch];if(!g)return '<span>'+esc(ch)+'</span>';
+      return '<svg class="trace-edu-digit" viewBox="0 0 1000 1000" aria-hidden="true">'+g.strokes.map(st=>'<path class="trace-edu-digit-path" d="'+st.d+'"/>').join('')+'</svg>';
+    }).join('')+'</span>';
   }
   function unique(list){return [...new Set(list)]}
   function cleanNameLetters(){
@@ -482,7 +490,7 @@ export function createTraceFeature(ctx){
     const supported=!!(window.SpeechRecognition||window.webkitSpeechRecognition),spoken=runtime.type==='numbers'?numberWords(runtime.token):String(runtime.token);
     const pic=runtime.type==='words'?wordPictureHTML(runtime.wordRecord,'trace-say-picture'):'';
     main.innerHTML=`<div class="trace-say-screen"><header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back">←</button><div><span>${runtime.type==='words'?'WORD COMPLETE':'TRACE COMPLETE'} ✓</span><b>Now say it.</b></div><div></div></header>
-      <div class="trace-say-card">${pic?`<div class="trace-say-image">${pic}</div>`:''}<span class="eyebrow">SAY IT</span><div class="trace-say-token">${esc(runtime.token)}</div><p>Say “${esc(spoken)}”.</p>
+      <div class="trace-say-card">${pic?`<div class="trace-say-image">${pic}</div>`:''}<span class="eyebrow">SAY IT</span><div class="trace-say-token ${runtime.type==='numbers'?'trace-say-token-educational':''}">${runtime.type==='numbers'?educationalNumberHTML(runtime.token):esc(runtime.token)}</div><p>Say “${esc(spoken)}”.</p>
       <div id="traceSpeechStatus" class="trace-speech-status">${supported?'Tap the microphone when you are ready.':'Your device cannot check speech automatically.'}</div>
       ${supported?'<button class="trace-mic" data-action="traceListen">🎤 <span>Say it</span></button>':''}
       <div class="trace-speech-fallback"><button data-action="traceCaregiverConfirm">👩🏽 Caregiver: I heard it</button><button data-action="traceSpeechSkip">Continue without voice →</button></div></div></div>`;

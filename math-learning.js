@@ -6,7 +6,6 @@ export function createMathLearningFeature(ctx){
   const LABELS={count:'Count',add:'Add',subtract:'Take Away'};
   const DEFAULTS={maxNumber:5,sessionLength:5,hearNumbers:true};
   const MAX_ALLOWED=50;
-  const PAGE_SIZE=10;
   let runtime=null,advanceTimer=null,cueTimers=[],speechTransitionTimer=null;
 
   function clone(v){return JSON.parse(JSON.stringify(v))}
@@ -56,36 +55,18 @@ function label(type){return LABELS[type]||'Maths'}
   function modeMark(type){return type==='count'?'123':type==='add'?'+':'−'}
   function rangeLabel(p=prefs()){return 'Up to '+maxValue(p)}
   function totalObjects(q){return q.type==='count'?q.quantity:q.type==='add'?q.a+q.b:q.start}
+  function normalizeQuestion(q){
+    if(!q)return q;
+    if('page' in q)delete q.page;
+    if('suppressPromptOnce' in q)delete q.suppressPromptOnce;
+    if(q.type==='count'&&q.phase==='touch'&&(q.counted||[]).length>=Number(q.quantity||0))q.phase='answer';
+    if(q.type==='subtract'&&q.phase==='touch'&&(q.removed||[]).length>=Number(q.remove||0))q.phase='answer';
+    return q;
+  }
   function objectHTML(id,index,q){
     const counted=(q.counted||[]).includes(index),removed=(q.removed||[]).includes(index);
     const seq=counted?(q.counted.indexOf(index)+1):'';
     return '<button class="math-object-btn '+(counted?'counted ':'')+(removed?'removed ':'')+'" data-math-object="'+index+'" '+(removed?'disabled':'')+' aria-label="'+esc((removed?'Taken away ':'')+'object '+(index+1))+'"><img src="./assets/concepts/highres/'+id+'.webp" alt="" draggable="false">'+(counted&&!removed?'<span class="math-count-badge">'+seq+'</span>':'')+'</button>';
-  }
-  function chunkParts(start,count,labelText){
-    const out=[];if(count<=0)return out;
-    const parts=Math.ceil(count/PAGE_SIZE);
-    for(let part=0;part<parts;part++){
-      const first=start+part*PAGE_SIZE,last=Math.min(start+count,first+PAGE_SIZE);
-      out.push({indices:Array.from({length:last-first},(_,i)=>first+i),label:labelText,part:part+1,parts});
-    }
-    return out;
-  }
-  function chunksFor(q){
-    if(q.type==='add')return [...chunkParts(0,q.a,'First group'),...chunkParts(q.a,q.b,'Second group')];
-    return chunkParts(0,totalObjects(q),q.type==='subtract'?'Starting group':'Count');
-  }
-  function currentChunk(q){
-    const chunks=chunksFor(q),page=Math.max(0,Math.min(chunks.length-1,Number(q.page)||0));
-    q.page=page;return {...chunks[page],page,totalPages:chunks.length};
-  }
-  function chunkDone(q,chunk){
-    const used=q.type==='subtract'?(q.removed||[]):(q.counted||[]);
-    return chunk.indices.every(i=>used.includes(i));
-  }
-  function chunkLabel(q,chunk){
-    if(chunk.totalPages<=1)return '';
-    if(q.type==='add')return chunk.label+' · part '+chunk.part+' of '+chunk.parts;
-    return 'Group '+(chunk.page+1)+' of '+chunk.totalPages;
   }
   function launch(){
     cleanup();
@@ -154,10 +135,10 @@ function label(type){return LABELS[type]||'Maths'}
   function ensureQuestion(type){
     const p=prefs(),s=session(type);if(!s)return null;
     const g=goal(p);if(Number.isFinite(g)&&s.completed>=g)return null;
-    if(s.current)return s.current;
+    if(s.current)return normalizeQuestion(s.current);
     if(!s.remaining?.length)refill(s,type,p);
     const base=s.remaining.shift(),max=maxValue(p),answer=type==='count'?base.quantity:base.answer,pos=answerOptions(answer,max,s),objectId=chooseObject(s);
-    const q={...base,type,answer,objectId,options:pos.options,correctPosition:pos.correctPosition,attempts:0,wrong:[],cued:false,counted:[],removed:[],page:0,phase:type==='add'?'answer':'touch',startedAt:Date.now(),round:s.round,suppressPromptOnce:false};
+    const q={...base,type,answer,objectId,options:pos.options,correctPosition:pos.correctPosition,attempts:0,wrong:[],cued:false,counted:[],removed:[],phase:type==='add'?'answer':'touch',startedAt:Date.now(),round:s.round};
     s.current=q;persist().catch(()=>{});return q;
   }
   async function start(type){
@@ -218,19 +199,15 @@ function label(type){return LABELS[type]||'Maths'}
     const g=goal(p);if((Number.isFinite(g)&&s.completed>=g)||s.finished){finish(type);return}
     const q=ensureQuestion(type);if(!q){finish(type);return}
     runtime={type,locked:false,transitioning:false};
-    const suppress=!!q.suppressPromptOnce;q.suppressPromptOnce=false;
-    main.innerHTML='<div class="math-child-screen" data-math-type="'+type+'" data-math-phase="'+q.phase+'" data-math-max="'+maxValue(p)+'" data-math-total="'+totalObjects(q)+'" data-math-answer-value="'+q.answer+'" '+(q.start!=null?'data-math-start="'+q.start+'"':'')+' data-math-page="'+q.page+'"><header class="math-child-head"><button class="math-caregiver-back" data-action="mathExit" aria-label="Exit activity">←</button><div><span>NUMBERS & MATHS</span><b>'+label(type)+'</b></div><div class="math-progress">'+progressLabel(s,p)+'</div></header><section class="math-prompt-card"><button data-action="mathHear" aria-label="Hear question">🔊</button><h1>'+esc(promptText(q))+'</h1></section><section class="math-work-area">'+equation(q)+objectsGrid(q)+awayTray(q)+'</section>'+answerGrid(q)+'<footer class="math-child-footer"><div id="mathStatus" class="math-status">'+statusText(q)+'</div><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="'+(autoVoice()?'true':'false')+'">'+(autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off')+'</button><button data-action="mathHear">🔊 Hear</button></footer></div>';
+    main.innerHTML='<div class="math-child-screen" data-math-type="'+type+'" data-math-phase="'+q.phase+'" data-math-max="'+maxValue(p)+'" data-math-total="'+totalObjects(q)+'" data-math-answer-value="'+q.answer+'" '+(q.start!=null?'data-math-start="'+q.start+'"':'')+'><header class="math-child-head"><button class="math-caregiver-back" data-action="mathExit" aria-label="Exit activity">←</button><div><span>NUMBERS & MATHS</span><b>'+label(type)+'</b></div><div class="math-progress">'+progressLabel(s,p)+'</div></header><section class="math-prompt-card"><button data-action="mathHear" aria-label="Hear question">🔊</button><h1>'+esc(promptText(q))+'</h1></section><section class="math-work-area">'+equation(q)+objectsGrid(q)+awayTray(q)+'</section>'+answerGrid(q)+'<footer class="math-child-footer"><div id="mathStatus" class="math-status">'+statusText(q)+'</div><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="'+(autoVoice()?'true':'false')+'">'+(autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off')+'</button><button data-action="mathHear">🔊 Hear</button></footer></div>';
     persist().catch(()=>{});
-    if(p.hearNumbers&&autoVoice()&&!suppress)setTimeout(()=>speakPrompt(q),180);
+    if(p.hearNumbers&&autoVoice())setTimeout(()=>speakPrompt(q),180);
   }
   function speakPrompt(q){speak(promptText(q),true)}
   function updateObjectState(q,index){
     const b=$('[data-math-object="'+index+'"]');if(!b)return;
     if(q.counted.includes(index)){b.classList.add('counted');let badge=b.querySelector('.math-count-badge');if(!badge){badge=document.createElement('span');badge.className='math-count-badge';b.appendChild(badge)}badge.textContent=String(q.counted.indexOf(index)+1)}
     if(q.removed.includes(index)){b.classList.add('removed');b.disabled=true}
-  }
-  async function moveToNextChunk(type,q){
-    q.page=(Number(q.page)||0)+1;q.suppressPromptOnce=true;await persist();renderQuestion(type);
   }
   async function finishTouchPhase(type,q){
     q.phase='answer';await persist();renderQuestion(type);

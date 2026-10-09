@@ -4,6 +4,7 @@ export function createComprehensionLearningFeature(ctx){
   const {getState,persist,show,toast,main,modal,go,esc,celebrate,visualHTML,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const DEFAULTS={fieldSize:3,sessionLength:5,hearPrompts:true};
+  const autoVoice=()=>getState().settings?.autoVoice!==false;
   let runtime=null,advanceTimer=null;
 
   function clone(v){return JSON.parse(JSON.stringify(v))}
@@ -30,7 +31,7 @@ export function createComprehensionLearningFeature(ctx){
   function goal(){const v=prefs().sessionLength;return String(v)==='continuous'?Infinity:Number(v||5)}
   function signature(){const p=prefs();return JSON.stringify([p.fieldSize,String(p.sessionLength),!!p.hearPrompts])}
   function cleanup(){clearTimeout(advanceTimer);advanceTimer=null;runtime=null;document.body.classList.remove('mu-active');if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel()}
-  function speak(text,force=false){if(!force&&!prefs().hearPrompts)return;if(voice?.speak){voice.speak(String(text),{mode:'learning',rate:.88});return}if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text));u.rate=.88;u.pitch=1;speechSynthesis.speak(u)}
+  function speak(text,force=false){if(!force&&(!prefs().hearPrompts||!autoVoice()))return;if(voice?.speak){voice.speak(String(text),{mode:'learning',rate:.88});return}if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text));u.rate=.88;u.pitch=1;speechSynthesis.speak(u)}
   function labelFor(id){
     if(MU_SPECIAL_VISUALS[id])return MU_SPECIAL_VISUALS[id].label;
     const aliases={'green-dotted-ball':'Green ball with dots','brown-dog':'Brown dog','brown-horse':'Brown horse'};
@@ -124,8 +125,8 @@ export function createComprehensionLearningFeature(ctx){
     clearSessionTimers();if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel();document.body.classList.add('mu-active');
     const s=session(mode);if(!s){launch();return}const g=goal();if((Number.isFinite(g)&&s.completed>=g)||s.finished){finish(mode);return}
     const q=ensureQuestion(mode);if(!q){finish(mode);return}runtime={mode,locked:false};
-    main.innerHTML='<div class="mu-child-screen" data-mu-mode-active="'+mode+'" data-mu-field="'+prefs().fieldSize+'"><header class="mu-child-head"><button data-action="muExit" aria-label="Leave activity">←</button><div><span>MATCH & UNDERSTAND</span><b>'+MU_MODE_LABELS[mode]+'</b></div><strong>'+progressText(s)+'</strong></header><section class="mu-prompt"><button data-action="muHear" aria-label="Hear instruction">🔊</button><h1>'+esc(q.prompt)+'</h1></section><section class="mu-work">'+bodyHTML(q)+'</section><footer class="mu-footer"><div id="muStatus" aria-live="polite">Look carefully.</div><button data-action="muHear">🔊 Hear</button></footer></div>';
-    persist().catch(()=>{});if(prefs().hearPrompts)setTimeout(()=>speak(q.prompt),180);
+    main.innerHTML='<div class="mu-child-screen" data-mu-mode-active="'+mode+'" data-mu-field="'+prefs().fieldSize+'"><header class="mu-child-head"><button data-action="muExit" aria-label="Leave activity">←</button><div><span>MATCH & UNDERSTAND</span><b>'+MU_MODE_LABELS[mode]+'</b></div><strong>'+progressText(s)+'</strong></header><section class="mu-prompt"><button data-action="muHear" aria-label="Hear instruction">🔊</button><h1>'+esc(q.prompt)+'</h1></section><section class="mu-work">'+bodyHTML(q)+'</section><footer class="mu-footer"><div id="muStatus" aria-live="polite">Look carefully.</div><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="muHear">🔊 Hear</button></footer></div>';
+    persist().catch(()=>{});if(prefs().hearPrompts&&autoVoice())setTimeout(()=>speak(q.prompt),180);
   }
   function cue(ids=[]){runtime&& (runtime.cued=true);ids.forEach(id=>$$('[data-mu-choice="'+CSS.escape(id)+'"],[data-mu-group="'+CSS.escape(id)+'"]').forEach(b=>b.classList.add('mu-cue')))}
   function status(text,good=false){const x=$('#muStatus');if(x){x.textContent=text;x.classList.toggle('good',!!good)}}
@@ -136,7 +137,7 @@ export function createComprehensionLearningFeature(ctx){
     state().history.push({id:crypto.randomUUID(),profile:profileKey(),at:new Date().toISOString(),mode,task:q.key,fieldSize:prefs().fieldSize,firstTry,cued:!!q.cued,attempts:q.attempts+1,source});
     if(state().history.length>800)state().history=state().history.slice(-800);
     s.completed++;s.lastTask=q.key;s.current=null;const g=goal();if(Number.isFinite(g)&&s.completed>=g)s.finished=true;
-    await persist();status('✓ Great job!',true);celebrate?.($('#muStatus'));if(prefs().hearPrompts)speak('Great job');
+    await persist();status('✓ Great job!',true);celebrate?.($('#muStatus'));if(prefs().hearPrompts&&autoVoice())speak('Great job');
     advanceTimer=setTimeout(()=>{advanceTimer=null;s.finished?finish(mode):renderQuestion(mode)},750);
   }
   async function chooseFind(id,btn){

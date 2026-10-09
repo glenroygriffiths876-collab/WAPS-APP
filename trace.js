@@ -209,7 +209,7 @@ export function createTraceFeature(ctx){
         </svg>
         <div id="traceStatus" class="trace-status">Start at the glowing dot.</div>
       </div>
-      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
+      <div class="trace-child-controls"><button class="btn ghost" data-action="toggleAutoVoice" aria-pressed="${autoVoice()?'true':'false'}">${autoVoice()?'🔊 Auto voice on':'🔇 Auto voice off'}</button><button data-action="traceHear">🔊 ${wordMode?'Hear word':'Hear it again'}</button><button data-action="traceShowMe">👆 Show me</button><button data-action="traceRetryStroke">↶ Try stroke</button><button data-action="traceStartOver">↺ Start item over</button></div>
     </div>`;
     requestAnimationFrame(initStroke);
   }

@@ -7,6 +7,7 @@ export function createConceptLearningFeature(ctx){
   const colourMap=Object.fromEntries(COLOURS.map(x=>[x.id,x]));
   const shapeMap=Object.fromEntries(SHAPES.map(x=>[x.id,x]));
   const PRAISE=['Great job!','You found it!','Yes!','Nice looking!','Well done!'];
+  const autoVoice=()=>getState().settings?.autoVoice!==false;
   const DEFAULTS={
     colours:{type:'colours',selected:[...COLOUR_PRESETS.early],choices:3,showWord:true,autoSpeak:true,celebration:true,sessionLength:'round'},
     shapes:{type:'shapes',selected:[...SHAPE_PRESETS.early],choices:3,showWord:true,autoSpeak:true,celebration:true,sessionLength:'round'}
@@ -170,16 +171,16 @@ export function createConceptLearningFeature(ctx){
       <header class="cs-child-head"><button class="cs-caregiver-back" data-action="csExit" aria-label="Exit activity">←</button><div><span>${typeIcon(type)} ${typeTitle(type).toUpperCase()}</span><b>${type==='colours'?'Find the colour':'Find the shape'}</b></div><div class="cs-count">${progressLabel(type,s,p)}</div></header>
       <section class="cs-prompt-card"><button data-action="csHear" aria-label="Hear question">🔊</button><h1>${esc(promptText(q))}</h1></section>
       <section class="cs-answer-grid choices-${q.options.length}" id="csAnswerGrid">${q.options.map((id,i)=>`<button class="cs-answer" data-cs-answer="${id}" aria-label="${esc(itemLabel(type,id))}">${optionVisual(q,id)}${p.showWord?`<b>${esc(itemLabel(type,id))}</b>`:''}</button>`).join('')}</section>
-      <footer class="cs-child-footer"><div id="csStatus" class="cs-status">Look carefully, then choose.</div><button data-action="csHear">🔊 Hear again</button></footer>
+      <footer class="cs-child-footer"><div id="csStatus" class="cs-status">Look carefully, then choose.</div><button class="btn ghost" data-action="toggleAutoVoice">🔊 Auto voice</button><button data-action="csHear">🔊 Hear again</button></footer>
     </div>`;
-    if(p.autoSpeak)setTimeout(()=>speakQuestion(q),220);
+    if(p.autoSpeak&&autoVoice())setTimeout(()=>speakQuestion(q),220);
   }
-  function speak(text){
+  function speak(text,force=false){if(!force&&!autoVoice())return;
     if(voice?.speak){voice.speak(String(text),{mode:'learning',rate:.86});return}
     if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
     speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.86;u.pitch=1;speechSynthesis.speak(u);
   }
-  function speakQuestion(q){speak(q.type==='colours'?`Find ${itemLabel(q.type,q.target)}`:`Find the ${itemLabel(q.type,q.target)}`)}
+  function speakQuestion(q,force=false){speak(q.type==='colours'?`Find ${itemLabel(q.type,q.target)}`:`Find the ${itemLabel(q.type,q.target)}`,force)}
   function praiseText(q){
     const lead=PRAISE[(session(q.type)?.completed||0)%PRAISE.length];
     return q.type==='colours'?`${lead} ${itemLabel(q.type,q.target).toUpperCase()}!`:`${lead} ${itemLabel(q.type,q.target).toUpperCase()}!`;
@@ -246,7 +247,7 @@ export function createConceptLearningFeature(ctx){
     if(a==='csLaunch'){launch();return true}
     if(a==='csStart'){await start();return true}
     if(a==='csRestartSet'){await restart(draft?.type||'colours');return true}
-    if(a==='csHear'){const s=session(runtime?.type),q=s?.current;if(q)speakQuestion(q);return true}
+    if(a==='csHear'){const s=session(runtime?.type),q=s?.current;if(q)speakQuestion(q,true);return true}
     if(a==='csAgain'){await again(el.closest('[data-cs-type]')?.dataset.csType||runtime?.type||'colours');return true}
     if(a==='csChooseNew'){cleanup();config(el.closest('[data-cs-type]')?.dataset.csType||runtime?.type||'colours');return true}
     if(a==='csExit'){exit();return true}

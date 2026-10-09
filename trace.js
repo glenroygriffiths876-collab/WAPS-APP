@@ -9,7 +9,7 @@ export function createTraceFeature(ctx){
   const DEFAULTS={
     letters:{type:'letters',selected:['A','B','C','D','E','F'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
     numbers:{type:'numbers',selected:['0','1','2','3','4','5'],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name'},
-    words:{type:'words',selected:[],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true}
+    words:{type:'words',selected:[],traceMode:'easy',guidance:'guided',lineSize:'medium',letterAudio:'name',showPictureDuringTrace:true,showWordGuide:true}
   };
   const LETTER_NAMES={A:'ay',B:'bee',C:'see',D:'dee',E:'ee',F:'eff',G:'gee',H:'aitch',I:'eye',J:'jay',K:'kay',L:'el',M:'em',N:'en',O:'oh',P:'pee',Q:'cue',R:'ar',S:'ess',T:'tee',U:'you',V:'vee',W:'double you',X:'ex',Y:'why',Z:'zed'};
   const LETTER_EXAMPLES={A:'apple',B:'ball',C:'cat',D:'dog',E:'egg',F:'fish',G:'go',H:'hat',I:'igloo',J:'jump',K:'kite',L:'lion',M:'mango',N:'nose',O:'orange',P:'pen',Q:'queen',R:'run',S:'sun',T:'tree',U:'umbrella',V:'van',W:'water',X:'box',Y:'yam',Z:'zebra'};
@@ -62,7 +62,7 @@ export function createTraceFeature(ctx){
     const name=(active()?.name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');
     return unique([...name]);
   }
-  function signature(items,p){return JSON.stringify([items,p.traceMode||'easy',p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false])}
+  function signature(items,p){return JSON.stringify([items,p.traceMode||'easy',p.guidance,p.lineSize,p.letterAudio,p.showPictureDuringTrace!==false,p.showWordGuide!==false])}
   function stopMedia(){
     try{recognition?.abort()}catch{} recognition=null;
     if(demoRAF)cancelAnimationFrame(demoRAF);demoRAF=0;
@@ -196,8 +196,8 @@ export function createTraceFeature(ctx){
   function glyph(){return TRACE_GLYPHS[activeChar()]}
   function tokenContext(){
     if(runtime.type==='words'){
-      const pic=currentPrefs('words').showPictureDuringTrace!==false?wordPictureHTML(runtime.wordRecord,'trace-word-trace-picture'):'';
-      return `<div class="trace-word-context">${pic?`<div class="trace-word-cue">${pic}</div>`:''}<div class="trace-word-progress"><strong>${esc(runtime.token)}</strong><div>${runtime.chars.map((d,i)=>`<span class="${i<runtime.digitIndex?'done':i===runtime.digitIndex?'active':''}">${esc(d)}</span>`).join('')}</div></div></div>`;
+      const p=currentPrefs('words'),pic=p.showPictureDuringTrace!==false?wordPictureHTML(runtime.wordRecord,'trace-word-trace-picture'):'',showGuide=p.showWordGuide!==false;
+      return `<div class="trace-word-context">${pic?`<div class="trace-word-cue">${pic}</div>`:''}<div class="trace-word-progress">${showGuide?`<strong>${esc(runtime.token)}</strong>`:''}<div>${runtime.chars.map((d,i)=>`<span class="${i<runtime.digitIndex?'done':i===runtime.digitIndex?'active':''}">${i<runtime.digitIndex?esc(d):showGuide?esc(d):''}</span>`).join('')}</div></div></div>`;
     }
     if(runtime.type!=='numbers'||runtime.chars.length===1)return '';
     return `<div class="trace-number-context">${runtime.chars.map((d,i)=>`<span class="${i<runtime.digitIndex?'done':i===runtime.digitIndex?'active':''}">${d}</span>`).join('')}</div>`;
@@ -259,7 +259,8 @@ export function createTraceFeature(ctx){
     if(!g){toast('This tracing character is unavailable.');advanceToken('skipped');return}
     const w=traceWidth(),formation=mode==='formation',showLines=formation&&!(runtime.type==='words'&&runtime.wordStage==='try');
     const wordMode=runtime.type==='words',stageLabel=wordMode&&runtime.wordStage==='try'?'TRY':'TRACE & SAY';
-    const traceLabel=wordMode?`Trace ${esc(activeChar())} in ${esc(runtime.token)}`:`Trace ${esc(runtime.token)}`;
+    const showWordGuide=wordMode?currentPrefs('words').showWordGuide!==false:true;
+    const traceLabel=wordMode?(showWordGuide?`Trace ${esc(activeChar())} in ${esc(runtime.token)}`:'Trace the next letter'):`Trace ${esc(runtime.token)}`;
     const initialStatus=formation?'Start at the glowing dot.':mode==='guided'?'Trace the shape. The dot shows one suggested start.':'Trace the shape. Start anywhere.';
     main.innerHTML=`<div class="trace-child-screen ${wordMode?'trace-word-child':''}">
       <header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back" aria-label="Exit tracing">←</button><div><span>${stageLabel}</span><b>${traceLabel}</b></div><div class="trace-count">${s.cursor+1} / ${s.items.length}</div></header>
@@ -445,16 +446,23 @@ export function createTraceFeature(ctx){
   function showBuildStage(){
     stopMedia();document.body.classList.add('trace-active');
     if(!runtime.buildTiles){runtime.buildTiles=shuffle(runtime.chars.map((ch,i)=>({id:'tile-'+i+'-'+crypto.randomUUID().slice(0,6),ch,index:i})));runtime.buildPlaced=[]}
-    const pic=wordPictureHTML(runtime.wordRecord,'trace-build-picture'),nextIndex=runtime.buildPlaced.length;
-    main.innerHTML=`<div class="trace-build-screen"><header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back">←</button><div><span>BUILD</span><b>Build ${esc(runtime.token)}</b></div><div class="trace-count">${nextIndex} / ${runtime.chars.length}</div></header><div class="trace-build-card">${pic?`<div class="trace-build-image">${pic}</div>`:''}<h1>${esc(runtime.token)}</h1><div class="trace-build-slots">${runtime.chars.map((ch,i)=>`<span class="${i<nextIndex?'filled':i===nextIndex?'active':''}">${i<nextIndex?esc(ch):''}</span>`).join('')}</div><p id="traceBuildStatus">Tap the next letter.</p><div class="trace-build-tiles">${runtime.buildTiles.map(t=>`<button data-trace-build-id="${t.id}" ${runtime.buildPlaced.includes(t.id)?'disabled':''}>${esc(t.ch)}</button>`).join('')}</div></div></div>`;
+    const pic=wordPictureHTML(runtime.wordRecord,'trace-build-picture'),nextIndex=runtime.buildPlaced.length,showGuide=currentPrefs('words').showWordGuide!==false;
+    main.innerHTML=`<div class="trace-build-screen"><header class="trace-child-head"><button data-action="traceExit" class="trace-caregiver-back">←</button><div><span>BUILD</span><b>${showGuide?'Build '+esc(runtime.token):'Build the word'}</b></div><div class="trace-count">${nextIndex} / ${runtime.chars.length}</div></header><div class="trace-build-card">${pic?`<div class="trace-build-image">${pic}</div>`:''}${showGuide?`<h1>${esc(runtime.token)}</h1>`:''}<div class="trace-build-slots">${runtime.chars.map((ch,i)=>`<span class="${i<nextIndex?'filled':i===nextIndex?'active':''}">${i<nextIndex?esc(ch):''}</span>`).join('')}</div><p id="traceBuildStatus">Tap the next letter.</p><div class="trace-build-tiles">${runtime.buildTiles.map(t=>`<button data-trace-build-id="${t.id}" ${runtime.buildPlaced.includes(t.id)?'disabled':''}>${esc(t.ch)}</button>`).join('')}</div></div></div>`;
   }
-  function chooseBuildTile(id){
+  function speakBuildLetter(ch){
+    const upper=String(ch||'').toUpperCase(),name=LETTER_NAMES[upper]||upper;
+    if(voice?.speak)return voice.speak(name,{mode:'learning',rate:.88});
+    if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return Promise.resolve(false);
+    return new Promise(resolve=>{const u=new SpeechSynthesisUtterance(name);u.rate=.88;u.onend=()=>resolve(true);u.onerror=()=>resolve(false);speechSynthesis.cancel();speechSynthesis.speak(u)});
+  }
+  async function chooseBuildTile(id){
     if(!runtime||runtime.type!=='words')return;
     const tile=runtime.buildTiles?.find(x=>x.id===id);if(!tile||runtime.buildPlaced.includes(id))return;
-    const expected=runtime.chars[runtime.buildPlaced.length];
-    if(tile.ch.toLowerCase()!==String(expected).toLowerCase()){const b=$$('[data-trace-build-id]').find(x=>x.dataset.traceBuildId===id);b?.classList.add('try-again');setTimeout(()=>b?.classList.remove('try-again'),500);const st=$('#traceBuildStatus');if(st)st.textContent='Try again. Look at the next letter.';return}
+    const spoken=speakBuildLetter(tile.ch),expected=runtime.chars[runtime.buildPlaced.length];
+    if(tile.ch.toLowerCase()!==String(expected).toLowerCase()){const b=$('[data-trace-build-id]').find(x=>x.dataset.traceBuildId===id);b?.classList.add('try-again');setTimeout(()=>b?.classList.remove('try-again'),500);const st=$('#traceBuildStatus');if(st)st.textContent='Try again. Listen and look for the next letter.';return}
     runtime.buildPlaced.push(id);
-    if(runtime.buildPlaced.length>=runtime.chars.length){celebrate?.(null);setTimeout(showTryStage,450);return}
+    await spoken.catch(()=>false);
+    if(runtime.buildPlaced.length>=runtime.chars.length){celebrate?.(null);setTimeout(showTryStage,180);return}
     showBuildStage();
   }
   function showTryStage(){
@@ -589,7 +597,7 @@ export function createTraceFeature(ctx){
     show(`<div class="trace-preview"><button class="btn ghost" data-action="tracePreviewBack">← Back</button><span class="eyebrow">FORMATION PREVIEW</span><h1>${esc(token)}</h1><svg viewBox="0 0 1000 1000">${g.strokes.map((s,i)=>`<path d="${s.d}" class="preview-stroke s${i%4}"/>`).join('')}</svg><p>Easy tracing lets the child start anywhere and lift or keep their finger down. Writing practice uses the conventional stroke order shown here.</p></div>`,true);
   }
   async function handleClick(el){
-    const buildBtn=el.closest('[data-trace-build-id]');if(buildBtn){chooseBuildTile(buildBtn.dataset.traceBuildId);return true}
+    const buildBtn=el.closest('[data-trace-build-id]');if(buildBtn){await chooseBuildTile(buildBtn.dataset.traceBuildId);return true}
     const typeBtn=el.closest('[data-trace-type]');
     if(typeBtn&&!el.closest('[data-action="traceAgain"],[data-action="traceChooseNew"]')){config(typeBtn.dataset.traceType);return true}
     const tokenBtn=el.closest('[data-trace-token]');if(tokenBtn){toggleToken(tokenBtn.dataset.traceToken,tokenBtn);return true}

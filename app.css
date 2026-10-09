@@ -3439,3 +3439,19 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
   .trace-edu-number{height:clamp(145px,44vw,210px)}
   .trace-edu-digit-path{stroke-width:120}
 }
+
+/* WAPS v68 — parent-controlled word practice set */
+.trace-word-help{margin:-2px 0 12px;color:#667974}
+.trace-word-today{margin:10px 0 14px;padding:12px;border:2px solid #dce8e5;border-radius:20px;background:#f8fbfa}
+.trace-word-today-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.trace-word-today-head b{display:block;color:#173551;font-size:1.05rem}
+.trace-word-order-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.trace-word-order-mode button{min-height:64px;border:2px solid #d5e2e7;border-radius:16px;background:#fff;padding:8px 10px;color:#173551;font:inherit;display:flex;flex-direction:column;justify-content:center}
+.trace-word-order-mode button.selected{border-color:#6842bb;background:#f1ebff;box-shadow:0 0 0 3px rgba(104,66,187,.1)}
+.trace-word-order-mode b,.trace-word-order-mode small{display:block}.trace-word-order-mode small{color:#6a797f;font-size:.75rem;margin-top:2px}
+.trace-word-order-list{display:grid;gap:6px}.trace-word-order-row{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;min-height:46px;padding:5px 7px;border:1px solid #dde7e5;border-radius:13px;background:#fff}
+.trace-word-order-num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#eef2ff;color:#4d35a1;font-weight:1000}
+.trace-word-order-actions{display:flex;gap:5px}.trace-word-order-actions button{width:36px;height:36px;border:1px solid #d6e2e5;border-radius:10px;background:#fff;color:#173551;font-weight:1000}.trace-word-order-actions button:disabled{opacity:.3}
+.trace-word-today-empty,.trace-word-shuffle-note{padding:10px;border-radius:12px;background:#fff;color:#607574;text-align:center}
+.trace-word-card-actions{display:flex;flex-direction:column;gap:5px}.trace-word-only{border:1px solid #d6e2e5;background:#fff;border-radius:10px;padding:6px 8px;color:#164ebd;font-weight:900}
+.trace-word-start-actions .btn:first-child{min-width:190px}
+@media(max-width:520px){.trace-word-today{padding:10px}.trace-word-order-mode button{min-height:58px}.trace-word-order-row{grid-template-columns:26px 1fr auto}.trace-word-card-actions{min-width:74px}}

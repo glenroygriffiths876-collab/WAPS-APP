@@ -1,7 +1,7 @@
 import {COLOURS,SHAPES,COLOUR_PRESETS,SHAPE_PRESETS,COLOUR_BASE_SHAPES,SHAPE_BASE_COLOURS,validateConceptLearningData} from './concept-data.js';
 
 export function createConceptLearningFeature(ctx){
-  const {getState,persist,active,show,toast,main,modal,go,esc,celebrate}=ctx;
+  const {getState,persist,active,show,toast,main,modal,go,esc,celebrate,voice}=ctx;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const clone=v=>JSON.parse(JSON.stringify(v));
   const colourMap=Object.fromEntries(COLOURS.map(x=>[x.id,x]));
@@ -32,7 +32,7 @@ export function createConceptLearningFeature(ctx){
   function setSession(type,value){bucket(state().sessions,profileKey())[type]=value}
   function unique(a){return [...new Set(a)]}
   function shuffled(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-  function stopAudio(){clearTimeout(advanceTimer);advanceTimer=null;if('speechSynthesis'in window)speechSynthesis.cancel()}
+  function stopAudio(){clearTimeout(advanceTimer);advanceTimer=null;if(voice?.stop)voice.stop();else if('speechSynthesis'in window)speechSynthesis.cancel()}
   function cleanup(){stopAudio();document.body.classList.remove('concept-id-active')}
   function labels(type){return type==='colours'?colourMap:shapeMap}
   function typeTitle(type){return type==='colours'?'Colours':'Shapes'}
@@ -175,8 +175,9 @@ export function createConceptLearningFeature(ctx){
     if(p.autoSpeak)setTimeout(()=>speakQuestion(q),220);
   }
   function speak(text){
+    if(voice?.speak){voice.speak(String(text),{mode:'learning',rate:.86});return}
     if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;
-    speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.86;u.pitch=1.02;speechSynthesis.speak(u);
+    speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.86;u.pitch=1;speechSynthesis.speak(u);
   }
   function speakQuestion(q){speak(q.type==='colours'?`Find ${itemLabel(q.type,q.target)}`:`Find the ${itemLabel(q.type,q.target)}`)}
   function praiseText(q){

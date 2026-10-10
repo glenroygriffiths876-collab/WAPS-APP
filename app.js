@@ -327,7 +327,7 @@ function rememberAAC(id){if(!id)return;let k=profileKey(),r=(S.settings.aacRecen
 function progressInsightData(){
  let sessions=S.sessions.filter(x=>x.profile===S.active),obs=S.observations.filter(x=>x.profile===S.active),nowMs=Date.now(),week=7*86400000;
  let curr=sessions.filter(x=>nowMs-new Date(x.at).getTime()<=week),prev=sessions.filter(x=>{let d=nowMs-new Date(x.at).getTime();return d>week&&d<=2*week});
- let independent=a=>a.filter(x=>x.prompt==='Independent'||x.result==='Independent').length;
+ let independent=a=>a.filter(x=>x.type==='practice'?(x.result==='correct'&&(x.prompt==='Independent'||x.result==='Independent')):(x.prompt==='Independent'||x.result==='Independent')).length;
  let currPct=curr.length?Math.round(independent(curr)/curr.length*100):0,prevPct=prev.length?Math.round(independent(prev)/prev.length*100):null;
  let real7=obs.filter(x=>nowMs-new Date(x.at).getTime()<=week),sp7=real7.filter(x=>x.spontaneous).length;
  let supports=real7.map(x=>x.support).filter(Boolean),common=supports.sort((a,b)=>supports.filter(v=>v===a).length-supports.filter(v=>v===b).length).pop();
@@ -857,12 +857,12 @@ document.addEventListener('click',async e=>{
   if(await MathLearning.handleClick(el)){e.preventDefault();return}
   if(await ComprehensionLearning.handleClick(el)){e.preventDefault();return}
   let st=el.closest('[data-start]');if(st){e.preventDefault();if(modal.open)modal.close();activity(st.dataset.start);return}
-  let ch=el.closest('[data-choice]');if(ch){e.preventDefault();let choicesBox=ch.closest('.choices');if(choicesBox?.dataset.answered==='1')return;let correct=ch.dataset.choice===ch.dataset.target,a=currentAct,prompt=$('#promptLevel')?.value||'Not recorded',target=ch.dataset.target;if(choicesBox){choicesBox.dataset.answered='1';choicesBox.closest('.activity-shell')?.classList.add('answered');[...choicesBox.querySelectorAll('.choice')].forEach(b=>b.disabled=true);ch.classList.add(correct?'selected-correct':'selected-retry');let right=$(`.choice[data-choice="${target}"]`,choicesBox);if(right)right.classList.add('answer-key')}
+  let ch=el.closest('[data-choice]');if(ch){e.preventDefault();let choicesBox=ch.closest('.choices');if(choicesBox?.dataset.answered==='1')return;let correct=ch.dataset.choice===ch.dataset.target,a=currentAct,prompt=$('#promptLevel')?.value||'Not recorded',target=ch.dataset.target;if(choicesBox){choicesBox.dataset.answered='1';choicesBox.closest('.activity-shell')?.classList.add('answered');[...choicesBox.querySelectorAll('.choice')].forEach(b=>b.disabled=true);ch.classList.add(correct?'selected-correct':'selected-retry');let right=$(`.choice[data-choice="${target}"]`,choicesBox);if(correct&&right)right.classList.add('answer-key')}
  currentPracticeSessionId=crypto.randomUUID();
- S.sessions.push({id:currentPracticeSessionId,profile:S.active,at:now(),type:'practice',activity:a.id,domain:a.domain,target,result:correct?'correct':'supported/retry',prompt,source:practiceUnified?'WAPS unified practice':'WAPS activity'});
+ S.sessions.push({id:currentPracticeSessionId,profile:S.active,at:now(),type:'practice',activity:a.id,domain:a.domain,target,result:correct?'correct':'incorrect',firstChoice:ch.dataset.choice,answerRevealed:false,prompt,source:practiceUnified?'WAPS unified practice':'WAPS activity'});
  let wasUnified=practiceUnified,roundComplete=false;if(wasUnified){let st=practiceState();if(st.order[st.cursor]===currentPracticeRef)st.cursor++;roundComplete=st.cursor>=st.order.length}
  if(correct)celebrateCorrect(ch);
- await persist();let fb=$('#feedback');if(fb){fb.innerHTML=`<div class="feedback ${correct?'good celebration-feedback':'support'}"><b>${correct?'✓ Great job!':'Let’s look together.'}</b><p>${correct?'Choose the help used, then go on.':'Show the answer, then try the next one.'}</p>${wasUnified?`<button class="btn" data-action="${roundComplete?'practiceFinish':'practiceNext'}">${roundComplete?'Finish this round':'Next question'} →</button>`:`<button class="btn secondary" data-observe="${esc(a.domain)}">Record real-life use</button>`}</div>`;if(window.innerWidth>760)setTimeout(()=>fb.scrollIntoView({behavior:(S.settings.reduced||S.settings.lowStim)?'auto':'smooth',block:'nearest'}),40)}return}
+ await persist();let fb=$('#feedback');if(fb){fb.innerHTML=`<div class="feedback ${correct?'good celebration-feedback':'support'}"><b>${correct?'✓ Great job!':'Let’s learn together.'}</b><p>${correct?'Choose the help used, then go on.':'The first choice is saved. A grown-up can show the picture before moving on.'}</p>${!correct?'<button type="button" class="btn secondary" data-action="showPracticeAnswer">Show picture</button>':''}${wasUnified?`<button class="btn" data-action="${roundComplete?'practiceFinish':'practiceNext'}">${roundComplete?'Finish this round':'Next question'} →</button>`:`<button class="btn secondary" data-observe="${esc(a.domain)}">Record real-life use</button>`}</div>`;if(window.innerWidth>760)setTimeout(()=>fb.scrollIntoView({behavior:(S.settings.reduced||S.settings.lowStim)?'auto':'smooth',block:'nearest'}),40)}return}
   let cr=el.closest('[data-coach]');if(cr){e.preventDefault();coachScreen(cr.dataset.coach);return}
   let ob=el.closest('[data-observe]');if(ob){e.preventDefault();recordObservation(ob.dataset.observe);return}
   let support=el.closest('.support-choice');if(support){e.preventDefault();[...document.querySelectorAll('.support-choice')].forEach(x=>x.classList.toggle('active',x===support));let sel=$('#promptLevel');if(sel)sel.value=support.dataset.support;if(currentPracticeSessionId){let rec=S.sessions.find(x=>x.id===currentPracticeSessionId);if(rec){rec.prompt=support.dataset.support;await persist();toast('Support level saved')}}return}
@@ -923,6 +923,19 @@ document.addEventListener('click',async e=>{
   if(a==='readerStop'){stopReader();return}
   if(a==='readerClose'){closeReader();return}
   if(a==='startUnifiedPractice'){if(modal.open)modal.close();unifiedActivity();return}
+  if(a==='showPracticeAnswer'){
+    const box=$('.premium-activity.answered .choices');
+    if(!box||box.dataset.answerShown==='1')return;
+    const target=box.querySelector('.choice')?.dataset.target;
+    const right=[...box.querySelectorAll('.choice')].find(b=>b.dataset.choice===target);
+    if(right)right.classList.add('answer-key');
+    box.dataset.answerShown='1';
+    const btn=$('.premium-activity [data-action="showPracticeAnswer"]');
+    if(btn){btn.textContent='Picture shown';btn.disabled=true;}
+    const record=S.sessions.find(x=>x.id===currentPracticeSessionId);
+    if(record){record.answerRevealed=true;await persist();}
+    return;
+  }
   if(a==='practiceNext'){unifiedActivity();return}
   if(a==='practiceFinish'){go('practice');return}
   if(a==='newPracticeRound'){await resetPracticeRound();if(modal.open)modal.close();unifiedActivity();return}

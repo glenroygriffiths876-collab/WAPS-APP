@@ -35,8 +35,11 @@ special=["supermarket","playground","clock","fork","glass","bottle","pen","marke
 comp=(r/'comprehension-data.js').read_text(encoding='utf-8')
 css=(r/'app.css').read_text(encoding='utf-8')
 visual_manifest=json.loads((r/'assets/concepts/highres/manifest.json').read_text(encoding='utf-8'))
-assert 'app.css?v=55' in html and 'app.js?v=55' in html, 'v55 public asset references missing'
-assert 'waps-reference-shell-v55' in sw, 'v55 cache name missing'
+# Keep legacy v55 art assets locked, but allow newer JS/CSS/app-shell releases.
+release_assets=[int(v) for v in re.findall(r'app\\.(?:css|js)\\?v=(\\d+)',html)]
+cache_release=re.search(r'waps-reference-shell-v(\\d+)',sw)
+assert len(release_assets)==2 and min(release_assets)>=55, 'versioned public JS/CSS references missing'
+assert cache_release and int(cache_release.group(1))>=max(release_assets), 'app-shell cache is older than public JS/CSS'
 assert (r/'assets/fonts/fredoka-variable.woff2').exists(), 'Fredoka WOFF2 missing'
 assert (r/'assets/fonts/OFL-Fredoka.txt').exists(), 'Fredoka OFL missing'
 assert (r/'assets/fonts/nunito-variable.ttf').exists(), 'Nunito font missing'

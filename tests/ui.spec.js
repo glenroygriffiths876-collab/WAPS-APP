@@ -882,3 +882,53 @@ test('v55 Low Stimulation and Child Mode still override caregiver-heavy Home art
   expect(guards).toBeTruthy();
   expect(errors).toEqual([]);
 });
+
+
+test('Practice first-choice recording and picture reveal are caregiver-guided', async ({page})=>{
+  const errors=collectErrors(page);
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="startUnifiedPractice"]').click();
+  const choices=page.locator('.premium-activity .choice');
+  const target=await choices.first().getAttribute('data-target');
+  const wrongIndex=await choices.evaluateAll((nodes,t)=>nodes.findIndex(n=>n.dataset.choice!==t),target);
+  expect(wrongIndex).toBeGreaterThanOrEqual(0);
+  await choices.nth(wrongIndex).click();
+  await expect(page.locator('.premium-activity')).toHaveClass(/answered/);
+  await expect(page.locator('#feedback')).toContainText('Let’s learn together.');
+  await expect(page.locator('#feedback')).not.toContainText('try again');
+  await expect(page.locator('.premium-activity .choice.answer-key')).toHaveCount(0);
+  await page.locator('[data-action="showPracticeAnswer"]').click();
+  await expect(page.locator('.premium-activity .choice.answer-key')).toHaveCount(1);
+  await expect(page.locator('[data-action="showPracticeAnswer"]')).toBeDisabled();
+  await page.locator('.support-choice[data-support="Verbal cue"]').click();
+  await expect(page.locator('#promptLevel')).toHaveValue('Verbal cue');
+  await expect(page.locator('.premium-activity .practice-response-panel')).toBeVisible();
+  const boxes=await page.evaluate(()=>{
+    const banner=document.querySelector('.premium-activity .activity-banner').getBoundingClientRect();
+    const cards=[...document.querySelectorAll('.premium-activity .choice')].map(n=>n.getBoundingClientRect());
+    const panel=document.querySelector('.premium-activity .practice-response-panel').getBoundingClientRect();
+    return {bannerBottom:banner.bottom,choiceTop:Math.min(...cards.map(b=>b.top)),choiceBottom:Math.max(...cards.map(b=>b.bottom)),panelTop:panel.top};
+  });
+  expect(boxes.choiceTop-boxes.bannerBottom).toBeGreaterThanOrEqual(-1);
+  expect(boxes.choiceTop-boxes.bannerBottom).toBeLessThan(35);
+  expect(boxes.panelTop).toBeGreaterThanOrEqual(boxes.choiceBottom-1);
+  expect(errors).toEqual([]);
+});
+
+test('Practice support stays below answer pictures on short portrait phones', async ({page})=>{
+  await page.setViewportSize({width:360,height:640});
+  await page.goto('http://127.0.0.1:4173/#practice');
+  await page.locator('[data-action="startUnifiedPractice"]').click();
+  const target=await page.locator('.premium-activity .choice').first().getAttribute('data-target');
+  await page.locator('.premium-activity .choice[data-choice="'+target+'"]').click();
+  const separated=await page.evaluate(()=>{
+    const cards=[...document.querySelectorAll('.premium-activity .choice')].map(n=>n.getBoundingClientRect());
+    const panel=document.querySelector('.premium-activity .practice-response-panel').getBoundingClientRect();
+    const scrollBox=document.querySelector('body[data-route="practice"] main');
+    return {panelTop:panel.top,cardBottom:Math.max(...cards.map(b=>b.bottom)),scrollHeight:scrollBox.scrollHeight,clientHeight:scrollBox.clientHeight};
+  });
+  expect(separated.panelTop).toBeGreaterThanOrEqual(separated.cardBottom-1);
+  expect(separated.scrollHeight).toBeGreaterThanOrEqual(separated.clientHeight);
+  await expect(page.locator('[data-action="practiceNext"], [data-action="practiceFinish"]')).toBeVisible();
+});

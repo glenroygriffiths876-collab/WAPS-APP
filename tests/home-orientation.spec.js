@@ -74,7 +74,13 @@ test('WAPS Home orientation — rotates both ways without reloading or lost hots
  m=await homeMeasures(page);
  expect(m.landscapeDisplay).toBe('none');
  expect(m.portraitDisplay).toBe('block');
- await page.locator('.v59-p-practice').click();
+ const portraitHit=await page.evaluate(()=>{
+  const b=document.querySelector('.v59-p-practice');const r=b.getBoundingClientRect();
+  const top=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+  return {rect:{x:r.x,y:r.y,w:r.width,h:r.height},display:getComputedStyle(b).display,top:top?.className,topTag:top?.tagName,bodyRoute:document.body.dataset.route,orientation:document.documentElement.dataset.wapsHomeLayout};
+ });
+ console.log('PORTRAIT ROTATION HIT DEBUG:',JSON.stringify(portraitHit));
+ await page.locator('.v59-p-practice').click({timeout:5000});
  await expect(page).toHaveURL(/#practice$/);
  await context.close();
 });

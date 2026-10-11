@@ -3604,9 +3604,8 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
 }
 
 
-/* Keep the Home container anchored to the actual viewport while rotating.
-   An ordinary document-flow main can retain a stale scroll offset after rotation. */
-body[data-route="home"] main{
+/* Keep the Home container anchored while rotating; preserve scrollable low-stim fallback. */
+html:not([data-low-stim="1"]) body[data-route="home"] main{
  position:fixed!important;
  inset:0!important;
  width:100vw!important;

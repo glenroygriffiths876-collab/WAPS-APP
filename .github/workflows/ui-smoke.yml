@@ -1,43 +1,33 @@
 name: WAPS UI interaction smoke test
 on:
+  pull_request:
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'app.js'
-      - 'app.css'
-      - 'data.js'
-      - 'storage.js'
-      - 'trace.js'
-      - 'trace-words.js'
-      - 'trace-data.js'
-      - 'math-learning.js'
-      - 'comprehension-learning.js'
-      - 'comprehension-data.js'
-      - 'assets/concepts/highres/**'
-      - 'assets/audio/**'
-      - 'assets/fonts/**'
-      - 'assets/ui/v51/**'
-      - 'assets/ui/v52/**'
-      - 'assets/ui/v53/**'
-      - 'assets/ui/v55/**'
-      - 'tests/ui.spec.js'
-      - '.github/workflows/ui-smoke.yml'
 permissions:
   contents: read
 jobs:
   ui:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       - run: npm install --no-save @playwright/test
       - run: npx playwright install --with-deps chromium
       - name: Start local WAPS
         run: |
           python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
           sleep 2
-      - run: npx playwright test tests/ui.spec.js --reporter=line
+      - name: Check approved phone, tablet, desktop and core workflows
+        run: npx playwright test tests/core-regression.spec.js --reporter=line
+      - name: Preserve screenshots and failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waps-responsive-qa
+          path: |
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

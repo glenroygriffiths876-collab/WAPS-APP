@@ -92,11 +92,13 @@ test('Other learning activity entry points remain available',async ({page})=>{
   await page.goto(base+'#practice');
   await page.locator('[data-action="mathLaunch"]').click();
   await expect(page.locator('.math-launch')).toBeVisible();
-  await page.goto(base+'#practice');
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
   await page.locator('[data-action="muLaunch"]').click();
   await expect(page.locator('.mu-launch')).toBeVisible();
   await expect(page.locator('[data-mu-mode]')).toHaveCount(5);
-  await page.goto(base+'#practice');
+  await page.locator('dialog[open] [data-action="closeModal"]').click();
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
   await page.locator('[data-action="traceLaunch"]').click();
   await expect(page.locator('dialog[open]')).toBeVisible();
 });

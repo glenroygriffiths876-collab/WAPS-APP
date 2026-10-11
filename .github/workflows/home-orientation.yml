@@ -1,0 +1,40 @@
+name: WAPS Home orientation regression
+on:
+  pull_request:
+    paths:
+      - 'app.js'
+      - 'app.css'
+      - 'index.html'
+      - 'manifest.webmanifest'
+      - 'sw.js'
+      - 'tests/home-orientation.spec.js'
+      - '.github/workflows/home-orientation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'app.js'
+      - 'app.css'
+      - 'index.html'
+      - 'manifest.webmanifest'
+      - 'sw.js'
+      - 'tests/home-orientation.spec.js'
+      - '.github/workflows/home-orientation.yml'
+permissions:
+  contents: read
+jobs:
+  responsive-home:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save @playwright/test
+      - run: npx playwright install --with-deps chromium
+      - name: Start local WAPS
+        run: |
+          python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
+          sleep 2
+      - name: Test WAPS portrait, landscape, rotation and desktop
+        run: npx playwright test tests/home-orientation.spec.js --reporter=line

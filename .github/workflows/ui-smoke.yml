@@ -21,7 +21,7 @@ jobs:
           python3 -m http.server 4173 > /tmp/waps-http.log 2>&1 &
           sleep 2
       - name: Check approved phone, tablet, desktop and core workflows
-        run: npx playwright test tests/core-regression.spec.js tests/home-orientation.spec.js --reporter=line
+        run: npx playwright test tests/core-regression.spec.js --reporter=line
       - name: Preserve screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4

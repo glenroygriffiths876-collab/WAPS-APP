@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const fs = require('node:fs');
 
 const base='http://127.0.0.1:4173/';
 const cases=[
@@ -22,11 +23,14 @@ for(const device of cases){
     await expect(page.locator('html')).toHaveAttribute('data-waps-home-layout',device.layout);
     await expect(page.locator('.v59-'+device.layout+'-art')).toHaveAttribute('src',/^data:image\/webp;base64,/);
     await expect(page.locator(device.home)).toBeVisible();
+    fs.mkdirSync('test-results/approved-screens',{recursive:true});
+    await page.screenshot({path:'test-results/approved-screens/home-'+device.label.replaceAll(' ','-')+'.png'});
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
     expect(overflow,device.label+' horizontal overflow').toBeLessThanOrEqual(2);
     await page.locator(device.home).click();
     await expect(page).toHaveURL(/#talk$/);
     await expect(page.locator('.talk-stage')).toBeVisible();
+    await page.screenshot({path:'test-results/approved-screens/talk-'+device.label.replaceAll(' ','-')+'.png'});
     await expect(page.locator('#aacGrid button.aac').first()).toBeVisible();
     expect(await page.locator('#aacGrid button.aac').count()).toBeGreaterThan(30);
     expect(errors).toEqual([]);

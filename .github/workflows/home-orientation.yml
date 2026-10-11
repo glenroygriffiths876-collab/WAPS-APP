@@ -1,24 +1,8 @@
 name: WAPS Home orientation regression
 on:
   pull_request:
-    paths:
-      - 'app.js'
-      - 'app.css'
-      - 'index.html'
-      - 'manifest.webmanifest'
-      - 'sw.js'
-      - 'tests/home-orientation.spec.js'
-      - '.github/workflows/home-orientation.yml'
   push:
     branches: [main]
-    paths:
-      - 'app.js'
-      - 'app.css'
-      - 'index.html'
-      - 'manifest.webmanifest'
-      - 'sw.js'
-      - 'tests/home-orientation.spec.js'
-      - '.github/workflows/home-orientation.yml'
 permissions:
   contents: read
 jobs:

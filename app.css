@@ -3602,3 +3602,44 @@ html[data-low-stim="1"] body[data-route="home"] .v59-view{display:none!important
     height:clamp(70px,25dvh,95px)!important;
   }
 }
+
+
+/* Keep the Home container anchored while rotating; preserve scrollable low-stim fallback. */
+html:not([data-low-stim="1"]) body[data-route="home"] main{
+ position:fixed!important;
+ inset:0!important;
+ width:100vw!important;
+ height:100dvh!important;
+ max-width:none!important;
+ margin:0!important;
+ padding:0!important;
+ overflow:hidden!important;
+}
+/* WAPS v78 — locked Home art, responsive on rotation without remapping hotspots.
+   Both approved artboards stay separate. All rules are Home-only. */
+html[data-waps-home-layout="portrait"] body[data-route="home"] .v59-portrait-view{
+ display:block!important;
+}
+html[data-waps-home-layout="portrait"] body[data-route="home"] .v59-landscape-view{
+ display:none!important;
+}
+html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-portrait-view{
+ display:none!important;
+}
+html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-view{
+ display:block!important;
+}
+/* A touch tablet in landscape uses the whole screen; no narrow portrait island.
+   Desktop/fine-pointer layout retains the original aspect-fit ratio. */
+@media (orientation:landscape) and (pointer:coarse) and (min-width:700px){
+ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-view{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+ }
+}

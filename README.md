@@ -15,3 +15,9 @@ No ads, trackers, analytics, account or silent cloud upload are included. Core u
 
 ## Validation boundary
 The software contains evidence-informed caregiver-support content and explicitly avoids standardized-test reproduction and diagnostic claims. Formal clinical validation, Jamaican-language review, autistic/AAC-user review and real-device/user studies are external validation steps rather than claims made by this package.
+
+## Beginning Concepts identity and custom domain
+
+WAPS remains **WAPS Communication — Western Autism Parents Support**. **Beginning Concepts** is credited as the developer. The proposed public address is **https://waps.beginningconcepts.org/**. The WAPS artwork, activities, accessibility and caregiver features must remain unchanged.
+
+**Dual-domain deployment:** Keep the original GitHub Pages URL independent and unchanged, and separately publish the same WAPS repository on **Cloudflare Pages** for `waps.beginningconcepts.org`. See [`docs/BEGINNING_CONCEPTS_DOMAIN.md`](docs/BEGINNING_CONCEPTS_DOMAIN.md). Do not set a custom domain in the GitHub repository's Pages settings or commit a GitHub Pages `CNAME` file: that can redirect the old address. New domains have separate browser storage, so existing users must export and restore profiles/progress if they want their data on both links.

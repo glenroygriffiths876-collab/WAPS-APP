@@ -3643,3 +3643,8 @@ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-v
   box-shadow:none!important;
  }
 }
+
+/* Publisher credit stays in caregiver-facing More, away from child activities. */
+.more-page .bc-credit{margin:8px 0 0;text-align:center;font-size:11px;line-height:1.25;color:#51627a}
+.more-page .bc-credit a,.bc-about-credit a{color:#164ebd;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.more-page .bc-credit a:focus-visible,.bc-about-credit a:focus-visible{outline:3px solid #164ebd;outline-offset:3px}

@@ -3658,3 +3658,58 @@ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-v
 .bc-feedback-recipient a{font-weight:800;color:#164ebd}
 @media(max-width:400px){.more-page .bc-credit{margin:4px auto 0}.bc-brand-tag{min-height:34px;padding:3px 9px 3px 4px}.bc-brand-tag img{width:27px;height:27px}.bc-brand-tag strong{font-size:11px}}
 @media print{.bc-credit,.bc-about-credit{display:none!important}}
+
+
+/* Visible Beginning Concepts credit (v81). Home tag is anchored to safe
+   empty areas INSIDE each approved artboard, not fixed over app controls.
+   Normal app screens get an in-flow footer; More also gets an obvious logo
+   shortcut beside its heading. Never show on child-mode activity screens. */
+.bc-visible-credit{display:flex;justify-content:center;align-items:center;max-width:100%;min-width:0}
+.bc-page-footer{position:relative;z-index:1;width:100%;margin:12px auto 0;padding:8px 6px 22px}
+.bc-page-footer .bc-brand-tag{min-height:34px;box-shadow:0 2px 9px rgba(20,45,80,.08)}
+.more-simple-head{position:relative!important}
+.more-simple-head .bc-more-logo-shortcut{
+ position:absolute;right:4px;top:50%;transform:translateY(-50%);
+ display:grid;place-items:center;width:36px;height:36px;z-index:2;
+ border:1px solid #e1d4a9;border-radius:50%;background:#fffcf3;
+ box-shadow:0 3px 10px rgba(20,45,80,.11);text-decoration:none;
+}
+.more-simple-head .bc-more-logo-shortcut img{width:29px;height:29px;object-fit:contain;display:block}
+.more-simple-head .bc-more-logo-shortcut:focus-visible{outline:3px solid #164ebd;outline-offset:3px}
+.bc-home-credit{
+ position:absolute!important;z-index:8!important;
+ width:max-content;max-width:80%!important;
+ margin:0!important;padding:0!important;
+ pointer-events:auto!important;
+}
+.bc-home-credit .bc-brand-tag{
+ min-height:23px!important;height:25px!important;
+ padding:2px 7px 2px 3px!important;gap:5px!important;
+ background:rgba(255,254,245,.97)!important;border:1px solid #e8ce7c!important;
+ box-shadow:0 3px 10px rgba(13,56,98,.17)!important;
+}
+.bc-home-credit .bc-brand-tag img{width:20px!important;height:20px!important}
+.bc-home-credit .bc-brand-tag small{font-size:8px!important;line-height:1!important}
+.bc-home-credit .bc-brand-tag strong{font-size:10px!important;line-height:1.05!important}
+.bc-home-portrait-credit{left:50%!important;top:31.2%!important;transform:translateX(-50%)!important}
+.bc-home-landscape-credit{left:2.1%!important;top:63.4%!important;transform:none!important}
+.bc-home-landscape-credit .bc-brand-tag{max-width:min(19vw,180px)!important}
+.bc-home-landscape-credit .bc-brand-tag img{width:18px!important;height:18px!important}
+.bc-home-landscape-credit .bc-brand-tag strong{font-size:9px!important}
+.bc-home-landscape-credit .bc-brand-tag small{font-size:7px!important}
+.bc-low-stim-credit{margin:6px auto}
+.v59-art-error .bc-home-credit,html[data-low-stim="1"] .bc-home-credit{display:none!important}
+body.child-mode-active .bc-visible-credit,body.child-mode-active .bc-more-logo-shortcut{display:none!important}
+body.math-active .bc-page-footer,body.trace-active .bc-page-footer,
+body.concept-id-active .bc-page-footer,body.mu-active .bc-page-footer,
+body[data-route="practice"]:has(.premium-activity) .bc-page-footer{display:none!important}
+@media(max-width:760px){
+ .bc-page-footer{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+ .bc-home-landscape-credit .bc-brand-tag{height:22px!important;min-height:22px!important;padding:1px 6px 1px 2px!important}
+ .bc-home-landscape-credit .bc-brand-tag img{width:17px!important;height:17px!important}
+}
+@media (max-width:360px){
+ .more-simple-head .bc-more-logo-shortcut{width:32px;height:32px}
+ .more-simple-head .bc-more-logo-shortcut img{width:25px;height:25px}
+}
+@media print{.bc-visible-credit,.bc-more-logo-shortcut{display:none!important}}

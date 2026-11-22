@@ -207,14 +207,30 @@ function sendPageFeedback(){
  const mail='mailto:'+BEGINNING_CONCEPTS_EMAIL+'?subject='+encodeURIComponent(report.subject)+'&body='+encodeURIComponent(report.body);
  window.location.href=mail;
 }
+function manualFeedbackCopy(text){
+ const parent=$('.feedback-sheet');if(!parent){toast('Could not copy automatically.');return}
+ let box=$('#feedbackCopyFallback');
+ if(!box){
+  box=document.createElement('div');box.id='feedbackCopyFallback';box.className='field';
+  const label=document.createElement('label');label.textContent='Copy the report below:';
+  const field=document.createElement('textarea');field.id='feedbackCopyText';field.rows=6;field.readOnly=true;
+  label.appendChild(field);box.appendChild(label);parent.appendChild(box);
+ }
+ const field=$('#feedbackCopyText');field.value=text;field.focus();field.select();
+ toast('Report ready to copy below');
+}
 async function copyPageFeedback(){
  const report=feedbackEmailData();if(!report)return;
  const text='To: '+BEGINNING_CONCEPTS_EMAIL+'\nSubject: '+report.subject+'\n\n'+report.body;
- try{
-  if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(text);
-  else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove()}
-  toast('Feedback report copied ✓');
- }catch{toast('Could not copy automatically. Select the email address above.')}
+ let copied=false;
+ if(navigator.clipboard?.writeText){try{await navigator.clipboard.writeText(text);copied=true}catch{}}
+ if(!copied){
+  const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';
+  document.body.appendChild(area);area.focus();area.select();
+  try{copied=document.execCommand('copy')===true}catch{}finally{area.remove()}
+ }
+ if(copied)toast('Feedback report copied ✓');
+ else manualFeedbackCopy(text);
 }
 function installPageFeedbackButton(){
  if($('#feedbackFab'))return;

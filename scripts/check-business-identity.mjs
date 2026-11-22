@@ -16,7 +16,13 @@ assert(app.includes('https://chat.whatsapp.com/'),'Existing WAPS parents communi
 assert(app.includes('bc-brand-tag')&&app.includes('BEGINNING_CONCEPTS_SITE'),'Developer attribution link must remain');
 assert(app.includes('copyPageFeedback'),'Feedback copy fallback must remain');
 assert(css.includes('.bc-brand-tag'),'Attribution style missing');
-assert(html.includes('app.css?v=80')&&html.includes('app.js?v=80'),'Updated JS and CSS versions missing');
-assert(sw.includes("waps-reference-shell-v80"),'Offline cache version missing');
+assert(html.includes('app.css?v=81')&&html.includes('app.js?v=81'),'Updated JS and CSS versions missing');
+assert(sw.includes("waps-reference-shell-v81"),'Offline cache version missing');
 assert(sw.includes('./'+logo),'Offline shell must include Beginning Concepts logo');
 console.log('Beginning Concepts WAPS contacts, share URL, logo and offline brand QA PASS');
+
+assert(app.includes('bc-home-portrait-credit')&&app.includes('bc-home-landscape-credit'),'Home must show developer link in both orientations');
+assert(app.includes('Donated by')&&app.includes('FREE FOREVER'),'WAPS donation and free forever promise must be visible');
+assert(app.includes('bc-more-logo-shortcut'),'More heading must offer visible developer logo');
+assert(app.includes('bc-page-footer'),'Every non-Home top-level route must have page-end credit');
+assert(css.includes('body.child-mode-active .bc-visible-credit'),'Child-mode credit suppression must remain');

@@ -2,7 +2,7 @@ const {test,expect}=require('@playwright/test');
 const BASE='http://127.0.0.1:4173/';
 for(const viewport of [{width:390,height:844},{width:1440,height:900}]){
  test('WAPS business attribution and feedback on '+viewport.width,async({browser})=>{
-  const context=await browser.newContext({viewport});
+  const context=await browser.newContext({viewport,permissions:['clipboard-read','clipboard-write']});
   const page=await context.newPage(),errors=[];
   page.on('pageerror',error=>errors.push(error.message));
   await page.goto(BASE+'#more');
@@ -28,8 +28,9 @@ for(const viewport of [{width:390,height:844},{width:1440,height:900}]){
  });
 }
 test('Share and QR always show the Beginning Concepts WAPS address',async({page})=>{
- await page.goto(BASE+'#home');
- await page.locator('#shareFab').click();
+ await page.goto(BASE+'#more');
+ await page.locator('.more-group-card.settings').click();
+ await page.locator('.more-group-list [data-action="shareApp"]').click();
  await expect(page.locator('.app-share-sheet .share-url-preview')).toContainText('https://waps.beginningconcepts.org/');
  await page.locator('[data-action="showAppQr"]').click();
  await expect(page.locator('.app-qr-sheet .share-url-preview')).toContainText('https://waps.beginningconcepts.org/');

@@ -6,7 +6,7 @@ for(const viewport of [{width:390,height:844},{width:1440,height:900}]){
   const page=await context.newPage(),errors=[];
   page.on('pageerror',error=>errors.push(error.message));
   await page.goto(BASE+'#more');
-  const tag=page.locator('.more-page .bc-brand-tag');
+  const tag=page.locator('.more-page .bc-more-logo-shortcut');
   await expect(tag).toBeVisible();
   await expect(tag).toHaveAttribute('href','https://beginningconcepts.org/');
   const loaded=await tag.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0);
@@ -16,6 +16,7 @@ for(const viewport of [{width:390,height:844},{width:1440,height:900}]){
   await page.locator('.more-group-card.about').click();
   await page.locator('[data-action="about"]').click();
   await expect(page.locator('.bc-about-credit .bc-brand-tag')).toHaveAttribute('href','https://beginningconcepts.org/');
+ await expect(page.locator('.bc-about-credit .bc-brand-tag')).toContainText('FREE FOREVER');
   await page.locator('[data-action="closeModal"]').last().click();
   await page.locator('#feedbackFab').click();
   await expect(page.locator('.bc-feedback-recipient')).toContainText('beginningconcepts.org@gmail.com');
@@ -51,6 +52,8 @@ for(const device of [
   const logo=page.locator('.bc-home-'+device.mode+'-credit .bc-brand-tag');
   await expect(logo).toBeVisible();
   await expect(logo).toHaveAttribute('href','https://beginningconcepts.org/');
+  await expect(logo).toContainText('Donated by');
+  await expect(logo).toContainText('FREE FOREVER');
   await expect(logo.locator('img')).toHaveAttribute('src','./assets/brand/beginning-concepts-logo.webp');
   const geometry=await logo.evaluate(link=>{
    const r=link.getBoundingClientRect(),mx=r.x+r.width/2,my=r.y+r.height/2;

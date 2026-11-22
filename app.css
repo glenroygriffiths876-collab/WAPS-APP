@@ -3652,6 +3652,7 @@ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-v
 .bc-brand-tag span{display:flex;flex-direction:column;align-items:flex-start;line-height:1.08}
 .bc-brand-tag small{font-size:9px;letter-spacing:.025em;font-weight:700;color:#566581}
 .bc-brand-tag strong{font-size:12px;font-weight:900;letter-spacing:.01em;color:#17345a}
+.bc-brand-tag em{display:block;font-style:normal;font-size:9px;font-weight:950;letter-spacing:.07em;color:#08704c;line-height:1.05}
 .bc-brand-tag:hover{border-color:#d1b86f;box-shadow:0 5px 13px rgba(20,45,80,.13)}
 .bc-brand-tag:focus-visible{outline:3px solid #164ebd;outline-offset:3px}
 .bc-feedback-recipient{font-size:12px;overflow-wrap:anywhere;color:#4f637f}
@@ -3683,13 +3684,14 @@ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-v
  pointer-events:auto!important;
 }
 .bc-home-credit .bc-brand-tag{
- min-height:23px!important;height:25px!important;
+ min-height:31px!important;height:31px!important;
  padding:2px 7px 2px 3px!important;gap:5px!important;
  background:rgba(255,254,245,.97)!important;border:1px solid #e8ce7c!important;
  box-shadow:0 3px 10px rgba(13,56,98,.17)!important;
 }
 .bc-home-credit .bc-brand-tag img{width:20px!important;height:20px!important}
 .bc-home-credit .bc-brand-tag small{font-size:8px!important;line-height:1!important}
+.bc-home-credit .bc-brand-tag em{font-size:7px!important;letter-spacing:.025em!important}
 .bc-home-credit .bc-brand-tag strong{font-size:10px!important;line-height:1.05!important}
 .bc-home-portrait-credit{left:50%!important;top:31.2%!important;transform:translateX(-50%)!important}
 .bc-home-landscape-credit{left:2.1%!important;top:63.4%!important;transform:none!important}
@@ -3697,6 +3699,7 @@ html[data-waps-home-layout="landscape"] body[data-route="home"] .v59-landscape-v
 .bc-home-landscape-credit .bc-brand-tag img{width:18px!important;height:18px!important}
 .bc-home-landscape-credit .bc-brand-tag strong{font-size:9px!important}
 .bc-home-landscape-credit .bc-brand-tag small{font-size:7px!important}
+.bc-home-landscape-credit .bc-brand-tag em{font-size:6px!important}
 .bc-low-stim-credit{margin:6px auto}
 .v59-art-error .bc-home-credit,html[data-low-stim="1"] .bc-home-credit{display:none!important}
 body.child-mode-active .bc-visible-credit,body.child-mode-active .bc-more-logo-shortcut{display:none!important}
@@ -3705,7 +3708,7 @@ body.concept-id-active .bc-page-footer,body.mu-active .bc-page-footer,
 body[data-route="practice"]:has(.premium-activity) .bc-page-footer{display:none!important}
 @media(max-width:760px){
  .bc-page-footer{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
- .bc-home-landscape-credit .bc-brand-tag{height:22px!important;min-height:22px!important;padding:1px 6px 1px 2px!important}
+ .bc-home-landscape-credit .bc-brand-tag{height:30px!important;min-height:30px!important;padding:1px 6px 1px 2px!important}
  .bc-home-landscape-credit .bc-brand-tag img{width:17px!important;height:17px!important}
 }
 @media (max-width:360px){

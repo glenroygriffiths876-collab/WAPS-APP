@@ -33,8 +33,6 @@ jobs:
         env:
           WAPS_DIFF_BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}
         run: node scripts/approved-release-contract.mjs
-      - name: Validate independent Cloudflare Pages bundle
-        run: node scripts/build-cloudflare-pages.mjs
       - name: Structural smoke gate
         run: python3 smoke.py
       - name: Product ceiling gate

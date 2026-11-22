@@ -1,37 +1,27 @@
-# WAPS / Beginning Concepts — two independent working addresses
+# WAPS — Beginning Concepts: two links, ONE website
 
-## Approved goal
+**Goal:** Both existing and new shared links must successfully take people to the very same WAPS Communication app. No duplicate hosting or separate app.
 
-- Original GitHub Pages address (keep independent and operational): https://glenroygriffiths876-collab.github.io/WAPS-APP/
-- Additional Beginning Concepts address: https://waps.beginningconcepts.org/
-- App/community identity stays WAPS Communication / Western Autism Parents Support.
-- Beginning Concepts is the developer/publisher; WAPS remains free.
-- Both deployments use the same **WAPS-APP GitHub repository** and may update automatically on changes to `main`.
-- **Never set a GitHub Pages Custom domain for this repository.** That changes its default address/redirect behavior. Do not commit a root `CNAME` file.
+- Existing bookmarked link: https://glenroygriffiths876-collab.github.io/WAPS-APP/
+- New branded address: https://waps.beginningconcepts.org/
+- **What happens:** The old GitHub Pages URL *redirects* to the new address. Either link opens WAPS. GitHub Pages continues to host everything from the existing `WAPS-APP` repository.
+- The community identity remains **Western Autism Parents Support**. **Beginning Concepts** is credited as the developer.
+- Do not set up Cloudflare Pages or a second deployment.
 
-## Cloudflare Pages independent deployment (free tier)
+## Configuration
 
-1. In Cloudflare dashboard: **Workers & Pages → Create application → Pages → Import an existing Git repository**.
-2. Connect GitHub and select the existing repository `glenroygriffiths876-collab/WAPS-APP` (do not duplicate or move the repo). Give the Pages project a distinct name such as `waps-communication`.
-3. Production branch: `main`; framework preset: `None`; build command: `node scripts/build-cloudflare-pages.mjs`; output directory: `dist`; root directory: repository root.
-4. Deploy and first verify the Cloudflare-generated `https://<project-name>.pages.dev/` address works (index, images, Talk, Practice, Maths, More, PWA manifest, share).
-5. In that Cloudflare Pages project, open **Custom domains → Set up a domain**, enter `waps.beginningconcepts.org` and follow the activation prompts. Because `beginningconcepts.org` DNS is already in Cloudflare, Pages may create/adjust the DNS record automatically after confirmation.
-6. **Important:** The existing Cloudflare DNS `waps` CNAME was initially pointed to `glenroygriffiths876-collab.github.io` for a *different* GitHub Pages custom-domain plan. For independent Cloudflare Pages hosting it must instead point to your new `<project-name>.pages.dev` hostname. Update/replace only the `waps` record, or allow Cloudflare Pages to manage it. Do not change apex or unrelated records.
-7. Verify both URLs independently, preferably using two fresh browser sessions. Check HTTPS, assets, screen orientations, offline cache/service worker, installed app, Share/QR, Talk, Practice, Maths, caregiver settings, accessibility and backup/restore. The default GitHub Pages address must continue to display the app **without redirecting** to the Beginning Concepts address.
-8. After verification, add the new address to the Beginning Concepts portfolio. Do not announce that the new address is live before HTTPS and functionality checks are confirmed.
+1. In Cloudflare **DNS** for `beginningconcepts.org`, ensure the existing record for `waps` is **CNAME → glenroygriffiths876-collab.github.io**, with **DNS only** (grey cloud) initially. Do not modify other records.
+2. In the existing GitHub repository, open **Settings → Pages** and configure **Custom domain** to `waps.beginningconcepts.org`, then Save. The published branch's root `CNAME` file should contain that exact hostname.
+3. After the Pages build and certificate provisioning, use **Enforce HTTPS**.
+4. Test **both links**: the branded URL opens WAPS directly; the GitHub URL automatically redirects to the branded URL and still opens the same WAPS Home, Talk, Practice and More experience.
+5. Test HTTPS, artwork loading, interactive activities, share links, PWA installation, mobile/tablet/desktop layout, and core offline behavior.
 
-## Data and installations
+## Important existing-user data note
 
-Although both addresses display the same code and design, browsers treat their saved data separately. Existing child profiles, communication boards, progress, settings and offline installations do not sync between origins. Use WAPS **More → App Settings → Backup & restore** to export data on the old GitHub address and import it on the new Beginning Concepts address. Do not suggest that user data is automatically synchronized or that a new install replaces an existing install.
+The *links* lead to the same app, but browsers associate local WAPS profiles, progress, board customization and settings with the original website address. Data **do not automatically migrate to the new address when the old URL redirects**. If families have saved data at the old GitHub URL, encourage them to export it through **More → App Settings → Backup & restore** *before the redirect is activated*, then restore the backup on the branded URL.
 
-## Scope and constraints
+## Verification status
 
-- This deployment is independent of the original GitHub Pages site; its GitHub Pages settings, CNAME and original URL remain unchanged.
-- Existing app source, WAPS identity, approved Home artwork, interactions, learning activities and local storage schema must stay intact.
-- GitHub connectors can edit application files but cannot click Cloudflare dashboard settings or authorize a new Cloudflare-to-GitHub connection. Activation requires the account owner to perform those Cloudflare interface steps.
-- No paid hosting, separate duplicate GitHub repository or automatic data transfer is required.
+The GitHub repository change and automated tests can be checked in GitHub; real-world HTTPS/DNS checks must be confirmed against the live URLs. Do not claim the branded link is active before checking it in a browser.
 
-Official instructions:
-- https://developers.cloudflare.com/pages/get-started/git-integration/
-- https://developers.cloudflare.com/pages/framework-guides/deploy-anything/
-- https://developers.cloudflare.com/pages/configuration/custom-domains/
+Official documentation: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
